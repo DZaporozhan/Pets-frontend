@@ -11,7 +11,6 @@ export const OurFriendsInfo = ({
 			
 			<div>
 				<p>Address:</p>
-
 				<a  href={addressUrl}>
 					{address ? address : '_*************_'}
 				</a>
