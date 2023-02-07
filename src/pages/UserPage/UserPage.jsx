@@ -1,5 +1,11 @@
+import UserInfo from 'components/UserInfo/UserInfo';
+
 const UserPage = () => {
-  return;
+  return (
+    <div>
+      <UserInfo />
+    </div>
+  );
 };
 
 export default UserPage;
