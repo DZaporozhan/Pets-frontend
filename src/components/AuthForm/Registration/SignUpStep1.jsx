@@ -7,7 +7,7 @@ import {
   FormInput,
   SecondInpError,
   ThirdInpError,
-} from './SignUpSteps.steled';
+} from '../AuthForm.styled';
 
 const validationSchema = Yup.object({
   email: Yup.string()
