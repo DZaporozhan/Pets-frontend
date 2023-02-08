@@ -1,16 +1,27 @@
 import { Outlet } from 'react-router-dom';
-import { Suspense } from 'react';
-import { Header } from "../Header/Header";
+import React, { Component, Suspense } from 'react';
+import { Header } from '../Header/Header';
+import Modal from '../Modal';
 
+export default class SharedLayout extends Component {
+  state = {
+    showModal: false,
+  };
 
-export const SharedLayout = () => {
-  return (
-    <>
-      <Header/>         
-      <Suspense fallback={<div> Loading ...</div>}>
-      <Outlet />
-      </Suspense>
-    </>
-  );
-};
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({ showModal: !showModal }));
+  };
 
+  render() {
+    const { showModal } = this.setState;
+    return (
+      <>
+        <Header />
+        <Suspense fallback={<div> Loading ...</div>}>
+          <Outlet />
+        </Suspense>
+        {showModal && <Modal />}
+      </>
+    );
+  }
+}
