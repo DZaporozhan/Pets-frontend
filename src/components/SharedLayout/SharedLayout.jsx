@@ -13,7 +13,7 @@ export default class SharedLayout extends Component {
   };
 
   render() {
-    const { showModal } = this.setState;
+    const { showModal } = this.state;
     return (
       <>
         <Header />
