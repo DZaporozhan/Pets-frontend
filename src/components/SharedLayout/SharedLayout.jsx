@@ -7,7 +7,6 @@ export default class SharedLayout extends Component {
   state = {
     showModal: false,
   };
-
   toggleModal = () => {
     this.setState(({ showModal }) => ({ showModal: !showModal }));
   };
@@ -20,11 +19,10 @@ export default class SharedLayout extends Component {
         <Suspense fallback={<div> Loading ...</div>}>
           <Outlet />
         </Suspense>
-
         <button type="button" onClick={this.toggleModal}>
           Open Modal
         </button>
-        {showModal && <Modal />}
+        {showModal && <Modal onClose={this.toggleModal}></Modal>}
       </>
     );
   }

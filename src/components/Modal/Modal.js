@@ -1,12 +1,42 @@
 import React, { Component } from 'react';
-import { BackDrop, ModalWindow } from './Modal.styled';
+import { createPortal } from 'react-dom';
+import { BackDrop, ModalWindow, BtnClose, IconClose } from './Modal.styled';
+
+const modalRoot = document.querySelector('#modal-root');
 
 export default class Modal extends Component {
+  componentDidMount() {
+    window.addEventListener('keydown', this.onKeyDown);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.onKeyDown);
+  }
+
+  onKeyDown = e => {
+    if (e.code === 'Escape') {
+      this.props.onClose();
+    }
+  };
+
+  onBackdropClick = e => {
+    if (e.currentTarget === e.target) {
+      this.props.onClose();
+    }
+  };
+
   render() {
-    return (
-      <BackDrop>
-        <ModalWindow></ModalWindow>
-      </BackDrop>
+    const { onClose } = this.props;
+    return createPortal(
+      <BackDrop onClick={this.onBackdropClick}>
+        <ModalWindow>
+          <BtnClose type="button" onClick={onClose}>
+            <IconClose width={16} height={16}></IconClose>
+          </BtnClose>
+          {this.props.children}
+        </ModalWindow>
+      </BackDrop>,
+      modalRoot
     );
   }
 }
