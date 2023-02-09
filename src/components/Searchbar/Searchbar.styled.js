@@ -6,7 +6,7 @@ export const SearchForm = styled.form`
   align-items: center;
   padding-top: 28px;
   overflow: hidden;
-`;
+ `;
 
 export const SearchFormInput = styled.input`
   font-family: ${p => p.theme.fonts.body};
@@ -19,7 +19,8 @@ export const SearchFormInput = styled.input`
   display: inline-block;
   outline: none;
   padding-left: 12px;
-
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+ 
   &::placeholder {
     font-family: ${p => p.theme.fonts.body};
     font-size: ${p => p.theme.fontSizes[2]}px;
@@ -51,6 +52,7 @@ export const SearchFormButton = styled.button`
   border: 0;
   cursor: pointer;
   outline: none;
-
+  &:hover{color: #f59256;}
   margin-left: -40px;
+  transition: ${p=>p.theme.transition};
 `;

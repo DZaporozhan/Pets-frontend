@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from "react";
 import { styled } from '@mui/material/styles';
 import { Button, Popover } from '@mui/material';
 import { ContentOfPopover } from '../ContentOfPopover/ContentOfPopover';
@@ -33,12 +33,14 @@ const CustomizedBtn = styled(Button)`
     line-height: 1.35;
   }
   @media screen and (min-width: 1280px) {
+
     font-size: 16px;
+   
   }
 `;
 
 export const OurFriendsPopover = ({ workDays }) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
