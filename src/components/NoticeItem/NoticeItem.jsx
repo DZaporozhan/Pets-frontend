@@ -12,10 +12,11 @@ import {
   BtnAddFavoriteIcon,
   BtnDelete,
   IconBtnDel,
+  NoticePhoto,
 } from './NoticeItem.styled';
 
 const defaultPhoto =
-  'https://res.cloudinary.com/goit-academy/image/upload/v1614773221/codepen/cat_segyum.svg';
+  'https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png';
 const userId = '63de3b5347179c3bdcb8d756';
 
 export const NoticeItem = ({ notices }) => {
@@ -34,8 +35,7 @@ export const NoticeItem = ({ notices }) => {
 
   return (
     <Item>
-      <img
-        style={{ height: 288, width: '100%' }}
+      <NoticePhoto
         src={
           (imageURL &&
             `https://res.cloudinary.com/dqupdbup3/image/upload/${imageURL?.toLowerCase()}`) ||
