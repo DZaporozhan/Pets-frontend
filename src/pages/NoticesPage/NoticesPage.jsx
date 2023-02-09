@@ -1,7 +1,7 @@
 import { NoticesList } from 'components/NoticesList/NoticesList';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Sections, Contaainer } from './NoticesPage.styled';
+import { Sections, Container } from './NoticesPage.styled';
 import Modal from '../../components/Modal';
 import { AddPetBtn } from '../../components/AddPetBtn/AddPetBtn';
 import { Section } from '../../components/Section/Section';
@@ -42,9 +42,9 @@ const NoticesPage = () => {
       <AddPetBtn onClick={toggleModal}></AddPetBtn>
       {showModal && <Modal onClose={toggleModal}></Modal>}
       <Sections>
-        <Contaainer>
+        <Container>
           {notices.length !== 0 && <NoticesList notices={notices} />}
-        </Contaainer>
+        </Container>
       </Sections>
     </>
   );

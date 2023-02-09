@@ -20,13 +20,19 @@ export const Item = styled.li`
   background: #ffffff;
 `;
 
+export const NoticePhoto = styled.img`
+  object-fit: cover;
+  height: 288px;
+  width: 100%;
+`;
+
 export const Tumb = styled.div`
   padding: ${({ ownerNotice }) =>
     ownerNotice ? '20px 16px 12px 16px' : '20px 16px 32px 16px'};
 `;
 
 export const Title = styled.h4`
-  /* font-family: 'Manrope'; */
+  font-family: 'Manrope, sans-serif';
   font-style: normal;
   font-weight: 700;
   font-size: 28px;
@@ -45,7 +51,7 @@ export const DescriptionList = styled.ul`
 `;
 
 export const Description = styled.span`
-  /* font-family: 'Manrope'; */
+  font-family: 'Manrope, sans-serif';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -54,7 +60,7 @@ export const Description = styled.span`
 `;
 
 export const DescriptionValue = styled.span`
-  /* font-family: 'Manrope'; */
+  font-family: 'Manrope, sans-serif';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -74,7 +80,7 @@ export const LearnMore = styled.button`
   margin-left: auto;
   margin-right: auto;
   margin-top: ${({ ownerNotice }) => (ownerNotice ? '20px' : '50px')};
-  /* font-family: 'Manrope'; */
+  font-family: 'Manrope, sans-serif';
   color: #f59256;
   font-style: normal;
   font-weight: 500;
@@ -93,7 +99,7 @@ export const LearnMore = styled.button`
 `;
 
 export const BtnDelete = styled.button`
-  /* font-family: 'Manrope'; */
+  font-family: 'Manrope, sans-serif';
   display: flex;
   margin-left: auto;
   margin-right: auto;
@@ -136,7 +142,7 @@ export const CategoryTitleWraper = styled.div`
 `;
 
 export const CategoryTitle = styled.p`
-  /* font-family: 'Inter'; */
+  font-family: 'Inter, sans-serif';
   text-align: ${({ category }) => (category === 'sell' ? 'center' : 'left')};
   font-style: normal;
   font-weight: 500;
