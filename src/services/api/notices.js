@@ -12,7 +12,7 @@ export const getNoticeByCategory = async ({
       result = await instance.get(`/notices/favorite?title=${filter}`);
       break;
 
-    case 'own':
+    case 'owner':
       result = await instance.get(`/notices/owner?title=${filter}`);
       break;
     default:
