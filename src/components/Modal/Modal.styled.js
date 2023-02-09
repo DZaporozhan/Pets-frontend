@@ -22,7 +22,7 @@ export const ModalWindow = styled.div`
   background-color: ${p => p.theme.colors.white};
   border-radius: ${p => p.theme.radii.small};
 
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media screen and (${p => p.theme.device.tablet}) {
     min-width: 608px;
   }
 `;

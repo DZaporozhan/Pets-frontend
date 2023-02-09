@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const Sections = styled.section`
   margin-top: 42px;
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media screen and (${p => p.theme.device.tablet}) {
     margin-top: 88px;
   }
-  @media screen and (${p => p.theme.media.desktop}) {
+  @media screen and (${p => p.theme.device.desktop}) {
     margin-top: 59px;
   }
 `;
@@ -19,7 +19,7 @@ export const Title = styled.h2`
 
   color: ${p => p.theme.colors.primaryText};
 
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media screen and (${p => p.theme.device.tablet}) {
     font-size: ${p => p.theme.fontSizes[9]}px;
   }
 `;

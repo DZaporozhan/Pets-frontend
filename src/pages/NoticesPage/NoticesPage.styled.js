@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Section = styled.section``;
+export const Sections = styled.section``;
 
 export const Contaainer = styled.div`
   padding: 0 16px;

@@ -31,14 +31,14 @@ export const SearchFormInput = styled.input`
     letter-spacing: 0.04em;
 
     color: #535353;
-    @media screen and (${p => p.theme.media.tablet}) {
+    @media screen and (${p => p.theme.device.tablet}) {
       font-size: ${p => p.theme.fontSizes[4]}px;
 
       line-height: 1.35;
     }
   }
 
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media screen and (${p => p.theme.device.tablet}) {
     width: 608px;
     height: 44px;
   }
