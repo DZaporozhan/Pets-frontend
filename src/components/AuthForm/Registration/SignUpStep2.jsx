@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
 import {
   AuthButton,
   BackButton,
@@ -7,7 +8,8 @@ import {
   SecondInpError,
   ThirdInpError,
   FormInput,
-} from './SignUpSteps.steled';
+} from '../AuthForm.styled';
+import { register } from 'redux/auth/operations';
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -23,6 +25,7 @@ const validationSchema = Yup.object({
 
 const SignUpStep2 = ({ data, onSubmit }) => {
   const { email, password } = data;
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -31,15 +34,15 @@ const SignUpStep2 = ({ data, onSubmit }) => {
     },
     validationSchema: validationSchema,
     onSubmit: async values => {
-      try {
-        console.log({
+      dispatch(
+        register({
           email,
           password,
           name: values.name,
           city: values.city,
           phone: values.phone,
-        });
-      } catch (error) {}
+        })
+      );
       formik.resetForm();
     },
   });
