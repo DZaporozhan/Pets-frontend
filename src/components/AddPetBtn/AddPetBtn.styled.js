@@ -47,6 +47,7 @@ export const IconAdd = styled(AddIcon)`
 `;
 
 export const Text = styled.span`
+  font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSizes[0]}px;
   line-height: 1.33;
 
