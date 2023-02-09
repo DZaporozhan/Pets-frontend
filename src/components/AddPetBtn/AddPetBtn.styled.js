@@ -13,7 +13,7 @@ export const StyledBtn = styled.button`
   border-radius: ${p => p.theme.radii.round};
   background: ${p => p.theme.colors.accent};
   cursor: pointer;
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media screen and (${p => p.theme.device.tablet}) {
     width: 129px;
     height: 44px;
     padding: 0;
@@ -25,7 +25,7 @@ export const StyledBtn = styled.button`
 `;
 
 export const Wrap = styled.div`
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media screen and (${p => p.theme.device.tablet}) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,7 +40,7 @@ export const IconAdd = styled(AddIcon)`
   width: 32px;
   height: 32px;
   color: #ffffff;
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media screen and (${p => p.theme.device.tablet}) {
     width: 24px;
     height: 24px;
   }
@@ -52,7 +52,7 @@ export const Text = styled.span`
   line-height: 1.33;
 
   color: #ffffff;
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media screen and (${p => p.theme.device.tablet}) {
     color: ${p => p.theme.colors.primaryText};
     font-size: ${p => p.theme.fontSizes[4]}px;
     line-height: 1.35;
