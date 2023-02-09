@@ -12,6 +12,7 @@ export const NavMobMenu = styled.div`
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
     opacity: ${({ menuToggle }) => (menuToggle ? 1 : 0)};
     background-color: ${p => p.theme.colors.background};
+    display: ${({ menuToggle }) => (menuToggle ? "block" : "none")};
     
 
 @media (min-width: 1280px) {
