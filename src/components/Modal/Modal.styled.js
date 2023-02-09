@@ -7,21 +7,24 @@ export const BackDrop = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(17, 17, 17, 0.6);
+  background: ${p => p.theme.colors.gray};
   backdrop-filter: blur(10px);
 `;
 
 export const ModalWindow = styled.div`
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: ${p => p.theme.radii.round};
+  left: ${p => p.theme.radii.round};
   transform: translate(-50%, -50%);
   min-height: 530px;
   min-width: 280px;
-  /* width: 100%; */
   padding: 20px;
-  background-color: #ffffff;
-  border-radius: 20px;
+  background-color: ${p => p.theme.colors.white};
+  border-radius: ${p => p.theme.radii.small};
+
+  @media screen and (${p => p.theme.media.tablet}) {
+    min-width: 608px;
+  }
 `;
 
 export const BtnClose = styled.button`
@@ -35,9 +38,9 @@ export const BtnClose = styled.button`
 
   width: 34px;
   height: 34px;
-  border-radius: 50%;
+  border-radius: ${p => p.theme.radii.round};
   border: 0px;
-  background: #fdf7f2;
+  background: ${p => p.theme.colors.background};
   backdrop-filter: blur(2px);
   padding: 3px;
 `;
@@ -48,7 +51,7 @@ export const IconClose = styled(CloseIcon)`
   &:hover,
   &:focus {
     cursor: pointer;
-    color: #f59256;
+    color: ${p => p.theme.colors.accent};
     transform: scale(1.2);
   }
 `;

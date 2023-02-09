@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import React, { Component, Suspense } from 'react';
 import { Header } from '../Header/Header';
 import Modal from '../Modal';
-
+import { AddPetBtn } from '../AddPetBtn/AddPetBtn';
 export default class SharedLayout extends Component {
   state = {
     showModal: false,
@@ -19,9 +19,7 @@ export default class SharedLayout extends Component {
         <Suspense fallback={<div> Loading ...</div>}>
           <Outlet />
         </Suspense>
-        <button type="button" onClick={this.toggleModal}>
-          Open Modal
-        </button>
+        <AddPetBtn onClick={this.toggleModal}></AddPetBtn>
         {showModal && <Modal onClose={this.toggleModal}></Modal>}
       </>
     );
