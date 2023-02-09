@@ -5,13 +5,16 @@ import { ReactComponent as CloseBtn } from "../../../icons/close.svg"
 import { useState } from "react";
 import { useMediaQuery } from 'react-responsive';
 import { Nav } from "../Nav/Nav";
-// import { UserNav } from "../UserNav/UserNav";
+import { UserNav } from "../UserNav/UserNav";
 import { AuthNav } from "../AuthNav/AuthNav";
-
-
+import { useSelector } from 'react-redux';
+import {isAuth, getToken} from "../../../redux/auth/selectors"
 
 
 export const Navigation = () => {
+
+  const { isLoggedIn } = useSelector(isAuth);
+    // const { token } = useSelector(getToken);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
@@ -25,12 +28,15 @@ export const Navigation = () => {
   return (
     <> 
   <NavHeader> 
-    {isDesktop ? (<NavWrapper> <Nav /></NavWrapper>) : ""} 
+    {isDesktop ? (<NavWrapper> <Nav setIsMenuOpen={setIsMenuOpen}/></NavWrapper>) : ""} 
       
     {!isMenuOpen ? (isTablet && (
       <TabletWrapper>
-        <AuthNav />
-        {/* <UserNav /> */}
+
+            {/* <UserNav setIsMenuOpen={setIsMenuOpen} /> */}
+            {/* <AuthNav setIsMenuOpen={setIsMenuOpen} /> */}
+             {isLoggedIn ?  <UserNav setIsMenuOpen={setIsMenuOpen} /> :  <AuthNav setIsMenuOpen={setIsMenuOpen} />}
+       
       </TabletWrapper>)) : ("") }
   </NavHeader>
       
@@ -44,12 +50,13 @@ export const Navigation = () => {
     <NavMobMenu menuToggle={isMenuOpen}>
     <NavTag> 
     <NavWrapper>
-      <Nav />
+      <Nav setIsMenuOpen={setIsMenuOpen}/>
     </NavWrapper>
       
-   <AuthWrapper> 
-    <AuthNav /> 
-     {/* <UserNav />  */}
+      <AuthWrapper> 
+        {/* <UserNav setIsMenuOpen={setIsMenuOpen} /> */}
+        {/* <AuthNav setIsMenuOpen={setIsMenuOpen} /> */}
+     {isLoggedIn ?  <UserNav setIsMenuOpen={setIsMenuOpen} /> :  <AuthNav setIsMenuOpen={setIsMenuOpen} />}
    </AuthWrapper> 
       </NavTag>
     </NavMobMenu>
