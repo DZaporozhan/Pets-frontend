@@ -1,11 +1,11 @@
 import { NavLinkStyled } from './Nav.styled';
 
-export const Nav = () => {
+export const Nav = ({setIsMenuOpen}) => {
   return (
     <>
-      <NavLinkStyled to="/news">News</NavLinkStyled>
-      <NavLinkStyled to="/notices/:categoryName">Find pet</NavLinkStyled>
-      <NavLinkStyled to="/friends">Our friends</NavLinkStyled>
+      <NavLinkStyled to="/news" onClick={() => setIsMenuOpen(false)}>News</NavLinkStyled >
+      <NavLinkStyled to="/notices/:categoryName" onClick={() => setIsMenuOpen(false)}>Find pet</NavLinkStyled>
+      <NavLinkStyled to="/friends" onClick={() => setIsMenuOpen(false)}>Our friends</NavLinkStyled>
     </>
   );
 };
