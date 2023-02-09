@@ -1,12 +1,22 @@
-import { Logo } from "../Logo/Logo";
-import { Navigation } from "../Navigation/Navigation";
+import { Logo } from "./Logo/Logo";
+import { Navigation } from "./Navigation/Navigation";
+
+import { Container } from "./Container/Container";
+import {InnerContainer, HeaderStyle} from "./Header.styled"
+
 
 export const Header = () => {
   return (
-    <header>
-    <Logo />
-    <Navigation />
-    </header>
+    <HeaderStyle>
+      <Container> 
+        <InnerContainer> 
+      <Logo />
+        
+      <Navigation />
+      </InnerContainer>
+    
+    </Container>
+    </HeaderStyle>
   );
 };
 
