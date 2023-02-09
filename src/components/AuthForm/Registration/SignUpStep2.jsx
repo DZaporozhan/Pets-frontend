@@ -23,14 +23,14 @@ const validationSchema = Yup.object({
     .matches(/^\+380\d{9}$/, 'Неправильний номер телефону'),
 });
 
-const SignUpStep2 = ({ data, onSubmit }) => {
+const SignUpStep2 = ({ data, onBack }) => {
   const { email, password } = data;
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
-      name: '',
-      city: '',
-      phone: '',
+      name: data.name || '',
+      city: data.city || '',
+      phone: data.phone || '',
     },
     validationSchema: validationSchema,
     onSubmit: async values => {
@@ -46,6 +46,7 @@ const SignUpStep2 = ({ data, onSubmit }) => {
       formik.resetForm();
     },
   });
+
   return (
     <form onSubmit={formik.handleSubmit}>
       <FormInput
@@ -81,7 +82,7 @@ const SignUpStep2 = ({ data, onSubmit }) => {
         <ThirdInpError>{formik.errors.phone}</ThirdInpError>
       )}
       <AuthButton type="submit">Register</AuthButton>
-      <BackButton type="button" onClick={onSubmit}>
+      <BackButton type="button" onClick={onBack}>
         Back
       </BackButton>
     </form>

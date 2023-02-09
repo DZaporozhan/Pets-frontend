@@ -15,14 +15,12 @@ export const register = async data => {
 export const login = async data => {
   const { data: result } = await instance.post('/auth/login', data);
   setToken(result.token);
-  localStorage.setItem('token', result.token);
   return result;
 };
 
 export const logout = async () => {
   const data = await instance.get('/auth/logout');
   setToken();
-  localStorage.removeItem('token');
   return data;
 };
 
