@@ -1,4 +1,6 @@
 import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { login } from 'redux/auth/operations';
 import * as Yup from 'yup';
 
 import {
@@ -19,6 +21,7 @@ const validationSchema = Yup.object({
 });
 
 const Login = () => {
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -26,12 +29,13 @@ const Login = () => {
     },
     validationSchema: validationSchema,
     onSubmit: async values => {
-      try {
-        console.log({
+      dispatch(
+        login({
           email: values.email,
           password: values.password,
-        });
-      } catch (error) {}
+        })
+      );
+
       formik.resetForm();
     },
   });

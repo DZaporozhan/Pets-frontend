@@ -11,7 +11,7 @@ export const FormContainer = styled.div`
   margin-right: auto;
   padding: 20px 0;
   background: #fdf7f2;
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.device.tablet} {
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
     max-width: 618px;
@@ -27,7 +27,7 @@ export const RegisterHeader = styled.h2`
   font-size: ${p => p.theme.fontSizes[5]}px;
   font-family: ${p => p.theme.fonts.body};
   font-weight: ${p => p.theme.fontWeights.medium};
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.device.tablet} {
     font-size: ${p => p.theme.fontSizes[8]}px;
   }
 `;
@@ -46,7 +46,6 @@ export const RegisterLink = styled(NavLink)`
   margin-left: 2px;
   color: ${p => p.theme.colors.blue};
 `;
-
 
 export const FormInput = styled.input`
   box-sizing: border-box;
@@ -69,7 +68,7 @@ export const FormInput = styled.input`
     font-weight: ${p => p.theme.fontWeights.regular};
     font-family: ${p => p.theme.fonts.body};
   }
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.device.tablet} {
     width: 458px;
   }
 `;
@@ -130,7 +129,7 @@ export const FirstInpError = styled.p`
   left: 50%;
   transform: translateX(-50%);
   font-size: 12px;
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.device.tablet} {
     top: 200px;
   }
 `;
@@ -143,7 +142,7 @@ export const SecondInpError = styled.p`
   left: 50%;
   transform: translateX(-50%);
   font-size: 12px;
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.device.tablet} {
     top: 267px;
   }
 `;
@@ -156,7 +155,7 @@ export const ThirdInpError = styled.p`
   left: 50%;
   transform: translateX(-50%);
   font-size: 12px;
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.device.tablet} {
     top: 335px;
   }
 `;
