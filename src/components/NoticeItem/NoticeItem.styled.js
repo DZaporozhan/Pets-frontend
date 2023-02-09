@@ -1,8 +1,18 @@
 import styled from 'styled-components';
 import { FiHeart } from 'react-icons/fi';
+import { HiTrash } from 'react-icons/hi2';
 
 export const Item = styled.li`
-  width: 280px;
+  @media screen and (max-width: 767px) {
+    max-width: 280px;
+  }
+  @media screen and (max-width: 1279px) {
+    width: 336px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 280px;
+  }
+
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
   position: relative;
@@ -11,7 +21,8 @@ export const Item = styled.li`
 `;
 
 export const Tumb = styled.div`
-  padding: 20px 16px 32px 16px;
+  padding: ${({ ownerNotice }) =>
+    ownerNotice ? '20px 16px 12px 16px' : '20px 16px 32px 16px'};
 `;
 
 export const Title = styled.h4`
@@ -24,10 +35,6 @@ export const Title = styled.h4`
   margin-bottom: 20px;
   padding-left: 4px;
   color: #111111;
-`;
-
-export const DiscriptionWrapper = styled.div`
-  display: flex;
 `;
 
 export const DescriptionList = styled.ul`
@@ -46,13 +53,6 @@ export const Description = styled.span`
   color: #111111;
 `;
 
-export const DescriptionValueList = styled.ul`
-  li:not(:last-child) {
-    margin-bottom: 8px;
-  }
-  margin-left: 40px;
-`;
-
 export const DescriptionValue = styled.span`
   /* font-family: 'Manrope'; */
   font-style: normal;
@@ -68,7 +68,12 @@ export const LearnMore = styled.button`
   padding: 8px 0px;
   border: 2px solid #f59256;
   background: #ffffff;
-  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: ${({ ownerNotice }) => (ownerNotice ? '20px' : '50px')};
   /* font-family: 'Manrope'; */
   color: #f59256;
   font-style: normal;
@@ -81,10 +86,42 @@ export const LearnMore = styled.button`
   :focus,
   :hover {
     transform: scale(1.03);
-    color: #2196f3;
-    border-color: #2196f3;
+    color: #ff6101;
+    border-color: #ff6101;
     cursor: pointer;
   }
+`;
+
+export const BtnDelete = styled.button`
+  /* font-family: 'Manrope'; */
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  align-items: center;
+  width: 248px;
+  border-radius: 44px;
+  padding: 8px 0px;
+  border: 2px solid #f59256;
+  background: #ffffff;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #f59256;
+  margin-top: 12px;
+  transition: transform 200ms, color 200ms, border-color 300ms;
+  :focus,
+  :hover {
+    transform: scale(1.03);
+    color: #ff6101;
+    border-color: #ff6101;
+    cursor: pointer;
+  }
+`;
+
+export const IconBtnDel = styled(HiTrash)`
+  margin-left: 12px;
 `;
 
 export const CategoryTitleWraper = styled.div`
@@ -100,6 +137,7 @@ export const CategoryTitleWraper = styled.div`
 
 export const CategoryTitle = styled.p`
   /* font-family: 'Inter'; */
+  text-align: ${({ category }) => (category === 'sell' ? 'center' : 'left')};
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -122,12 +160,11 @@ export const BtnAddFavorite = styled.button`
   :focus,
   :hover {
     transform: scale(1.05);
-    background-color: #2196f3;
+
     cursor: pointer;
   }
 `;
 
 export const BtnAddFavoriteIcon = styled(FiHeart)`
   color: #f59256;
-  transition: color 300ms, transform 300ms;
 `;
