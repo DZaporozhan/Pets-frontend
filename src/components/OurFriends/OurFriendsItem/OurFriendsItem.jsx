@@ -1,27 +1,36 @@
 import { OurFriendsInfo } from './OurFriendsInfo/OurFriendsInfo';
 import friend from "./Friend.png";
+import styles from './OurFriendsItem.module.css';
 
 export const OurFriendsItem = ({ data }) => {
 	const { title, address, addressUrl, email, imageUrl, phone, url, workDays } =
 		data;
 
+		const sliceAddress = address => {
+			if (address.length > 25) {
+				return address.slice(0, 25) + '...';
+			} else {
+				return address;
+			}
+		};
 
 
 	return (
-		<li >
-			<a  href={url}>
+		<li className={styles.item}>
+			<a target="_blank" rel="noreferrer noopener" className={styles.item__title} href={url}>
 				{title}
 			</a>
-			<div>
-				<div >
+			<div className={styles.item__wrap}>
+				<div className={styles.item__img_wrap}>
 					{imageUrl ? (
 						<img
 							src={imageUrl}
 							alt="Partner Logo"
+							className={styles.item__img}
 						/>
 					) : (
-						<img width={"110px"}
-						
+						<img 
+							className={styles.item__img}
 							src={friend }
 							alt="Partner Logo"
 						/>
@@ -32,6 +41,7 @@ export const OurFriendsItem = ({ data }) => {
 					address={address}
 					email={email}
 					phone={phone}
+					sliceAddress={sliceAddress}
 					workDays={workDays}
 				/>
 			</div>
