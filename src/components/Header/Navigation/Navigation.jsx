@@ -1,7 +1,7 @@
 
 import { NavMobMenu, NavTag, NavHeader, NavWrapper, AuthWrapper, ModalBtn, TabletWrapper } from "./Navigation.styled";
-import  {ReactComponent as BurgerBtn }  from "../Icons/burger.svg"
-import { ReactComponent as CloseBtn } from "../Icons/close.svg"
+import  {ReactComponent as BurgerBtn }  from "../../../icons/burger.svg"
+import { ReactComponent as CloseBtn } from "../../../icons/close.svg"
 import { useState } from "react";
 import { useMediaQuery } from 'react-responsive';
 import { Nav } from "../Nav/Nav";
