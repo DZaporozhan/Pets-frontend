@@ -43,4 +43,6 @@ export const theme = {
     tablet: '(min-width: 768px)',
     desktop: '(min-width: 1280px)',
   },
+
+  transition: "0.2s all linear"
 };

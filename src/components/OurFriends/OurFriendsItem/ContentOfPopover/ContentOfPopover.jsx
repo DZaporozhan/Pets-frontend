@@ -1,21 +1,20 @@
 import { nanoid } from 'nanoid';
-
-import styles from './ContentOfPopover.module.css';
+import { Li, Day, Ul, Time } from './ContentOfPopover.styled';
 
 export const ContentOfPopover = ({ workDays }) => {
 	const Item = workDays.map(({ isOpen, from, to, weekday }) => (
-		<li key={nanoid()} className={styles.content__item}>
-			<p className={styles.content__day}> {weekday}</p>
+		<Li key={nanoid()} >
+			<Day > {weekday}</Day>
 
 			{isOpen ? (
-				<p className={styles.content__time}>
+				<Time >
 					{from} - {to}
-				</p>
+				</Time>
 			) : (
-				<p className={styles.content__time}>------------</p>
+				<Time >------------</Time>
 			)}
-		</li>
+		</Li>
 	));
 
-	return <ul className={styles.content}>{Item}</ul>;
+	return <Ul >{Item}</Ul>;
 };

@@ -1,6 +1,6 @@
 import { OurFriendsInfo } from './OurFriendsInfo/OurFriendsInfo';
 import friend from "./Friend.png";
-import styles from './OurFriendsItem.module.css';
+import {Item, Title, Wrap, ImageWrap, Image} from "./OurFriendsItem.styled"
 
 export const OurFriendsItem = ({ data }) => {
 	const { title, address, addressUrl, email, imageUrl, phone, url, workDays } =
@@ -16,26 +16,24 @@ export const OurFriendsItem = ({ data }) => {
 
 
 	return (
-		<li className={styles.item}>
-			<a target="_blank" rel="noreferrer noopener" className={styles.item__title} href={url}>
+		<Item>
+			<Title target="_blank" rel="noreferrer noopener"  href={url}>
 				{title}
-			</a>
-			<div className={styles.item__wrap}>
-				<div className={styles.item__img_wrap}>
+			</Title>
+			<Wrap>
+				<ImageWrap>
 					{imageUrl ? (
-						<img
+						<Image
 							src={imageUrl}
 							alt="Partner Logo"
-							className={styles.item__img}
-						/>
+													/>
 					) : (
-						<img 
-							className={styles.item__img}
+						<Image 
 							src={friend }
 							alt="Partner Logo"
 						/>
 					)}
-				</div>
+				</ImageWrap>
 				<OurFriendsInfo
 					addressUrl={addressUrl}
 					address={address}
@@ -44,7 +42,7 @@ export const OurFriendsItem = ({ data }) => {
 					sliceAddress={sliceAddress}
 					workDays={workDays}
 				/>
-			</div>
-		</li>
+			</Wrap>
+		</Item>
 	);
 };

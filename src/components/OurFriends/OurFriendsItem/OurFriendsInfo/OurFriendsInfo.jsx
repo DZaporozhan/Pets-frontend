@@ -1,7 +1,5 @@
 import { OurFriendsPopover } from '../OurFriendPopover/OurFriendPopover';
-
-import styles from './OurFriendsInfo.module.css';
-
+import { Info, Time, Links } from './OurFriendsInfo.styled';
 export const OurFriendsInfo = ({
 	addressUrl,
 	address,
@@ -11,35 +9,35 @@ export const OurFriendsInfo = ({
 	workDays,
 }) => {
 	return (
-		<div className={styles.info}>
+		<Info>
 			<div>
 				{workDays?.length ? (
 					<OurFriendsPopover workDays={workDays} />
 				) : (
-					<p className={styles.time}>
+					<Time>
 						Time: <br />
 						--------------
-					</p>
+					</Time>
 				)}
 			</div>
 			<div>
 				<p>Address:</p>
 
-				<a target="_blank" rel="noreferrer noopener" className={styles.links} href={addressUrl}>
+				<Links target="_blank" rel="noreferrer noopener"  href={addressUrl}>
 					{address ? sliceAddress(address) : '------------'}
-				</a>
+				</Links>
 			</div>
 			<p>Email:</p>
 
-			<a className={styles.links} href={email}>
+			<Links  href="mailto:{email}">
 				{email ? `${email}` : '------------'}
-			</a>
+			</Links>
 
 			<p>Phone: </p>
 
-			<a className={styles.links} href={phone}>
+			<Links  href="tel:{phone}" >
 				{phone ? `${phone}` : '------------'}
-			</a>
-		</div>
+			</Links>
+		</Info>
 	);
 };
