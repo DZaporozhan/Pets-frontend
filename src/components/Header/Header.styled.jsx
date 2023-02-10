@@ -6,7 +6,6 @@ align-items: center;
 
 `
 export const HeaderStyle = styled.header`
-background-color: ${p => p.theme.colors.background};
 position: relative;
 `
 
