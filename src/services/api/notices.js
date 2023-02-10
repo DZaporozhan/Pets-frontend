@@ -1,4 +1,4 @@
-import instance from './auth';
+import instance from './axiosConfige';
 
 export const getNoticeByCategory = async ({
   page = 1,
@@ -9,7 +9,7 @@ export const getNoticeByCategory = async ({
   let result;
   switch (category) {
     case 'favorite':
-      result = await instance.get(`/notices/favorite?title=${filter}`);
+      result = await instance.get(`/notices/favorite?category=${category}`);
       break;
 
     case 'owner':
@@ -17,12 +17,12 @@ export const getNoticeByCategory = async ({
       break;
     default:
       result = await instance.get(
-        `/notices?category=${category}&page=${page}&limit=${limit}?title=${filter}`
+        `/notices?category=${category}&page=${page}&limit=${limit}&title=${filter}`
       );
       break;
   }
-  const { data } = result;
-  return data;
+
+  return result;
 };
 
 export const getOneNotice = async id => {
@@ -31,7 +31,7 @@ export const getOneNotice = async id => {
 };
 
 export const addNoticeToFavorite = async id => {
-  const { data } = await instance.patch(`/notices/favorite/${id}`);
+  const { data } = await instance.post(`/notices/favorite/${id}`);
   return data;
 };
 

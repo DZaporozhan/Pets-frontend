@@ -14,14 +14,31 @@ import {
   IconBtnDel,
   NoticePhoto,
 } from './NoticeItem.styled';
+import { getUser } from 'redux/auth/selectors';
+import { useSelector } from 'react-redux';
 
 const defaultPhoto =
   'https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png';
-const userId = '63de3b5347179c3bdcb8d756';
 
-export const NoticeItem = ({ notices }) => {
-  const { breed, location, price, birthday, title, category, imageURL, owner } =
-    notices;
+export const NoticeItem = ({
+  notices,
+  onDeleteNotice,
+  addToFavorite,
+  removeFromFavorite,
+}) => {
+  const {
+    breed,
+    location,
+    price,
+    birthday,
+    title,
+    category,
+    imageURL,
+    owner,
+    _id,
+  } = notices;
+
+  const { id: userId } = useSelector(getUser);
 
   const ownerNotice = owner === userId;
 
@@ -67,7 +84,7 @@ export const NoticeItem = ({ notices }) => {
         </DescriptionList>
         <LearnMore ownerNotice={ownerNotice}>Learn more</LearnMore>
         {ownerNotice && (
-          <BtnDelete>
+          <BtnDelete onClick={() => onDeleteNotice(_id)}>
             Delete
             <IconBtnDel style={{ width: 20, height: 20 }} />
           </BtnDelete>
@@ -76,7 +93,7 @@ export const NoticeItem = ({ notices }) => {
       <CategoryTitleWraper>
         <CategoryTitle category={category}>{category}</CategoryTitle>
       </CategoryTitleWraper>
-      <BtnAddFavorite>
+      <BtnAddFavorite onClick={() => addToFavorite(_id)}>
         <BtnAddFavoriteIcon style={{ width: 28, height: 28 }} />
       </BtnAddFavorite>
     </Item>
