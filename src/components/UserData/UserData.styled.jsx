@@ -1,32 +1,48 @@
 import { Field, ErrorMessage, Form } from 'formik';
-import { ReactComponent as SvgEdit } from './img/svgEdit.svg';
+import { ReactComponent as EditSvg } from './img/edit-icon.svg';
+import { ReactComponent as CameraSvg } from './img/camera-icon.svg';
 
 import styled from 'styled-components';
 
-export const Thumb = styled.div`
+export const EditPhotoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
-  width: 100%;
 `;
 
-export const EditPhotoContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
+export const Thumb = styled.div`
+  outline: 1px solid red;
+  margin-bottom: 32px;
+`;
+
+export const UserAvatar = styled.img`
+  display: block;
+  overflow: hidden;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 12px;
 `;
 
 export const LabelPhoto = styled.label`
-  /* border: 1px solid #ccc; */
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
-  padding: 6px 8px;
   cursor: pointer;
+
+  /* padding: 6px 8px; */
+
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
 `;
 
 export const InputPhoto = styled.input`
   display: none;
+`;
+
+export const CameraIcon = styled(CameraSvg)`
+  margin-right: 4px;
 `;
 
 export const InfoForm = styled(Form)`
@@ -59,7 +75,6 @@ export const Label = styled.label`
 
 export const Input = styled(Field)`
   min-width: 100px;
-  /* height: 20px; */
 
   grid-column: inputs;
   grid-row: auto;
@@ -117,9 +132,13 @@ export const Input = styled(Field)`
 export const Button = styled.button`
   grid-column: buttons;
   grid-row: auto;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  padding: 0;
+  margin: 0;
 
   width: 20px;
   height: 20px;
@@ -127,9 +146,8 @@ export const Button = styled.button`
   border-radius: 50%;
   border: none;
 
-  /* backdrop-filter: blur(2px); */
-
-  background-color: #fdf7f2;
+  background: #fdf7f2;
+  backdrop-filter: blur(2px);
 
   cursor: pointer;
   /* display: inline-flex;
@@ -153,10 +171,21 @@ export const Button = styled.button`
     background-color: #5cb85c;
   } */
 `;
+export const Wrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12.5px;
+  height: 12.5px;
+  /* background-color: ${p => p.theme.colors.accent}; */
+  border-radius: ${p => p.theme.radii.round};
+`;
 
-export const EditIcon = styled(SvgEdit)`
-  /* width: 12.5px;
-  height: 12.5px; */
+export const EditIcon = styled(EditSvg)`
+  display: block;
+  width: 9.5px;
+  height: 9.5px;
+  display: inline-block;
 
   fill: #111111;
 `;

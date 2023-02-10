@@ -1,12 +1,13 @@
 // import { IoLogOutOutline } from 'react-icons/io5';
-import { ReactComponent as SvgLogout } from './img/svgLogout.svg';
+import { ReactComponent as SvgLogout } from './img/logout-icon.svg';
+import { Button } from './Logout.styled';
 
 const Logout = () => {
   return (
-    <button type="submit">
+    <Button type="submit">
       <SvgLogout />
       <span>Log Out</span>
-    </button>
+    </Button>
   );
 };
 

@@ -2,6 +2,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import {
   Button,
+  CameraIcon,
   EditIcon,
   EditPhotoContainer,
   // ErrorText,
@@ -11,11 +12,11 @@ import {
   Label,
   LabelPhoto,
   Thumb,
+  UserAvatar,
+  Wrap,
 } from './UserData.styled';
-// import { HiCamera } from 'react-icons/hi2';
-import { ReactComponent as SvgCamera } from './img/svgCamera.svg';
-import { ReactComponent as SvgEdit } from './img/svgEdit.svg';
-import avatar from './img/user-avatar.jpg';
+
+import avatar from './img/temp-avatar.jpg';
 
 // import { ReactComponent as SvgCross } from './img/svgCross.svg';
 
@@ -57,20 +58,26 @@ const UserData = () => {
 
   return (
     <>
-      <Thumb>
-        <img src={avatar} alt="User avatar" loading="lazy" width="233" />
-      </Thumb>
       <EditPhotoContainer>
-        <LabelPhoto htmlFor="user-photo">
-          <InputPhoto
-            id="user-photo"
-            type="file"
-            accept="image/*"
-            name="user-photo"
+        <Thumb>
+          <UserAvatar
+            src={avatar}
+            alt="User avatar"
+            loading="lazy"
+            width="233"
+            height="233"
           />
-          <span name="image">Edit photo</span>
-          <SvgCamera />
-        </LabelPhoto>
+          <LabelPhoto htmlFor="user-photo">
+            <InputPhoto
+              id="user-photo"
+              type="file"
+              accept="image/*"
+              name="user-photo"
+            />
+            <CameraIcon />
+            <span name="image">Edit photo</span>
+          </LabelPhoto>
+        </Thumb>
       </EditPhotoContainer>
       <Formik
         initialValues={initialValues}
@@ -81,35 +88,37 @@ const UserData = () => {
           <Label htmlFor="name">Name:</Label>
           <Input type="text" name="name" value={'Anna'} />
           <Button type="button">
-            <EditIcon width="12px" height="12px" />
+            <EditIcon />
           </Button>
           {/* <ErrorText name="name" component="div" /> */}
 
           <Label htmlFor="email">Email:</Label>
           <Input type="text" name="email" value={'anna00@gmail.com'} />
           <Button type="button">
-            <SvgEdit />
+            <EditIcon />
           </Button>
           {/* <ErrorText name="email" component="div" /> */}
 
           <Label htmlFor="birthday">Birthday:</Label>
           <Input type="text" name="birthday" value={'00.00.0000'} />
           <Button type="button">
-            <SvgEdit />
+            <EditIcon />
           </Button>
           {/* <ErrorText name="birthday" component="div" /> */}
 
           <Label htmlFor="phone">Phone:</Label>
           <Input type="tel" name="phone" value={'+38000000000'} />
           <Button type="button">
-            <SvgEdit />
+            <EditIcon />
           </Button>
           {/* <ErrorText name="phone" component="div" /> */}
 
           <Label htmlFor="city">City:</Label>
           <Input type="text" name="city" value={'Kiev'} />
           <Button type="button">
-            <SvgEdit />
+            <Wrap>
+              <EditIcon />
+            </Wrap>
           </Button>
           {/* <ErrorText name="city" component="div" /> */}
         </InfoForm>

@@ -6,7 +6,7 @@ import {
   TitleUser,
   TitlePets,
   UserContainer,
-  UserSection,
+  UserInfoSection,
   TitleWrap,
 } from './UserPage.styled';
 
@@ -14,10 +14,10 @@ const UserPage = () => {
   return (
     <UserContainer>
       <TitleUser>My Information:</TitleUser>
-      <UserSection>
+      <UserInfoSection>
         <UserData />
         <Logout />
-      </UserSection>
+      </UserInfoSection>
       <PetSection>
         <TitleWrap>
           <TitlePets>My pets:</TitlePets>

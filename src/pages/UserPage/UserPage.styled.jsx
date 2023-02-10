@@ -1,26 +1,15 @@
-const { default: styled } = require('styled-components');
+import styled from 'styled-components';
 
-export const UserContainer = styled.div`
+export const UserContainer = styled.main`
   font-family: ${p => p.theme.fonts.body};
   font-style: normal;
+  padding-left: 20px;
+  padding-right: 20px;
 
-  display: block;
-  padding: 20px;
-`;
-
-export const UserSection = styled.section`
-  padding: 20px 16px;
-  margin-bottom: 40px;
-
-  background-color: #ffffff;
-  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  border-radius: 20px;
-`;
-
-export const TitleWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @media screen and (${p => p.theme.media.tablet}) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 `;
 
 export const TitleUser = styled.h2`
@@ -39,6 +28,15 @@ export const TitleUser = styled.h2`
   color: #111111;
 `;
 
+export const UserInfoSection = styled.section`
+  padding: 20px 16px;
+  margin-bottom: 40px;
+
+  background-color: #ffffff;
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  border-radius: 20px;
+`;
+
 // //You can delete or modify styles below before importing your's pet cards section styles
 export const PetSection = styled.section`
   display: flex;
@@ -53,6 +51,12 @@ export const PetContainer = styled.div`
   background-color: #ffffff;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: ${p => p.theme.radii.normal};
+`;
+
+export const TitleWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const TitlePets = styled.h2`
