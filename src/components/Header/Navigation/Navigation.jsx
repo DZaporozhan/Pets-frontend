@@ -18,8 +18,8 @@ import { useSelector } from 'react-redux';
 import { isAuth } from '../../../redux/auth/selectors';
 
 export const Navigation = () => {
-  const { isLoggedIn } = useSelector(isAuth);
-  // const { token } = useSelector(getToken);
+  const  isLoggedIn  = useSelector(isAuth);
+
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -45,8 +45,6 @@ export const Navigation = () => {
         {!isMenuOpen
           ? isTablet && (
               <TabletWrapper>
-                {/* <UserNav setIsMenuOpen={setIsMenuOpen} /> */}
-                {/* <AuthNav setIsMenuOpen={setIsMenuOpen} /> */}
                 {isLoggedIn ? (
                   <UserNav setIsMenuOpen={setIsMenuOpen} />
                 ) : (
@@ -72,8 +70,6 @@ export const Navigation = () => {
           </NavWrapper>
 
           <AuthWrapper>
-            {/* <UserNav setIsMenuOpen={setIsMenuOpen} /> */}
-            {/* <AuthNav setIsMenuOpen={setIsMenuOpen} /> */}
             {isLoggedIn ? (
               <UserNav setIsMenuOpen={setIsMenuOpen} />
             ) : (
