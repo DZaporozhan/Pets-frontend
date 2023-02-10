@@ -4,21 +4,30 @@ import SignUpStep2 from './SignUpStep2';
 
 const Registration = () => {
   const [isNext, setIsNext] = useState(true);
-  const [stepData, setStepData] = useState({});
+  const [step1Data, setStep1Data] = useState({});
+  const [step2Data, setStep2Data] = useState({});
 
   const firstStepData = data => {
     if (data.email !== '' && data.password !== '') {
       setIsNext(false);
-      setStepData(data);
+      setStep1Data(data);
     }
+  };
+  const secondStepData = data => {
+    setStep2Data(data);
+    setIsNext(true);
   };
 
   return (
     <>
       {isNext ? (
-        <SignUpStep1 data={stepData} onSubmit={firstStepData} />
+        <SignUpStep1 data={step1Data} onSubmit={firstStepData} />
       ) : (
-        <SignUpStep2 data={stepData} onBack={() => setIsNext(true)} />
+        <SignUpStep2
+          data={step2Data}
+          step1={step1Data}
+          onBack={secondStepData}
+        />
       )}
     </>
   );
