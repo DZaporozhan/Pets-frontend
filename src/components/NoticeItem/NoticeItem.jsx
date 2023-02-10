@@ -38,7 +38,7 @@ export const NoticeItem = ({
     _id,
   } = notices;
 
-  const { id: userId } = useSelector(getUser);
+  const { id: userId, favorite = false } = useSelector(getUser);
 
   const ownerNotice = owner === userId;
 
@@ -49,6 +49,8 @@ export const NoticeItem = ({
     }
     return text;
   };
+
+  const orAddedToFavorites = favorite?.includes(_id);
 
   return (
     <Item>
@@ -94,7 +96,10 @@ export const NoticeItem = ({
         <CategoryTitle category={category}>{category}</CategoryTitle>
       </CategoryTitleWraper>
       <BtnAddFavorite onClick={() => addToFavorite(_id)}>
-        <BtnAddFavoriteIcon style={{ width: 28, height: 28 }} />
+        <BtnAddFavoriteIcon
+          style={{ width: 28, height: 28 }}
+          orAddedToFavorites={orAddedToFavorites}
+        />
       </BtnAddFavorite>
     </Item>
   );
