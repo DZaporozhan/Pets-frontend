@@ -58,13 +58,16 @@ const authSlice = createSlice({
     [logout.rejected]: handleRejected,
 
     [current.pending]: handlePending,
+    [current.fulfilled]: (state, { payload }) => {
+      state.isLoggedIn = true;
+      state.user = payload.user;
+      state.isRefreshing = false;
+      state.isAuthLoading = false;
+    },
+    [current.rejected]: handleRejected,
+
+    //R
   },
-  [current.fulfilled]: (store, { payload }) => {
-    store.loading = false;
-    store.user = payload;
-    store.isLogin = true;
-  },
-  [current.rejected]: handleRejected,
 });
 
 export const authReducer = authSlice.reducer;
