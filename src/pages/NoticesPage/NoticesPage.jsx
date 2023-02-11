@@ -22,8 +22,14 @@ import {
 import { useParams } from 'react-router-dom';
 import { CategoryBtn } from '../../components/CategoryBtn/CategoryBtn';
 import { NavLink } from 'react-router-dom';
+import { selectIsAuth } from '../../redux/auth/selectors';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NoticesPage = () => {
+  const isLoggedIn = useSelector(selectIsAuth);
   const [notices, setNotices] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [favorite, setFavorite] = useState([]);
@@ -31,6 +37,18 @@ const NoticesPage = () => {
   const { categoryName } = useParams;
 
   const toggleModal = () => {
+    if (!isLoggedIn) {
+      return toast.error('Please, log in to add notice', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark',
+      });
+    }
     setShowModal(prevState => {
       return !prevState;
     });
@@ -100,12 +118,16 @@ const NoticesPage = () => {
             <NavLink>
               <CategoryBtn title={'sell'}></CategoryBtn>
             </NavLink>
-            <NavLink>
-              <CategoryBtn title={'favorite ads'}></CategoryBtn>
-            </NavLink>
-            <NavLink>
-              <CategoryBtn title={'my ads'}></CategoryBtn>
-            </NavLink>
+            {isLoggedIn && (
+              <NavLink>
+                <CategoryBtn title={'favorite ads'}></CategoryBtn>
+              </NavLink>
+            )}
+            {isLoggedIn && (
+              <NavLink>
+                <CategoryBtn title={'my ads'}></CategoryBtn>
+              </NavLink>
+            )}
           </NavBtnPosition>
           {!showModal && (
             <AddBtnPosition>
@@ -127,6 +149,7 @@ const NoticesPage = () => {
           )}
         </Container>
       </SectionList>
+      <ToastContainer />
     </>
   );
 };
