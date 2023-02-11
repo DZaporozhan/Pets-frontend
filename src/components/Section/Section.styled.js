@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Sections = styled.section`
   margin-top: 42px;
   @media screen and (${p => p.theme.device.tablet}) {
-    margin-top: 88px;
+    margin-top: 90px;
   }
   @media screen and (${p => p.theme.device.desktop}) {
     margin-top: 59px;
