@@ -28,7 +28,8 @@ transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0s;
   :hover:not(.active),
   :focus-visible:not(.active) {
    background-color:  ${ props  => props.primary ? props.theme.colors.hoverButton :  props.theme.colors.hoverButton}; ;
-    color:  ${ props  => props.primary ? props.theme.colors.black :  props.theme.colors.white}; 
+    color:  ${ props => props.primary ? props.theme.colors.black : props.theme.colors.white}; 
+    border-color: ${p => p.theme.colors.hoverButton};
   }
 
 @media (min-width: 768px) { 

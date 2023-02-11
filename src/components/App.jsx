@@ -3,6 +3,7 @@ import SharedLayout from './SharedLayout/SharedLayout';
 import { lazy, useEffect } from 'react';
 import { PrivateRoute } from 'components/Routes/PrivateRoute';
 import { RestrictedRoute } from 'components/Routes/RestrictedRoute';
+import {Loader} from "components/Loader/Loader"
 
 import { getIsRefreshing, getToken } from 'redux/auth/selectors';
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,7 +31,7 @@ export const App = () => {
   }, [dispatch, token]);
 
   return isRefreshing ? (
-    'isRefreshing'
+    <Loader/>
   ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
