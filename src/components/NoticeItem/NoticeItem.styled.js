@@ -173,4 +173,6 @@ export const BtnAddFavorite = styled.button`
 
 export const BtnAddFavoriteIcon = styled(FiHeart)`
   color: #f59256;
+  fill: ${({ orfavorites: { favorite, _id } }) =>
+    favorite.includes(_id) ? '#f59256' : 'rgba(255, 255, 255, 0.6)'};
 `;

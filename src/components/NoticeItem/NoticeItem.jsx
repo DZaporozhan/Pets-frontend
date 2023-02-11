@@ -16,6 +16,9 @@ import {
 } from './NoticeItem.styled';
 import { getUser } from 'redux/auth/selectors';
 import { useSelector } from 'react-redux';
+import Modal from '../Modal/Modal';
+import { useState } from 'react';
+import { LearnMoreModal } from '../LearnMoreModal/LearnMoreModal';
 
 const defaultPhoto =
   'https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png';
@@ -23,8 +26,8 @@ const defaultPhoto =
 export const NoticeItem = ({
   notices,
   onDeleteNotice,
-  addToFavorite,
-  removeFromFavorite,
+  favorite,
+  addToFavoriteAndRemove,
 }) => {
   const {
     breed,
@@ -38,7 +41,9 @@ export const NoticeItem = ({
     _id,
   } = notices;
 
-  const { id: userId } = useSelector(getUser);
+  const [showModal, setShowModal] = useState(false);
+
+  const { _id: userId } = useSelector(getUser);
 
   const ownerNotice = owner === userId;
 
@@ -82,7 +87,12 @@ export const NoticeItem = ({
             </li>
           )}
         </DescriptionList>
-        <LearnMore ownerNotice={ownerNotice}>Learn more</LearnMore>
+        <LearnMore
+          ownerNotice={ownerNotice}
+          onClick={() => setShowModal(prev => !prev)}
+        >
+          Learn more
+        </LearnMore>
         {ownerNotice && (
           <BtnDelete onClick={() => onDeleteNotice(_id)}>
             Delete
@@ -93,9 +103,17 @@ export const NoticeItem = ({
       <CategoryTitleWraper>
         <CategoryTitle category={category}>{category}</CategoryTitle>
       </CategoryTitleWraper>
-      <BtnAddFavorite onClick={() => addToFavorite(_id)}>
-        <BtnAddFavoriteIcon style={{ width: 28, height: 28 }} />
+      <BtnAddFavorite onClick={() => addToFavoriteAndRemove(_id)}>
+        <BtnAddFavoriteIcon
+          style={{ width: 28, height: 28 }}
+          orfavorites={{ favorite, _id }}
+        />
       </BtnAddFavorite>
+      {showModal && (
+        <Modal onClose={() => setShowModal(prev => !prev)}>
+          <LearnMoreModal noticeData={notices} />
+        </Modal>
+      )}
     </Item>
   );
 };

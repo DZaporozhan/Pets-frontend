@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Sections = styled.section`
+export const SectionList = styled.section`
   background-color: ${p => p.theme.colors.background};
   @media screen and (max-width: 1279px) {
     padding-bottom: 100px;

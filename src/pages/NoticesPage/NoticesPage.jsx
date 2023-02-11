@@ -1,6 +1,6 @@
 import { NoticesList } from 'components/NoticesList/NoticesList';
 import { useEffect, useState } from 'react';
-import { Sections, Container } from './NoticesPage.styled';
+import { SectionList, Container } from './NoticesPage.styled';
 import Modal from '../../components/Modal';
 import { AddPetBtn } from '../../components/AddPetBtn/AddPetBtn';
 import { Section } from '../../components/Section/Section';
@@ -8,6 +8,7 @@ import { Searchbar } from '../../components/Searchbar/Searchbar';
 import {
   getNoticeByCategory,
   removeNotice,
+  getFavoriteNotices,
   addNoticeToFavorite,
   removeNoticeFromFavorite,
 } from 'services/api/notices';
@@ -16,6 +17,7 @@ import { useParams } from 'react-router-dom';
 const NoticesPage = () => {
   const [notices, setNotices] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [favorite, setFavorite] = useState([]);
 
   const { categoryName } = useParams;
 
@@ -39,6 +41,13 @@ const NoticesPage = () => {
     getNotices();
   }, [categoryName]);
 
+  useEffect(() => {
+    (async () => {
+      const allFavorite = await getFavoriteNotices();
+      setFavorite(allFavorite.map(({ _id }) => _id));
+    })();
+  }, []);
+
   const onDeleteNotice = async id => {
     try {
       const { id: elId } = await removeNotice(id);
@@ -51,19 +60,15 @@ const NoticesPage = () => {
     }
   };
 
-  const addToFavorite = async id => {
+  const addToFavoriteAndRemove = async id => {
     try {
-      const added = await addNoticeToFavorite(id);
-      console.log(added);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const removeFromFavorite = async id => {
-    try {
-      const removed = await removeNoticeFromFavorite(id);
-      console.log(removed);
+      if (!favorite.includes(id)) {
+        await addNoticeToFavorite(id);
+        setFavorite(prev => [...prev, id]);
+        return;
+      }
+      await removeNoticeFromFavorite(id);
+      setFavorite(prev => prev.filter(el => el !== id));
     } catch (error) {
       console.log(error);
     }
@@ -76,18 +81,18 @@ const NoticesPage = () => {
       </Section>
       <AddPetBtn onClick={toggleModal}></AddPetBtn>
       {showModal && <Modal onClose={toggleModal}></Modal>}
-      <Sections>
+      <SectionList>
         <Container>
           {notices.length !== 0 && (
             <NoticesList
               notices={notices}
+              favorite={favorite}
               onDeleteNotice={onDeleteNotice}
-              addToFavorite={addToFavorite}
-              removeFromFavorite={removeFromFavorite}
+              addToFavoriteAndRemove={addToFavoriteAndRemove}
             />
           )}
         </Container>
-      </Sections>
+      </SectionList>
     </>
   );
 };
