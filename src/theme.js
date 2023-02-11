@@ -18,6 +18,7 @@ export const theme = {
     background: '#FDF7F2',
     buttonAccent: '#FF6101',
     black: '#111111',
+    secondBlack: '#181C27',
     gray: 'rgba(17, 17, 17, 0.6)',
     blue: '#3091EB',
     white: '#FFFFFF',
@@ -27,6 +28,7 @@ export const theme = {
     newsText: '#111321',
     maleColor: '#23C2EF',
     femaleColor: '#FF8787',
+    hoverButton: ' #FF6101',
   },
 
   //border-radius
@@ -36,9 +38,11 @@ export const theme = {
     round: '50%',
   },
 
-  media: {
+  device: {
     mobile: '(min-width: 320px)',
     tablet: '(min-width: 768px)',
     desktop: '(min-width: 1280px)',
   },
+
+  transition: "0.2s all linear"
 };
