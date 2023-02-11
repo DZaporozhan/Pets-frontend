@@ -41,7 +41,7 @@ export const getFavoriteNotices = async params => {
 };
 
 export const removeNoticeFromFavorite = async id => {
-  const { data } = await instance.patch(`/notices/favorite/${id}`);
+  const { data } = await instance.delete(`/notices/favorite/${id}`);
   return data;
 };
 
