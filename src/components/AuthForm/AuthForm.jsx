@@ -6,25 +6,32 @@ import {
 } from './AuthForm.styled';
 import Login from './Login/Login';
 import Registration from './Registration/Registration';
+import { useSelector } from 'react-redux';
+import { getIsLoading } from 'redux/auth/selectors';
 
+const regisnrationPageLink = (
+  <FormText>
+    Don't have an account?
+    <RegisterLink to="/register">Register</RegisterLink>
+  </FormText>
+);
+const regisnrationLoginLink = (
+  <FormText>
+    Already have an account?
+    <RegisterLink to="/login">Login</RegisterLink>
+  </FormText>
+);
 const AuthForm = ({ type }) => {
-  return (
+  const isLoding = useSelector(getIsLoading);
+  return isLoding ? (
+    <h1>loding...</h1>
+  ) : (
     <FormContainer>
       <RegisterHeader>
         {type === 'login' ? 'Login' : 'Registration'}
       </RegisterHeader>
       {type === 'login' ? <Login /> : <Registration />}
-      {type === 'login' ? (
-        <FormText>
-          Don't have an account?
-          <RegisterLink to="/register">Register</RegisterLink>
-        </FormText>
-      ) : (
-        <FormText>
-          Already have an account?
-          <RegisterLink to="/login">Login</RegisterLink>
-        </FormText>
-      )}
+      {type === 'login' ? regisnrationPageLink : regisnrationLoginLink}
     </FormContainer>
   );
 };
