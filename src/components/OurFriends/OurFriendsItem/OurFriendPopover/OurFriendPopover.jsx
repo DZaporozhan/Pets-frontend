@@ -33,9 +33,7 @@ const CustomizedBtn = styled(Button)`
     line-height: 1.35;
   }
   @media screen and (min-width: 1280px) {
-
-    font-size: 16px;
-   
+font-size: 16px;
   }
 `;
 
