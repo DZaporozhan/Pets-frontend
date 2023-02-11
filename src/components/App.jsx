@@ -3,9 +3,8 @@ import SharedLayout from './SharedLayout/SharedLayout';
 import { lazy, useEffect } from 'react';
 import { PrivateRoute } from 'components/Routes/PrivateRoute';
 import { RestrictedRoute } from 'components/Routes/RestrictedRoute';
-import {Loader} from "components/Loader/Loader"
 
-import { selectIsRefreshing, selectToken } from 'redux/auth/selectors';
+import { selectToken } from 'redux/auth/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { current } from 'redux/auth/operations';
 
@@ -23,16 +22,13 @@ const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
 export const App = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
-  const isRefreshing = useSelector(selectIsRefreshing);
   useEffect(() => {
     if (token) {
       dispatch(current());
     }
   }, [dispatch, token]);
 
-  return isRefreshing ? (
-    <Loader/>
-  ) : (
+  return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Homepage />} />
