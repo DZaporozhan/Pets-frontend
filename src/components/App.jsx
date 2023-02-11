@@ -4,7 +4,7 @@ import { lazy, useEffect } from 'react';
 import { PrivateRoute } from 'components/Routes/PrivateRoute';
 import { RestrictedRoute } from 'components/Routes/RestrictedRoute';
 
-import { getIsRefreshing, getToken } from 'redux/auth/selectors';
+import { selectIsRefreshing, selectToken } from 'redux/auth/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { current } from 'redux/auth/operations';
 
@@ -21,8 +21,8 @@ const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const token = useSelector(getToken);
-  const isRefreshing = useSelector(getIsRefreshing);
+  const token = useSelector(selectToken);
+  const isRefreshing = useSelector(selectIsRefreshing);
   useEffect(() => {
     if (token) {
       dispatch(current());

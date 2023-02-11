@@ -14,7 +14,7 @@ import {
   IconBtnDel,
   NoticePhoto,
 } from './NoticeItem.styled';
-import { getUser } from 'redux/auth/selectors';
+import { selectUser } from 'redux/auth/selectors';
 import { useSelector } from 'react-redux';
 import Modal from '../Modal/Modal';
 import { useState } from 'react';
@@ -43,7 +43,7 @@ export const NoticeItem = ({
 
   const [showModal, setShowModal] = useState(false);
 
-  const { _id: userId } = useSelector(getUser);
+  const { _id: userId } = useSelector(selectUser);
 
   const ownerNotice = owner === userId;
 
