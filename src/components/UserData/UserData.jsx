@@ -5,18 +5,21 @@ import {
   CameraIcon,
   EditIcon,
   EditPhotoContainer,
+  InfoContainer,
   // ErrorText,
   InfoForm,
   Input,
   InputPhoto,
   Label,
-  LabelPhoto,
+  AddPhoto,
   Thumb,
   UserAvatar,
-  Wrap,
+  UserSection,
+  IconWraper,
 } from './UserData.styled';
 
 import avatar from './img/temp-avatar.jpg';
+import Logout from 'components/Logout';
 
 // import { ReactComponent as SvgCross } from './img/svgCross.svg';
 
@@ -57,7 +60,7 @@ const UserData = () => {
   //   };
 
   return (
-    <>
+    <UserSection>
       <EditPhotoContainer>
         <Thumb>
           <UserAvatar
@@ -67,63 +70,66 @@ const UserData = () => {
             width="233"
             height="233"
           />
-          <LabelPhoto htmlFor="user-photo">
+          <AddPhoto htmlFor="user-photo">
             <InputPhoto
               id="user-photo"
               type="file"
               accept="image/*"
               name="user-photo"
             />
-            <CameraIcon />
+            <IconWraper>
+              <CameraIcon />
+            </IconWraper>
             <span name="image">Edit photo</span>
-          </LabelPhoto>
+          </AddPhoto>
         </Thumb>
       </EditPhotoContainer>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={schema}
-        //   onSubmit={handleSubmit}
-      >
-        <InfoForm autoComplete="off">
-          <Label htmlFor="name">Name:</Label>
-          <Input type="text" name="name" value={'Anna'} />
-          <Button type="button">
-            <EditIcon />
-          </Button>
-          {/* <ErrorText name="name" component="div" /> */}
-
-          <Label htmlFor="email">Email:</Label>
-          <Input type="text" name="email" value={'anna00@gmail.com'} />
-          <Button type="button">
-            <EditIcon />
-          </Button>
-          {/* <ErrorText name="email" component="div" /> */}
-
-          <Label htmlFor="birthday">Birthday:</Label>
-          <Input type="text" name="birthday" value={'00.00.0000'} />
-          <Button type="button">
-            <EditIcon />
-          </Button>
-          {/* <ErrorText name="birthday" component="div" /> */}
-
-          <Label htmlFor="phone">Phone:</Label>
-          <Input type="tel" name="phone" value={'+38000000000'} />
-          <Button type="button">
-            <EditIcon />
-          </Button>
-          {/* <ErrorText name="phone" component="div" /> */}
-
-          <Label htmlFor="city">City:</Label>
-          <Input type="text" name="city" value={'Kiev'} />
-          <Button type="button">
-            <Wrap>
+      <InfoContainer>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={schema}
+          //   onSubmit={handleSubmit}
+        >
+          <InfoForm autoComplete="off">
+            <Label htmlFor="name">Name:</Label>
+            <Input type="text" name="name" value={'Anna'} />
+            <Button type="button">
               <EditIcon />
-            </Wrap>
-          </Button>
-          {/* <ErrorText name="city" component="div" /> */}
-        </InfoForm>
-      </Formik>
-    </>
+            </Button>
+            {/* <ErrorText name="name" component="div" /> */}
+
+            <Label htmlFor="email">Email:</Label>
+            <Input type="text" name="email" value={'anna00@gmail.com'} />
+            <Button type="button">
+              <EditIcon />
+            </Button>
+            {/* <ErrorText name="email" component="div" /> */}
+
+            <Label htmlFor="birthday">Birthday:</Label>
+            <Input type="text" name="birthday" value={'00.00.0000'} />
+            <Button type="button">
+              <EditIcon />
+            </Button>
+            {/* <ErrorText name="birthday" component="div" /> */}
+
+            <Label htmlFor="phone">Phone:</Label>
+            <Input type="tel" name="phone" value={'+38000000000'} />
+            <Button type="button">
+              <EditIcon />
+            </Button>
+            {/* <ErrorText name="phone" component="div" /> */}
+
+            <Label htmlFor="city">City:</Label>
+            <Input type="text" name="city" value={'Kiev'} />
+            <Button type="button">
+              <EditIcon />
+            </Button>
+            {/* <ErrorText name="city" component="div" /> */}
+          </InfoForm>
+        </Formik>
+        <Logout />
+      </InfoContainer>
+    </UserSection>
   );
 };
 

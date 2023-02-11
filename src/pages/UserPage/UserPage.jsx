@@ -1,4 +1,4 @@
-import Logout from 'components/Logout';
+// import Logout from 'components/Logout';
 import UserData from 'components/UserData';
 import {
   PetContainer,
@@ -6,18 +6,17 @@ import {
   TitleUser,
   TitlePets,
   UserContainer,
-  UserInfoSection,
   TitleWrap,
+  UserInfoWrap,
 } from './UserPage.styled';
 
 const UserPage = () => {
   return (
     <UserContainer>
-      <TitleUser>My Information:</TitleUser>
-      <UserInfoSection>
+      <UserInfoWrap>
+        <TitleUser>My Information:</TitleUser>
         <UserData />
-        <Logout />
-      </UserInfoSection>
+      </UserInfoWrap>
       <PetSection>
         <TitleWrap>
           <TitlePets>My pets:</TitlePets>

@@ -4,15 +4,57 @@ import { ReactComponent as CameraSvg } from './img/camera-icon.svg';
 
 import styled from 'styled-components';
 
+export const UserSection = styled.section`
+  display: block;
+  padding: 20px 16px 20px 16px;
+  margin-bottom: 46px;
+
+  background-color: #ffffff;
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  border-radius: 20px;
+
+  @media screen and (${p => p.theme.media.tablet}) {
+    /* padding: 24px 40px 24px 32px; */
+    box-sizing: content-box;
+
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    left: -32px;
+    width: 100%;
+
+    border-radius: 0 40px 40px 0;
+  }
+
+  @media screen and (${p => p.theme.media.desktop}) {
+    padding: 20px 16px 18px 16px;
+
+    display: block;
+    width: 411px;
+    left: -16px;
+  }
+`;
+
 export const EditPhotoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  margin-bottom: 32px;
+
+  @media screen and (${p => p.theme.media.tablet}) {
+    margin-bottom: 0;
+  }
+  @media screen and (${p => p.theme.media.desktop}) {
+    margin-bottom: 32px;
+  }
 `;
 
 export const Thumb = styled.div`
-  outline: 1px solid red;
-  margin-bottom: 32px;
+  position: relative;
 `;
 
 export const UserAvatar = styled.img`
@@ -21,11 +63,21 @@ export const UserAvatar = styled.img`
   object-fit: cover;
   border-radius: 50%;
   margin-bottom: 12px;
+
+  @media screen and (${p => p.theme.media.tablet}) {
+    margin-bottom: 8px;
+  }
+  @media screen and (${p => p.theme.media.desktop}) {
+    margin-bottom: 30px;
+  }
+  @media screen and (${p => p.theme.media.desktop}) {
+    margin-bottom: 0;
+  }
 `;
 
-export const LabelPhoto = styled.label`
+export const AddPhoto = styled.label`
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   cursor: pointer;
 
@@ -33,27 +85,64 @@ export const LabelPhoto = styled.label`
 
   font-weight: 400;
   font-size: 12px;
-  line-height: 22px;
+  line-height: 1.83;
   letter-spacing: 0.04em;
+
+  @media screen and (${p => p.theme.media.desktop}) {
+    position: absolute;
+    bottom: 0;
+  }
 `;
 
 export const InputPhoto = styled.input`
   display: none;
 `;
 
-export const CameraIcon = styled(CameraSvg)`
+export const IconWraper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 20px;
+  height: 20px;
+  /* background-color: ${p => p.theme.colors.accent}; */
+
   margin-right: 4px;
+`;
+
+export const CameraIcon = styled(CameraSvg)`
+  fill: ${p => p.theme.colors.accent};
+  width: 17.92px;
+  height: 18.33px;
+`;
+
+export const InfoContainer = styled.div`
+  /* @media screen and (${p => p.theme.media.tablet}) {
+    margin-right: 56px;
+  } */
 `;
 
 export const InfoForm = styled(Form)`
   width: 100%;
   display: grid;
-  grid-template-columns: [labels] auto [inputs] 1fr [buttons] 20px;
+  grid-template-columns: [labels] auto [inputs] 1fr [buttons];
   grid-auto-flow: row;
   grid-column-gap: 8px;
   grid-row-gap: 4px;
 
   align-items: center;
+  margin-bottom: 40px;
+
+  @media screen and (${p => p.theme.media.tablet}) {
+    grid-column-gap: 24px;
+    grid-row-gap: 8px;
+    margin-bottom: 30px;
+  }
+
+  @media screen and (${p => p.theme.media.desktop}) {
+    margin-bottom: 20px;
+    margin-right: 0;
+  }
 `;
 
 export const Label = styled.label`
@@ -67,13 +156,15 @@ export const Label = styled.label`
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: 0.04em;
-  display: flex;
-  align-items: baseline;
 
-  cursor: pointer;
+  @media screen and (${p => p.theme.media.tablet}) {
+    font-size: 18px;
+    line-height: 1.39;
+  }
 `;
 
 export const Input = styled(Field)`
+  margin: 0;
   min-width: 100px;
 
   grid-column: inputs;
@@ -85,6 +176,7 @@ export const Input = styled(Field)`
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: 0.04em;
+
   padding-top: 3px;
   padding-bottom: 3px;
 
@@ -94,39 +186,21 @@ export const Input = styled(Field)`
   outline: none;
   color: #111111;
 
-  transition: all 250ms linear;
+  transition: background-color 250ms linear;
+  transition: border 250ms linear;
 
   &:hover,
   &:focus {
-    background: #fdf7f2;
+    background-color: #fdf7f2;
     border: 1px solid rgba(245, 146, 86, 0.5);
   }
 
-  /* display: inline-block; */
-  /* margin-top: 4px;
-  font-size: 16px;
-  line-height: 24px;
+  @media screen and (${p => p.theme.media.tablet}) {
+    font-size: 18px;
+    line-height: 1.39;
 
-  border-radius: 4px;
-  box-sizing: border-box;
-  border: 1px solid #d1d1d1;
-
-  outline: none;
-  cursor: pointer;
-
-  box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.02);
-
-  transition: all 250ms linear;
-
-  &:hover {
-    box-shadow: inset 0px 2px 1px -1px rgb(0 0 0 / 20%),
-      0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    width: 216px;
   }
-  &:focus {
-    border: 1px solid #b8b6b6;
-    box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.01),
-      0px 0px 8px rgba(0, 0, 0, 0.2);
-  } */
 `;
 
 export const Button = styled.button`
@@ -139,55 +213,36 @@ export const Button = styled.button`
 
   padding: 0;
   margin: 0;
+  /* border: none; */
 
   width: 20px;
   height: 20px;
 
-  border-radius: 50%;
-  border: none;
+  border-radius: ${p => p.theme.radii.round};
 
   background: #fdf7f2;
+
   backdrop-filter: blur(2px);
 
   cursor: pointer;
-  /* display: inline-flex;
-  margin-left: 8px;
 
-  padding: 4px 8px;
-  font-size: 16px;
-  border-radius: 4px;
-  background-color: #fff;
-
-  border: none;
-  cursor: pointer;
-
-  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
-    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
-
-  transition: background-color 250ms linear;
-
-  &:hover,
-  &:focus {
-    background-color: #5cb85c;
-  } */
-`;
-export const Wrap = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 12.5px;
-  height: 12.5px;
-  /* background-color: ${p => p.theme.colors.accent}; */
-  border-radius: ${p => p.theme.radii.round};
+  @media screen and (${p => p.theme.media.tablet}) {
+    width: 32px;
+    height: 32px;
+  }
 `;
 
 export const EditIcon = styled(EditSvg)`
-  display: block;
-  width: 9.5px;
-  height: 9.5px;
-  display: inline-block;
+  background-repeat: no-repeat;
+  width: 12.5px;
+  height: 12.5px;
 
-  fill: #111111;
+  fill: rgba(17, 17, 17, 0.6);
+
+  @media screen and (${p => p.theme.media.tablet}) {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 export const ErrorText = styled(ErrorMessage)`
