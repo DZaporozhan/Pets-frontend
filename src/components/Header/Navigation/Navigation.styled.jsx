@@ -2,11 +2,13 @@ import styled from 'styled-components';
 
 
 export const NavMobMenu = styled.div`
- position: absolute;
-    top: 100%;
-    left: 0;
-    height: 100vh;
-    width:100vw;
+position: fixed;
+  right: 0;
+  top: 58px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  
     text-align: center;
     z-index: 100;
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -14,8 +16,10 @@ export const NavMobMenu = styled.div`
     background-color: ${p => p.theme.colors.background};
     display: ${({ menuToggle }) => (menuToggle ? "block" : "none")};
     
+    @media (min-width: 768px) {
+     top: 70px; }
 
-@media (min-width: 1280px) {
+    @media (min-width: 1280px) {
    display: none;
   }
 `
@@ -35,7 +39,7 @@ padding-top: 88px;
 export const NavHeader = styled.nav`
 margin-left: auto;
 margin-right: 20px;
-
+    
 
  @media (min-width: 1280px) {
  display: flex;

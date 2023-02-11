@@ -9,7 +9,7 @@ import {
 } from './Navigation.styled';
 import { ReactComponent as BurgerBtn } from '../../../icons/burger.svg';
 import { ReactComponent as CloseBtn } from '../../../icons/close.svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Nav } from '../Nav/Nav';
 import { UserNav } from '../UserNav/UserNav';
@@ -20,8 +20,16 @@ import { isAuth } from '../../../redux/auth/selectors';
 export const Navigation = () => {
   const  isLoggedIn  = useSelector(isAuth);
 
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  useEffect(() => {
+    const html = document.querySelector("html");
+    if (html) {
+      html.style.overflow = isMenuOpen ? "hidden" : "auto";
+    }
+  }, [isMenuOpen]); 
+
+  
 
   const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
@@ -77,6 +85,7 @@ export const Navigation = () => {
             )}
           </AuthWrapper>
         </NavTag>
+      
       </NavMobMenu>
     </>
   );
