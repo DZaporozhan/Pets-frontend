@@ -17,7 +17,7 @@ export const Button = styled.button`
   letter-spacing: 0.04em;
   color: rgba(17, 17, 17, 0.6);
 
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media ${p => p.theme.device.tablet} {
     margin-left: 0;
   }
 `;

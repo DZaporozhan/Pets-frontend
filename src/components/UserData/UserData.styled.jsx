@@ -13,7 +13,7 @@ export const UserSection = styled.section`
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: 20px;
 
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media ${p => p.theme.device.tablet} {
     /* padding: 24px 40px 24px 32px; */
     box-sizing: content-box;
 
@@ -29,7 +29,7 @@ export const UserSection = styled.section`
     border-radius: 0 40px 40px 0;
   }
 
-  @media screen and (${p => p.theme.media.desktop}) {
+  @media ${p => p.theme.device.desktop} {
     padding: 20px 16px 18px 16px;
 
     display: block;
@@ -45,10 +45,10 @@ export const EditPhotoContainer = styled.div`
 
   margin-bottom: 32px;
 
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media ${p => p.theme.device.tablet} {
     margin-bottom: 0;
   }
-  @media screen and (${p => p.theme.media.desktop}) {
+  @media ${p => p.theme.device.desktop} {
     margin-bottom: 32px;
   }
 `;
@@ -64,13 +64,13 @@ export const UserAvatar = styled.img`
   border-radius: 50%;
   margin-bottom: 12px;
 
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media ${p => p.theme.device.tablet} {
     margin-bottom: 8px;
   }
-  @media screen and (${p => p.theme.media.desktop}) {
+  @media ${p => p.theme.device.desktop} {
     margin-bottom: 30px;
   }
-  @media screen and (${p => p.theme.media.desktop}) {
+  @media ${p => p.theme.device.desktop} {
     margin-bottom: 0;
   }
 `;
@@ -88,7 +88,7 @@ export const AddPhoto = styled.label`
   line-height: 1.83;
   letter-spacing: 0.04em;
 
-  @media screen and (${p => p.theme.media.desktop}) {
+  @media ${p => p.theme.device.desktop} {
     position: absolute;
     bottom: 0;
   }
@@ -117,7 +117,7 @@ export const CameraIcon = styled(CameraSvg)`
 `;
 
 export const InfoContainer = styled.div`
-  /* @media screen and (${p => p.theme.media.tablet}) {
+  /* @media ${p => p.theme.device.tablet} {
     margin-right: 56px;
   } */
 `;
@@ -133,13 +133,13 @@ export const InfoForm = styled(Form)`
   align-items: center;
   margin-bottom: 40px;
 
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media screen and (${p => p.theme.device.tablet}) {
     grid-column-gap: 24px;
     grid-row-gap: 8px;
     margin-bottom: 30px;
   }
 
-  @media screen and (${p => p.theme.media.desktop}) {
+  @media ${p => p.theme.device.desktop} {
     margin-bottom: 20px;
     margin-right: 0;
   }
@@ -157,7 +157,7 @@ export const Label = styled.label`
   line-height: 1.33;
   letter-spacing: 0.04em;
 
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media ${p => p.theme.device.tablet} {
     font-size: 18px;
     line-height: 1.39;
   }
@@ -195,7 +195,7 @@ export const Input = styled(Field)`
     border: 1px solid rgba(245, 146, 86, 0.5);
   }
 
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media ${p => p.theme.device.tablet} {
     font-size: 18px;
     line-height: 1.39;
 
@@ -226,7 +226,7 @@ export const Button = styled.button`
 
   cursor: pointer;
 
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media ${p => p.theme.device.tablet} {
     width: 32px;
     height: 32px;
   }
@@ -239,7 +239,7 @@ export const EditIcon = styled(EditSvg)`
 
   fill: rgba(17, 17, 17, 0.6);
 
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media ${p => p.theme.device.tablet} {
     width: 20px;
     height: 20px;
   }

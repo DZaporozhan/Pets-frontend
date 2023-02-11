@@ -10,14 +10,14 @@ export const UserContainer = styled.main`
   /* margin-left: auto;
   margin-right: auto; */
 
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media ${p => p.theme.device.tablet} {
     padding-top: 80px; // check this
     padding-bottom: 100px; // check this
     padding-left: 32px;
     padding-right: 32px;
   }
 
-  @media screen and (${p => p.theme.media.desktop}) {
+  @media ${p => p.theme.device.desktop} {
     display: flex;
     padding-top: 50px; // check this
     padding-bottom: 40px; // check this
@@ -45,14 +45,14 @@ export const TitleUser = styled.h2`
 
   color: #111111;
 
-  @media screen and (${p => p.theme.media.tablet}) {
+  @media ${p => p.theme.device.tablet} {
     font-size: 28px;
     line-height: 1.36;
 
     margin-bottom: 40px;
   }
 
-  @media screen and (${p => p.theme.media.desktop}) {
+  @media ${p => p.theme.device.desktop} {
     margin-bottom: 40px;
   }
 `;
@@ -81,7 +81,7 @@ export const TitleWrap = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  @media screen and (${p => p.theme.media.desktop}) {
+  @media ${p => p.theme.device.desktop} {
     font-size: 28px;
     line-height: 38px;
 
@@ -102,7 +102,7 @@ export const TitlePets = styled.h2`
 
   color: #111111;
 
-  @media screen and (${p => p.theme.media.desktop}) {
+  @media ${p => p.theme.device.desktop} {
     font-size: 28px;
     line-height: 38px;
   }
