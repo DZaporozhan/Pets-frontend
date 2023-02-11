@@ -55,10 +55,9 @@ export const App = () => {
           element={
             <PrivateRoute redirectTo="/login" component={<UserPage />} />
           }
-          />
-          <Route path="*" element={<NotFoundPage />} />
+        />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
-      
     </Routes>
   );
 };

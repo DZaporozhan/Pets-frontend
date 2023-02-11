@@ -58,7 +58,6 @@ const authSlice = createSlice({
     [logout.rejected]: handleRejected,
 
     [current.pending]: state => {
-      state.isRefreshing = true;
       state.isAuthLoading = true;
     },
     [current.fulfilled]: (state, { payload }) => {
