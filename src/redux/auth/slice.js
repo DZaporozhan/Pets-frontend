@@ -70,6 +70,7 @@ const authSlice = createSlice({
     [current.rejected]: (state, action) => {
       state.isAuthLoading = false;
       state.isRefreshing = false;
+      state.token = null;
       state.error = action.payload;
     },
   },
