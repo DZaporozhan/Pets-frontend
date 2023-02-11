@@ -1,13 +1,6 @@
 import { NoticesList } from 'components/NoticesList/NoticesList';
 import { useEffect, useState } from 'react';
-import {
-  SectionList,
-  Container,
-  NavContainer,
-  AddBtnPosition,
-  NavBtnPosition,
-  BtnPosition,
-} from './NoticesPage.styled';
+import { SectionList, Container } from './NoticesPage.styled';
 import Modal from '../../components/Modal';
 import { AddPetBtn } from '../../components/AddPetBtn/AddPetBtn';
 import { Section } from '../../components/Section/Section';
@@ -20,8 +13,6 @@ import {
   removeNoticeFromFavorite,
 } from 'services/api/notices';
 import { useParams } from 'react-router-dom';
-import { CategoryBtn } from '../../components/CategoryBtn/CategoryBtn';
-import { NavLink } from 'react-router-dom';
 
 const NoticesPage = () => {
   const [notices, setNotices] = useState([]);
@@ -85,35 +76,10 @@ const NoticesPage = () => {
 
   return (
     <>
-      <NavContainer>
-        <Section title={`Find your favorite pet`}>
-          <Searchbar></Searchbar>
-        </Section>
-        <BtnPosition>
-          <NavBtnPosition>
-            <NavLink>
-              <CategoryBtn title={'lost/found'}></CategoryBtn>
-            </NavLink>
-            <NavLink>
-              <CategoryBtn title={'in good hands'}></CategoryBtn>
-            </NavLink>
-            <NavLink>
-              <CategoryBtn title={'sell'}></CategoryBtn>
-            </NavLink>
-            <NavLink>
-              <CategoryBtn title={'favorite ads'}></CategoryBtn>
-            </NavLink>
-            <NavLink>
-              <CategoryBtn title={'my ads'}></CategoryBtn>
-            </NavLink>
-          </NavBtnPosition>
-          {!showModal && (
-            <AddBtnPosition>
-              <AddPetBtn onClick={toggleModal}></AddPetBtn>
-            </AddBtnPosition>
-          )}
-        </BtnPosition>
-      </NavContainer>
+      <Section title={`Find your favorite pet`}>
+        <Searchbar></Searchbar>
+      </Section>
+      <AddPetBtn onClick={toggleModal}></AddPetBtn>
       {showModal && <Modal onClose={toggleModal}></Modal>}
       <SectionList>
         <Container>

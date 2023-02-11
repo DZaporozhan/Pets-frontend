@@ -5,8 +5,12 @@ export const SearchForm = styled.form`
   justify-content: center;
   align-items: center;
   padding-top: 28px;
+  padding-bottom: 28px;
   overflow: hidden;
- `;
+  @media screen and (${p => p.theme.device.tablet}) {
+    padding: 40px 0;
+  } ;
+`;
 
 export const SearchFormInput = styled.input`
   font-family: ${p => p.theme.fonts.body};
@@ -20,7 +24,7 @@ export const SearchFormInput = styled.input`
   outline: none;
   padding-left: 12px;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
- 
+
   &::placeholder {
     font-family: ${p => p.theme.fonts.body};
     font-size: ${p => p.theme.fontSizes[2]}px;
@@ -52,7 +56,9 @@ export const SearchFormButton = styled.button`
   border: 0;
   cursor: pointer;
   outline: none;
-  &:hover{color: #f59256;}
+  &:hover {
+    color: #f59256;
+  }
   margin-left: -40px;
-  transition: ${p=>p.theme.transition};
+  transition: ${p => p.theme.transition};
 `;
