@@ -4,8 +4,8 @@ export const theme = {
     logo: 'Poppins, sans-serif',
   },
 
-  //           0   1   2   3   4   5   6   7   8   9  10
-  fontSizes: [12, 14, 16, 18, 20, 24, 28, 32, 36, 48, 64],
+  //           0   1   2   3   4   5   6   7   8   9  10  11
+  fontSizes: [12, 14, 16, 18, 20, 24, 28, 32, 36, 48, 64, 72],
 
   fontWeights: {
     regular: 400,
@@ -29,6 +29,7 @@ export const theme = {
     maleColor: '#23C2EF',
     femaleColor: '#FF8787',
     hoverButton: ' #FF6101',
+    notFoundPage: '#f5ece4',
   },
 
   //border-radius
@@ -44,5 +45,5 @@ export const theme = {
     desktop: '(min-width: 1280px)',
   },
 
-  transition: "0.2s all linear"
+  transition: '0.2s all linear',
 };
