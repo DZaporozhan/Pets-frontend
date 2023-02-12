@@ -23,7 +23,7 @@ export const NavLinkStyled = styled(NavLink)`
     :hover:not(.active),
     :focus-visible:not(.active) {
     color:  ${p => p.theme.colors.accent};
-    font-weight: ${p => p.theme.fontWeights.bold};
+
   }
   
   @media (min-width: 768px) { 
