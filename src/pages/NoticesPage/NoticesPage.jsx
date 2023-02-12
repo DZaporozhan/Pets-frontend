@@ -1,5 +1,5 @@
 import { NoticesList } from 'components/NoticesList/NoticesList';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, CSSProperties } from 'react';
 import {
   SectionList,
   Container,
@@ -26,12 +26,19 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PuffLoader from 'react-spinners/PuffLoader';
+
+const override: CSSProperties = {
+  display: 'block',
+  margin: '0 auto',
+};
 
 const NoticesPage = () => {
   const isLoggedIn = useSelector(selectIsAuth);
   const [notices, setNotices] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [favorite, setFavorite] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { categoryName } = useParams();
 
@@ -56,23 +63,27 @@ const NoticesPage = () => {
   useEffect(() => {
     const getNotices = async () => {
       try {
+        setIsLoading(true);
         const noticesByCategory = await getNoticeByCategory({
           category: categoryName,
         });
         setNotices(noticesByCategory.data.data.result);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
+        setIsLoading(false);
       }
     };
     getNotices();
   }, [categoryName]);
 
   useEffect(() => {
+    if (!isLoggedIn) return;
     (async () => {
       const allFavorite = await getFavoriteNotices();
       setFavorite(allFavorite.map(({ _id }) => _id));
     })();
-  }, []);
+  }, [isLoggedIn]);
 
   const onDeleteNotice = async id => {
     try {
@@ -89,13 +100,18 @@ const NoticesPage = () => {
   const addToFavoriteAndRemove = async id => {
     try {
       if (!favorite.includes(id)) {
+        setIsLoading(true);
         await addNoticeToFavorite(id);
         setFavorite(prev => [...prev, id]);
+        setIsLoading(false);
         return;
       }
+      setIsLoading(true);
       await removeNoticeFromFavorite(id);
       setFavorite(prev => prev.filter(el => el !== id));
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
     }
   };
@@ -130,12 +146,20 @@ const NoticesPage = () => {
       {showModal && <Modal onClose={toggleModal}></Modal>}
       <SectionList>
         <Container>
+          <PuffLoader
+            color="#FF6101"
+            size={150}
+            loading={isLoading}
+            aria-label="Loading Spinner"
+            cssOverride={override}
+          />
           {notices.length !== 0 && (
             <NoticesList
               notices={notices}
               favorite={favorite}
               onDeleteNotice={onDeleteNotice}
               addToFavoriteAndRemove={addToFavoriteAndRemove}
+              isLoading={isLoading}
             />
           )}
         </Container>

@@ -6,6 +6,7 @@ export const NoticesList = ({
   onDeleteNotice,
   favorite,
   addToFavoriteAndRemove,
+  isLoading,
 }) => {
   return (
     <List>
@@ -16,6 +17,7 @@ export const NoticesList = ({
           onDeleteNotice={onDeleteNotice}
           favorite={favorite}
           addToFavoriteAndRemove={addToFavoriteAndRemove}
+          isLoading={isLoading}
         />
       ))}
     </List>
