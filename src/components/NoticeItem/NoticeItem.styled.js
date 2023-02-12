@@ -9,7 +9,7 @@ export const Item = styled.li`
   @media screen and (max-width: 1279px) {
     width: 336px;
   }
-  @media screen and (min-width: 1280px) {
+  @media screen and (${p => p.theme.device.desktop}) {
     width: 280px;
   }
 
@@ -17,7 +17,7 @@ export const Item = styled.li`
   border-bottom-left-radius: 20px;
   position: relative;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-  background: #ffffff;
+  background: ${p => p.theme.colors.white};
 `;
 
 export const NoticePhoto = styled.img`
@@ -32,15 +32,14 @@ export const Tumb = styled.div`
 `;
 
 export const Title = styled.h4`
-  font-family: 'Manrope, sans-serif';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 28px;
+  font-family: ${p => p.theme.colors.white};
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes[6]}px;
   line-height: 38px;
   letter-spacing: -0.01em;
   margin-bottom: 20px;
   padding-left: 4px;
-  color: #111111;
+  color: ${p => p.theme.colors.primaryText};
 `;
 
 export const DescriptionList = styled.ul`
@@ -51,21 +50,19 @@ export const DescriptionList = styled.ul`
 `;
 
 export const Description = styled.span`
-  font-family: 'Manrope, sans-serif';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
+  font-family: ${p => p.theme.colors.white};
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes[2]}px;
   line-height: 22px;
-  color: #111111;
+  color: ${p => p.theme.colors.primaryText};
 `;
 
 export const DescriptionValue = styled.span`
-  font-family: 'Manrope, sans-serif';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
+  font-family: ${p => p.theme.colors.white};
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes[2]}px;
   line-height: 22px;
-  color: #111111;
+  color: ${p => p.theme.colors.primaryText};
 `;
 
 export const LearnMore = styled.button`
@@ -73,33 +70,32 @@ export const LearnMore = styled.button`
   border-radius: 44px;
   padding: 8px 0px;
   border: 2px solid #f59256;
-  background: #ffffff;
+  background: ${p => p.theme.colors.white};
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
   margin-top: ${({ ownerNotice }) => (ownerNotice ? '20px' : '50px')};
-  font-family: 'Manrope, sans-serif';
-  color: #f59256;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
+  font-family: ${p => p.theme.colors.white};
+  color: ${p => p.theme.colors.accent};
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes[2]}px;
   line-height: 22px;
   align-items: center;
   letter-spacing: 0.04em;
-  transition: transform 300ms, color 300ms, border-color 300ms;
+  transition: ${p => p.theme.transition};
   :focus,
   :hover {
-    transform: scale(1.03);
-    color: #ff6101;
-    border-color: #ff6101;
+    transform: scale(1.02);
+    color: ${p => p.theme.colors.hoverButton};
+    border-color: ${p => p.theme.colors.hoverButton};
     cursor: pointer;
   }
 `;
 
 export const BtnDelete = styled.button`
-  font-family: 'Manrope, sans-serif';
+  font-family: ${p => p.theme.colors.white};
   display: flex;
   margin-left: auto;
   margin-right: auto;
@@ -109,19 +105,18 @@ export const BtnDelete = styled.button`
   border-radius: 44px;
   padding: 8px 0px;
   border: 2px solid #f59256;
-  background: #ffffff;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
+  background: ${p => p.theme.colors.white};
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes[2]}px;
   line-height: 22px;
-  color: #f59256;
+  color: ${p => p.theme.colors.secondaryText};
   margin-top: 12px;
-  transition: transform 200ms, color 200ms, border-color 300ms;
+  transition: ${p => p.theme.transition};
   :focus,
   :hover {
-    transform: scale(1.03);
-    color: #ff6101;
-    border-color: #ff6101;
+    transform: scale(1.02);
+    color: ${p => p.theme.colors.hoverButton};
+    border-color: ${p => p.theme.colors.hoverButton};
     cursor: pointer;
   }
 `;
@@ -142,11 +137,10 @@ export const CategoryTitleWraper = styled.div`
 `;
 
 export const CategoryTitle = styled.p`
-  font-family: 'Inter, sans-serif';
+  font-family: Inter, sans-serif;
   text-align: ${({ category }) => (category === 'sell' ? 'center' : 'left')};
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes[0]}px;
   line-height: 15px;
 `;
 
@@ -162,11 +156,10 @@ export const BtnAddFavorite = styled.button`
   justify-content: center;
   display: flex;
   background-color: rgba(255, 255, 255, 0.6);
-  transition: transform 300ms, background-color 500ms;
+  transition: ${p => p.theme.transition};
   :focus,
   :hover {
     transform: scale(1.05);
-
     cursor: pointer;
   }
 `;

@@ -8,7 +8,7 @@ export const List = styled.ul`
   }
 
   list-style: none;
-  @media screen and (min-width: 768px) {
+  @media screen and (${p => p.theme.device.tablet}) {
     display: flex;
     flex-wrap: wrap;
     gap: 32px;
