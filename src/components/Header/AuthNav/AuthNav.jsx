@@ -1,25 +1,33 @@
+import { NavLinkStyled } from './AuthNav.styled';
+import { useLocation } from 'react-router-dom';
 
-import {NavLinkStyled} from "./AuthNav.styled"
-
-const links = [
-  {
-    "link": "/login",
-    "text": "Login",
-    "primary": 1,
-  },
-  {
-    "link": "/register",
-    "text": "Registration",
-    "primary": 0,
-  }]
-
-export const AuthNav = ({setIsMenuOpen}) => {
+export const AuthNav = ({ setIsMenuOpen }) => {
+  const { pathname } = useLocation();
+  const isReg = pathname === '/register';
+  const links = [
+    {
+      link: '/login',
+      text: 'Login',
+      primary: !isReg ? 1 : 0,
+    },
+    {
+      link: '/register',
+      text: 'Registration',
+      primary: isReg ? 1 : 0,
+    },
+  ];
   return (
     <>
-      {links.map(({ link, text, primary }) =>
-        (<NavLinkStyled to={link} primary={primary} key={text} onClick={() => setIsMenuOpen(false)}> {text} </NavLinkStyled>))}
- 
+      {links.map(({ link, text, primary }) => (
+        <NavLinkStyled
+          to={link}
+          primary={primary}
+          key={text}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          {text}
+        </NavLinkStyled>
+      ))}
     </>
   );
 };
-
