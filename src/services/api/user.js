@@ -1,4 +1,4 @@
-import instance from './auth';
+import instance from './axiosConfige';
 
 export const getUserData = async () => {
   const { data } = await instance.get('/user');
