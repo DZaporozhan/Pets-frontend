@@ -14,11 +14,16 @@ import {
   IconBtnDel,
   NoticePhoto,
 } from './NoticeItem.styled';
-import { selectUser } from 'redux/auth/selectors';
+import { selectUser, selectIsAuth } from 'redux/auth/selectors';
 import { useSelector } from 'react-redux';
 import Modal from '../Modal/Modal';
 import { useState } from 'react';
 import { LearnMoreModal } from '../LearnMoreModal/LearnMoreModal';
+import { useNavigate } from 'react-router';
+import calculateAge from 'calculate-age';
+import numberToText from 'number-to-text';
+import ClockLoader from 'react-spinners/ClockLoader';
+require('number-to-text/converters/en-us');
 
 const defaultPhoto =
   'https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png';
@@ -28,6 +33,7 @@ export const NoticeItem = ({
   onDeleteNotice,
   favorite,
   addToFavoriteAndRemove,
+  isLoading,
 }) => {
   const {
     breed,
@@ -42,10 +48,13 @@ export const NoticeItem = ({
   } = notices;
 
   const [showModal, setShowModal] = useState(false);
+  const [clickId, setClickId] = useState(null);
 
   const { _id: userId } = useSelector(selectUser);
+  const isLoggedIn = useSelector(selectIsAuth);
 
   const ownerNotice = owner === userId;
+  const navigate = useNavigate();
 
   const onEditsText = text => {
     if (!text) return;
@@ -53,6 +62,29 @@ export const NoticeItem = ({
       return text.slice(0, 16) + '...';
     }
     return text;
+  };
+
+  const onStringBirthday = () => {
+    if (!birthday) return;
+    const date = birthday.split('.').reverse().join('-');
+    const { years } = new calculateAge(new Date(date), new Date()).getObject();
+    if (years === 0) {
+      return 'Less than one year';
+    }
+    const numberToString = numberToText.convertToText(years, {
+      case: 'lowerCase',
+    });
+    return numberToString[0]?.toUpperCase() + numberToString.slice(1);
+  };
+
+  const onFavorite = async () => {
+    if (isLoggedIn) {
+      setClickId(_id);
+      await addToFavoriteAndRemove(_id);
+      setClickId(null);
+      return;
+    }
+    navigate('/login');
   };
 
   return (
@@ -78,7 +110,9 @@ export const NoticeItem = ({
           </li>
           <li>
             <Description style={{ marginRight: 53 }}>Age:</Description>
-            <DescriptionValue>{onEditsText(birthday)}</DescriptionValue>
+            <DescriptionValue>
+              {onEditsText(onStringBirthday())}
+            </DescriptionValue>
           </li>
           {category === 'sell' && (
             <li>
@@ -103,11 +137,18 @@ export const NoticeItem = ({
       <CategoryTitleWraper>
         <CategoryTitle category={category}>{category}</CategoryTitle>
       </CategoryTitleWraper>
-      <BtnAddFavorite onClick={() => addToFavoriteAndRemove(_id)}>
-        <BtnAddFavoriteIcon
-          style={{ width: 28, height: 28 }}
-          orfavorites={{ favorite, _id }}
-        />
+      <BtnAddFavorite
+        onClick={onFavorite}
+        disabled={isLoading && clickId === _id}
+      >
+        {isLoading && clickId === _id ? (
+          <ClockLoader color="#F59256" size={28} />
+        ) : (
+          <BtnAddFavoriteIcon
+            style={{ width: 28, height: 28 }}
+            orfavorites={{ favorite, _id }}
+          />
+        )}
       </BtnAddFavorite>
       {showModal && (
         <Modal onClose={() => setShowModal(prev => !prev)}>
