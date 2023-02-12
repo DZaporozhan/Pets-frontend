@@ -44,7 +44,7 @@ export const NavContainer = styled.div`
 export const AddBtnPosition = styled.div`
   position: fixed;
   top: 455px;
-  left: 220px;
+  right: 20px;
   z-index: 1;
   @media screen and (${p => p.theme.device.tablet}) {
     position: static;
@@ -52,7 +52,7 @@ export const AddBtnPosition = styled.div`
   } ;
 `;
 
-export const NavBtnPosition = styled.div`
+export const NavLinkPosition = styled.nav`
   display: flex;
   flex-wrap: wrap;
   gap: 12px;

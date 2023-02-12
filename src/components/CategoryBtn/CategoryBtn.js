@@ -1,9 +1,9 @@
 import { NavBtn } from './CategotyBtn.styled';
 
-export const CategoryBtn = ({ title, onClick }) => {
+export const CategoryBtn = ({ title, onClick, to }) => {
   return (
     <>
-      <NavBtn type="button" onClick={onClick}>
+      <NavBtn onClick={onClick} to={to}>
         {title}
       </NavBtn>
     </>
