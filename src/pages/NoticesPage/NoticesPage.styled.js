@@ -6,7 +6,7 @@ export const SectionList = styled.section`
     padding-bottom: 100px;
     padding-top: 30px;
   }
-  @media screen and (min-width: 1280px) {
+  @media screen and (${p => p.theme.device.desktop}) {
     padding-bottom: 200px;
     padding-top: 60px;
   }
@@ -16,7 +16,7 @@ export const Container = styled.div`
   padding: 0 16px;
   margin: 0 auto;
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (${p => p.theme.device.desktop}) {
     width: 1248px;
   }
   @media screen and (max-width: 1279px) {
@@ -44,7 +44,7 @@ export const NavContainer = styled.div`
 export const AddBtnPosition = styled.div`
   position: fixed;
   top: 455px;
-  left: 220px;
+  right: 20px;
   z-index: 1;
   @media screen and (${p => p.theme.device.tablet}) {
     position: static;
@@ -52,7 +52,7 @@ export const AddBtnPosition = styled.div`
   } ;
 `;
 
-export const NavBtnPosition = styled.div`
+export const NavLinkPosition = styled.nav`
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
