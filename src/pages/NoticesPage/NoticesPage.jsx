@@ -39,6 +39,7 @@ const NoticesPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [favorite, setFavorite] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [loadNotices, setLoadNotices] = useState(false);
 
   const { categoryName } = useParams();
 
@@ -63,14 +64,17 @@ const NoticesPage = () => {
   useEffect(() => {
     const getNotices = async () => {
       try {
+        setLoadNotices(true);
         setIsLoading(true);
         const noticesByCategory = await getNoticeByCategory({
           category: categoryName,
         });
         setNotices(noticesByCategory.data.data.result);
+        setLoadNotices(false);
         setIsLoading(false);
       } catch (error) {
         console.log(error);
+        setLoadNotices(false);
         setIsLoading(false);
       }
     };
@@ -149,11 +153,11 @@ const NoticesPage = () => {
           <PuffLoader
             color="#FF6101"
             size={150}
-            loading={isLoading}
+            loading={isLoading && loadNotices}
             aria-label="Loading Spinner"
             cssOverride={override}
           />
-          {notices.length !== 0 && (
+          {notices.length !== 0 && !loadNotices && (
             <NoticesList
               notices={notices}
               favorite={favorite}
