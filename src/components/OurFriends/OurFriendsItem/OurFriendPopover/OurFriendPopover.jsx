@@ -4,7 +4,7 @@ import { Button, Popover } from '@mui/material';
 import { ContentOfPopover } from '../ContentOfPopover/ContentOfPopover';
 
 const CustomizedBtn = styled(Button)`
-  font-family: 'Manrope';
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -14,6 +14,7 @@ const CustomizedBtn = styled(Button)`
   background-color: transparent;
   outline: none;
   box-shadow: none;
+  overflow: no-scroll;
   margin: 0;
   padding: 0;
   text-transform: capitalize;
@@ -55,6 +56,9 @@ export const OurFriendsPopover = ({ workDays }) => {
   return (
     <div>
       <CustomizedBtn
+       style={{
+        overflow: "no-scroll"
+      }}
         aria-describedby={id}
         variant="contained"
         onClick={handleClick}
@@ -64,14 +68,17 @@ export const OurFriendsPopover = ({ workDays }) => {
       </CustomizedBtn>
 
       <Popover
+      elevation={444}
         id={id}
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
+          vertical: 'center',
+          horizontal: 'center',
         }}
+        
+        paddingThreshold={0}
       >
         <ContentOfPopover workDays={workDays} />
       </Popover>

@@ -7,11 +7,12 @@ import {
   SearchFormInput,
 } from './Searchbar.styled';
 
+
 export class Searchbar extends Component {
   render() {
     return (
       <>
-        <SearchForm>
+        <SearchForm >
           <SearchFormInput
             type="text"
             autocomplete="off"
