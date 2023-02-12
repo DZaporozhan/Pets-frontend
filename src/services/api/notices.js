@@ -2,7 +2,7 @@ import instance from './axiosConfige';
 
 export const getNoticeByCategory = async ({
   page = 1,
-  category = 'in good hands',
+  category = 'sell',
   filter = '',
   limit = 20,
 }) => {

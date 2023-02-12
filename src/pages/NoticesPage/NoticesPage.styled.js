@@ -52,7 +52,7 @@ export const AddBtnPosition = styled.div`
   } ;
 `;
 
-export const NavBtnPosition = styled.div`
+export const NavLinkPosition = styled.nav`
   display: flex;
   flex-wrap: wrap;
   gap: 12px;

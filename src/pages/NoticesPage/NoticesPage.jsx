@@ -5,7 +5,7 @@ import {
   Container,
   NavContainer,
   AddBtnPosition,
-  NavBtnPosition,
+  NavLinkPosition,
   BtnPosition,
 } from './NoticesPage.styled';
 import Modal from '../../components/Modal';
@@ -20,8 +20,7 @@ import {
   removeNoticeFromFavorite,
 } from 'services/api/notices';
 import { useParams } from 'react-router-dom';
-import { CategoryBtn } from '../../components/CategoryBtn/CategoryBtn';
-import { NavLink } from 'react-router-dom';
+import { CategoryBtn } from 'components/CategoryBtn/CategoryBtn';
 import { selectIsAuth } from '../../redux/auth/selectors';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -34,7 +33,7 @@ const NoticesPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [favorite, setFavorite] = useState([]);
 
-  const { categoryName } = useParams;
+  const { categoryName } = useParams();
 
   const toggleModal = () => {
     if (!isLoggedIn) {
@@ -60,14 +59,13 @@ const NoticesPage = () => {
         const noticesByCategory = await getNoticeByCategory({
           category: categoryName,
         });
-        console.log(noticesByCategory);
         setNotices(noticesByCategory.data.data.result);
       } catch (error) {
         console.log(error);
       }
     };
     getNotices();
-  }, [useParams()]);
+  }, [categoryName]);
 
   useEffect(() => {
     (async () => {
@@ -109,27 +107,19 @@ const NoticesPage = () => {
           <Searchbar></Searchbar>
         </Section>
         <BtnPosition>
-          <NavBtnPosition>
-            <NavLink to={'/notices/lost-found'}>
-              <CategoryBtn title={'lost/found'}></CategoryBtn>
-            </NavLink>
-            <NavLink to={'/notices/in-good-hands'}>
-              <CategoryBtn title={'in good hands'}></CategoryBtn>
-            </NavLink>
-            <NavLink to={'/notices/sell'}>
-              <CategoryBtn title={'sell'}></CategoryBtn>
-            </NavLink>
-            {isLoggedIn && (
-              <NavLink>
-                <CategoryBtn title={'favorite ads'}></CategoryBtn>
-              </NavLink>
-            )}
-            {isLoggedIn && (
-              <NavLink>
-                <CategoryBtn title={'my ads'}></CategoryBtn>
-              </NavLink>
-            )}
-          </NavBtnPosition>
+          <NavLinkPosition>
+            <CategoryBtn
+              title={'lost/found'}
+              to={'/notices/lost found'}
+            ></CategoryBtn>
+            <CategoryBtn
+              title={'in good hands'}
+              to={'/notices/in good hands'}
+            ></CategoryBtn>
+            <CategoryBtn title={'sell'} to={'/notices/sell'}></CategoryBtn>
+            {isLoggedIn && <CategoryBtn title={'favorite ads'}></CategoryBtn>}
+            {isLoggedIn && <CategoryBtn title={'my ads'}></CategoryBtn>}
+          </NavLinkPosition>
           {!showModal && (
             <AddBtnPosition>
               <AddPetBtn onClick={toggleModal}></AddPetBtn>
