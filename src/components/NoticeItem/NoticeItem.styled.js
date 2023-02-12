@@ -65,32 +65,17 @@ export const DescriptionValue = styled.span`
   color: ${p => p.theme.colors.primaryText};
 `;
 
-export const LearnMore = styled.button`
-  width: 248px;
-  border-radius: 44px;
-  padding: 8px 0px;
-  border: 2px solid #f59256;
-  background: ${p => p.theme.colors.white};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: ${({ ownerNotice }) => (ownerNotice ? '20px' : '50px')};
-  font-family: ${p => p.theme.colors.white};
+export const LearnMore = styled.div`
+  width: 100%;
+  flex-grow: 1;
+  align-self: flex-end;
+  padding: 0 15px 30px 15px;
   color: ${p => p.theme.colors.accent};
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSizes[2]}px;
-  line-height: 22px;
-  align-items: center;
-  letter-spacing: 0.04em;
-  transition: ${p => p.theme.transition};
-  :focus,
-  :hover {
-    transform: scale(1.02);
-    color: ${p => p.theme.colors.hoverButton};
-    border-color: ${p => p.theme.colors.hoverButton};
-    cursor: pointer;
+  @media screen and (min-width: 768px) {
+    padding: 0 45px 30px 45px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding: 0 20px 30px 20px;
   }
 `;
 

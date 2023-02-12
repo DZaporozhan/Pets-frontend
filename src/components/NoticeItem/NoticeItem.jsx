@@ -16,13 +16,14 @@ import {
 } from './NoticeItem.styled';
 import { selectUser, selectIsAuth } from 'redux/auth/selectors';
 import { useSelector } from 'react-redux';
-import Modal from '../Modal/Modal';
+// import Modal from '../Modal/Modal';
 import { useState } from 'react';
-import { LearnMoreModal } from '../LearnMoreModal/LearnMoreModal';
+import { ModalNotice } from '../ModalNotice/ModalNotice';
 import { useNavigate } from 'react-router';
 import calculateAge from 'calculate-age';
 import numberToText from 'number-to-text';
 import ClockLoader from 'react-spinners/ClockLoader';
+import { ButtonLink } from 'components/Button/Button';
 require('number-to-text/converters/en-us');
 
 const defaultPhoto =
@@ -47,7 +48,13 @@ export const NoticeItem = ({
     _id,
   } = notices;
 
-  const [showModal, setShowModal] = useState(false);
+  const [noticesId, setNoticesId] = useState('');
+  const [expanded, setExpanded] = useState(false);
+  const handleModalToggle = () => {
+    setExpanded(prev => {
+      return !prev;
+    });
+  };
   const [clickId, setClickId] = useState(null);
 
   const { _id: userId } = useSelector(selectUser);
@@ -121,12 +128,19 @@ export const NoticeItem = ({
             </li>
           )}
         </DescriptionList>
-        <LearnMore
-          ownerNotice={ownerNotice}
-          onClick={() => setShowModal(prev => !prev)}
-        >
-          Learn more
+        {/* ==================== */}
+        <LearnMore>
+          <ButtonLink
+            onClick={e => {
+              e.preventDefault();
+              setNoticesId(_id);
+              handleModalToggle();
+            }}
+          >
+            Learn more
+          </ButtonLink>
         </LearnMore>
+        {/* =========================== */}
         {ownerNotice && (
           <BtnDelete onClick={() => onDeleteNotice(_id)}>
             Delete
@@ -149,12 +163,15 @@ export const NoticeItem = ({
             orfavorites={{ favorite, _id }}
           />
         )}
+        {/* ========= */}
       </BtnAddFavorite>
-      {showModal && (
-        <Modal onClose={() => setShowModal(prev => !prev)}>
-          <LearnMoreModal noticeData={notices} />
-        </Modal>
+      {expanded && (
+        <ModalNotice
+          id={noticesId || ''}
+          handleModalToggle={handleModalToggle}
+        ></ModalNotice>
       )}
+      {/* ============== */}
     </Item>
   );
 };
