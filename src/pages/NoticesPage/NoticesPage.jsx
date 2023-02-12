@@ -32,7 +32,6 @@ const NoticesPage = () => {
   const [notices, setNotices] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [favorite, setFavorite] = useState([]);
-
   const { categoryName } = useParams();
 
   const toggleModal = () => {
@@ -100,11 +99,47 @@ const NoticesPage = () => {
     }
   };
 
+  //filter function
+  const [titleRequest, setTitleRequest] = useState('');
+  const [filter, SetFilter] = useState(true);
+
+  const onInputValue = e => {
+    const titleRequest = e.currentTarget.value;
+    setTitleRequest(titleRequest);
+    console.log(titleRequest);
+    if (titleRequest === '') {
+      SetFilter(true);
+    }
+  };
+
+  const onFilter = e => {
+    e.preventDefault();
+    if (titleRequest.trim() === '') {
+      return toast.error('Please enter a request');
+    }
+    onCheckValue(titleRequest);
+  };
+
+  const onCheckValue = value => {
+    if (value) {
+      SetFilter(false);
+    }
+    if (!filter) {
+      setTitleRequest('');
+      SetFilter(true);
+    }
+  };
+
   return (
     <>
       <NavContainer>
         <Section title={`Find your favorite pet`}>
-          <Searchbar></Searchbar>
+          <Searchbar
+            filter={filter}
+            onSubmit={onFilter}
+            onChange={onInputValue}
+            titleRequest={titleRequest}
+          ></Searchbar>
         </Section>
         <BtnPosition>
           <NavLinkPosition>
