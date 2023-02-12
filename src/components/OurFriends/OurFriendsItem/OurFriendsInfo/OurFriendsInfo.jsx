@@ -16,7 +16,7 @@ export const OurFriendsInfo = ({
 				) : (
 					<Time>
 						Time: <br />
-						--------------
+						------------------
 					</Time>
 				)}
 			</div>
@@ -24,19 +24,19 @@ export const OurFriendsInfo = ({
 				<p>Address:</p>
 
 				<Links target="_blank" rel="noreferrer noopener"  href={addressUrl}>
-					{address ? sliceAddress(address) : '------------'}
+					{address ? sliceAddress(address) : '------------------'}
 				</Links>
 			</div>
 			<p>Email:</p>
 
 			<Links  href="mailto:{email}">
-				{email ? `${email}` : '------------'}
+				{email ? `${email}` : '------------------'}
 			</Links>
 
 			<p>Phone: </p>
 
 			<Links  href="tel:{phone}" >
-				{phone ? `${phone}` : '------------'}
+				{phone ? `${phone}` : '------------------'}
 			</Links>
 		</Info>
 	);

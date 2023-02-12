@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const ContainerBox = styled.div`
   margin-right: auto;
   margin-left: auto;
+    position: relative;
   
   @media screen and (max-width: 319px) {
     padding: 16px 10px 0 10px;
@@ -11,10 +12,10 @@ export const ContainerBox = styled.div`
     padding: 16px 20px 0 20px;
   }
   @media screen and (min-width: 768px) {
-    padding: 24px 32px 0 32px;
+    padding: 24px 32px 10px 32px;
   }
   @media screen and (min-width: 1280px) {
-    padding: 20px 16px 0 16px;
+    padding: 20px 16px 10px 16px;
   
   }
 `;

@@ -2,12 +2,12 @@ import { Logo } from "./Logo/Logo";
 import { Navigation } from "./Navigation/Navigation";
 
 import { Container } from "./Container/Container";
-import {InnerContainer, HeaderStyle} from "./Header.styled"
+import {InnerContainer} from "./Header.styled"
 
 
 export const Header = () => {
   return (
-    <HeaderStyle>
+    <header>
       <Container> 
         <InnerContainer> 
       <Logo />
@@ -16,7 +16,7 @@ export const Header = () => {
       </InnerContainer>
     
     </Container>
-    </HeaderStyle>
+    </header>
   );
 };
 

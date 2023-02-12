@@ -1,12 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
-import SharedLayout from './components/SharedLayout/SharedLayout';
+import SharedLayout from './SharedLayout/SharedLayout';
 import { lazy, useEffect } from 'react';
 import { PrivateRoute } from 'components/Routes/PrivateRoute';
 import { RestrictedRoute } from 'components/Routes/RestrictedRoute';
 
-import { getIsRefreshing, getToken } from 'redux/auth/selectors';
+import { selectIsRefreshing, selectToken } from 'redux/auth/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { current } from 'redux/auth/operations';
+import { Loader } from './Loader/Loader';
 
 const Homepage = lazy(() => import('pages/Homepage/Homepage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
@@ -21,16 +22,16 @@ const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const token = useSelector(getToken);
-  const isRefreshing = useSelector(getIsRefreshing);
+  const token = useSelector(selectToken);
+  const isRefreshisng = useSelector(selectIsRefreshing);
   useEffect(() => {
     if (token) {
       dispatch(current());
     }
   }, [dispatch, token]);
 
-  return isRefreshing ? (
-    'Refreshing'
+  return isRefreshisng ? (
+    <Loader />
   ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
@@ -56,8 +57,8 @@ export const App = () => {
             <PrivateRoute redirectTo="/login" component={<UserPage />} />
           }
         />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
-      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };

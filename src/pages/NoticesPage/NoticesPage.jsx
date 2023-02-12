@@ -1,6 +1,13 @@
 import { NoticesList } from 'components/NoticesList/NoticesList';
 import { useEffect, useState } from 'react';
-import { Sections, Container } from './NoticesPage.styled';
+import {
+  SectionList,
+  Container,
+  NavContainer,
+  AddBtnPosition,
+  NavBtnPosition,
+  BtnPosition,
+} from './NoticesPage.styled';
 import Modal from '../../components/Modal';
 import { AddPetBtn } from '../../components/AddPetBtn/AddPetBtn';
 import { Section } from '../../components/Section/Section';
@@ -8,18 +15,40 @@ import { Searchbar } from '../../components/Searchbar/Searchbar';
 import {
   getNoticeByCategory,
   removeNotice,
+  getFavoriteNotices,
   addNoticeToFavorite,
   removeNoticeFromFavorite,
 } from 'services/api/notices';
 import { useParams } from 'react-router-dom';
+import { CategoryBtn } from '../../components/CategoryBtn/CategoryBtn';
+import { NavLink } from 'react-router-dom';
+import { selectIsAuth } from '../../redux/auth/selectors';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NoticesPage = () => {
+  const isLoggedIn = useSelector(selectIsAuth);
   const [notices, setNotices] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [favorite, setFavorite] = useState([]);
 
   const { categoryName } = useParams;
 
   const toggleModal = () => {
+    if (!isLoggedIn) {
+      return toast.error('Please, log in to add notice', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark',
+      });
+    }
     setShowModal(prevState => {
       return !prevState;
     });
@@ -39,6 +68,13 @@ const NoticesPage = () => {
     getNotices();
   }, [categoryName]);
 
+  useEffect(() => {
+    (async () => {
+      const allFavorite = await getFavoriteNotices();
+      setFavorite(allFavorite.map(({ _id }) => _id));
+    })();
+  }, []);
+
   const onDeleteNotice = async id => {
     try {
       const { id: elId } = await removeNotice(id);
@@ -51,19 +87,15 @@ const NoticesPage = () => {
     }
   };
 
-  const addToFavorite = async id => {
+  const addToFavoriteAndRemove = async id => {
     try {
-      const added = await addNoticeToFavorite(id);
-      console.log(added);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const removeFromFavorite = async id => {
-    try {
-      const removed = await removeNoticeFromFavorite(id);
-      console.log(removed);
+      if (!favorite.includes(id)) {
+        await addNoticeToFavorite(id);
+        setFavorite(prev => [...prev, id]);
+        return;
+      }
+      await removeNoticeFromFavorite(id);
+      setFavorite(prev => prev.filter(el => el !== id));
     } catch (error) {
       console.log(error);
     }
@@ -71,23 +103,53 @@ const NoticesPage = () => {
 
   return (
     <>
-      <Section title={`Find your favorite pet`}>
-        <Searchbar></Searchbar>
-      </Section>
-      <AddPetBtn onClick={toggleModal}></AddPetBtn>
+      <NavContainer>
+        <Section title={`Find your favorite pet`}>
+          <Searchbar></Searchbar>
+        </Section>
+        <BtnPosition>
+          <NavBtnPosition>
+            <NavLink>
+              <CategoryBtn title={'lost/found'}></CategoryBtn>
+            </NavLink>
+            <NavLink>
+              <CategoryBtn title={'in good hands'}></CategoryBtn>
+            </NavLink>
+            <NavLink>
+              <CategoryBtn title={'sell'}></CategoryBtn>
+            </NavLink>
+            {isLoggedIn && (
+              <NavLink>
+                <CategoryBtn title={'favorite ads'}></CategoryBtn>
+              </NavLink>
+            )}
+            {isLoggedIn && (
+              <NavLink>
+                <CategoryBtn title={'my ads'}></CategoryBtn>
+              </NavLink>
+            )}
+          </NavBtnPosition>
+          {!showModal && (
+            <AddBtnPosition>
+              <AddPetBtn onClick={toggleModal}></AddPetBtn>
+            </AddBtnPosition>
+          )}
+        </BtnPosition>
+      </NavContainer>
       {showModal && <Modal onClose={toggleModal}></Modal>}
-      <Sections>
+      <SectionList>
         <Container>
           {notices.length !== 0 && (
             <NoticesList
               notices={notices}
+              favorite={favorite}
               onDeleteNotice={onDeleteNotice}
-              addToFavorite={addToFavorite}
-              removeFromFavorite={removeFromFavorite}
+              addToFavoriteAndRemove={addToFavoriteAndRemove}
             />
           )}
         </Container>
-      </Sections>
+      </SectionList>
+      <ToastContainer />
     </>
   );
 };

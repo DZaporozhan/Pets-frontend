@@ -4,8 +4,8 @@ import { NoticeItem } from 'components/NoticeItem/NoticeItem';
 export const NoticesList = ({
   notices,
   onDeleteNotice,
-  addToFavorite,
-  removeFromFavorite,
+  favorite,
+  addToFavoriteAndRemove,
 }) => {
   return (
     <List>
@@ -14,8 +14,8 @@ export const NoticesList = ({
           notices={el}
           key={el._id}
           onDeleteNotice={onDeleteNotice}
-          addToFavorite={addToFavorite}
-          removeFromFavorite={removeFromFavorite}
+          favorite={favorite}
+          addToFavoriteAndRemove={addToFavoriteAndRemove}
         />
       ))}
     </List>

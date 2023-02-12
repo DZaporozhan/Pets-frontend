@@ -39,7 +39,7 @@ const authSlice = createSlice({
     [login.pending]: handlePending,
     [login.fulfilled](state, action) {
       state.user = action.payload.user;
-      state.token = action.payload.token;
+      state.token = action.payload.accessToken;
       state.isLoggedIn = true;
       state.isAuthLoading = false;
     },
@@ -57,16 +57,23 @@ const authSlice = createSlice({
     },
     [logout.rejected]: handleRejected,
 
-    [current.pending]: handlePending,
+    [current.pending]: state => {
+      state.isAuthLoading = true;
+      state.error = null;
+      state.isRefreshing = true;
+    },
     [current.fulfilled]: (state, { payload }) => {
       state.isLoggedIn = true;
       state.user = payload.user;
-      state.isRefreshing = false;
       state.isAuthLoading = false;
+      state.isRefreshing = false;
     },
-    [current.rejected]: handleRejected,
-
-    //R
+    [current.rejected]: (state, action) => {
+      state.isAuthLoading = false;
+      state.isRefreshing = false;
+      state.token = null;
+      state.error = action.payload;
+    },
   },
 });
 

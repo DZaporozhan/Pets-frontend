@@ -1,6 +1,7 @@
-export const getAuthError = ({ auth }) => auth.error;
-export const isAuth = ({ auth }) => auth.isLoggedIn;
-export const getUser = ({ auth }) => auth.user;
-export const getToken = ({ auth }) => auth.token;
-export const getIsLoading = ({ auth }) => auth.isAuthLoading;
-export const getIsRefreshing = ({ auth }) => auth.isRefreshing;
+export const selectAuthError = ({ auth }) => auth.error;
+export const selectIsAuth = ({ auth }) => auth.isLoggedIn;
+export const selectUser = ({ auth }) => auth.user;
+export const selectToken = ({ auth }) => auth.token;
+export const selectIsLoading = ({ auth }) => auth.isAuthLoading;
+export const selectIsRefreshing = ({ auth }) => auth.isRefreshing;
+export const selectId = ({ auth }) => auth.user._id;
