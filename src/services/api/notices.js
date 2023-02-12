@@ -2,18 +2,19 @@ import instance from './axiosConfige';
 
 export const getNoticeByCategory = async ({
   page = 1,
-  category = 'sell',
+  category = 'in good hands',
   filter = '',
   limit = 20,
 }) => {
   let result;
+
   switch (category) {
     case 'favorite':
       result = await instance.get(`/notices/favorite?category=${category}`);
       break;
 
     case 'owner':
-      result = await instance.get(`/notices/owner?title=${filter}`);
+      result = await instance.get(`/notices/owner?title=${category}`);
       break;
     default:
       result = await instance.get(
@@ -21,7 +22,6 @@ export const getNoticeByCategory = async ({
       );
       break;
   }
-
   return result;
 };
 

@@ -60,13 +60,14 @@ const NoticesPage = () => {
         const noticesByCategory = await getNoticeByCategory({
           category: categoryName,
         });
+        console.log(noticesByCategory);
         setNotices(noticesByCategory.data.data.result);
       } catch (error) {
         console.log(error);
       }
     };
     getNotices();
-  }, [categoryName]);
+  }, [useParams()]);
 
   useEffect(() => {
     (async () => {
@@ -109,13 +110,13 @@ const NoticesPage = () => {
         </Section>
         <BtnPosition>
           <NavBtnPosition>
-            <NavLink>
+            <NavLink to={'/notices/lost-found'}>
               <CategoryBtn title={'lost/found'}></CategoryBtn>
             </NavLink>
-            <NavLink>
+            <NavLink to={'/notices/in-good-hands'}>
               <CategoryBtn title={'in good hands'}></CategoryBtn>
             </NavLink>
-            <NavLink>
+            <NavLink to={'/notices/sell'}>
               <CategoryBtn title={'sell'}></CategoryBtn>
             </NavLink>
             {isLoggedIn && (
