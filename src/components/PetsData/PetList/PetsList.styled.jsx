@@ -16,6 +16,7 @@ export const Card = styled.li`
   display: flex;
   align-items: center;
   flex-direction: column;
+  position: relative;
   gap: 20px;
   padding: 16px 20px;
   /* width: 280px; */
