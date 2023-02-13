@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const Li = styled.li`
 display: flex;
 
-// justify-content: space-between;
-justify-content: center;
+justify-content: space-between;
+
 font-weight: 500;
 font-size: 12px;
 line-height: 1.3;

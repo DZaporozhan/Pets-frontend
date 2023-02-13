@@ -7,7 +7,8 @@ import {
 import Login from './Login/Login';
 import Registration from './Registration/Registration';
 import { useSelector } from 'react-redux';
-import { getIsLoading } from 'redux/auth/selectors';
+import { selectIsLoading } from 'redux/auth/selectors';
+import { Loader } from 'components/Loader/Loader';
 
 const regisnrationPageLink = (
   <FormText>
@@ -22,9 +23,9 @@ const regisnrationLoginLink = (
   </FormText>
 );
 const AuthForm = ({ type }) => {
-  const isLoding = useSelector(getIsLoading);
+  const isLoding = useSelector(selectIsLoading);
   return isLoding ? (
-    <h1>loding...</h1>
+    <Loader />
   ) : (
     <FormContainer>
       <RegisterHeader>
