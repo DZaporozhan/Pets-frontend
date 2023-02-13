@@ -24,7 +24,7 @@ const PetsData = () => {
       <PetsList />
       {showModal && (
         <Modal onClose={toggleModal}>
-          <AddPetModal />
+          <AddPetModal onClose={toggleModal} />
         </Modal>
       )}
     </>
