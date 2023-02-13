@@ -14,10 +14,15 @@ position: fixed;
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
     opacity: ${({ menuToggle }) => (menuToggle ? 1 : 0)};
     background-color: ${p => p.theme.colors.background};
-    display: ${({ menuToggle }) => (menuToggle ? "block" : "none")};
+    display: ${({ menuToggle }) => (menuToggle ? "flex" : "none")};
+
+    align-items: center;
+    flex-direction: column;
     
     @media (min-width: 768px) {
-     top: 72px; }
+     top: 72px; 
+    
+    }
 
     @media (min-width: 1280px) {
     display: none;
@@ -99,5 +104,15 @@ gap: 12px;
  width: 60%;
  justify-content: flex-end;
   }
+`
 
+export const Image = styled.img`
+border-radius: 50%;
+width: 130px;
+margin-top: 20px;
+
+@media (min-width: 768px) {
+width: 320px;
+margin-top: 80px;
+}
 `

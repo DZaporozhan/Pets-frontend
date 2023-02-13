@@ -6,6 +6,7 @@ import {
   AuthWrapper,
   ModalBtn,
   TabletWrapper,
+  Image
 } from './Navigation.styled';
 import { ReactComponent as BurgerBtn } from '../../../icons/burger.svg';
 import { ReactComponent as CloseBtn } from '../../../icons/close.svg';
@@ -16,6 +17,7 @@ import { UserNav } from '../UserNav/UserNav';
 import { AuthNav } from '../AuthNav/AuthNav';
 import { useSelector } from 'react-redux';
 import { selectIsAuth } from '../../../redux/auth/selectors';
+import wavingCat from "../../../icons/cat-min.gif"
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsAuth);
@@ -83,6 +85,8 @@ export const Navigation = () => {
             )}
           </AuthWrapper>
         </NavTag>
+
+        <Image src={wavingCat} alt="waving cute cat" />
       </NavMobMenu>
     </>
   );
