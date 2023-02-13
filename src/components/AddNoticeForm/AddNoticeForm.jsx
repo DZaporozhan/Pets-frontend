@@ -418,7 +418,6 @@ import {
   TextLabel,
   DateInput,
   Description,
-  // FormContainer,
   InputWraper,
   Title,
   GenderForm,
@@ -434,11 +433,12 @@ import {
   PhotoPetText,
   ImageWrapper,
   ImageTitle,
-  // Button,
   TextAreaInput,
   InputContTextArea,
   ActButton,
-  FormContent,
+  FormWraper,
+  FirstPageContainer,
+  SecPageContainer
 } from './AddNoticeForm.styled.';
 import axios from 'axios';
 
@@ -489,7 +489,6 @@ const validationSchema = Yup.object({
 export const AddNoticeForm = ({ onClose, addNotices }) => {
   const [isFirstPage, setIsFirstPage] = useState(true);
   const [image, setImage] = useState(null);
-  // const [notices, setNotices] = useState([]);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const categorySetByDefault = () => {
@@ -514,7 +513,7 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
       sex: '',
       location: '',
       price: 1,
-      photoURL: null,
+      imageURL: null,
       comments: '',
     },
     validationSchema: validationSchema,
@@ -528,7 +527,7 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
         sex: values.sex,
         location: values.location,
         price: values.price,
-        photoUrl: values.photoURL,
+        imageUrl: values.imageURL,
         comments: values.comments,
       };
 
@@ -548,16 +547,16 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
     const { files } = e.currentTarget;
     if (files) {
       setImage(URL.createObjectURL(files[0]));
-      formik.setFieldValue('photoURL', files[0]);
+      formik.setFieldValue('imageURL', files[0]);
     }
   };
 
   return (
-    <>
+    <FormWraper>
       <Title>Add pet</Title>
-      <FormContent onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit}>
         {isFirstPage && (
-          <div>
+          <FirstPageContainer>
             <Description>
               Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit
               amet, consectetur
@@ -565,9 +564,9 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
             <CategoryContainer onChange={formik.handleChange} required>
               <CategoryLabel>
                 <CategoryInput
-                  defaultChecked={
-                    formik.values.category === 'lost found' ? true : false
-                  }
+                  // defaultChecked={
+                  //   formik.values.category === 'lost/found' ? true : false
+                  // }
                   type="radio"
                   name="category"
                   value="lost/found"
@@ -577,9 +576,9 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
               </CategoryLabel>
               <CategoryLabel>
                 <CategoryInput
-                  defaultChecked={
-                    formik.values.category === 'in good hands' ? true : false
-                  }
+                  // defaultChecked={
+                  //   formik.values.category === 'in good hands' ? true : false
+                  // }
                   type="radio"
                   name="category"
                   value="in good hands"
@@ -589,9 +588,9 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
               </CategoryLabel>
               <CategoryLabel>
                 <CategoryInput
-                  defaultChecked={
-                    formik.values.category === 'sell' ? true : false
-                  }
+                  // defaultChecked={
+                  //   formik.values.category === 'sell' ? true : false
+                  // }
                   type="radio"
                   name="category"
                   value="sell"
@@ -602,13 +601,13 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
             </CategoryContainer>
             <InputWraper>
               <TextLabel>
-                Title of ad <StarSpan>&#42;</StarSpan>
+                Title of ad<StarSpan>&#42;</StarSpan>
                 <TextInput
                   id="title"
                   name="title"
                   value={formik.values.title}
                   onChange={formik.handleChange}
-                  placeholder="Type name"
+                  placeholder="Type name pet"
                 />
                 {/* {formik.touched.title && formik.errors.title && (
                     <p>{formik.errors.title}</p>
@@ -665,11 +664,11 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
                   )} */}
               </TextLabel>
             </InputWraper>
-          </div>
+          </FirstPageContainer>
         )}
 
         {!isFirstPage && (
-          <>
+          <SecPageContainer>
             <GenderForm>
               <GenderDesc>
                 The sex
@@ -708,7 +707,7 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
             </GenderForm>
             <InputWraper>
               <TextLabel htmlFor="locationPet">
-                City, Region<StarSpan>&#42;</StarSpan>:
+                Location<StarSpan>&#42;</StarSpan>:
                 {formik.values.location !== '' && formik.errors.location ? (
                   <p>{formik.errors.location}</p>
                 ) : null}
@@ -718,14 +717,15 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
                   name="location"
                   type="text"
                   onChange={formik.handleChange}
-                  placeholder="Type place"
+                  placeholder="Type location"
                 />
               </TextLabel>
             </InputWraper>
             <InputWraper>
               {formik.values.category === 'sell' && (
                 <TextLabel htmlFor="pricePet">
-                  Price *:
+                  Price
+                  <StarSpan>&#42;</StarSpan>:
                   {formik.values.price !== '' && formik.errors.price ? (
                     <p>{formik.errors.price}</p>
                   ) : null}
@@ -742,7 +742,7 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
             </InputWraper>
             <ImageWrapper>
               <ImageTitle>Load the pet's image:</ImageTitle>
-              {formik.values.photoURL === null ? (
+              {formik.values.imageURL === null ? (
                 <PhotoAddContainer htmlFor="imagePet">
                   <CrossPic width="48" height="48" fill="none"></CrossPic>
                   <PhotoPetText
@@ -764,7 +764,7 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
             </ImageWrapper>
             <InputContTextArea>
               <TextLabel htmlFor="commentsId">
-                Comments <StarSpan>&#42;</StarSpan>
+                Comments<StarSpan>&#42;</StarSpan>
                 {formik.values.comments !== '' && formik.errors.comments ? (
                   <p>{formik.errors.comments}</p>
                 ) : null}
@@ -779,7 +779,7 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
                 value={formik.values.comments}
               />
             </InputContTextArea>
-          </>
+          </SecPageContainer>
         )}
 
         <ActionButtons>
@@ -794,15 +794,14 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
           )}
           {isFirstPage ? (
             <ActButton type="button" onClick={moveToNextPage}>
-              {' '}
               Next
             </ActButton>
           ) : (
             <ActButton type="submit">Done</ActButton>
           )}
         </ActionButtons>
-      </FormContent>
-    </>
+      </form>
+    </FormWraper>
   );
 };
 >>>>>>> 18b1562e1ed6271599c7b0023cd87271c21e6e5d
