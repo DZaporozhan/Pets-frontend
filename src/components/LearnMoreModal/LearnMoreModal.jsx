@@ -2,8 +2,10 @@ import {
   Container,
   Title,
   ImageThumb,
-  Tumb,
+  // Tumb,
   ContactBtn,
+  InfoWrapper,
+  Description,
 } from './LearnMoreModal.styled';
 
 const defaultPhoto =
@@ -14,30 +16,34 @@ export const LearnMoreModal = ({ noticeData }) => {
 
   return (
     <Container>
-      <Title> {noticeData.title} </Title>
-      <Tumb> {noticeData.category}</Tumb>
-      <ImageThumb
-        src={
-          (noticeData.imageURL &&
-            `https://res.cloudinary.com/dqupdbup3/image/upload/${noticeData.imageURL?.toLowerCase()}`) ||
-          defaultPhoto
-        }
-        alt={noticeData.title}
-      />
+      <InfoWrapper>
+        <ImageThumb
+          src={
+            (noticeData.imageURL &&
+              `https://res.cloudinary.com/dqupdbup3/image/upload/${noticeData.imageURL?.toLowerCase()}`) ||
+            defaultPhoto
+          }
+          alt={noticeData.title}
+          category={noticeData.category}
+        />
+        <div>
+          <Title> {noticeData.title} </Title>
+          <ul>
+            <li>{noticeData.category}</li>
+            <li>Name: {noticeData.name}</li>
+            <li>birthday: {noticeData.birthday}</li>
+            <li>Breed: {noticeData.breed}</li>
+            <li>Prace: {noticeData.price}</li>
+            <li>The sex: {noticeData.sex}</li>
+            <li>Email: {noticeData.email}</li>
+            <li>Phone: {noticeData.phone}</li>
+          </ul>
+        </div>
+      </InfoWrapper>
 
-      <li>{noticeData.category}</li>
-      <li>Name: {noticeData.name}</li>
-      <li>birthday: {noticeData.birthday}</li>
-      <li>Breed: {noticeData.breed}</li>
-      <li>Prace: {noticeData.price}</li>
-      <li>The sex: {noticeData.sex}</li>
-      <li>Email: {noticeData.email}</li>
-      <li>Phone: {noticeData.phone}</li>
-      <li>Comments: {noticeData.comments}</li>
-      <ContactBtn primary onClick={window.open`tel:${noticeData.phone}`}>
-        Contact
-      </ContactBtn>
+      <Description text={noticeData.comments} />
+
+      <ContactBtn href="tel:noticeData.phone">Сontact</ContactBtn>
     </Container>
   );
 };
-// window.open`tel:${noticeData.phone
