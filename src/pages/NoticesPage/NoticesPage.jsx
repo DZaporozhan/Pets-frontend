@@ -39,6 +39,8 @@ const NoticesPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [favorite, setFavorite] = useState([]);
   const { categoryName } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadNotices, setLoadNotices] = useState(false);
 
   const toggleModal = () => {
     if (!isLoggedIn) {
