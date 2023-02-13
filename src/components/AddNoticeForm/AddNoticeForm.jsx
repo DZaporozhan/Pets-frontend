@@ -36,7 +36,7 @@ import {
   InputContTextArea,
   ActButton,
   FormContent,
-} from './AddNoticeModal.styled';
+} from './AddNoticeForm.styled.';
 import axios from 'axios';
 
 const validationSchema = Yup.object({
