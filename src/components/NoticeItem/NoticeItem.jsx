@@ -152,7 +152,12 @@ export const NoticeItem = ({
       </BtnAddFavorite>
       {showModal && (
         <Modal onClose={() => setShowModal(prev => !prev)}>
-          <LearnMoreModal noticeData={notices} />
+          <LearnMoreModal
+            noticeData={notices}
+            favorite={favorite}
+            onDeleteNotice={onDeleteNotice}
+            addToFavoriteAndRemove={addToFavoriteAndRemove}
+          />
         </Modal>
       )}
     </Item>

@@ -11,7 +11,12 @@ import {
 const defaultPhoto =
   'https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png';
 
-export const LearnMoreModal = ({ noticeData }) => {
+export const LearnMoreModal = ({
+  noticeData,
+  onDeleteNotice,
+  favorite,
+  addToFavoriteAndRemove,
+}) => {
   console.log(noticeData);
 
   return (
