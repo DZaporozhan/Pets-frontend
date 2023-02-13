@@ -70,7 +70,7 @@ export const PetSection = styled.section`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  gap: 20px;
+  /* gap: 20px; */
 `;
 
 export const PetContainer = styled.div`
