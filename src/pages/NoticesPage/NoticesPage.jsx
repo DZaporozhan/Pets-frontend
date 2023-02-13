@@ -27,6 +27,7 @@ import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PuffLoader from 'react-spinners/PuffLoader';
+import { AddNoticeForm } from 'components/AddNoticeForm/AddNoticeForm';
 
 const override: CSSProperties = {
   display: 'block',
@@ -182,7 +183,9 @@ const NoticesPage = () => {
           )}
         </BtnPosition>
       </NavContainer>
-      {showModal && <Modal onClose={toggleModal}></Modal>}
+      {showModal && <Modal onClose={toggleModal}>
+        <AddNoticeForm onClose={toggleModal}/>
+      </Modal>}
       <SectionList>
         <Container>
           <PuffLoader
