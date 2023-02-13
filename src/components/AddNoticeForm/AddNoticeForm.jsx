@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // import { useFormik } from 'formik';
 // import * as Yup from 'yup';
 // import { useState } from 'react';
@@ -400,7 +399,7 @@
 //     </>
 //   );
 // };
-=======
+// =======
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
@@ -438,7 +437,7 @@ import {
   ActButton,
   FormWraper,
   FirstPageContainer,
-  SecPageContainer
+  SecPageContainer,
 } from './AddNoticeForm.styled.';
 import axios from 'axios';
 
@@ -804,4 +803,3 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
     </FormWraper>
   );
 };
->>>>>>> 18b1562e1ed6271599c7b0023cd87271c21e6e5d
