@@ -7,6 +7,9 @@ import {
   AddBtnPosition,
   NavLinkPosition,
   BtnPosition,
+  Text,
+  ErrorPosition,
+  Img,
 } from './NoticesPage.styled';
 import Modal from '../../components/Modal';
 import { AddPetBtn } from '../../components/AddPetBtn/AddPetBtn';
@@ -28,6 +31,8 @@ import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PuffLoader from 'react-spinners/PuffLoader';
+import { AddNoticeForm } from 'components/AddNoticeForm/AddNoticeForm';
+import DancingBear from '../../../src/icons/dancingBear_min.gif';
 
 const override: CSSProperties = {
   display: 'block',
@@ -39,12 +44,9 @@ const NoticesPage = () => {
   const [notices, setNotices] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [favorite, setFavorite] = useState([]);
+  const { categoryName } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [loadNotices, setLoadNotices] = useState(false);
-
-  const { categoryName } = useParams();
-  
-  const { category } = useParams();
 
   const toggleModal = () => {
     if (!isLoggedIn) {
@@ -65,28 +67,6 @@ const NoticesPage = () => {
   };
 
   useEffect(() => {
-    const getNotices = async () => {
-      try {
-        setLoadNotices(true);
-
-        setIsLoading(true);
-        const noticesByCategory = await getNoticeByCategory({
-          category: categoryName,
-          
-        });
-        setNotices(noticesByCategory.data.data.result);
-        setLoadNotices(false);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error);
-        setLoadNotices(false);
-        setIsLoading(false);
-      }
-    };
-    getNotices();
-  }, [categoryName]);
-
-  useEffect(() => {
     if (!isLoggedIn) return;
     (async () => {
       const allFavorite = await getFavoriteNotices();
@@ -105,7 +85,7 @@ const NoticesPage = () => {
       console.log(error);
     }
   };
- 
+
   const addToFavoriteAndRemove = async id => {
     try {
       if (!favorite.includes(id)) {
@@ -125,6 +105,45 @@ const NoticesPage = () => {
     }
   };
 
+  //filter function
+  const [titleRequest, setTitleRequest] = useState('');
+  const [filter, SetFilter] = useState(true);
+  const [search, SetSearch] = useState('');
+
+  const onInputChange = e => {
+    const titleRequest = e.currentTarget.value;
+    setTitleRequest(titleRequest);
+    if (titleRequest === '') {
+      SetSearch('');
+    }
+    SetFilter(true);
+  };
+
+  const onDeleteRequest = value => {
+    if (!filter) {
+      setTitleRequest('');
+      SetFilter(true);
+    }
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    if (titleRequest.trim() === '') {
+      setTitleRequest('');
+      return toast.error('Please enter a request');
+    }
+    if (titleRequest) {
+      SetFilter(prevState => {
+        return !prevState;
+      });
+    }
+    onDeleteRequest(titleRequest);
+    SetSearch(titleRequest);
+    if (!filter) {
+      SetSearch('');
+    }
+  };
+
   useEffect(() => {
     try {
       if (!isLoggedIn) return;
@@ -135,27 +154,58 @@ const NoticesPage = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [category, isLoggedIn]);
+  }, [isLoggedIn]);
 
-
-
-    useEffect(() => { 
+  useEffect(() => {
     try {
       if (!isLoggedIn) return;
       (async () => {
-      const allFavoriteUser = await getUserNotices();
+        const allFavoriteUser = await getUserNotices();
         setNotices(allFavoriteUser);
-    })();
+      })();
     } catch (error) {
       console.log(error);
     }
-    }, [category, isLoggedIn])
-  
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    const getNotices = async () => {
+      try {
+        setLoadNotices(true);
+        setIsLoading(true);
+        const noticesByCategory = await getNoticeByCategory({
+          category: categoryName,
+          filter: search,
+        });
+        setNotices(noticesByCategory.data.data.result);
+        setLoadNotices(false);
+        setIsLoading(false);
+      } catch (error) {
+        setNotices([]);
+        console.log(error);
+        setLoadNotices(false);
+        setIsLoading(false);
+      }
+    };
+    getNotices();
+  }, [categoryName, search]);
+
+  useEffect(() => {
+    SetSearch('');
+    setTitleRequest('');
+    SetFilter(true);
+  }, [categoryName]);
+
   return (
     <>
       <NavContainer>
         <Section title={`Find your favorite pet`}>
-          <Searchbar></Searchbar>
+          <Searchbar
+            filter={filter}
+            onSubmit={onSubmit}
+            onChange={onInputChange}
+            titleRequest={titleRequest}
+          ></Searchbar>
         </Section>
         <BtnPosition>
           <NavLinkPosition>
@@ -168,8 +218,15 @@ const NoticesPage = () => {
               to={'/notices/in good hands'}
             ></CategoryBtn>
             <CategoryBtn title={'sell'} to={'/notices/sell'}></CategoryBtn>
-            {isLoggedIn && <CategoryBtn title={'favorite ads'} to={'/notices/favorite'}></CategoryBtn>}
-            {isLoggedIn && <CategoryBtn title={'my ads'} to={'/notices/owner'} ></CategoryBtn>}
+            {isLoggedIn && (
+              <CategoryBtn
+                title={'favorite ads'}
+                to={'/notices/favorite'}
+              ></CategoryBtn>
+            )}
+            {isLoggedIn && (
+              <CategoryBtn title={'my ads'} to={'/notices/owner'}></CategoryBtn>
+            )}
           </NavLinkPosition>
           {!showModal && (
             <AddBtnPosition>
@@ -178,7 +235,11 @@ const NoticesPage = () => {
           )}
         </BtnPosition>
       </NavContainer>
-      {showModal && <Modal onClose={toggleModal}></Modal>}
+      {showModal && (
+        <Modal onClose={toggleModal}>
+          <AddNoticeForm onClose={toggleModal} />
+        </Modal>
+      )}
       <SectionList>
         <Container>
           <PuffLoader
@@ -194,7 +255,17 @@ const NoticesPage = () => {
               favorite={favorite}
               onDeleteNotice={onDeleteNotice}
               addToFavoriteAndRemove={addToFavoriteAndRemove}
-              isLoading={isLoading}/>)}
+              isLoading={isLoading}
+            />
+          )}
+          {!notices.length && !filter && (
+            <Container>
+              <ErrorPosition>
+                <Text> Oops, Notices Not Found</Text>
+                <Img src={DancingBear} alt="dancing bear" />
+              </ErrorPosition>
+            </Container>
+          )}
         </Container>
       </SectionList>
       <ToastContainer />
