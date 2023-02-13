@@ -4,7 +4,7 @@ export const getNoticeByCategory = async ({
   page = 1,
   category = 'sell',
   filter = '',
-  limit = 20,
+  limit = 8,
 }) => {
   let result;
 

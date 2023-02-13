@@ -32,6 +32,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import PuffLoader from 'react-spinners/PuffLoader';
 import { AddNoticeForm } from 'components/AddNoticeForm/AddNoticeForm';
 import DancingBear from '../../../src/icons/dancingBear_min.gif';
+import { PaginationComponent } from 'components/Pagination/Pagination';
 
 const override = {
   display: 'block',
@@ -46,6 +47,8 @@ const NoticesPage = () => {
   const { categoryName } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [loadNotices, setLoadNotices] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(0);
 
   const toggleModal = () => {
     if (!isLoggedIn) {
@@ -151,15 +154,20 @@ const NoticesPage = () => {
         const noticesByCategory = await getNoticeByCategory({
           category: categoryName,
           filter: search,
+          page,
         });
+        setTotalPage(Math.ceil(noticesByCategory.data.data.total / 8));
         if (['favorite', 'owner'].includes(categoryName)) {
           setNotices(noticesByCategory);
         } else {
           setNotices(noticesByCategory.data.data.result);
         }
+
         setLoadNotices(false);
         setIsLoading(false);
       } catch (error) {
+        setTotalPage(0);
+        setPage(1);
         setNotices([]);
         console.log(error);
         setLoadNotices(false);
@@ -167,7 +175,7 @@ const NoticesPage = () => {
       }
     };
     getNotices();
-  }, [categoryName, search]);
+  }, [categoryName, search, page]);
 
   useEffect(() => {
     SetSearch('');
@@ -244,6 +252,9 @@ const NoticesPage = () => {
                 <Img src={DancingBear} alt="dancing bear" />
               </ErrorPosition>
             </Container>
+          )}
+          {totalPage >= 2 && (
+            <PaginationComponent paginateData={{ totalPage, setPage }} />
           )}
         </Container>
       </SectionList>
