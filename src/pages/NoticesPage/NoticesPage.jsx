@@ -18,6 +18,7 @@ import {
   getFavoriteNotices,
   addNoticeToFavorite,
   removeNoticeFromFavorite,
+  getUserNotices,
 } from 'services/api/notices';
 import { useParams } from 'react-router-dom';
 import { CategoryBtn } from 'components/CategoryBtn/CategoryBtn';
@@ -42,6 +43,8 @@ const NoticesPage = () => {
   const [loadNotices, setLoadNotices] = useState(false);
 
   const { categoryName } = useParams();
+  
+  const { category } = useParams();
 
   const toggleModal = () => {
     if (!isLoggedIn) {
@@ -65,9 +68,11 @@ const NoticesPage = () => {
     const getNotices = async () => {
       try {
         setLoadNotices(true);
+
         setIsLoading(true);
         const noticesByCategory = await getNoticeByCategory({
           category: categoryName,
+          
         });
         setNotices(noticesByCategory.data.data.result);
         setLoadNotices(false);
@@ -100,7 +105,7 @@ const NoticesPage = () => {
       console.log(error);
     }
   };
-
+ 
   const addToFavoriteAndRemove = async id => {
     try {
       if (!favorite.includes(id)) {
@@ -120,6 +125,32 @@ const NoticesPage = () => {
     }
   };
 
+  useEffect(() => {
+    try {
+      if (!isLoggedIn) return;
+      (async () => {
+        const allFavoriteUser = await getFavoriteNotices();
+        setNotices(allFavoriteUser);
+      })();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [category, isLoggedIn]);
+
+
+
+    useEffect(() => { 
+    try {
+      if (!isLoggedIn) return;
+      (async () => {
+      const allFavoriteUser = await getUserNotices();
+        setNotices(allFavoriteUser);
+    })();
+    } catch (error) {
+      console.log(error);
+    }
+    }, [category, isLoggedIn])
+  
   return (
     <>
       <NavContainer>
@@ -137,8 +168,8 @@ const NoticesPage = () => {
               to={'/notices/in good hands'}
             ></CategoryBtn>
             <CategoryBtn title={'sell'} to={'/notices/sell'}></CategoryBtn>
-            {isLoggedIn && <CategoryBtn title={'favorite ads'}></CategoryBtn>}
-            {isLoggedIn && <CategoryBtn title={'my ads'}></CategoryBtn>}
+            {isLoggedIn && <CategoryBtn title={'favorite ads'} to={'/notices/favorite'}></CategoryBtn>}
+            {isLoggedIn && <CategoryBtn title={'my ads'} to={'/notices/owner'} ></CategoryBtn>}
           </NavLinkPosition>
           {!showModal && (
             <AddBtnPosition>
@@ -163,9 +194,7 @@ const NoticesPage = () => {
               favorite={favorite}
               onDeleteNotice={onDeleteNotice}
               addToFavoriteAndRemove={addToFavoriteAndRemove}
-              isLoading={isLoading}
-            />
-          )}
+              isLoading={isLoading}/>)}
         </Container>
       </SectionList>
       <ToastContainer />
