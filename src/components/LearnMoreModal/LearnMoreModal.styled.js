@@ -11,7 +11,7 @@ export const Container = styled.div`
 
   @media ${p => p.theme.device.tablet} {
     border-radius: ${p => p.theme.radii.normal};
-    padding: 32px 20px;
+    margin: 32px 20px;
     width: 608px;
   }
 `;
