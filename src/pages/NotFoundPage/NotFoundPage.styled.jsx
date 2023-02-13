@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-background-color:  ${p => p.theme.colors.notFoundPage};
 margin: 0 auto;
 padding: 50px 15px;
 flex-direction: column;
@@ -9,18 +8,21 @@ display: flex;
 align-items: center;
 justify-content: center;
 gap: 30px;
-box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
+
 
 @media (min-width: 768px) { 
-     padding: 150px 30px;
+     padding: 120px 30px;
+     
 }
 
 @media (min-width: 900px) {
-    padding: 150px 30px;
+    padding: 120px 30px;
     flex-direction: row; 
  }
+
  @media (min-width: 1280px) {
-padding: 200px 50px;
+padding: 120px 50px;
+
 }
 `
 
@@ -84,3 +86,5 @@ gap: 20px;
    flex-direction: row;
  }
 `
+export const Image = styled.img`
+border-radius: 50%; `
