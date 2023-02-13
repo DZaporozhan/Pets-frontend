@@ -1,7 +1,6 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { ReactComponent as MalePic } from '../../icons/Vectormale.svg';
 import { ReactComponent as FemalePic } from '../../icons/Vectorfemale.svg';
 import { ReactComponent as CrossPic } from '../../icons/Vectorcross.svg';
@@ -86,23 +85,14 @@ const validationSchema = Yup.object({
 export const AddNoticeForm = ({ onClose, addNotices }) => {
   const [isFirstPage, setIsFirstPage] = useState(true);
   const [image, setImage] = useState(null);
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
-  const categorySetByDefault = () => {
-    const endPoint = pathname.split('/').pop();
-    return endPoint === 'notices' ? 'sell' : endPoint;
-  };
-
-  // ДОДАВ ЩОБ НЕБУЛО КОНФЛІКТА
-  // eslint-disable-next-line no-unused-vars
-  const addN = addNotices;
+    
   const moveToNextPage = () => {
     isFirstPage ? setIsFirstPage(false) : setIsFirstPage(true);
   };
 
   const formik = useFormik({
     initialValues: {
-      category: categorySetByDefault(),
+      category: '',
       title: '',
       name: '',
       birthday: '',
@@ -136,8 +126,7 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
         .catch(err => {
           console.log(err);
 
-          navigate('/notices/own');
-        });
+         });
     },
   });
   const onImageChange = e => {
@@ -151,7 +140,11 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
   return (
     <FormWraper>
       <Title>Add pet</Title>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={
+        e => {
+        e.preventDefault();
+          formik.handleSubmit();
+      }}>
         {isFirstPage && (
           <FirstPageContainer>
             <Description>
@@ -161,21 +154,15 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
             <CategoryContainer onChange={formik.handleChange} required>
               <CategoryLabel>
                 <CategoryInput
-                  // defaultChecked={
-                  //   formik.values.category === 'lost/found' ? true : false
-                  // }
                   type="radio"
                   name="category"
-                  value="lost/found"
-                  id="lost/found"
+                  value="lost found"
+                  id="lost found"
                 />
                 <CategoryRadio>lost/found</CategoryRadio>
               </CategoryLabel>
               <CategoryLabel>
                 <CategoryInput
-                  // defaultChecked={
-                  //   formik.values.category === 'in good hands' ? true : false
-                  // }
                   type="radio"
                   name="category"
                   value="in good hands"
@@ -185,9 +172,6 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
               </CategoryLabel>
               <CategoryLabel>
                 <CategoryInput
-                  // defaultChecked={
-                  //   formik.values.category === 'sell' ? true : false
-                  // }
                   type="radio"
                   name="category"
                   value="sell"
