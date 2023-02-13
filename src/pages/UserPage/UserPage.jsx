@@ -5,18 +5,18 @@ import {
   PetSection,
   TitleUser,
   TitlePets,
-  UserContainer,
+  MainContainer,
   TitleWrap,
-  UserInfoWrap,
+  UserSection,
 } from './UserPage.styled';
 
 const UserPage = () => {
   return (
-    <UserContainer>
-      <UserInfoWrap>
+    <MainContainer>
+      <UserSection>
         <TitleUser>My Information:</TitleUser>
         <UserData />
-      </UserInfoWrap>
+      </UserSection>
       <PetSection>
         <TitleWrap>
           <TitlePets>My pets:</TitlePets>
@@ -34,7 +34,7 @@ const UserPage = () => {
         </PetContainer>
         <PetContainer></PetContainer>
       </PetSection>
-    </UserContainer>
+    </MainContainer>
   );
 };
 

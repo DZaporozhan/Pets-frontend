@@ -4,18 +4,16 @@ import { ReactComponent as CameraSvg } from './img/camera-icon.svg';
 
 import styled from 'styled-components';
 
-export const UserSection = styled.section`
+export const UserInfoWrap = styled.div`
   display: block;
   padding: 20px 16px 20px 16px;
-  margin-bottom: 46px;
 
   background-color: #ffffff;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: 20px;
 
   @media ${p => p.theme.device.tablet} {
-    /* padding: 24px 40px 24px 32px; */
-    box-sizing: content-box;
+    padding: 24px 40px 24px 32px;
 
     position: relative;
     display: flex;
@@ -24,7 +22,7 @@ export const UserSection = styled.section`
     align-items: flex-end;
 
     left: -32px;
-    width: 100%;
+    width: calc(100% + 32px);
 
     border-radius: 0 40px 40px 0;
   }
@@ -49,13 +47,12 @@ export const EditPhotoContainer = styled.div`
     margin-bottom: 0;
   }
   @media ${p => p.theme.device.desktop} {
+    position: relative;
     margin-bottom: 32px;
   }
 `;
 
-export const Thumb = styled.div`
-  position: relative;
-`;
+export const Thumb = styled.div``;
 
 export const UserAvatar = styled.img`
   display: block;
@@ -91,6 +88,7 @@ export const AddPhoto = styled.label`
   @media ${p => p.theme.device.desktop} {
     position: absolute;
     bottom: 0;
+    right: 0;
   }
 `;
 
@@ -111,9 +109,8 @@ export const IconWraper = styled.div`
 `;
 
 export const CameraIcon = styled(CameraSvg)`
-  fill: ${p => p.theme.colors.accent};
-  width: 17.92px;
-  height: 18.33px;
+  fill: ${p => p.theme.colors.accent};  
+
 `;
 
 export const InfoContainer = styled.div`
@@ -213,7 +210,7 @@ export const Button = styled.button`
 
   padding: 0;
   margin: 0;
-  /* border: none; */
+  border: none;
 
   width: 20px;
   height: 20px;
@@ -233,7 +230,10 @@ export const Button = styled.button`
 `;
 
 export const EditIcon = styled(EditSvg)`
-  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-repeat: no-repeat; */
   width: 12.5px;
   height: 12.5px;
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const UserContainer = styled.main`
+export const MainContainer = styled.main`
   font-family: ${p => p.theme.fonts.body};
   font-style: normal;
   padding-top: 60px; // check this
@@ -26,8 +26,16 @@ export const UserContainer = styled.main`
   }
 `;
 
-export const UserInfoWrap = styled.div`
-  /* display: flex; */
+export const UserSection = styled.section`
+  margin-bottom: 40px;
+
+  @media ${p => p.theme.device.tablet} {
+    margin-bottom: 20px;
+  }
+
+  @media ${p => p.theme.device.desktop} {
+    margin-bottom: 0;
+  }
 `;
 
 export const TitleUser = styled.h2`
