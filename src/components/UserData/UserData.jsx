@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+import { getUser } from 'redux/auth/selectors';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import {
@@ -14,7 +16,7 @@ import {
   AddPhoto,
   Thumb,
   UserAvatar,
-  UserSection,
+  UserInfoWrap,
   IconWraper,
 } from './UserData.styled';
 
@@ -53,6 +55,8 @@ const initialValues = {
 };
 
 const UserData = () => {
+  const { name, email, birthday, phone, city } = useSelector(getUser);
+
   //   return const dispatch = useDispatch();
 
   //   const handleSubmit = value => {
@@ -60,7 +64,7 @@ const UserData = () => {
   //   };
 
   return (
-    <UserSection>
+    <UserInfoWrap>
       <EditPhotoContainer>
         <Thumb>
           <UserAvatar
@@ -92,35 +96,35 @@ const UserData = () => {
         >
           <InfoForm autoComplete="off">
             <Label htmlFor="name">Name:</Label>
-            <Input type="text" name="name" value={'Anna'} />
+            <Input type="text" name="name" value={name} />
             <Button type="button">
               <EditIcon />
             </Button>
             {/* <ErrorText name="name" component="div" /> */}
 
             <Label htmlFor="email">Email:</Label>
-            <Input type="text" name="email" value={'anna00@gmail.com'} />
+            <Input type="text" name="email" value={email} />
             <Button type="button">
               <EditIcon />
             </Button>
             {/* <ErrorText name="email" component="div" /> */}
 
             <Label htmlFor="birthday">Birthday:</Label>
-            <Input type="text" name="birthday" value={'00.00.0000'} />
+            <Input type="text" name="birthday" value={birthday} />
             <Button type="button">
               <EditIcon />
             </Button>
             {/* <ErrorText name="birthday" component="div" /> */}
 
             <Label htmlFor="phone">Phone:</Label>
-            <Input type="tel" name="phone" value={'+38000000000'} />
+            <Input type="tel" name="phone" value={phone} />
             <Button type="button">
               <EditIcon />
             </Button>
             {/* <ErrorText name="phone" component="div" /> */}
 
             <Label htmlFor="city">City:</Label>
-            <Input type="text" name="city" value={'Kiev'} />
+            <Input type="text" name="city" value={city} />
             <Button type="button">
               <EditIcon />
             </Button>
@@ -129,7 +133,7 @@ const UserData = () => {
         </Formik>
         <Logout />
       </InfoContainer>
-    </UserSection>
+    </UserInfoWrap>
   );
 };
 
