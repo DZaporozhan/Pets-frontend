@@ -7,11 +7,10 @@ import { getUserData } from 'redux/user/operations';
 import {
   PetSection,
   TitleUser,
-  TitlePets,
+  // TitlePets,
   MainContainer,
-  TitleWrap,
+  // TitleWrap,
   UserSection,
-
 } from './UserPage.styled';
 import { toast } from 'react-toastify';
 import { getError, getIsLoading } from 'redux/user/selectors';
@@ -53,7 +52,7 @@ const UserPage = () => {
       </PetSection>
       {isLoading && <b> Loading...</b>}
       {error && toast.error('Something wrong :( Please, try again later!')}
-       </MainContainer>
+    </MainContainer>
   );
 };
 

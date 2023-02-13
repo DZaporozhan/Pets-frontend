@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { getUser } from 'redux/auth/selectors';
+import { selectUser } from 'redux/auth/selectors';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import {
@@ -55,7 +55,7 @@ const initialValues = {
 };
 
 const UserData = () => {
-  const { name, email, birthday, phone, city } = useSelector(getUser);
+  const { name, email, birthday, phone, city } = useSelector(selectUser);
 
   //   return const dispatch = useDispatch();
 
