@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
-export const FormContent = styled.form`
+export const FormWraper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 0px;
+  width: 240 px;
+  padding-top: 20px;
   @media ${p => p.theme.device.tablet} {
-    padding: 40px 80px;
+    width: 448 px;
   }
 `;
 
@@ -22,7 +23,12 @@ export const Title = styled.h3`
   }
 `;
 
-export const FirstForm = styled.div`
+export const FirstPageContainer = styled.div`
+  margin-bottom: 40px;
+`;
+
+export const SecPageContainer = styled.div`
+  margin-bottom: 40px;
   
 `;
 
@@ -163,13 +169,13 @@ export const TextInput = styled.input`
   display: flex;
   outline: none;
   border: 1px solid rgba(245, 146, 86, 0.5);
-  /* width: 240px; */
   width: 100%;
   height: 40px;
   margin-top: 8px;
   padding: 0;
   padding-left: 14px;
   border-radius: ${p => p.theme.radii.normal};
+  background-color: #FDF7F2;
   ::placeholder {
     font-family: ${p => p.theme.fonts.body};
     font-style: normal;
@@ -200,6 +206,7 @@ export const DateInput = styled.input`
   width: 100%;
   height: 40px;
   border-radius: ${p => p.theme.radii.normal};
+  background-color: #FDF7F2;
   ::placeholder {
     font-family: ${p => p.theme.fonts.body};
     font-style: normal;
@@ -264,6 +271,7 @@ export const GenderForm = styled.fieldset`
 
 export const GenderDesc = styled.legend`
   margin-bottom: 16px;
+  font-family: ${p => p.theme.fonts.body};
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes[3]}px;
   line-height: 26px;
@@ -291,8 +299,7 @@ export const SexList = styled.ul`
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
-  margin-bottom: 32px;
-   @media ${p => p.theme.device.tablet} {
+  @media ${p => p.theme.device.tablet} {
     gap:80px;
   }
 `;
@@ -324,10 +331,11 @@ export const SexLabel = styled.label`
   }
 `;
 
-export const MaleIcon = styled.div`
+export const MalePic = styled.div`
   width: 40px;
   height: 40px;
-  margin-bottom: 12px;
+
+  margin-bottom: 100px;
   // background-image: );
   background-repeat: no-repeat;
   background-size: contain, cover;
@@ -337,9 +345,10 @@ export const MaleIcon = styled.div`
     margin-bottom: 20px;
   }
 `;
-export const FeMaleIcon = styled.div`
+export const FeMalePic = styled.svg`
   width: 40px;
   height: 40px;
+ 
   margin-bottom: 12px;
   // background-image: url();
   background-repeat: no-repeat;
@@ -399,6 +408,7 @@ export const ImageWrapper = styled.div`
 export const ImageTitle = styled.label`
   // text-align: center;
   margin-bottom: 8px;
+  font-family: ${p => p.theme.fonts.body};
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes[3]}px;
   line-height: 1.2;
@@ -424,7 +434,7 @@ export const AddedImage = styled.div`
     min-width: 100%;
     min-height: 100%;
   }
-  @media ${p => p.theme.media.tablet} {
+  @media ${p => p.theme.device.tablet} {
     width: 140px;
     height: 140px;
   }
@@ -434,7 +444,6 @@ export const ActionButtons = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: 40px;
   gap: 12px;
   @media ${p => p.theme.device.tablet} {
     // width: 332px;
