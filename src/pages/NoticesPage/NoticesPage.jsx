@@ -1,5 +1,5 @@
 import { NoticesList } from 'components/NoticesList/NoticesList';
-import { useEffect, useState, CSSProperties } from 'react';
+import { useEffect, useState } from 'react';
 import {
   SectionList,
   Container,
@@ -33,7 +33,7 @@ import PuffLoader from 'react-spinners/PuffLoader';
 import { AddNoticeForm } from 'components/AddNoticeForm/AddNoticeForm';
 import DancingBear from '../../../src/icons/dancingBear_min.gif';
 
-const override: CSSProperties = {
+const override = {
   display: 'block',
   margin: '0 auto',
 };
@@ -176,7 +176,7 @@ const NoticesPage = () => {
   }, [categoryName]);
 
   return (
-    <>
+    <main>
       <NavContainer>
         <Section title={`Find your favorite pet`}>
           <Searchbar
@@ -248,7 +248,7 @@ const NoticesPage = () => {
         </Container>
       </SectionList>
       <ToastContainer />
-    </>
+    </main>
   );
 };
 

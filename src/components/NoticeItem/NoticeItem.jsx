@@ -74,7 +74,9 @@ export const NoticeItem = ({
     const numberToString = numberToText.convertToText(years, {
       case: 'lowerCase',
     });
-    return numberToString[0]?.toUpperCase() + numberToString.slice(1);
+    return (
+      numberToString[0]?.toUpperCase() + numberToString.slice(1) + ' years'
+    );
   };
 
   const onFavorite = async () => {
