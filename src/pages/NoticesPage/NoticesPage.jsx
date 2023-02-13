@@ -27,6 +27,7 @@ import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PuffLoader from 'react-spinners/PuffLoader';
+import { AddNoticeForm } from 'components/AddNoticeForm/AddNoticeForm';
 
 const override: CSSProperties = {
   display: 'block',
@@ -38,9 +39,9 @@ const NoticesPage = () => {
   const [notices, setNotices] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [favorite, setFavorite] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
   const { categoryName } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadNotices, setLoadNotices] = useState(false);
 
   const toggleModal = () => {
     if (!isLoggedIn) {
@@ -63,14 +64,17 @@ const NoticesPage = () => {
   useEffect(() => {
     const getNotices = async () => {
       try {
+        setLoadNotices(true);
         setIsLoading(true);
         const noticesByCategory = await getNoticeByCategory({
           category: categoryName,
         });
         setNotices(noticesByCategory.data.data.result);
+        setLoadNotices(false);
         setIsLoading(false);
       } catch (error) {
         console.log(error);
+        setLoadNotices(false);
         setIsLoading(false);
       }
     };
@@ -116,11 +120,47 @@ const NoticesPage = () => {
     }
   };
 
+  //filter function
+  const [titleRequest, setTitleRequest] = useState('');
+  const [filter, SetFilter] = useState(true);
+
+  const onInputValue = e => {
+    const titleRequest = e.currentTarget.value;
+    setTitleRequest(titleRequest);
+    console.log(titleRequest);
+    if (titleRequest === '') {
+      SetFilter(true);
+    }
+  };
+
+  const onFilter = e => {
+    e.preventDefault();
+    if (titleRequest.trim() === '') {
+      return toast.error('Please enter a request');
+    }
+    onCheckValue(titleRequest);
+  };
+
+  const onCheckValue = value => {
+    if (value) {
+      SetFilter(false);
+    }
+    if (!filter) {
+      setTitleRequest('');
+      SetFilter(true);
+    }
+  };
+
   return (
     <>
       <NavContainer>
         <Section title={`Find your favorite pet`}>
-          <Searchbar></Searchbar>
+          <Searchbar
+            filter={filter}
+            onSubmit={onFilter}
+            onChange={onInputValue}
+            titleRequest={titleRequest}
+          ></Searchbar>
         </Section>
         <BtnPosition>
           <NavLinkPosition>
@@ -143,17 +183,19 @@ const NoticesPage = () => {
           )}
         </BtnPosition>
       </NavContainer>
-      {showModal && <Modal onClose={toggleModal}></Modal>}
+      {showModal && <Modal onClose={toggleModal}>
+        <AddNoticeForm onClose={toggleModal}/>
+      </Modal>}
       <SectionList>
         <Container>
           <PuffLoader
             color="#FF6101"
             size={150}
-            loading={isLoading}
+            loading={isLoading && loadNotices}
             aria-label="Loading Spinner"
             cssOverride={override}
           />
-          {notices.length !== 0 && (
+          {notices.length !== 0 && !loadNotices && (
             <NoticesList
               notices={notices}
               favorite={favorite}

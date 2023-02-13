@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
+import { AiOutlineSearch, AiOutlineCloseCircle } from 'react-icons/ai';
 
 import {
   SearchForm,
@@ -9,17 +9,24 @@ import {
 
 export class Searchbar extends Component {
   render() {
+    const { filter, onSubmit, onChange, titleRequest } = this.props;
     return (
       <>
-        <SearchForm>
+        <SearchForm type="submit" onSubmit={onSubmit}>
           <SearchFormInput
             type="text"
             autocomplete="off"
             autoFocus
             placeholder="Search"
+            value={titleRequest}
+            onChange={onChange}
           />
-          <SearchFormButton type="submit">
-            <AiOutlineSearch size="20px" />
+          <SearchFormButton>
+            {filter ? (
+              <AiOutlineSearch size="20px" />
+            ) : (
+              <AiOutlineCloseCircle size="20px" />
+            )}
           </SearchFormButton>
         </SearchForm>
       </>

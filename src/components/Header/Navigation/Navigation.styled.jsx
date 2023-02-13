@@ -41,6 +41,7 @@ margin-left: auto;
 margin-right: 20px;
     
 
+
  @media (min-width: 1280px) {
  display: flex;
  width: 100%;
