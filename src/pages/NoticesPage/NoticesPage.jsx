@@ -21,6 +21,7 @@ import {
   getFavoriteNotices,
   addNoticeToFavorite,
   removeNoticeFromFavorite,
+  getUserNotices,
 } from 'services/api/notices';
 import { useParams } from 'react-router-dom';
 import { CategoryBtn } from 'components/CategoryBtn/CategoryBtn';
@@ -144,6 +145,30 @@ const NoticesPage = () => {
   };
 
   useEffect(() => {
+    try {
+      if (!isLoggedIn) return;
+      (async () => {
+        const allFavoriteUser = await getFavoriteNotices();
+        setNotices(allFavoriteUser);
+      })();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    try {
+      if (!isLoggedIn) return;
+      (async () => {
+        const allFavoriteUser = await getUserNotices();
+        setNotices(allFavoriteUser);
+      })();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [isLoggedIn]);
+
+  useEffect(() => {
     const getNotices = async () => {
       try {
         setLoadNotices(true);
@@ -193,8 +218,15 @@ const NoticesPage = () => {
               to={'/notices/in good hands'}
             ></CategoryBtn>
             <CategoryBtn title={'sell'} to={'/notices/sell'}></CategoryBtn>
-            {isLoggedIn && <CategoryBtn title={'favorite ads'}></CategoryBtn>}
-            {isLoggedIn && <CategoryBtn title={'my ads'}></CategoryBtn>}
+            {isLoggedIn && (
+              <CategoryBtn
+                title={'favorite ads'}
+                to={'/notices/favorite'}
+              ></CategoryBtn>
+            )}
+            {isLoggedIn && (
+              <CategoryBtn title={'my ads'} to={'/notices/owner'}></CategoryBtn>
+            )}
           </NavLinkPosition>
           {!showModal && (
             <AddBtnPosition>
