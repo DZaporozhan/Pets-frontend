@@ -1,20 +1,12 @@
-import { Title, NoticePhoto } from './LearnMoreModal.styled';
-
-const defaultPhoto =
-  'https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png';
+import { Container, Title, ImageThumb } from './LearnMoreModal.styled';
 
 export const LearnMoreModal = ({ noticeData }) => {
   console.log(noticeData);
   return (
-    <div>
-      <NoticePhoto
-        src={
-          (noticeData.imageURL &&
-            `https://res.cloudinary.com/dqupdbup3/image/upload/${imageURL?.toLowerCase()}`) ||
-          defaultPhoto
-        }
-        alt={noticeData.title}
-      />
+    <Container>
+      <ImageThumb src={noticeData.imageURL} />
+      src={noticeData.imageURL}
+      category={noticeData.category}
       <Title> {noticeData.title} </Title>
       <li>{noticeData.category}</li>
       <li>Name: {noticeData.name}</li>
@@ -25,6 +17,6 @@ export const LearnMoreModal = ({ noticeData }) => {
       <li>Email: {noticeData.email}</li>
       <li>Phone: {noticeData.phone}</li>
       <li>Comments: {noticeData.comments}</li>
-    </div>
+    </Container>
   );
 };
