@@ -6,12 +6,26 @@ export const Container = styled.div`
   align-items: center;
   position: relative;
   border-radius: ${p => p.theme.radii.small};
-  padding: 60px 20px 40px 20px;
+  margin: 60px 20px 40px 20px;
   background-color: ${p => p.theme.colors.white};
+
+  @media ${p => p.theme.device.tablet} {
+    border-radius: ${p => p.theme.radii.normal};
+    padding: 32px 20px;
+    width: 608px;
+  }
 `;
 
 export const Title = styled.div`
   text-align: center;
+  @media ${p => p.theme.device.tablet} {
+    width: 228px;
+    font-size: 28px;
+  }
+  @media ${p => p.theme.device.desktop} {
+    width: 228px;
+    font-size: 28px;
+  }
 `;
 //============================================
 const ImageWrapper = styled.div`
@@ -46,10 +60,7 @@ export const ImageThumb = ({ src, alt = '', category }) => (
 //   height: 288px;
 //   width: 100%;
 // `;
-export const Tumb = styled.div`
-  padding: ${({ ownerNotice }) =>
-    ownerNotice ? '20px 16px 12px 16px' : '20px 16px 32px 16px'};
-`;
+
 export const ContactBtn = styled.a`
   width: 248px;
   border-radius: 44px;
@@ -102,13 +113,28 @@ export const BtnAddFavoriteIcon = styled(FiHeart)`
   fill: ${({ orfavorites: { favorite, _id } }) =>
     favorite.includes(_id) ? '#f59256' : 'rgba(255, 255, 255, 0.6)'};
 `;
-export const InfoWrapper = styled.div``;
+export const InfoWrapper = styled.div`
+  @media ${p => p.theme.device.tablet} {
+    display: flex;
+  }
+  @media ${p => p.theme.device.desktop} {
+    display: flex;
+  }
+`;
 
 const DescriptionText = styled.p`
   margin: 28px 0 40px 0;
   text-align: left;
   font-size: 14px;
   line-height: 1.4;
+  @media ${p => p.theme.device.tablet} {
+    margin-bottom: 32px;
+    font-size: 16px;
+  }
+  @media ${p => p.theme.device.desktop} {
+    margin-bottom: 32px;
+    font-size: 16px;
+  }
 `;
 
 const DescriptionLabel = styled.span`
