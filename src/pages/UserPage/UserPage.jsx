@@ -7,8 +7,10 @@ import { getUserData } from 'redux/user/operations';
 import {
   PetSection,
   TitleUser,
-  UserContainer,
-  UserInfoWrap,
+  // TitlePets,
+  MainContainer,
+  // TitleWrap,
+  UserSection,
 } from './UserPage.styled';
 import { toast } from 'react-toastify';
 import { getError, getIsLoading } from 'redux/user/selectors';
@@ -25,11 +27,11 @@ const UserPage = () => {
   }, [dispatch]);
 
   return (
-    <UserContainer>
-      <UserInfoWrap>
+    <MainContainer>
+      <UserSection>
         <TitleUser>My Information:</TitleUser>
         <UserData />
-      </UserInfoWrap>
+      </UserSection>
       <PetSection>
         <PetsData />
         {/* <TitleWrap>
@@ -48,11 +50,9 @@ const UserPage = () => {
         </PetContainer>
         <PetContainer></PetContainer> */}
       </PetSection>
-
       {isLoading && <b> Loading...</b>}
-
       {error && toast.error('Something wrong :( Please, try again later!')}
-    </UserContainer>
+    </MainContainer>
   );
 };
 
