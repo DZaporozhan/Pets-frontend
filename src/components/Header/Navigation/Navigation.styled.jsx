@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const NavMobMenu = styled.div`
 position: fixed;
   right: 0;
-  top: 58px;
+  top: 60px;
   width: 100vw;
   height: 100vh;
   z-index: 2;
@@ -17,10 +17,10 @@ position: fixed;
     display: ${({ menuToggle }) => (menuToggle ? "block" : "none")};
     
     @media (min-width: 768px) {
-     top: 70px; }
+     top: 72px; }
 
     @media (min-width: 1280px) {
-   display: none;
+    display: none;
   }
 `
 
