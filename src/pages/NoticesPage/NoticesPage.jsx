@@ -21,7 +21,6 @@ import {
   getFavoriteNotices,
   addNoticeToFavorite,
   removeNoticeFromFavorite,
-  getUserNotices,
 } from 'services/api/notices';
 import { useParams } from 'react-router-dom';
 import { CategoryBtn } from 'components/CategoryBtn/CategoryBtn';
@@ -145,30 +144,6 @@ const NoticesPage = () => {
   };
 
   useEffect(() => {
-    try {
-      if (!isLoggedIn) return;
-      (async () => {
-        const allFavoriteUser = await getFavoriteNotices();
-        setNotices(allFavoriteUser);
-      })();
-    } catch (error) {
-      console.log(error);
-    }
-  }, [isLoggedIn]);
-
-  useEffect(() => {
-    try {
-      if (!isLoggedIn) return;
-      (async () => {
-        const allFavoriteUser = await getUserNotices();
-        setNotices(allFavoriteUser);
-      })();
-    } catch (error) {
-      console.log(error);
-    }
-  }, [isLoggedIn]);
-
-  useEffect(() => {
     const getNotices = async () => {
       try {
         setLoadNotices(true);
@@ -177,7 +152,11 @@ const NoticesPage = () => {
           category: categoryName,
           filter: search,
         });
-        setNotices(noticesByCategory.data.data.result);
+        if (['favorite', 'owner'].includes(categoryName)) {
+          setNotices(noticesByCategory);
+        } else {
+          setNotices(noticesByCategory.data.data.result);
+        }
         setLoadNotices(false);
         setIsLoading(false);
       } catch (error) {
