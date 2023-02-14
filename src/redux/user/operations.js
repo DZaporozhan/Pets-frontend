@@ -21,10 +21,10 @@ export const getUserData = createAsyncThunk(
 
 // Add Pet
 export const addPet = createAsyncThunk(
-  'user/deletePet',
-  async (id, thunkAPI) => {
+  'user/addPet',
+  async (data, thunkAPI) => {
     try {
-      const response = await api.removeUserPet(id);
+      const response = await api.addUserPet(data);
       console.log(response);
       return response;
     } catch ({ response }) {
