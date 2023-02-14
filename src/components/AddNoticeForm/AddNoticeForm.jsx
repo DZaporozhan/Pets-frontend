@@ -1,6 +1,8 @@
+import { format } from 'date-fns';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
+import { useLocation, useNavigate} from 'react-router-dom';
 import { ReactComponent as MalePic } from '../../icons/Vectormale.svg';
 import { ReactComponent as FemalePic } from '../../icons/Vectorfemale.svg';
 import { ReactComponent as CrossPic } from '../../icons/Vectorcross.svg';
@@ -34,9 +36,11 @@ import {
   ActButton,
   FormWraper,
   FirstPageContainer,
-  SecPageContainer
+  SecPageContainer,
+  MaleWraper,
+  FemaleWraper
 } from './AddNoticeForm.styled.';
-import axios from 'axios';
+import { addNotice } from 'services/api/notices';
 
 const validationSchema = Yup.object({
   category: Yup.string().required('Choose category'),
@@ -82,9 +86,15 @@ const validationSchema = Yup.object({
     .max(120, 'Max 120 letters'),
 });
 
-export const AddNoticeForm = ({ onClose, addNotices }) => {
+export const AddNoticeForm = ({ onClose}) => {
   const [isFirstPage, setIsFirstPage] = useState(true);
   const [image, setImage] = useState(null);
+  const navigate = useNavigate();  
+  const { pathname } = useLocation();
+  const categorySetByDefault = () => {
+    const endPoint = pathname.split('/').pop();
+    return endPoint === 'notices' ? 'sell' : endPoint;
+  };
     
   const moveToNextPage = () => {
     isFirstPage ? setIsFirstPage(false) : setIsFirstPage(true);
@@ -92,7 +102,7 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
 
   const formik = useFormik({
     initialValues: {
-      category: '',
+      category: (categorySetByDefault()),
       title: '',
       name: '',
       birthday: '',
@@ -109,7 +119,7 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
         category: values.category,
         title: values.title,
         name: values.name,
-        birthday: values.birthday,
+        birthday: format(new Date(values.birthday), 'dd.MM.yyyy'),
         breed: values.breed,
         sex: values.sex,
         location: values.location,
@@ -118,15 +128,9 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
         comments: values.comments,
       };
 
-      axios
-        .post('https://pets-api-team1.onrender.com/api/notices/', data)
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => {
-          console.log(err);
-
-         });
+      addNotice(data);
+      onClose();
+      navigate('/notices/owner');
     },
   });
   const onImageChange = e => {
@@ -176,6 +180,7 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
                   name="category"
                   value="sell"
                   id="sell"
+                  defaultChecked
                 />
                 <CategoryRadio>sell</CategoryRadio>
               </CategoryLabel>
@@ -266,7 +271,9 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
                     onChange={formik.handleChange}
                   />
                   <SexLabel htmlFor="malePet">
-                    <MalePic></MalePic>
+                    <MaleWraper>
+                      <MalePic/>
+                    </MaleWraper>  
                     Male
                   </SexLabel>
                 </SexItem>
@@ -280,7 +287,9 @@ export const AddNoticeForm = ({ onClose, addNotices }) => {
                     onChange={formik.handleChange}
                   />
                   <SexLabel htmlFor="femalePet">
-                    <FemalePic></FemalePic>
+                    <FemaleWraper>
+                      <FemalePic/>
+                    </FemaleWraper>  
                     Female
                   </SexLabel>
                 </SexItem>

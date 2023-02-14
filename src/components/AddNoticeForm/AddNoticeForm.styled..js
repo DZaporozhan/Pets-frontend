@@ -331,28 +331,21 @@ export const SexLabel = styled.label`
   }
 `;
 
-export const MalePic = styled.div`
+export const MaleWraper = styled.div`
   width: 40px;
   height: 40px;
-
-  margin-bottom: 100px;
-  // background-image: );
-  background-repeat: no-repeat;
-  background-size: contain, cover;
+  margin-bottom: 15px;
   @media ${p => p.theme.device.tablet} {
     width: 60px;
     height: 60px;
-    margin-bottom: 20px;
+    margin-bottom: 23px;
   }
 `;
-export const FeMalePic = styled.svg`
+export const FemaleWraper = styled.div`
   width: 40px;
   height: 40px;
  
   margin-bottom: 12px;
-  // background-image: url();
-  background-repeat: no-repeat;
-  background-size: contain, cover;
   @media ${p => p.theme.device.tablet} {
     width: 60px;
     height: 60px;
@@ -422,9 +415,6 @@ export const ImageTitle = styled.label`
 export const AddedImage = styled.div`
   overflow: hidden;
   display: flex;
-  // justify-content: center;
-  // align-items: center;
-  // margin: 0 auto;
   margin-right: auto;
   width: 116px;
   height: 116px;
@@ -446,10 +436,8 @@ export const ActionButtons = styled.div`
   flex-direction: column;
   gap: 12px;
   @media ${p => p.theme.device.tablet} {
-    // width: 332px;
     flex-direction: row;
-    // gap: 8px;
-    // margin-left: auto;
+    
   }
 `;
 
