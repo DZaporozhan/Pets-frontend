@@ -60,7 +60,7 @@ const UserData = () => {
 
   const { imageURL, name, email, birthday, phone, city } =
     useSelector(selectUser);
-
+  console.log(imageURL);
   // const user = useSelector(getUserInfo);
   // console.log(user);
 
