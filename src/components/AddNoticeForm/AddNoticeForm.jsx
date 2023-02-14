@@ -162,6 +162,9 @@ export const AddNoticeForm = ({ onClose}) => {
                   name="category"
                   value="lost found"
                   id="lost found"
+                  defaultChecked={
+                    formik.values.category === 'lost found' ? true : false
+                  }
                 />
                 <CategoryRadio>lost/found</CategoryRadio>
               </CategoryLabel>
@@ -171,6 +174,9 @@ export const AddNoticeForm = ({ onClose}) => {
                   name="category"
                   value="in good hands"
                   id="in good hands"
+                  defaultChecked={
+                    formik.values.category === 'in good hands' ? true : false
+                  }
                 />
                 <CategoryRadio>in good hands</CategoryRadio>
               </CategoryLabel>
@@ -180,7 +186,9 @@ export const AddNoticeForm = ({ onClose}) => {
                   name="category"
                   value="sell"
                   id="sell"
-                  defaultChecked
+                  defaultChecked={
+                    formik.values.category === 'sell' ? true : false
+                  }
                 />
                 <CategoryRadio>sell</CategoryRadio>
               </CategoryLabel>
