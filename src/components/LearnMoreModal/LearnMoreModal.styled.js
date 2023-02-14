@@ -38,15 +38,17 @@ export const Title = styled.div`
 //============================================
 const ImageWrapper = styled.div`
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
+  object-fit: height;
   /* width: 288px; */
   height: 328px;
   left: 20px;
   top: 0px;
-  border-radius: 0px 0px 40px 40px;
   background: green;
   /* overflow: hidden; */
   margin: 0 40px 16px 0;
+  display: flex;
+  border-radius: 0px 0px 40px 40px;
 `;
 
 const CategoryLabel = styled.div`
@@ -63,15 +65,10 @@ const CategoryLabel = styled.div`
 export const ImageThumb = ({ src, alt = '', category }) => (
   <ImageWrapper>
     <img src={src} alt={alt} />
+
     {category && <CategoryLabel>{category}</CategoryLabel>}
   </ImageWrapper>
 );
-
-// export const ImageThumb = styled.img`
-//   object-fit: cover;
-//   height: 288px;
-//   width: 100%;
-// `;
 
 export const ContactBtn = styled.a`
   width: 248px;
@@ -194,7 +191,7 @@ export const ActionButtons = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 12px;
-  margin-top: 32px;
+  margin-top: 0px;
   @media ${p => p.theme.device.tablet} {
     width: 332px;
     flex-direction: row;
