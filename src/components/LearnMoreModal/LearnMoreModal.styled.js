@@ -13,7 +13,7 @@ export const Container = styled.div`
 
   @media ${p => p.theme.device.tablet} {
     border-radius: ${p => p.theme.radii.normal};
-    margin: 32px 20px;
+    margin: 0px 20px 0px 0px;
     width: 608px;
   }
 `;
@@ -38,14 +38,15 @@ export const Title = styled.div`
 //============================================
 const ImageWrapper = styled.div`
   position: relative;
-  overflow: scroll;
-  width: 288px;
+  overflow: hidden;
+  /* width: 288px; */
   height: 328px;
   left: 20px;
-  top: 40px;
+  top: 0px;
   border-radius: 0px 0px 40px 40px;
+  background: green;
   /* overflow: hidden; */
-  margin: 0 auto 16px auto;
+  margin: 0 40px 16px 0;
 `;
 
 const CategoryLabel = styled.div`
@@ -134,7 +135,7 @@ export const InfoWrapper = styled.div`
 `;
 
 const DescriptionText = styled.p`
-  margin: 28px 0 40px 0;
+  /* margin: 28px 0 40px 0; */
   text-align: left;
   font-size: 16px;
   line-height: 1.4;
@@ -193,7 +194,7 @@ export const ActionButtons = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 12px;
-  margin-top: 40px;
+  margin-top: 32px;
   @media ${p => p.theme.device.tablet} {
     width: 332px;
     flex-direction: row;
