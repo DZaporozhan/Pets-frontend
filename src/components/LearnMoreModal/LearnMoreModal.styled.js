@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { FiHeart } from 'react-icons/fi';
+import { ModalButton } from 'components/ModalBtn/ModalBtn';
+import { ReactComponent as IconHeart } from '../../../src/icons/smallHeart.svg';
 
 export const Container = styled.div`
   flex-direction: column;
@@ -18,6 +20,7 @@ export const Container = styled.div`
 
 export const Title = styled.div`
   text-align: center;
+  font-size: 28px;
   @media ${p => p.theme.device.tablet} {
     width: 228px;
     font-size: 28px;
@@ -125,7 +128,7 @@ export const InfoWrapper = styled.div`
 const DescriptionText = styled.p`
   margin: 28px 0 40px 0;
   text-align: left;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.4;
   @media ${p => p.theme.device.tablet} {
     margin-bottom: 32px;
@@ -147,6 +150,55 @@ export const Description = ({ text }) => (
     {text}
   </DescriptionText>
 );
+
+export const ModalBtn = styled(ModalButton)`
+  color: ${({ authorized, primary }) => {
+    if (!authorized && !primary) return 'rgba(17, 17, 17, 0.1)';
+    if (primary) return 'white';
+    return '#f59256';
+  }};
+  width: 100%;
+  @media ${p => p.theme.device.tablet} {
+    width: 160px;
+  }
+`;
+
+export const AddToFavorites = ({ authorized, onClick, favoriteId }) => (
+  <ModalButton authorized={authorized} onClick={onClick}>
+    {!favoriteId ? 'Add to' : 'Delete'}
+    <IconHeart />
+  </ModalButton>
+);
+
+export const ActionButtons = styled.div`
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 40px;
+  @media ${p => p.theme.device.tablet} {
+    width: 332px;
+    flex-direction: row;
+    gap: 8px;
+    margin-left: auto;
+  }
+`;
+export const DescriptionValue = styled.span`
+  font-family: ${p => p.theme.colors.white};
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes[2]}px;
+  line-height: 22px;
+  color: ${p => p.theme.colors.primaryText};
+`;
+
+export const DescriptionStyle = styled.span`
+  font-family: ${p => p.theme.colors.white};
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes[2]}px;
+  line-height: 22px;
+  color: ${p => p.theme.colors.primaryText};
+`;
 
 // export const ImageThumb = ({ src, alt = '', category }) => (
 //   <ImageWrapper>
