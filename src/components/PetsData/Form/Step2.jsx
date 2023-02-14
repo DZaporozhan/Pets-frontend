@@ -13,6 +13,7 @@ import {
   Label,
   PhotoPetText,
   StaledForm,
+  StyledError,
   TextAreaInput,
 } from './ModalAddsPet.styled';
 
@@ -82,11 +83,21 @@ const Step2 = ({ data, next, back }) => {
               </ImageExample>
             )}
           </ImageWrapper>
-          <ErrorMessage name="imageURL" />
+          <ErrorMessage
+            name="imageURL"
+            render={message => (
+              <StyledError style={{ color: 'red' }}>{message}</StyledError>
+            )}
+          />
 
           <Label htmlFor="comments">Comments</Label>
           <MyFormikTextareaField fieldName={'comments'} />
-          <ErrorMessage name="comments" />
+          <ErrorMessage
+            name="comments"
+            render={message => (
+              <StyledError style={{ color: 'red' }}>{message}</StyledError>
+            )}
+          />
 
           <ButtonWrapper>
             <ActButton
