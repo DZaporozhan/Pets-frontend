@@ -1,12 +1,12 @@
 import { format } from 'date-fns';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useState } from 'react';
-import { useLocation, useNavigate} from 'react-router-dom';
+import { useState} from 'react';
+import { useNavigate} from 'react-router-dom';
 import { ReactComponent as MalePic } from '../../icons/Vectormale.svg';
 import { ReactComponent as FemalePic } from '../../icons/Vectorfemale.svg';
 import { ReactComponent as CrossPic } from '../../icons/Vectorcross.svg';
-
+import { toast } from 'react-toastify';
 import {
   CategoryContainer,
   CategoryInput,
@@ -38,7 +38,9 @@ import {
   FirstPageContainer,
   SecPageContainer,
   MaleWraper,
-  FemaleWraper
+  FemaleWraper,
+  StarSpanLocation,
+  TitleError
 } from './AddNoticeForm.styled.';
 import { addNotice } from 'services/api/notices';
 
@@ -76,8 +78,8 @@ const validationSchema = Yup.object({
   price: Yup.string().when('category', {
     is: category => category === 'sell',
     then: Yup.string()
-      .required('Price is required')
-      .matches(/^[0-9][0-9]*$/, 'Numbers only'),
+      // .required('Price is required')
+      
   }),
   comments: Yup.string()
     .trim()
@@ -90,19 +92,14 @@ export const AddNoticeForm = ({ onClose}) => {
   const [isFirstPage, setIsFirstPage] = useState(true);
   const [image, setImage] = useState(null);
   const navigate = useNavigate();  
-  const { pathname } = useLocation();
-  const categorySetByDefault = () => {
-    const endPoint = pathname.split('/').pop();
-    return endPoint === 'notices' ? 'sell' : endPoint;
-  };
-    
+        
   const moveToNextPage = () => {
     isFirstPage ? setIsFirstPage(false) : setIsFirstPage(true);
   };
 
   const formik = useFormik({
     initialValues: {
-      category: (categorySetByDefault()),
+      category: "sell",
       title: '',
       name: '',
       birthday: '',
@@ -114,23 +111,23 @@ export const AddNoticeForm = ({ onClose}) => {
       comments: '',
     },
     validationSchema: validationSchema,
-    onSubmit: values => {
-      const data = {
-        category: values.category,
-        title: values.title,
-        name: values.name,
-        birthday: format(new Date(values.birthday), 'dd.MM.yyyy'),
-        breed: values.breed,
-        sex: values.sex,
-        location: values.location,
-        price: values.price,
-        imageUrl: values.imageURL,
-        comments: values.comments,
-      };
-
-      addNotice(data);
+    onSubmit: async values => {
+      const data = new FormData();
+      data.append('category', values.category);
+      data.append('title', values.title);
+      data.append('name', values.name);
+      data.append('birthday', format(new Date(values.birthday), 'dd.MM.yyyy'));
+      data.append('breed', values.breed);
+      data.append('sex', values.sex);
+      data.append('location', values.location);
+      data.append('price', values.price);
+      data.append('imageURL', values.imageURL);
+      data.append('comments',values.comments);
+      
+      await addNotice(data);
       onClose();
       navigate('/notices/owner');
+      toast.success(`Your pet ${values.name} has been added successfully`);
     },
   });
   const onImageChange = e => {
@@ -141,10 +138,13 @@ export const AddNoticeForm = ({ onClose}) => {
     }
   };
 
+  const IsSellCategorySelected = formik.values.category === "sell";
+
   return (
     <FormWraper>
       <Title>Add pet</Title>
-      <form onSubmit={
+      <form encType="multipart/form-data"
+        onSubmit={
         e => {
         e.preventDefault();
           formik.handleSubmit();
@@ -203,9 +203,9 @@ export const AddNoticeForm = ({ onClose}) => {
                   onChange={formik.handleChange}
                   placeholder="Type name pet"
                 />
-                {/* {formik.touched.title && formik.errors.title && (
-                    <p>{formik.errors.title}</p>
-                  )} */}
+                 {formik.touched.title && formik.errors.title && (
+                    <TitleError>{formik.errors.title}</TitleError>
+                  )} 
               </TextLabel>
             </InputWraper>
             <InputWraper>
@@ -220,9 +220,9 @@ export const AddNoticeForm = ({ onClose}) => {
                   onChange={formik.handleChange}
                   placeholder="Type name pet"
                 />
-                {/* {formik.touched.name && formik.errors.name && (
+                 {formik.touched.name && formik.errors.name && (
                     <p>{formik.errors.name}</p>
-                  )} */}
+                  )} 
               </TextLabel>
             </InputWraper>
 
@@ -237,9 +237,9 @@ export const AddNoticeForm = ({ onClose}) => {
                   onChange={formik.handleChange}
                   placeholder="Type date of birth"
                 />
-                {/* {formik.touched.birthday && formik.errors.birthday && (
+                 {formik.touched.birthday && formik.errors.birthday && (
                     <p>{formik.errors.birthday}</p>
-                  )} */}
+                  )} 
               </TextLabel>
             </InputWraper>
 
@@ -253,9 +253,9 @@ export const AddNoticeForm = ({ onClose}) => {
                   onChange={formik.handleChange}
                   placeholder="Type breed"
                 />
-                {/* {formik.touched.breed && formik.errors.breed && (
+                 {formik.touched.breed && formik.errors.breed && (
                     <p>{formik.errors.breed}</p>
-                  )} */}
+                  )} 
               </TextLabel>
             </InputWraper>
           </FirstPageContainer>
@@ -305,7 +305,7 @@ export const AddNoticeForm = ({ onClose}) => {
             </GenderForm>
             <InputWraper>
               <TextLabel htmlFor="locationPet">
-                Location<StarSpan>&#42;</StarSpan>:
+                Location<StarSpanLocation>&#42;</StarSpanLocation>:
                 {formik.values.location !== '' && formik.errors.location ? (
                   <p>{formik.errors.location}</p>
                 ) : null}
@@ -320,7 +320,7 @@ export const AddNoticeForm = ({ onClose}) => {
               </TextLabel>
             </InputWraper>
             <InputWraper>
-              {formik.values.category === 'sell' && (
+              {IsSellCategorySelected && (
                 <TextLabel htmlFor="pricePet">
                   Price
                   <StarSpan>&#42;</StarSpan>:
@@ -333,7 +333,7 @@ export const AddNoticeForm = ({ onClose}) => {
                     type="text"
                     onChange={formik.handleChange}
                     value={formik.values.price}
-                    placeholder="Set price"
+                    placeholder="Type price"
                   />
                 </TextLabel>
               )}
@@ -375,6 +375,7 @@ export const AddNoticeForm = ({ onClose}) => {
                 rows={5}
                 onChange={formik.handleChange}
                 value={formik.values.comments}
+                placeholder="Type comment"
               />
             </InputContTextArea>
           </SecPageContainer>
