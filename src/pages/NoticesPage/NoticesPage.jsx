@@ -49,6 +49,63 @@ const NoticesPage = () => {
   const [loadNotices, setLoadNotices] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
+  //filter function
+  const [titleRequest, setTitleRequest] = useState('');
+  const [filter, SetFilter] = useState(true);
+  const [search, SetSearch] = useState('');
+
+  useEffect(() => {
+    const getNotices = async () => {
+      try {
+        setLoadNotices(true);
+        setIsLoading(true);
+        const noticesByCategory = await getNoticeByCategory({
+          category: categoryName,
+          filter: search,
+          page,
+        });
+        if (['favorite', 'owner'].includes(categoryName)) {
+          setTotalPage(Math.ceil(noticesByCategory.data.total / 8));
+          setNotices(noticesByCategory.data.data);
+        } else {
+          setTotalPage(Math.ceil(noticesByCategory.data.data.total / 8));
+          setNotices(noticesByCategory.data.data.result);
+        }
+        setLoadNotices(false);
+        setIsLoading(false);
+      } catch (error) {
+        setTotalPage(0);
+        setPage(1);
+        setNotices([]);
+        console.log(error);
+        setLoadNotices(false);
+        setIsLoading(false);
+      }
+    };
+    getNotices();
+  }, [categoryName, search, page]);
+
+  useEffect(() => {
+    return () => {
+      setPage(1);
+      setTotalPage(0);
+    };
+  }, [categoryName]);
+
+  useEffect(() => {
+    if (!isLoggedIn) return;
+    (async () => {
+      const allFavorite = await getFavoriteNotices();
+
+      setFavorite(allFavorite.data.map(el => el._id));
+    })();
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    SetSearch('');
+    setTitleRequest('');
+    SetFilter(true);
+  }, [categoryName]);
 
   const toggleModal = () => {
     if (!isLoggedIn) {
@@ -67,20 +124,6 @@ const NoticesPage = () => {
       return !prevState;
     });
   };
-
-  useEffect(() => {
-    setPage(1);
-    setTotalPage(0);
-  }, [categoryName]);
-
-  useEffect(() => {
-    if (!isLoggedIn) return;
-    (async () => {
-      const allFavorite = await getFavoriteNotices();
-
-      setFavorite(allFavorite.data.map(el => el._id));
-    })();
-  }, [isLoggedIn]);
 
   const onDeleteNotice = async id => {
     try {
@@ -117,9 +160,6 @@ const NoticesPage = () => {
   };
 
   //filter function
-  const [titleRequest, setTitleRequest] = useState('');
-  const [filter, SetFilter] = useState(true);
-  const [search, SetSearch] = useState('');
 
   const onInputChange = e => {
     const titleRequest = e.currentTarget.value;
@@ -154,44 +194,6 @@ const NoticesPage = () => {
       SetSearch('');
     }
   };
-
-  useEffect(() => {
-    const getNotices = async () => {
-      try {
-        setLoadNotices(true);
-        setIsLoading(true);
-        const noticesByCategory = await getNoticeByCategory({
-          category: categoryName,
-          filter: search,
-          page,
-        });
-        if (['favorite', 'owner'].includes(categoryName)) {
-          setNotices(noticesByCategory.data.data);
-          setTotalPage(Math.ceil(noticesByCategory.data.total / 8));
-        } else {
-          setNotices(noticesByCategory.data.data.result);
-          setTotalPage(Math.ceil(noticesByCategory.data.data.total / 8));
-        }
-
-        setLoadNotices(false);
-        setIsLoading(false);
-      } catch (error) {
-        setTotalPage(0);
-        setPage(1);
-        setNotices([]);
-        console.log(error);
-        setLoadNotices(false);
-        setIsLoading(false);
-      }
-    };
-    getNotices();
-  }, [categoryName, search, page]);
-
-  useEffect(() => {
-    SetSearch('');
-    setTitleRequest('');
-    SetFilter(true);
-  }, [categoryName]);
 
   return (
     <main>

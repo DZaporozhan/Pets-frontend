@@ -10,8 +10,6 @@ export const PaginationComponent = ({ paginateData }) => {
   return (
     <PaginationStyled
       count={totalPage}
-      // showFirstButton
-      // showLastButton
       onChange={(_, num) => {
         setPage(num);
         scrollToTop();
