@@ -4,17 +4,21 @@ export const getNoticeByCategory = async ({
   page = 1,
   category = 'sell',
   filter = '',
-  limit = 20,
+  limit = 8,
 }) => {
   let result;
 
   switch (category) {
     case 'favorite':
-      result = await getFavoriteNotices();
+      result = await instance.get(
+        `/notices/favorite?page=${page}&limit=${limit}&title=${filter}`
+      );
       break;
 
     case 'owner':
-      result = await getUserNotices();
+      result = await await instance.get(
+        `/notices/owner?page=${page}&limit=${limit}&title=${filter}`
+      );
       break;
     default:
       result = await instance.get(
