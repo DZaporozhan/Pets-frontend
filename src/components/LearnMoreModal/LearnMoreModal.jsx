@@ -2,7 +2,6 @@ import {
   Container,
   Title,
   ImageThumb,
-  // Tumb,
   ContactBtn,
   InfoWrapper,
   Description,
@@ -10,10 +9,20 @@ import {
   ActionButtons,
   DescriptionValue,
   DescriptionStyle,
+  CategoryTitleWraper,
+  CategoryTitle,
 } from './LearnMoreModal.styled';
 
 const defaultPhoto =
-  'https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png';
+  'https://img.freepik.com/premium-vector/cartoon-farm-animals-and-birds-cute-domestic-animal-characters-sheep-goat-pig-rabbit-dog-horse-turkey-livestock-farming-vector-set-wild-fauna-isolated-bison-deer-and-bull_461812-926.jpg?w=740';
+
+const onEditsText = text => {
+  if (!text) return;
+  if (text.length > 16) {
+    return text.slice(0, 16) + '...';
+  }
+  return text;
+};
 
 export const LearnMoreModal = ({
   noticeData,
@@ -33,10 +42,10 @@ export const LearnMoreModal = ({
             defaultPhoto
           }
           alt={noticeData.title}
-          category={noticeData.category}
         />
+
         <div>
-          <Title> {noticeData.title} </Title>
+          <Title>{onEditsText(noticeData.title)}</Title>
           <ul>
             <li>
               <DescriptionStyle style={{ marginRight: 65 }}>
@@ -83,6 +92,11 @@ export const LearnMoreModal = ({
           </ul>
         </div>
       </InfoWrapper>
+      <CategoryTitleWraper>
+        <CategoryTitle category={noticeData.category}>
+          {noticeData.category}
+        </CategoryTitle>
+      </CategoryTitleWraper>
       <Description text={noticeData.comments} />
 
       <ActionButtons>
