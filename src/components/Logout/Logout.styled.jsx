@@ -24,4 +24,7 @@ export const Button = styled.button`
 
 export const LogoutIcon = styled(SvgLogout)`
   margin-right: 8px;
+
+  fill: ${p => p.theme.colors.accent};
+  stroke: ${p => p.theme.colors.accent};
 `;

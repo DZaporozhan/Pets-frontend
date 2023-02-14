@@ -10,11 +10,11 @@ export const getNoticeByCategory = async ({
 
   switch (category) {
     case 'favorite':
-      result = await instance.get(`/notices/favorite?category=${category}`);
+      result = await getFavoriteNotices();
       break;
 
     case 'owner':
-      result = await instance.get(`/notices/owner?title=${category}`);
+      result = await getUserNotices();
       break;
     default:
       result = await instance.get(
@@ -22,6 +22,7 @@ export const getNoticeByCategory = async ({
       );
       break;
   }
+
   return result;
 };
 
@@ -35,7 +36,7 @@ export const addNoticeToFavorite = async id => {
   return data;
 };
 
-export const getFavoriteNotices = async params => {
+export const getFavoriteNotices = async () => {
   const { data } = await instance.get(`/notices/favorite`);
   return data;
 };

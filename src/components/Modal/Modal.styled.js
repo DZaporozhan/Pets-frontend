@@ -3,6 +3,7 @@ import { ReactComponent as CloseIcon } from '../../icons/closeIcon.svg';
 
 export const BackDrop = styled.div`
   position: fixed;
+  overflow-y: scroll;
   top: 0;
   left: 0;
   width: 100vw;

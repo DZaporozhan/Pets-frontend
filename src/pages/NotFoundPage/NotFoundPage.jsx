@@ -1,5 +1,5 @@
-import DancingBear from "../../../src/icons/dancingBear_min.gif"
-import { Container, TextContainer, Title, Subtitle, Text, DirectionLink, DirectionText, DirectionWrapper} from "./NotFoundPage.styled"
+import DancingBear from "../../../src/icons/dancingBear-cropped.gif"
+import { Container, Image, TextContainer, Title, Subtitle, Text, DirectionLink, DirectionText, DirectionWrapper} from "./NotFoundPage.styled"
 import { NavLinkStyled } from "components/Header/AuthNav/AuthNav.styled";
 
 const primary = {
@@ -11,7 +11,7 @@ const NotFoundPage = () => {
     <> 
       <Container> 
       
-        <img src={DancingBear} alt="dancing bear" />
+        <Image src={DancingBear} alt="dancing bear" />
         
 
         <TextContainer> 
