@@ -41,8 +41,8 @@ export const ContactBtn = styled.a`
   width: 248px;
   border-radius: 44px;
   padding: 8px 0px;
-  border: 2px solid #f59256;
-  background: #ffffff;
+  border: 2px solid #ffffff;
+  background: #f59256;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,7 +50,7 @@ export const ContactBtn = styled.a`
   margin-right: auto;
   margin-top: ${({ ownerNotice }) => (ownerNotice ? '20px' : '0px')};
   font-family: 'Manrope';
-  color: ${p => p.theme.colors.accent};
+  color: ${p => p.theme.colors.white};
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: 16px;
   line-height: 22px;
@@ -60,8 +60,8 @@ export const ContactBtn = styled.a`
   :focus,
   :hover {
     transform: scale(1.02);
-    color: orange;
-    border-color: ${p => p.theme.colors.hoverButton};
+    color: ${p => p.theme.colors.white};
+    border-color: ${p => p.theme.colors.notFoundPage};
     cursor: pointer;
   }
 `;
