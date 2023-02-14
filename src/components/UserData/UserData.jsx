@@ -1,5 +1,7 @@
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
+// import { getUserInfo } from 'redux/user/selectors';
+
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import {
@@ -22,7 +24,6 @@ import {
 
 import avatar from './img/temp-avatar.jpg';
 import Logout from 'components/Logout';
-
 // import { ReactComponent as SvgCross } from './img/svgCross.svg';
 
 const nameRegExp = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
@@ -55,19 +56,31 @@ const initialValues = {
 };
 
 const UserData = () => {
-  const { name, email, birthday, phone, city } = useSelector(selectUser);
+  // const dispatch = useDispatch();
 
-  //   return const dispatch = useDispatch();
+  const { imageURL, name, email, birthday, phone, city } =
+    useSelector(selectUser);
 
-  //   const handleSubmit = value => {
-  //     dispatch(updateUser(value));
-  //   };
+  // const user = useSelector(getUserInfo);
+  // console.log(user);
+
+  // Червона консоль не працює
+  // const {
+  //   imageURL,
+  //   userInfo: { name, email, birthday, phone, city },
+  // } = useSelector(getUserInfo);
+  ////////////////////////////
+
+  // const handleSubmit = value => {
+  //   dispatch(updateUser(value));
+  // };
 
   return (
     <UserInfoWrap>
       <EditPhotoContainer>
         <Thumb>
           <UserAvatar
+            // src={imageURL || avatar}
             src={avatar}
             alt="User avatar"
             loading="lazy"
