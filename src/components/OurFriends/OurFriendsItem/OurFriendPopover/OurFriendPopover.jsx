@@ -77,7 +77,7 @@ export const OurFriendsPopover = ({ workDays }) => {
           vertical: 'center',
           horizontal: 'center',
         }}
-        
+        disableScrollLock={true}
         paddingThreshold={0}
       >
         <ContentOfPopover workDays={workDays} />
