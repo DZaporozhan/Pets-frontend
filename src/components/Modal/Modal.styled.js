@@ -3,7 +3,7 @@ import { ReactComponent as CloseIcon } from '../../icons/closeIcon.svg';
 
 export const BackDrop = styled.div`
   position: fixed;
-  overflow-y: scroll;
+  overflow-y: auto;
   top: 0;
   left: 0;
   width: 100vw;
@@ -22,9 +22,33 @@ export const ModalWindow = styled.div`
   padding: 20px;
   background-color: ${p => p.theme.colors.white};
   border-radius: ${p => p.theme.radii.small};
+  margin: 30vh 0;
 
   @media screen and (${p => p.theme.device.tablet}) {
     min-width: 608px;
+  }
+
+  @media screen and (${p => p.theme.device.tablet}) {
+    min-width: 608px;
+    margin: 175px 0;
+  }
+
+  @media screen and (orientation: landscape) {
+    margin: 40vw 0;
+  }
+  @media screen and (min-width: 820px) {
+    min-width: 608px;
+    margin: 10vw 0;
+  }
+
+  @media screen and (min-width: 1024px) {
+    min-width: 608px;
+    margin: 10vw 0;
+  }
+
+  @media screen and (min-width: 1440px) {
+    min-width: 608px;
+    margin: 5vw 0;
   }
 `;
 
