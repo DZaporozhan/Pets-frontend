@@ -13,8 +13,7 @@ import {
   CategoryTitle,
 } from './LearnMoreModal.styled';
 
-const defaultPhoto =
-  'https://img.freepik.com/premium-vector/cartoon-farm-animals-and-birds-cute-domestic-animal-characters-sheep-goat-pig-rabbit-dog-horse-turkey-livestock-farming-vector-set-wild-fauna-isolated-bison-deer-and-bull_461812-926.jpg?w=740';
+import petImage from '../../icons/pets.png';
 
 const onEditsText = text => {
   if (!text) return;
@@ -39,7 +38,7 @@ export const LearnMoreModal = ({
           src={
             (noticeData.imageURL &&
               `https://res.cloudinary.com/dqupdbup3/image/upload/${noticeData.imageURL?.toLowerCase()}`) ||
-            defaultPhoto
+            petImage
           }
           alt={noticeData.title}
         />
