@@ -58,9 +58,9 @@ const initialValues = {
 const UserData = () => {
   // const dispatch = useDispatch();
 
-  const { imageURL, name, email, birthday, phone, city } =
-    useSelector(selectUser);
-  console.log(imageURL);
+  // const { imageURL, name, email, birthday, phone, city } =
+  const { name, email, birthday, phone, city } = useSelector(selectUser);
+
   // const user = useSelector(getUserInfo);
   // console.log(user);
 
