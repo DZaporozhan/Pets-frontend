@@ -12,7 +12,7 @@ const Pet = ({ userPet }) => {
     <>
       <ImgWrapper>
         <Img
-          src={`"https://res.cloudinary.com/dqupdbup3/image/upload/${imageURL}`}
+          src={`https://res.cloudinary.com/dqupdbup3/image/upload/${imageURL}`}
           alt={`Your pet ${name}`}
         />
       </ImgWrapper>
