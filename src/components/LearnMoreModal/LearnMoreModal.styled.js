@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FiHeart } from 'react-icons/fi';
+// import { FiHeart } from 'react-icons/fi';
 // import { ModalButton } from 'components/ModalBtn/ModalBtn';
 // import { ReactComponent as IconHeart } from '../../../src/icons/smallHeart.svg';
 
@@ -18,7 +18,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Title = styled.div`
+export const Title = styled.h3`
   text-align: left;
   font-family: 'Manrope';
   font-style: normal;
@@ -26,6 +26,7 @@ export const Title = styled.div`
   font-size: 28px;
   line-height: 38px;
   letter-spacing: -0.01em;
+  margin-bottom: 16px;
   @media ${p => p.theme.device.tablet} {
     width: 228px;
     font-size: 28px;
@@ -41,17 +42,17 @@ export const ContactBtn = styled.a`
   border-radius: 44px;
   padding: 8px 0px;
   border: 2px solid #f59256;
-  background: ${p => p.theme.colors.white};
+  background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: ${({ ownerNotice }) => (ownerNotice ? '20px' : '50px')};
-  font-family: ${p => p.theme.colors.white};
+  margin-top: ${({ ownerNotice }) => (ownerNotice ? '20px' : '0px')};
+  font-family: 'Manrope';
   color: ${p => p.theme.colors.accent};
   font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSizes[2]}px;
+  font-size: 16px;
   line-height: 22px;
   align-items: center;
   letter-spacing: 0.04em;
@@ -59,35 +60,35 @@ export const ContactBtn = styled.a`
   :focus,
   :hover {
     transform: scale(1.02);
-    color: ${p => p.theme.colors.hoverButton};
+    color: orange;
     border-color: ${p => p.theme.colors.hoverButton};
     cursor: pointer;
   }
 `;
-export const BtnAddFavorite = styled.button`
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 44px;
-  height: 44px;
-  border-radius: 100%;
-  border-color: transparent;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  background-color: rgba(255, 255, 255, 0.6);
-  transition: ${p => p.theme.transition};
-  :focus,
-  :hover {
-    transform: scale(1.05);
-    cursor: pointer;
-  }
-`;
-export const BtnAddFavoriteIcon = styled(FiHeart)`
-  color: #f59256;
-  fill: ${({ orfavorites: { favorite, _id } }) =>
-    favorite.includes(_id) ? '#f59256' : 'rgba(255, 255, 255, 0.6)'};
-`;
+// export const BtnAddFavorite = styled.button`
+//   position: absolute;
+//   top: 12px;
+//   right: 12px;
+//   width: 44px;
+//   height: 44px;
+//   border-radius: 100%;
+//   border-color: transparent;
+//   align-items: center;
+//   justify-content: center;
+//   display: flex;
+//   background-color: rgba(255, 255, 255, 0.6);
+//   transition: ${p => p.theme.transition};
+//   :focus,
+//   :hover {
+//     transform: scale(1.05);
+//     cursor: pointer;
+//   }
+// `;
+// export const BtnAddFavoriteIcon = styled(FiHeart)`
+//   color: #f59256;
+//   fill: ${({ orfavorites: { favorite, _id } }) =>
+//     favorite.includes(_id) ? '#f59256' : 'rgba(255, 255, 255, 0.6)'};
+// `;
 export const InfoWrapper = styled.div`
   @media ${p => p.theme.device.tablet} {
     display: flex;
@@ -98,20 +99,20 @@ export const InfoWrapper = styled.div`
 `;
 
 const DescriptionText = styled.p`
-  /* margin: 28px 0 40px 0; */
+  margin: 28px 0 40px 0;
   text-align: left;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.4;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
 
   @media ${p => p.theme.device.tablet} {
-    margin-bottom: 32px;
+    margin-bottom: 50px;
     font-size: 16px;
   }
   @media ${p => p.theme.device.desktop} {
-    margin-bottom: 32px;
+    margin-bottom: 50px;
     font-size: 16px;
   }
 `;
@@ -121,8 +122,12 @@ const DescriptionLabel = styled.span`
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 14px;
+  line-height: 19px;
+  @media ${p => p.theme.device.tablet} {
+    margin-bottom: 40px;
+    font-size: 1px;
+  }
 `;
 
 export const Description = ({ text }) => (
@@ -212,12 +217,14 @@ export const ActionButtons = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 12px;
-  margin-top: 0px;
+  margin-top: 32px;
+  align-items: center;
   @media ${p => p.theme.device.tablet} {
     width: 332px;
     flex-direction: row;
     gap: 8px;
     margin-left: auto;
+    margin-bottom: 32px;
   }
 `;
 
@@ -234,10 +241,10 @@ const ModalButton = styled.button`
     props.authorized ? '2px solid #f59256' : '2px solid rgba(17, 17, 17, 0.1)'};
   border-radius: 40px;
   cursor: pointer;
-  font-family: 'Manrope';
+  font-family: ${p => p.theme.colors.white};
   font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes[2]}px;
   // line-height: 1.37;
   transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
     border 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -262,10 +269,10 @@ export const ModalBtn = styled(ModalButton)`
   color: ${({ authorized, primary }) => {
     if (!authorized && !primary) return 'rgba(17, 17, 17, 0.1)';
     if (primary) return 'white';
-    return '#f59256';
+    return '#080706';
   }};
-  width: 100%;
+  width: 248px;
   @media ${p => p.theme.device.tablet} {
-    width: 160px;
+    width: 203px;
   }
 `;
