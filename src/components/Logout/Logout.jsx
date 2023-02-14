@@ -1,7 +1,7 @@
 // import { IoLogOutOutline } from 'react-icons/io5';
 import { Button, LogoutIcon } from './Logout.styled';
 import { useDispatch } from 'react-redux';
-import { logout } from 'services/api/auth';
+import { logout } from 'redux/auth/operations';
 
 const Logout = () => {
   const dispatch = useDispatch();
