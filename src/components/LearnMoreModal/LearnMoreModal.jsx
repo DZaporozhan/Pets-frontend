@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+import { selectId, selectIsAuth } from 'redux/auth/selectors';
 import {
   Container,
   Title,
@@ -5,13 +7,17 @@ import {
   ContactBtn,
   InfoWrapper,
   Description,
-  AddToFavorites,
-  ActionButtons,
   DescriptionValue,
   DescriptionStyle,
   CategoryTitleWraper,
   CategoryTitle,
+  ActionButtons,
+  DeleteButton,
+  ModalBtn,
 } from './LearnMoreModal.styled';
+
+import { FcDislike, FcLike } from 'react-icons/fc';
+import { CiTrash } from 'react-icons/ci';
 
 import petImage from '../../icons/pets.png';
 
@@ -25,11 +31,25 @@ const onEditsText = text => {
 
 export const LearnMoreModal = ({
   noticeData,
-  // onDeleteNotice,
+  onDeleteNotice,
   favorite,
   addToFavoriteAndRemove,
 }) => {
+  const authorized = useSelector(selectIsAuth);
+  // дізнаємось що ми owner↓
+  const userID = useSelector(selectId);
+  const isOwner = noticeData.owner === userID;
+  //дізнаємось що ми owner↑
+  const favoriteId = favorite.find(elem => elem === noticeData._id);
+  // Зміна кнопки або наповнення кнопки↑
   console.log(noticeData);
+  console.log(favorite);
+  console.log(favoriteId);
+
+  const onFavorite = async id => {
+    await addToFavoriteAndRemove(id);
+    return;
+  };
 
   return (
     <Container>
@@ -98,13 +118,23 @@ export const LearnMoreModal = ({
       </CategoryTitleWraper>
       <Description text={noticeData.comments} />
 
+      {/* видалення усього notices якщо ти його owner ↓*/}
+      {isOwner && (
+        <DeleteButton onClick={() => onDeleteNotice(noticeData._id)}>
+          <CiTrash />
+        </DeleteButton>
+      )}
+      {/* видалення усього notices якщо ти його owner↑ */}
+
       <ActionButtons>
-        <AddToFavorites
-          authorized={!favorite}
-          onClick={() => addToFavoriteAndRemove(noticeData._id)}
-          favoriteId={favorite}
-        />
-        <ContactBtn href="tel:noticeData.phone">Сontact</ContactBtn>
+        <ModalBtn
+          authorized={authorized}
+          onClick={() => onFavorite(noticeData._id)}
+        >
+          {!favoriteId ? 'Add to' : 'Delete'}
+          {!favoriteId ? <FcLike /> : <FcDislike />}
+        </ModalBtn>
+        <ContactBtn href="tel:noticeData.phone">Contact</ContactBtn>
       </ActionButtons>
     </Container>
   );
