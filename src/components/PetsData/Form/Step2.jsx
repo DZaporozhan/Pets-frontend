@@ -1,6 +1,13 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Formik } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
+import {
+  ActButton,
+  ButtonWrapper,
+  Label,
+  StaledForm,
+  TextAreaInput,
+} from './ModalAddsPet.styled';
 
 const validationSchema = Yup.object({
   imageURL: Yup.mixed().required('Image is required!'),
@@ -23,7 +30,7 @@ const Step2 = ({ data, next, back }) => {
       onSubmit={handleSubmit}
     >
       {formProps => (
-        <Form encType="multipart/form-data">
+        <StaledForm encType="multipart/form-data">
           <label htmlFor="imageURL">Add photo and some comments</label>
 
           {formProps.values.imageURL === null ? (
@@ -38,7 +45,6 @@ const Step2 = ({ data, next, back }) => {
                 if (files) {
                   setImage(URL.createObjectURL(files[0]));
                   formProps.setFieldValue('imageURL', files[0]);
-                  console.log(formProps.values.imageURL);
                 }
               }}
             />
@@ -47,11 +53,10 @@ const Step2 = ({ data, next, back }) => {
               <img alt="pet" src={image} />
             </div>
           )}
-
           <ErrorMessage name="imageURL" />
 
-          <label htmlFor="comments">Comments</label>
-          <Field
+          <Label htmlFor="comments">Comments</Label>
+          <TextAreaInput
             id="comments"
             name="comments"
             as="textarea"
@@ -59,17 +64,18 @@ const Step2 = ({ data, next, back }) => {
           />
           <ErrorMessage name="comments" />
 
-          <button
-            type="button"
-            onClick={() => {
-              back(formProps.values);
-              console.log(formProps.values.imageURL);
-            }}
-          >
-            Back
-          </button>
-          <button type="submit">Done</button>
-        </Form>
+          <ButtonWrapper>
+            <ActButton
+              type="button"
+              onClick={() => {
+                back(formProps.values);
+              }}
+            >
+              Back
+            </ActButton>
+            <ActButton type="submit">Done</ActButton>
+          </ButtonWrapper>
+        </StaledForm>
       )}
     </Formik>
   );

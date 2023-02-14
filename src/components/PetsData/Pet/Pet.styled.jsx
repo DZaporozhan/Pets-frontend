@@ -1,16 +1,5 @@
 import styled from 'styled-components';
 
-// export const CardText = styled.div`
-//   display: flex;
-//   align-items: flex-start;
-//   flex-direction: row;
-//   gap: 20px;
-
-//   @media ${p => p.theme.device.desktop} {
-//     gap: 22px;
-//   }
-// `;
-
 export const Text = styled.p`
   margin-bottom: 12px;
   font-family: ${p => p.theme.fonts.body};
@@ -46,5 +35,47 @@ export const DeleteIcon = styled.button`
   &:focus {
     background-color: ${p => p.theme.colors.accent};
     transition: ${p => p.theme.transition};
+  }
+`;
+
+export const ImgWrapper = styled.div`
+  width: 240px;
+  height: 240px;
+  /* border-radius: ${p => p.theme.radii.small}; */
+
+  @media ${p => p.theme.device.tablet} {
+    width: 161px;
+    height: 161px;
+    /* border-radius: ${p => p.theme.radii.normal}; */
+  }
+`;
+
+export const Img = styled.img`
+  /* width: 240px;
+  height: 240px; */
+  border-radius: ${p => p.theme.radii.small};
+
+  @media ${p => p.theme.device.tablet} {
+    /* width: 161px;
+    height: 161px; */
+    border-radius: ${p => p.theme.radii.normal};
+  }
+`;
+
+export const TextWrapper = styled.div`
+  width: 235px;
+  /* height: 240px; */
+  border-radius: ${p => p.theme.radii.small};
+
+  @media ${p => p.theme.device.tablet} {
+    width: 471px;
+    /* height: 161px; */
+    border-radius: ${p => p.theme.radii.normal};
+  }
+
+  @media ${p => p.theme.device.desktop} {
+    width: 580px;
+    /* height: 161px; */
+    border-radius: ${p => p.theme.radii.normal};
   }
 `;

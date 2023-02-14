@@ -1,7 +1,9 @@
 import { format } from 'date-fns';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { addPet } from 'redux/user/operations';
+import { Title, Wrapper } from './ModalAddsPet.styled';
 import Step1 from './Step1';
 import Step2 from './Step2';
 
@@ -31,6 +33,7 @@ const ModalAddsPet = ({ onCancel }) => {
     try {
       const response = await dispatch(addPet(data));
       console.log(response);
+      toast.success(response);
       onCancel();
     } catch (error) {
       console.log(error.message);
@@ -57,10 +60,10 @@ const ModalAddsPet = ({ onCancel }) => {
   ];
 
   return (
-    <>
-      <h1>Add pet</h1>
+    <Wrapper>
+      <Title>Add pet</Title>
       {steps[currentStep]}
-    </>
+    </Wrapper>
   );
 };
 

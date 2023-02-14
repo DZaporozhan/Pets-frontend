@@ -1,5 +1,14 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
+import {
+  ActButton,
+  ButtonWrapper,
+  DateInput,
+  Label,
+  StaledForm,
+  StyledError,
+  TextInput,
+} from './ModalAddsPet.styled';
 
 const inputReGeX = /^[aA-zZ\s]+$/;
 const validationSchema = Yup.object({
@@ -11,7 +20,6 @@ const validationSchema = Yup.object({
   birthdate: Yup.date()
     .typeError('Please choose the date')
     .required(`Birthdate is required!`),
-  // .min('1979-11-13', 'Date is too early'),
   breed: Yup.string()
     .min(2, 'Must contain at least 2 characters')
     .max(16, 'Must be 15 characters or less')
@@ -31,29 +39,30 @@ const Step1 = ({ data, next, onCancel }) => {
       onSubmit={handleSubmit}
     >
       {() => (
-        <Form>
-          <label htmlFor="name">Name pet</label>
-          <Field id="name" name="name" placeholder="Type name pet" />
-          <ErrorMessage name="name" />
+        <StaledForm>
+          <Label htmlFor="name">Name pet</Label>
+          <TextInput id="name" name="name" placeholder="Type name pet" />
+          <StyledError name="name" />
 
-          <label htmlFor="birthdate">Date of birth</label>
-          <Field
+          <Label htmlFor="birthdate">Date of birth</Label>
+          <DateInput
             id="birthdate"
             name="birthdate"
             type="date"
             placeholder="Type date of birth"
           />
-          <ErrorMessage name="birthdate" />
+          <StyledError name="birthdate" />
 
-          <label htmlFor="breed">Breed</label>
-          <Field id="breed" name="breed" placeholder="Type breed" />
-          <ErrorMessage name="breed" />
-
-          <button type="button" onClick={onCancel}>
-            Cancel
-          </button>
-          <button type="submit">Next button submit</button>
-        </Form>
+          <Label htmlFor="breed">Breed</Label>
+          <TextInput id="breed" name="breed" placeholder="Type breed" />
+          <StyledError name="breed" />
+          <ButtonWrapper>
+            <ActButton type="button" onClick={onCancel}>
+              Cancel
+            </ActButton>
+            <ActButton type="submit">Next</ActButton>
+          </ButtonWrapper>
+        </StaledForm>
       )}
     </Formik>
   );

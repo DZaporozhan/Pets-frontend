@@ -2,7 +2,6 @@ import { Title, TitleWrapper } from './PetsData.styled';
 import PetsList from './PetList/PetsList';
 import { AddPetBtn } from 'components/AddPetBtn/AddPetBtn';
 import { useState } from 'react';
-// import AddPetModal from './AddPetModal/AddPetModal';
 import Modal from 'components/Modal';
 import ModalAddsPet from './Form/ModalAddsPet';
 
@@ -26,7 +25,6 @@ const PetsData = () => {
       {showModal && (
         <Modal onClose={toggleModal}>
           <ModalAddsPet onCancel={toggleModal} />
-          {/* <AddPetModal onClose={toggleModal} /> */}
         </Modal>
       )}
     </>
