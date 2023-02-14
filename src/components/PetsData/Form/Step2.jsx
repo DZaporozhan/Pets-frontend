@@ -1,4 +1,4 @@
-import { ErrorMessage, Field, Formik, useField } from 'formik';
+import { ErrorMessage, Formik, useField } from 'formik';
 import { useRef, useState } from 'react';
 import * as Yup from 'yup';
 import { ReactComponent as CrossPic } from '../../../icons/Vectorcross.svg';
@@ -9,7 +9,6 @@ import {
   ImageWrapper,
   Label,
   PhotoAddContainer,
-  PhotoPetText,
   StaledForm,
   TextAreaInput,
 } from './ModalAddsPet.styled';
