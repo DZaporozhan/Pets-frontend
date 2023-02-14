@@ -1,5 +1,6 @@
 import { ErrorMessage, Field, Form } from 'formik';
 import styled from 'styled-components';
+import { ReactComponent as CrossPic } from '../../../icons/Vectorcross.svg';
 
 export const Title = styled.h1`
   margin-bottom: 20px;
@@ -212,7 +213,7 @@ export const ActButton = styled.button`
   }
 `;
 
-export const TextAreaInput = styled(Field)`
+export const TextAreaInput = styled.textarea`
   display: block;
   outline: none;
   box-sizing: border-box;
@@ -231,5 +232,95 @@ export const TextAreaInput = styled(Field)`
     width: 394px;
     height: 116px;
     font-size: ${p => p.theme.fontSizes[2]}px;
+  }
+`;
+
+export const ImageLabel = styled.h2`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 20px;
+
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes[3]}px;
+  color: ${p => p.theme.colors.primaryText};
+  line-height: 1.47;
+
+  @media ${p => p.theme.device.tablet} {
+    font-size: ${p => p.theme.fontSizes[5]}px;
+    line-height: 1.1;
+  }
+
+  /* display: block;
+  outline: none;
+  box-sizing: border-box;
+  resize: none;
+  margin-top: 8px;
+  width: 240px;
+  height: 100px;
+
+  border-radius: ${p => p.theme.radii.small};
+  padding: 12px 5px 12px 14px;
+  background-color: ${p => p.theme.colors.background};
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  font-size: ${p => p.theme.fontSizes[1]}px;
+
+  @media ${p => p.theme.device.tablet} {
+    width: 394px;
+    height: 116px;
+    font-size: ${p => p.theme.fontSizes[2]}px;
+  } */
+`;
+
+export const PhotoPetText = styled(Field)`
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  background-image: ${(<CrossPic width="48" height="48" fill="none" />)};
+`;
+
+export const PhotoAddContainer = styled.label`
+  width: 116px;
+  height: 116px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
+  cursor: pointer;
+  // margin: 0 auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  // padding: 22px;
+  border-radius: 20px;
+  background-color: ${p => p.theme.colors.background};
+  @media ${p => p.theme.device.tablet} {
+    width: 140px;
+    height: 140px;
+  }
+`;
+
+export const ImageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${p => p.theme.colors.background};
+  border: none;
+  padding: 67px;
+  margin-bottom: 28px;
+`;
+
+export const ImageTitle = styled.label`
+  // text-align: center;
+  margin-bottom: 8px;
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes[3]}px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  @media ${p => p.theme.device.tablet} {
+    font-size: ${p => p.theme.fontSizes[5]}px;
+    line-height: 1.04;
   }
 `;
