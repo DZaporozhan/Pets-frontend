@@ -38,12 +38,13 @@ export const Title = styled.div`
 //============================================
 const ImageWrapper = styled.div`
   position: relative;
+  overflow: scroll;
   width: 288px;
   height: 328px;
   left: 20px;
   top: 40px;
   border-radius: 0px 0px 40px 40px;
-  overflow: hidden;
+  /* overflow: hidden; */
   margin: 0 auto 16px auto;
 `;
 
