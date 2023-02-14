@@ -126,7 +126,7 @@ const DescriptionLabel = styled.span`
   line-height: 19px;
   @media ${p => p.theme.device.tablet} {
     margin-bottom: 40px;
-    font-size: 1px;
+    font-size: 16px;
   }
 `;
 
