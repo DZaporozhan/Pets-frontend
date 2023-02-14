@@ -35,40 +35,6 @@ export const Title = styled.div`
     font-size: 28px;
   }
 `;
-//============================================
-const ImageWrapper = styled.div`
-  position: relative;
-  /* overflow: hidden; */
-  object-fit: height;
-  /* width: 288px; */
-  height: 328px;
-  left: 20px;
-  top: 0px;
-  background: green;
-  /* overflow: hidden; */
-  margin: 0 40px 16px 0;
-  display: flex;
-  border-radius: 0px 0px 40px 40px;
-`;
-
-const CategoryLabel = styled.div`
-  position: absolute;
-  top: 20px;
-  left: 0;
-  width: 158px;
-  padding: 6px 20px;
-  background-color: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(50px);
-  border-radius: 0 20px 20px 0;
-`;
-
-export const ImageThumb = ({ src, alt = '', category }) => (
-  <ImageWrapper>
-    <img src={src} alt={alt} />
-
-    {category && <CategoryLabel>{category}</CategoryLabel>}
-  </ImageWrapper>
-);
 
 export const ContactBtn = styled.a`
   width: 248px;
@@ -216,37 +182,51 @@ export const DescriptionStyle = styled.span`
   color: ${p => p.theme.colors.primaryText};
 `;
 
-// export const ImageThumb = ({ src, alt = '', category }) => (
-//   <ImageWrapper>
-//     <img src={src} alt={alt} />
-//     {category && <CategoryLabel>{category}</CategoryLabel>}
-//   </ImageWrapper>
-// );
+//============================================
 // const ImageWrapper = styled.div`
-//   position: relative;
-//   width: 240px;
-//   height: 240px;
+//   position: relative;//==========
+//   /* overflow: hidden; */
+//   object-fit: height;//===========
+//   /* width: 288px; */
+//   height: 328px;//==============
+//   left: 20px;
+//   top: 0px;
+//   background: green;
+//   /* overflow: hidden; */
+//   margin: 0 40px 16px 0;
+//   display: flex;
 //   border-radius: 0px 0px 40px 40px;
-//   overflow: hidden;
-//   margin: 0 auto 16px auto;
-//   @media ${p => p.theme.media.tablet} {
-//     width: 288px;
-//     height: 328px;
-//     margin: 0 20px 0 0;
-//   }
-//   @media ${p => p.theme.media.desktop} {
-//     width: 288px;
-//     height: 328px;
-//     margin: 0 20px 0 0;
-//   }
 // `;
-// const CategoryLabel = styled.div`
-//   position: absolute;
-//   top: 20px;
-//   left: 0;
-//   width: 158px;
-//   padding: 6px 20px;
-//   background-color: rgba(255, 255, 255, 0.6);
-//   backdrop-filter: blur(50px);
-//   border-radius: 0 20px 20px 0;
-// `;
+
+export const ImageThumb = styled.img`
+  position: relative;
+  object-fit: hidden;
+  width: 288px;
+  height: 328px;
+  //================
+
+  top: 0px;
+  /* overflow: hidden; */
+  margin: 0 20px 16px 0;
+  display: flex;
+  border-radius: 0px 0px 40px 40px;
+`;
+
+export const CategoryTitleWraper = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 0px;
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 6px 0px 6px 20px;
+  width: 158px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+`;
+
+export const CategoryTitle = styled.p`
+  font-family: Inter, sans-serif;
+  text-align: ${({ category }) => (category === 'sell' ? 'center' : 'left')};
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes[0]}px;
+  line-height: 15px;
+`;
