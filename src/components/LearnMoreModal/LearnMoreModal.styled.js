@@ -19,8 +19,13 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.div`
-  text-align: center;
+  text-align: left;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
   font-size: 28px;
+  line-height: 38px;
+  letter-spacing: -0.01em;
   @media ${p => p.theme.device.tablet} {
     width: 228px;
     font-size: 28px;
@@ -33,8 +38,10 @@ export const Title = styled.div`
 //============================================
 const ImageWrapper = styled.div`
   position: relative;
-  width: 240px;
-  height: 240px;
+  width: 288px;
+  height: 328px;
+  left: 20px;
+  top: 40px;
   border-radius: 0px 0px 40px 40px;
   overflow: hidden;
   margin: 0 auto 16px auto;
@@ -57,7 +64,7 @@ export const ImageThumb = ({ src, alt = '', category }) => (
     {category && <CategoryLabel>{category}</CategoryLabel>}
   </ImageWrapper>
 );
-//==================================================
+
 // export const ImageThumb = styled.img`
 //   object-fit: cover;
 //   height: 288px;
@@ -130,6 +137,10 @@ const DescriptionText = styled.p`
   text-align: left;
   font-size: 16px;
   line-height: 1.4;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+
   @media ${p => p.theme.device.tablet} {
     margin-bottom: 32px;
     font-size: 16px;
@@ -142,6 +153,11 @@ const DescriptionText = styled.p`
 
 const DescriptionLabel = styled.span`
   font-weight: 600;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
 `;
 
 export const Description = ({ text }) => (
@@ -185,9 +201,10 @@ export const ActionButtons = styled.div`
   }
 `;
 export const DescriptionValue = styled.span`
-  font-family: ${p => p.theme.colors.white};
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSizes[2]}px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
   line-height: 22px;
   color: ${p => p.theme.colors.primaryText};
 `;
