@@ -186,7 +186,6 @@ export const TextInput = styled.input`
   }
   @media ${p => p.theme.device.tablet} {
     margin-top: 12px;
-    /* width: 448px; */
     width: 100%;
     height: 48px;
     padding-left: 16px;
@@ -246,10 +245,9 @@ export const TextAreaInput = styled.textarea`
   resize: none;
   margin-top: 8px;
   width: 240px;
-  // height: 40px;
   padding: 12px 5px 12px 14px;
   border-radius: 20px;
-  background-color: var(--main-bg-cl);
+  background-color: #FDF7F2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   font-size: 14px;
   @media ${p => p.theme.device.tablet} {
@@ -293,6 +291,16 @@ export const StarSpan = styled.span`
   }
 `;
 
+export const StarSpanLocation = styled.span`
+  font-size: ${p => p.theme.fontSizes[3]}px;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  line-height: 1.44;
+  color: ${p => p.theme.colors.black};
+  @media ${p => p.theme.device.tablet} {
+    font-size: ${p => p.theme.fontSizes[5]}px;
+    line-height: 1.04;
+  }
+`;
 export const SexList = styled.ul`
   display: flex;
   flex-wrap: wrap;
@@ -472,5 +480,19 @@ export const ActButton = styled.button`
   &.active {
     background-color: ${p => p.theme.colors.accent};
     color: ${p => p.theme.colors.white};
+  }
+`;
+
+export const TitleError = styled.p`
+  position: absolute;
+  color: red;
+  min-width: 260px;
+  top: 378px;
+  left: 80%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  @media ${p => p.theme.device.tablet} {
+    top: 435px;
+    left: 65%;
   }
 `;
