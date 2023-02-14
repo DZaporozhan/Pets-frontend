@@ -97,6 +97,9 @@ const NoticesPage = () => {
         setIsLoading(false);
         return;
       }
+      if (categoryName === 'favorite') {
+        setNotices(prev => prev.filter(({ _id }) => _id !== id));
+      }
       setIsLoading(true);
       await removeNoticeFromFavorite(id);
       setFavorite(prev => prev.filter(el => el !== id));
@@ -156,11 +159,12 @@ const NoticesPage = () => {
           filter: search,
           page,
         });
-        setTotalPage(Math.ceil(noticesByCategory.data.data.total / 8));
         if (['favorite', 'owner'].includes(categoryName)) {
-          setNotices(noticesByCategory);
+          setNotices(noticesByCategory.data);
+          setTotalPage(Math.ceil(noticesByCategory.data.length / 8));
         } else {
           setNotices(noticesByCategory.data.data.result);
+          setTotalPage(Math.ceil(noticesByCategory.data.data.total / 8));
         }
 
         setLoadNotices(false);

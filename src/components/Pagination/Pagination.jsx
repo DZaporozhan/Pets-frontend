@@ -1,14 +1,23 @@
-import { Pagination } from '@mui/material';
+import { PaginationStyled } from './Pagination.styled';
 
 export const PaginationComponent = ({ paginateData }) => {
   const { setPage, totalPage } = paginateData;
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <Pagination
+    <PaginationStyled
       count={totalPage}
-      showFirstButton
-      showLastButton
-      onChange={(_, num) => setPage(num)}
+      // showFirstButton
+      // showLastButton
+      onChange={(_, num) => {
+        setPage(num);
+        scrollToTop();
+      }}
+      color="primary"
+      size="large"
     />
   );
 };

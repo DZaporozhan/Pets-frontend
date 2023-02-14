@@ -23,10 +23,8 @@ import { useNavigate } from 'react-router';
 import calculateAge from 'calculate-age';
 import numberToText from 'number-to-text';
 import ClockLoader from 'react-spinners/ClockLoader';
+import petImage from '../../icons/pets.png';
 require('number-to-text/converters/en-us');
-
-const defaultPhoto =
-  'https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png';
 
 export const NoticeItem = ({
   notices,
@@ -75,7 +73,9 @@ export const NoticeItem = ({
       case: 'lowerCase',
     });
     return (
-      numberToString[0]?.toUpperCase() + numberToString.slice(1) + ' years'
+      numberToString[0]?.toUpperCase() +
+      numberToString.slice(1) +
+      (numberToString === 'one' ? ' year' : ` years`)
     );
   };
 
@@ -95,7 +95,7 @@ export const NoticeItem = ({
         src={
           (imageURL &&
             `https://res.cloudinary.com/dqupdbup3/image/upload/${imageURL?.toLowerCase()}`) ||
-          defaultPhoto
+          petImage
         }
         alt={title}
       />
