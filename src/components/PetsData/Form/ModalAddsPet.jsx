@@ -1,11 +1,11 @@
 import { format } from 'date-fns';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
 import { addPet } from 'redux/user/operations';
 import { Title, Wrapper } from './ModalAddsPet.styled';
 import Step1 from './Step1';
 import Step2 from './Step2';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const ModalAddsPet = ({ onCancel }) => {
   const dispatch = useDispatch();
@@ -31,9 +31,8 @@ const ModalAddsPet = ({ onCancel }) => {
     data.append('imageURL', formData.imageURL);
 
     try {
-      const response = await dispatch(addPet(data));
-      console.log(response);
-      toast.success(response);
+      await dispatch(addPet(data));
+      Notify.success('You added new Pet successfully!');
       onCancel();
     } catch (error) {
       console.log(error.message);
