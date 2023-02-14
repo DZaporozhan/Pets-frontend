@@ -10,8 +10,8 @@ const validationSchema = Yup.object({
     .required('Name is required!'),
   birthdate: Yup.date()
     .typeError('Please choose the date')
-    .required(`Birthdate is required!`)
-    .min('1979-11-13', 'Date is too early'),
+    .required(`Birthdate is required!`),
+  // .min('1979-11-13', 'Date is too early'),
   breed: Yup.string()
     .min(2, 'Must contain at least 2 characters')
     .max(16, 'Must be 15 characters or less')

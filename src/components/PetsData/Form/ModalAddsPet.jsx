@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addPet } from 'redux/user/operations';
@@ -12,16 +13,27 @@ const ModalAddsPet = ({ onCancel }) => {
     birthdate: '',
     breed: '',
     comments: '',
-    imageURL: '',
+    imageURL: null,
   });
   const [currentStep, setCurrentStep] = useState(0);
 
   const makeRequest = async formData => {
+    const data = new FormData();
+    data.append('name', formData.name);
+    data.append(
+      'birthdate',
+      format(new Date(formData.birthdate), 'dd.MM.yyyy')
+    );
+    data.append('breed', formData.breed);
+    data.append('comments', formData.comments);
+    data.append('imageURL', formData.imageURL);
+
     try {
-      const response = await dispatch(addPet(formData));
+      const response = await dispatch(addPet(data));
       console.log(response);
+      onCancel();
     } catch (error) {
-      console.log(error.message.payload);
+      console.log(error.message);
     }
   };
 
