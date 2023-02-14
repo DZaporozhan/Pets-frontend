@@ -69,6 +69,11 @@ const NoticesPage = () => {
   };
 
   useEffect(() => {
+    setPage(1);
+    setTotalPage(0);
+  }, [categoryName]);
+
+  useEffect(() => {
     if (!isLoggedIn) return;
     (async () => {
       const allFavorite = await getFavoriteNotices();
@@ -160,8 +165,8 @@ const NoticesPage = () => {
           page,
         });
         if (['favorite', 'owner'].includes(categoryName)) {
-          setNotices(noticesByCategory.data);
-          setTotalPage(Math.ceil(noticesByCategory.data.length / 8));
+          setNotices(noticesByCategory.data.data);
+          setTotalPage(Math.ceil(noticesByCategory.data.total / 8));
         } else {
           setNotices(noticesByCategory.data.data.result);
           setTotalPage(Math.ceil(noticesByCategory.data.data.total / 8));
