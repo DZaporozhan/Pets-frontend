@@ -1,11 +1,9 @@
 import { Section } from "../../components/Section/Section";
-// import { Searchbar } from '../../components/Searchbar/Searchbar';
 import { useEffect, useState } from "react";
 import { getAllNews } from "services/api/news";
 import { NewsList } from "components/News/NewsList/NewsList";
 import {NewsSearch} from "components/News/NewsSearch/NewsSearch"
-// import NotFoundPage from "pages/NotFoundPage/NotFoundPage";
-import { Loader } from "components/Loader/Loader";
+import NotFoundPage from "pages/NotFoundPage/NotFoundPage";
 
 const NewsPage = () => {
   const [news, setNews] = useState([])
@@ -37,7 +35,7 @@ const NewsPage = () => {
         Wait a minute, Team1 is trying to fetch...
       </div>
     )}
-    {news.length>0 ? <NewsList data={news} /> : <Loader/>}
+    {news.length>0 ? <NewsList data={news} /> : <NotFoundPage />}
     
     </>
   );
