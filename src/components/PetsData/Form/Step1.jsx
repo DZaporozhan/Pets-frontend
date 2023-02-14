@@ -1,4 +1,4 @@
-import { Formik } from 'formik';
+import { ErrorMessage, Formik } from 'formik';
 import * as Yup from 'yup';
 import {
   ActButton,
@@ -15,7 +15,10 @@ const validationSchema = Yup.object({
   name: Yup.string()
     .min(2, 'Must contain at least 2 characters')
     .max(16, 'Must be 15 characters or less')
-    .matches(inputReGeX, `Is not in correct format`)
+    .matches(
+      inputReGeX,
+      `Your value is not in correct format! English characters only`
+    )
     .required('Name is required!'),
   birthdate: Yup.date()
     .typeError('Please choose the date')
@@ -23,7 +26,10 @@ const validationSchema = Yup.object({
   breed: Yup.string()
     .min(2, 'Must contain at least 2 characters')
     .max(16, 'Must be 15 characters or less')
-    .matches(inputReGeX, `Is not in correct format`)
+    .matches(
+      inputReGeX,
+      `Your value is not in correct format! English characters only`
+    )
     .required('Breed is required!'),
 });
 
@@ -42,7 +48,12 @@ const Step1 = ({ data, next, onCancel }) => {
         <StaledForm>
           <Label htmlFor="name">Name pet</Label>
           <TextInput id="name" name="name" placeholder="Type name pet" />
-          <StyledError name="name" />
+          <ErrorMessage
+            name="name"
+            render={message => (
+              <StyledError style={{ color: 'red' }}>{message}</StyledError>
+            )}
+          />
 
           <Label htmlFor="birthdate">Date of birth</Label>
           <DateInput
@@ -51,11 +62,22 @@ const Step1 = ({ data, next, onCancel }) => {
             type="date"
             placeholder="Type date of birth"
           />
-          <StyledError name="birthdate" />
+          <ErrorMessage
+            name="birthdate"
+            render={message => (
+              <StyledError style={{ color: 'red' }}>{message}</StyledError>
+            )}
+          />
 
           <Label htmlFor="breed">Breed</Label>
           <TextInput id="breed" name="breed" placeholder="Type breed" />
-          <StyledError name="breed" />
+          <ErrorMessage
+            name="breed"
+            render={message => (
+              <StyledError style={{ color: 'red' }}>{message}</StyledError>
+            )}
+          />
+
           <ButtonWrapper>
             <ActButton type="button" onClick={onCancel}>
               Cancel

@@ -5,11 +5,15 @@ import { ReactComponent as CrossPic } from '../../../icons/Vectorcross.svg';
 import {
   ActButton,
   ButtonWrapper,
+  Image,
+  ImageBtn,
+  ImageExample,
   ImageLabel,
   ImageWrapper,
   Label,
-  PhotoAddContainer,
+  PhotoPetText,
   StaledForm,
+  StyledError,
   TextAreaInput,
 } from './ModalAddsPet.styled';
 
@@ -23,7 +27,6 @@ const validationSchema = Yup.object({
 
 const Step2 = ({ data, next, back }) => {
   const handleSubmit = values => {
-    console.log(values);
     next(values, true);
   };
   const [image, setImage] = useState(null);
@@ -42,8 +45,7 @@ const Step2 = ({ data, next, back }) => {
           <ImageWrapper>
             {formProps.values.imageURL === null ? (
               <div>
-                <PhotoAddContainer htmlFor="imageUR" />
-                <input
+                <PhotoPetText
                   ref={fileRef}
                   hidden
                   id="imageURL"
@@ -59,27 +61,43 @@ const Step2 = ({ data, next, back }) => {
                     }
                   }}
                 />
-                <button
+                <ImageBtn
                   type="button"
                   onClick={() => {
                     fileRef.current.click();
-                    console.log(formProps);
                   }}
                 >
                   <CrossPic width="48" height="48" fill="none" />
-                </button>
+                </ImageBtn>
               </div>
             ) : (
-              <div>
-                <img alt="pet" src={image} />
-              </div>
+              <ImageExample>
+                <Image
+                  alt="pet"
+                  src={
+                    image === null
+                      ? URL.createObjectURL(formProps.values.imageURL)
+                      : image
+                  }
+                />
+              </ImageExample>
             )}
           </ImageWrapper>
-          <ErrorMessage name="imageURL" />
+          <ErrorMessage
+            name="imageURL"
+            render={message => (
+              <StyledError style={{ color: 'red' }}>{message}</StyledError>
+            )}
+          />
 
           <Label htmlFor="comments">Comments</Label>
           <MyFormikTextareaField fieldName={'comments'} />
-          <ErrorMessage name="comments" />
+          <ErrorMessage
+            name="comments"
+            render={message => (
+              <StyledError style={{ color: 'red' }}>{message}</StyledError>
+            )}
+          />
 
           <ButtonWrapper>
             <ActButton
@@ -111,21 +129,5 @@ export function MyFormikTextareaField({ fieldName }) {
     />
   );
 }
-
-// export function MyFormikFileField({ fieldName }) {
-//   const [field, meta] = useField(fieldName);
-
-//   return (
-//     <TextAreaInput
-//       value={'undefined'}
-//       onChange={field.onChange}
-//       placeholder={<CrossPic width="48" height="48" fill="none" />}
-//       id={fieldName}
-//       name={fieldName}
-//       type="file"
-//       accept=".png, .jpg, .jpeg"
-//     />
-//   );
-// }
 
 export default Step2;

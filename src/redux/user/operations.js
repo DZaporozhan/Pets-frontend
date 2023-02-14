@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../services/api/user';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 // Manipulate User Info
 export const getUserData = createAsyncThunk(
@@ -14,6 +15,7 @@ export const getUserData = createAsyncThunk(
         status,
         message: data.message,
       };
+      Notify.error(data.message);
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -25,7 +27,6 @@ export const addPet = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const response = await api.addUserPet(data);
-      console.log(response);
       return response;
     } catch ({ response }) {
       const { status, data } = response;
@@ -33,6 +34,7 @@ export const addPet = createAsyncThunk(
         status,
         message: data.message,
       };
+      Notify.error(data.message);
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -44,7 +46,7 @@ export const deletePet = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await api.removeUserPet(id);
-      console.log(response);
+      Notify.success(response.message);
       return response;
     } catch ({ response }) {
       const { status, data } = response;
@@ -52,6 +54,7 @@ export const deletePet = createAsyncThunk(
         status,
         message: data.message,
       };
+      Notify.error(data.message);
       return thunkAPI.rejectWithValue(error);
     }
   }

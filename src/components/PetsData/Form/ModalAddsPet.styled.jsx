@@ -1,6 +1,5 @@
-import { ErrorMessage, Field, Form } from 'formik';
+import { Field, Form } from 'formik';
 import styled from 'styled-components';
-import { ReactComponent as CrossPic } from '../../../icons/Vectorcross.svg';
 
 export const Title = styled.h1`
   margin-bottom: 20px;
@@ -30,13 +29,7 @@ export const Wrapper = styled.div`
 
 export const StaledForm = styled(Form)`
   display: flex;
-  /* align-items: center; */
   flex-direction: column;
-  /* padding: 40px 20px;
-
-  @media ${p => p.theme.device.tablet} {
-    padding: 40px 80px;
-  } */
 `;
 
 export const Label = styled.label`
@@ -72,6 +65,12 @@ export const TextInput = styled(Field)`
   color: ${p => p.theme.colors.primaryText};
   cursor: pointer;
 
+  :hover,
+  :focus {
+    color: ${p => p.theme.colors.buttonAccent};
+    transition: ${p => p.theme.transition};
+  }
+
   &::placeholder {
     font-family: ${p => p.theme.fonts.body};
     font-weight: ${p => p.theme.fontWeights.regular};
@@ -98,7 +97,6 @@ export const DateInput = styled(Field)`
   display: block;
   box-sizing: border-box;
   padding-left: 14px;
-  /* margin-top: 8px; */
   margin-bottom: 16px;
   border: 1px solid rgba(245, 146, 86, 0.5);
   width: 100%;
@@ -111,9 +109,14 @@ export const DateInput = styled(Field)`
   font-weight: ${p => p.theme.fontWeights.regular};
   font-size: ${p => p.theme.fontSizes[1]}px;
   line-height: 1.35;
-  /* color: ${p => p.theme.colors.primaryText}; */
 
-  ::placeholder {
+  &:hover,
+  &:focus {
+    color: ${p => p.theme.colors.buttonAccent};
+    transition: ${p => p.theme.transition};
+  }
+
+  &::placeholder {
     font-family: ${p => p.theme.fonts.body};
     font-style: normal;
     font-weight: ${p => p.theme.fontWeights.regular};
@@ -146,10 +149,9 @@ export const DateInput = styled(Field)`
   }
 `;
 
-export const StyledError = styled(ErrorMessage)`
-  position: absolute;
-  top: 0;
-  right: 0;
+export const StyledError = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;
 
 export const ButtonWrapper = styled.div`
@@ -164,20 +166,6 @@ export const ButtonWrapper = styled.div`
     flex-direction: row;
   }
 `;
-
-// export const ButtonStyled = styled.button`
-//   width: 70px;
-//   height: 27px;
-//   font-family: ${p => p.theme.fonts.body};
-//   font-weight: ${p => p.theme.fontWeights.medium};
-//   font-size: ${p => p.theme.fontSizes[4]}px;
-//   line-height: 1.47;
-
-//   @media ${p => p.theme.device.tablet} {
-//     font-size: ${p => p.theme.fontSizes[5]}px;
-//     line-height: 1.1;
-//   }
-// `;
 
 export const ActButton = styled.button`
   width: 240px;
@@ -228,6 +216,12 @@ export const TextAreaInput = styled.textarea`
   border: 1px solid rgba(245, 146, 86, 0.5);
   font-size: ${p => p.theme.fontSizes[1]}px;
 
+  &:hover,
+  &:focus {
+    color: ${p => p.theme.colors.buttonAccent};
+    transition: ${p => p.theme.transition};
+  }
+
   @media ${p => p.theme.device.tablet} {
     width: 394px;
     height: 116px;
@@ -252,33 +246,12 @@ export const ImageLabel = styled.h2`
     font-size: ${p => p.theme.fontSizes[5]}px;
     line-height: 1.1;
   }
-
-  /* display: block;
-  outline: none;
-  box-sizing: border-box;
-  resize: none;
-  margin-top: 8px;
-  width: 240px;
-  height: 100px;
-
-  border-radius: ${p => p.theme.radii.small};
-  padding: 12px 5px 12px 14px;
-  background-color: ${p => p.theme.colors.background};
-  border: 1px solid rgba(245, 146, 86, 0.5);
-  font-size: ${p => p.theme.fontSizes[1]}px;
-
-  @media ${p => p.theme.device.tablet} {
-    width: 394px;
-    height: 116px;
-    font-size: ${p => p.theme.fontSizes[2]}px;
-  } */
 `;
 
-export const PhotoPetText = styled(Field)`
+export const PhotoPetText = styled.input`
   visibility: hidden;
-  width: 100%;
-  height: 100%;
-  background-image: ${(<CrossPic width="48" height="48" fill="none" />)};
+  width: 0;
+  height: 0;
 `;
 
 export const PhotoAddContainer = styled.label`
@@ -289,10 +262,9 @@ export const PhotoAddContainer = styled.label`
   justify-content: center;
   border-radius: 40px;
   cursor: pointer;
-  // margin: 0 auto;
   margin-right: auto;
   box-sizing: border-box;
-  // padding: 22px;
+
   border-radius: 20px;
   background-color: ${p => p.theme.colors.background};
   @media ${p => p.theme.device.tablet} {
@@ -305,10 +277,6 @@ export const ImageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${p => p.theme.colors.background};
-  border: none;
-  padding: 67px;
-  margin-bottom: 28px;
 `;
 
 export const ImageTitle = styled.label`
@@ -323,4 +291,52 @@ export const ImageTitle = styled.label`
     font-size: ${p => p.theme.fontSizes[5]}px;
     line-height: 1.04;
   }
+`;
+
+export const ImageBtn = styled.button`
+  background-color: ${p => p.theme.colors.background};
+  border: none;
+  padding: 67px;
+  margin-bottom: 28px;
+  width: 208px;
+  height: 208px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: ${p => p.theme.transition};
+
+  &:hover,
+  &:focus {
+    width: 210px;
+    height: 210px;
+    background-color: ${p => p.theme.colors.gradient};
+    transition: ${p => p.theme.transition};
+  }
+
+  @media ${p => p.theme.device.tablet} {
+    width: 182px;
+    height: 182px;
+    border-radius: 40px;
+  }
+`;
+
+export const ImageExample = styled.div`
+  margin-bottom: 28px;
+  width: 208px;
+  height: 208px;
+  background-color: ${p => p.theme.colors.background};
+  border: none;
+  border-radius: 20px;
+
+  @media ${p => p.theme.device.tablet} {
+    width: 182px;
+    height: 182px;
+    border-radius: 40px;
+  }
+`;
+
+export const Image = styled.img`
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
