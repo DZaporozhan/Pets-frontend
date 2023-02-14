@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const FriendsSection = styled.section`
-padding: 20px 0px;
+// padding: 20px 0px;
 background: ${p => p.theme.colors.background}; 
 @media ${p => p.theme.device.tablet} {
-    padding: 45px 0px;
+    // padding: 45px 0px;
   }
 @media ${p => p.theme.device.desktop} {
-    padding: 30px 0px;
+    // padding: 30px 0px;
   }
 `;
 
