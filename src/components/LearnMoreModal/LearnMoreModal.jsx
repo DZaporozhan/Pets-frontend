@@ -6,6 +6,10 @@ import {
   ContactBtn,
   InfoWrapper,
   Description,
+  AddToFavorites,
+  ActionButtons,
+  DescriptionValue,
+  DescriptionStyle,
 } from './LearnMoreModal.styled';
 
 const defaultPhoto =
@@ -13,7 +17,7 @@ const defaultPhoto =
 
 export const LearnMoreModal = ({
   noticeData,
-  onDeleteNotice,
+  // onDeleteNotice,
   favorite,
   addToFavoriteAndRemove,
 }) => {
@@ -34,21 +38,61 @@ export const LearnMoreModal = ({
         <div>
           <Title> {noticeData.title} </Title>
           <ul>
-            <li>{noticeData.category}</li>
-            <li>Name: {noticeData.name}</li>
-            <li>birthday: {noticeData.birthday}</li>
-            <li>Breed: {noticeData.breed}</li>
-            <li>Prace: {noticeData.price}</li>
-            <li>The sex: {noticeData.sex}</li>
-            <li>Email: {noticeData.email}</li>
-            <li>Phone: {noticeData.phone}</li>
+            <li>
+              <DescriptionStyle style={{ marginRight: 65 }}>
+                Name:
+              </DescriptionStyle>
+              <DescriptionValue>{noticeData.name}</DescriptionValue>
+            </li>
+            <li>
+              <DescriptionStyle style={{ marginRight: 47 }}>
+                birthday:
+              </DescriptionStyle>
+              <DescriptionValue>{noticeData.birthday}</DescriptionValue>
+            </li>
+            <li>
+              <DescriptionStyle style={{ marginRight: 65 }}>
+                Breed:
+              </DescriptionStyle>
+              <DescriptionValue>{noticeData.breed}</DescriptionValue>
+            </li>
+            <li>
+              <DescriptionStyle style={{ marginRight: 69 }}>
+                Prace:
+              </DescriptionStyle>
+              <DescriptionValue>{noticeData.price}</DescriptionValue>
+            </li>
+            <li>
+              <DescriptionStyle style={{ marginRight: 54 }}>
+                The sex:
+              </DescriptionStyle>
+              <DescriptionValue>{noticeData.sex}</DescriptionValue>
+            </li>
+            <li>
+              <DescriptionStyle style={{ marginRight: 71 }}>
+                Email:
+              </DescriptionStyle>
+              <DescriptionValue>{noticeData.email}</DescriptionValue>
+            </li>
+            <li>
+              <DescriptionStyle style={{ marginRight: 62 }}>
+                Phone:
+              </DescriptionStyle>
+              <DescriptionValue>{noticeData.phone}</DescriptionValue>
+            </li>
           </ul>
         </div>
       </InfoWrapper>
-
       <Description text={noticeData.comments} />
 
-      <ContactBtn href="tel:noticeData.phone">Сontact</ContactBtn>
+      <ActionButtons>
+        <AddToFavorites
+          authorized={!favorite}
+          onClick={() => addToFavoriteAndRemove(noticeData._id)}
+          favoriteId={favorite}
+        />
+        <ContactBtn href="tel:noticeData.phone">Сontact</ContactBtn>
+      </ActionButtons>
     </Container>
   );
 };
