@@ -49,7 +49,11 @@ export const AddBtnPosition = styled.div`
   @media screen and (${p => p.theme.device.tablet}) {
     position: static;
     z-index: 0;
-  } ;
+  }
+
+  @media screen and (orientation: landscape) {
+    top: 255px;
+  }
 `;
 
 export const NavLinkPosition = styled.nav`
