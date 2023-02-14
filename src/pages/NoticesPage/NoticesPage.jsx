@@ -77,7 +77,8 @@ const NoticesPage = () => {
     if (!isLoggedIn) return;
     (async () => {
       const allFavorite = await getFavoriteNotices();
-      setFavorite(allFavorite.map(({ _id }) => _id));
+
+      setFavorite(allFavorite.data.map(el => el._id));
     })();
   }, [isLoggedIn]);
 
