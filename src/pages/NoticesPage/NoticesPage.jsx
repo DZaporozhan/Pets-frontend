@@ -69,10 +69,16 @@ const NoticesPage = () => {
   };
 
   useEffect(() => {
+    setPage(1);
+    setTotalPage(0);
+  }, [categoryName]);
+
+  useEffect(() => {
     if (!isLoggedIn) return;
     (async () => {
       const allFavorite = await getFavoriteNotices();
-      setFavorite(allFavorite.map(({ _id }) => _id));
+
+      setFavorite(allFavorite.data.map(el => el._id));
     })();
   }, [isLoggedIn]);
 
@@ -160,8 +166,8 @@ const NoticesPage = () => {
           page,
         });
         if (['favorite', 'owner'].includes(categoryName)) {
-          setNotices(noticesByCategory.data);
-          setTotalPage(Math.ceil(noticesByCategory.data.length / 8));
+          setNotices(noticesByCategory.data.data);
+          setTotalPage(Math.ceil(noticesByCategory.data.total / 8));
         } else {
           setNotices(noticesByCategory.data.data.result);
           setTotalPage(Math.ceil(noticesByCategory.data.data.total / 8));
