@@ -8,19 +8,23 @@ import {
   SecondInpError,
   ThirdInpError,
 } from '../AuthForm.styled';
+const emailRegexp =
+  // eslint-disable-next-line no-useless-escape
+  /^(?=.{10,63}$)(([0-9A-Za-z]{1}[-0-9A-z\.]{1,}[0-9A-Za-z]{1})@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/;
 
 const validationSchema = Yup.object({
   email: Yup.string()
-    .email('Неправильний поштовий адрес')
-    .required('Це поле не може бути порожнім'),
+    .email('Invalid email')
+    .required('Email is required')
+    .matches(emailRegexp, 'Must contain only latin letters'),
   password: Yup.string()
     .trim()
-    .required('Це поле не може бути порожнім')
-    .min(7, 'Пароль містить мінімум 7 символів')
-    .max(32, 'Пароль містить максимум 32 символи'),
+    .required('Password is required')
+    .min(7, 'Password must have min 7 symbol')
+    .max(32, 'Password must have max 32 symbol'),
   confirmPassword: Yup.string()
-    .required('Це поле не може бути порожнім')
-    .oneOf([Yup.ref('password'), null], 'Пароль не співпадає'),
+    .required('Email is required')
+    .oneOf([Yup.ref('password'), null], 'Password is not coincide'),
 });
 
 const SignUpStep1 = ({ data, onSubmit }) => {
