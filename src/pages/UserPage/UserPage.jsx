@@ -15,6 +15,7 @@ import {
 import { toast } from 'react-toastify';
 import { getError, getIsLoading } from 'redux/user/selectors';
 import { useSelector } from 'react-redux';
+import { Loader } from 'components/Loader/Loader';
 
 const UserPage = () => {
   const dispatch = useDispatch();
@@ -49,8 +50,10 @@ const UserPage = () => {
           </p>
         </PetContainer>
         <PetContainer></PetContainer> */}
+
+        {isLoading && <Loader />}
       </PetSection>
-      {isLoading && <b> Loading...</b>}
+
       {error && toast.error('Something wrong :( Please, try again later!')}
     </MainContainer>
   );

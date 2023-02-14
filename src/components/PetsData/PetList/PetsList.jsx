@@ -1,7 +1,7 @@
 import { Loader } from 'components/Loader/Loader';
 import { useSelector } from 'react-redux';
 import { getUserInfo } from 'redux/user/selectors';
-import Pet from './Pet';
+import Pet from '../Pet/Pet';
 import { Card, StyledList } from './PetsList.styled';
 
 const PetsList = () => {
@@ -16,9 +16,9 @@ const PetsList = () => {
         <div>No content</div>
       ) : (
         <StyledList>
-          {userPets.map(({ _id, ...userPets }) => (
-            <Card key={_id}>
-              <Pet userPet={userPets} />
+          {userPets.map(pet => (
+            <Card key={pet._id}>
+              <Pet userPet={pet} />
             </Card>
           ))}
         </StyledList>
