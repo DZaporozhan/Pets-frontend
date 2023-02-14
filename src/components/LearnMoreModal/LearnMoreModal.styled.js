@@ -216,7 +216,7 @@ export const CategoryTitleWraper = styled.div`
   position: absolute;
   top: 20px;
   left: 0px;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.8);
   padding: 6px 0px 6px 20px;
   width: 158px;
   border-top-right-radius: 40px;
