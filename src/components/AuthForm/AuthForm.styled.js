@@ -124,7 +124,7 @@ export const BackButton = styled.button`
 export const FirstInpError = styled.p`
   position: absolute;
   color: red;
-  min-width: 185px;
+  min-width: 260px;
   top: 160px;
   left: 50%;
   transform: translateX(-50%);
@@ -137,7 +137,7 @@ export const FirstInpError = styled.p`
 export const SecondInpError = styled.p`
   position: absolute;
   color: red;
-  min-width: 185px;
+  min-width: 260px;
   top: 227px;
   left: 50%;
   transform: translateX(-50%);
@@ -150,7 +150,7 @@ export const SecondInpError = styled.p`
 export const ThirdInpError = styled.p`
   position: absolute;
   color: red;
-  min-width: 185px;
+  min-width: 260px;
   top: 295px;
   left: 50%;
   transform: translateX(-50%);

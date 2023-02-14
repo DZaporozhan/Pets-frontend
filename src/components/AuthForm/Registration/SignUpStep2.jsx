@@ -11,16 +11,21 @@ import {
 } from '../AuthForm.styled';
 import { register } from 'redux/auth/operations';
 
+const nameRegexp = /^(?=.{2,16}$)([A-Za-z])*$/;
+const cityRegEx = /^[-a-z]+(?:(?:(,\s|,)[-a-z]+))$/i;
+
 const validationSchema = Yup.object({
   name: Yup.string()
-    .required('Це поле не може бути порожнім')
-    .matches(/^[а-яА-ЯїЇіІЁёa-zA-Z]+$/, 'Тільки літери'),
+    .required('Name is required')
+    .matches(nameRegexp, 'Must contain only latin letters')
+    .min(2, 'Name must have min 2 letters')
+    .max(16, 'Name must have max 16 letters'),
   city: Yup.string()
-    .required('Це поле не може бути порожнім')
-    .matches(/[A-Z][a-z]+, [A-Z][a-z]*/, 'Введіть в форматі: місто, область'),
+    .required('City is required')
+    .matches(cityRegEx, 'Entered city should have the format: City, Region'),
   phone: Yup.string()
-    .required('Це поле не може бути порожнім')
-    .matches(/^\+380\d{9}$/, 'Неправильний номер телефону'),
+    .required('Phone is required')
+    .matches(/^\+380\d{9}$/, 'Entered phote should have the format: +380()'),
 });
 
 const SignUpStep2 = ({ data, step1, onBack }) => {

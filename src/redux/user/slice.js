@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getUserData } from './operations';
+import { addPet, deletePet, getUserData } from './operations';
 
 const initialState = {
   userInfo: {},
@@ -27,6 +27,24 @@ const userSlice = createSlice({
       state.isLoading = false;
     },
     [getUserData.rejected]: handleRejected,
+
+    //ADD PET
+    [addPet.pending]: handlePending,
+    [addPet.fulfilled](state, action) {
+      state.userInfo.userPets = [action.payload, ...state.userInfo.userPets];
+      state.isLoading = false;
+    },
+    [addPet.rejected]: handleRejected,
+
+    //DELETE PET
+    [deletePet.pending]: handlePending,
+    [deletePet.fulfilled](state, action) {
+      state.userInfo.userPets = state.userInfo.userPets.filter(
+        ({ _id }) => _id !== action.payload.id
+      );
+      state.isLoading = false;
+    },
+    [deletePet.rejected]: handleRejected,
   },
 });
 

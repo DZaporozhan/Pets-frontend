@@ -9,15 +9,20 @@ import {
   FormInput,
   SecondInpError,
 } from '../AuthForm.styled';
+const emailRegexp =
+  // eslint-disable-next-line no-useless-escape
+  /^(?=.{10,63}$)(([0-9A-Za-z]{1}[-0-9A-z\.]{1,}[0-9A-Za-z]{1})@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/;
 
 const validationSchema = Yup.object({
   email: Yup.string()
-    .email('Email містить помилки')
-    .required('Це поле не може бути порожнім'),
+    .email('Invalid email')
+    .required('Email is required')
+    .matches(emailRegexp, 'Must contain only latin letters'),
   password: Yup.string()
-    .required('Це поле не може бути порожнім')
-    .min(7, 'Пароль містить мінімум 7 символів')
-    .max(32, 'Пароль містить максимум 32 символи'),
+    .trim()
+    .required('Password is required')
+    .min(7, 'Password must have min 7 symbol')
+    .max(32, 'Password must have max 32 symbol'),
 });
 
 const Login = () => {

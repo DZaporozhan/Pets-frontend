@@ -1,5 +1,5 @@
 import { NoticesList } from 'components/NoticesList/NoticesList';
-import { useEffect, useState, CSSProperties } from 'react';
+import { useEffect, useState } from 'react';
 import {
   SectionList,
   Container,
@@ -32,8 +32,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import PuffLoader from 'react-spinners/PuffLoader';
 import { AddNoticeForm } from 'components/AddNoticeForm/AddNoticeForm';
 import DancingBear from '../../../src/icons/dancingBear_min.gif';
+import { PaginationComponent } from 'components/Pagination/Pagination';
 
-const override: CSSProperties = {
+const override = {
   display: 'block',
   margin: '0 auto',
 };
@@ -46,6 +47,8 @@ const NoticesPage = () => {
   const { categoryName } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [loadNotices, setLoadNotices] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(0);
 
   const toggleModal = () => {
     if (!isLoggedIn) {
@@ -66,10 +69,16 @@ const NoticesPage = () => {
   };
 
   useEffect(() => {
+    setPage(1);
+    setTotalPage(0);
+  }, [categoryName]);
+
+  useEffect(() => {
     if (!isLoggedIn) return;
     (async () => {
       const allFavorite = await getFavoriteNotices();
-      setFavorite(allFavorite.map(({ _id }) => _id));
+
+      setFavorite(allFavorite.data.map(el => el._id));
     })();
   }, [isLoggedIn]);
 
@@ -93,6 +102,9 @@ const NoticesPage = () => {
         setFavorite(prev => [...prev, id]);
         setIsLoading(false);
         return;
+      }
+      if (categoryName === 'favorite') {
+        setNotices(prev => prev.filter(({ _id }) => _id !== id));
       }
       setIsLoading(true);
       await removeNoticeFromFavorite(id);
@@ -151,15 +163,21 @@ const NoticesPage = () => {
         const noticesByCategory = await getNoticeByCategory({
           category: categoryName,
           filter: search,
+          page,
         });
         if (['favorite', 'owner'].includes(categoryName)) {
-          setNotices(noticesByCategory);
+          setNotices(noticesByCategory.data.data);
+          setTotalPage(Math.ceil(noticesByCategory.data.total / 8));
         } else {
           setNotices(noticesByCategory.data.data.result);
+          setTotalPage(Math.ceil(noticesByCategory.data.data.total / 8));
         }
+
         setLoadNotices(false);
         setIsLoading(false);
       } catch (error) {
+        setTotalPage(0);
+        setPage(1);
         setNotices([]);
         console.log(error);
         setLoadNotices(false);
@@ -167,7 +185,7 @@ const NoticesPage = () => {
       }
     };
     getNotices();
-  }, [categoryName, search]);
+  }, [categoryName, search, page]);
 
   useEffect(() => {
     SetSearch('');
@@ -176,7 +194,7 @@ const NoticesPage = () => {
   }, [categoryName]);
 
   return (
-    <>
+    <main>
       <NavContainer>
         <Section title={`Find your favorite pet`}>
           <Searchbar
@@ -245,10 +263,13 @@ const NoticesPage = () => {
               </ErrorPosition>
             </Container>
           )}
+          {totalPage >= 2 && (
+            <PaginationComponent paginateData={{ totalPage, setPage }} />
+          )}
         </Container>
       </SectionList>
       <ToastContainer />
-    </>
+    </main>
   );
 };
 
