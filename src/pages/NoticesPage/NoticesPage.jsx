@@ -59,11 +59,19 @@ const NoticesPage = () => {
       try {
         setLoadNotices(true);
         setIsLoading(true);
+
         const noticesByCategory = await getNoticeByCategory({
           category: categoryName,
           filter: search,
           page,
         });
+
+        if (
+          Math.ceil(noticesByCategory.data.total / 8) < page ||
+          Math.ceil(noticesByCategory.data.data.total / 8) < page
+        )
+          setPage(1);
+
         if (['favorite', 'owner'].includes(categoryName)) {
           setTotalPage(Math.ceil(noticesByCategory.data.total / 8));
           setNotices(noticesByCategory.data.data);
@@ -71,6 +79,7 @@ const NoticesPage = () => {
           setTotalPage(Math.ceil(noticesByCategory.data.data.total / 8));
           setNotices(noticesByCategory.data.data.result);
         }
+
         setLoadNotices(false);
         setIsLoading(false);
       } catch (error) {
@@ -84,13 +93,6 @@ const NoticesPage = () => {
     };
     getNotices();
   }, [categoryName, search, page]);
-
-  useEffect(() => {
-    return () => {
-      setPage(1);
-      setTotalPage(0);
-    };
-  }, [categoryName]);
 
   useEffect(() => {
     if (!isLoggedIn) return;
