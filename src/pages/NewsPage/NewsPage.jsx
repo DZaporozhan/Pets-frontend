@@ -14,7 +14,7 @@ const NewsPage = () => {
   const handleSubmit = e => {
     e.preventDefault();
     // console.log(query);
-    const filteredNews = news.filter(el => el.title.includes(query))
+    const filteredNews = news.filter(el => el.description.includes(query) || el.title.includes(query))
   console.log(filteredNews);
   if(filteredNews.length === 0){setNotFound(true)}
   setNews(filteredNews);
