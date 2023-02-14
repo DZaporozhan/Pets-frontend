@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FiHeart } from 'react-icons/fi';
-import { ModalButton } from 'components/ModalBtn/ModalBtn';
-import { ReactComponent as IconHeart } from '../../../src/icons/smallHeart.svg';
+// import { ModalButton } from 'components/ModalBtn/ModalBtn';
+// import { ReactComponent as IconHeart } from '../../../src/icons/smallHeart.svg';
 
 export const Container = styled.div`
   flex-direction: column;
@@ -132,39 +132,13 @@ export const Description = ({ text }) => (
   </DescriptionText>
 );
 
-export const ModalBtn = styled(ModalButton)`
-  color: ${({ authorized, primary }) => {
-    if (!authorized && !primary) return 'rgba(17, 17, 17, 0.1)';
-    if (primary) return 'white';
-    return '#f59256';
-  }};
-  width: 100%;
-  @media ${p => p.theme.device.tablet} {
-    width: 160px;
-  }
-`;
+// export const AddToFavorites = ({ authorized, onClick, favoriteId }) => (
+//   <ModalButton authorized={authorized} onClick={onClick}>
+//     {!favoriteId ? 'Add to' : 'Delete'}
+//     <IconHeart />
+//   </ModalButton>
+// );
 
-export const AddToFavorites = ({ authorized, onClick, favoriteId }) => (
-  <ModalButton authorized={authorized} onClick={onClick}>
-    {!favoriteId ? 'Add to' : 'Delete'}
-    <IconHeart />
-  </ModalButton>
-);
-
-export const ActionButtons = styled.div`
-  display: flex;
-  align-items: flex-end;
-  flex-direction: column;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 0px;
-  @media ${p => p.theme.device.tablet} {
-    width: 332px;
-    flex-direction: row;
-    gap: 8px;
-    margin-left: auto;
-  }
-`;
 export const DescriptionValue = styled.span`
   font-family: 'Manrope';
   font-style: normal;
@@ -181,22 +155,6 @@ export const DescriptionStyle = styled.span`
   line-height: 22px;
   color: ${p => p.theme.colors.primaryText};
 `;
-
-//============================================
-// const ImageWrapper = styled.div`
-//   position: relative;//==========
-//   /* overflow: hidden; */
-//   object-fit: height;//===========
-//   /* width: 288px; */
-//   height: 328px;//==============
-//   left: 20px;
-//   top: 0px;
-//   background: green;
-//   /* overflow: hidden; */
-//   margin: 0 40px 16px 0;
-//   display: flex;
-//   border-radius: 0px 0px 40px 40px;
-// `;
 
 export const ImageThumb = styled.img`
   position: relative;
@@ -229,4 +187,85 @@ export const CategoryTitle = styled.p`
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes[0]}px;
   line-height: 15px;
+`;
+
+export const DeleteButton = styled.button`
+  position: absolute;
+  top: 68px;
+  right: 20px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 34px;
+  height: 34px;
+  border-radius: ${p => p.theme.radii.round};
+  border: 0px;
+  background: ${p => p.theme.colors.background};
+  backdrop-filter: blur(2px);
+  padding: 3px;
+`;
+
+export const ActionButtons = styled.div`
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 0px;
+  @media ${p => p.theme.device.tablet} {
+    width: 332px;
+    flex-direction: row;
+    gap: 8px;
+    margin-left: auto;
+  }
+`;
+
+const ModalButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 240px;
+  height: 40px;
+  padding: 9px 41px;
+  background: #ffffff;
+  border: ${props =>
+    props.authorized ? '2px solid #f59256' : '2px solid rgba(17, 17, 17, 0.1)'};
+  border-radius: 40px;
+  cursor: pointer;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  // line-height: 1.37;
+  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    border 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  color: ${p => (p.authorized ? 'black' : 'rgba(17, 17, 17, 0.1)')};
+  fill: ${p => (p.authorized ? '#f59256' : 'rgba(17, 17, 17, 0.1)')};
+  stroke: ${p => (p.authorized ? '#f59256' : 'rgba(17, 17, 17, 0.1)')};
+  @media ${p => p.theme.device.tablet} {
+    width: 180px;
+    height: 44px;
+  }
+  ${props =>
+    props.primary &&
+    `
+    background-color: #f59256;
+    color: white;
+    border: 2px solid #f59256;
+    transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), color 0.25s cubic-bezier(0.4, 0, 0.2, 1), border 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    `}
+`;
+
+export const ModalBtn = styled(ModalButton)`
+  color: ${({ authorized, primary }) => {
+    if (!authorized && !primary) return 'rgba(17, 17, 17, 0.1)';
+    if (primary) return 'white';
+    return '#f59256';
+  }};
+  width: 100%;
+  @media ${p => p.theme.device.tablet} {
+    width: 160px;
+  }
 `;
