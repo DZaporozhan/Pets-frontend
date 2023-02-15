@@ -10,6 +10,7 @@ import {
   Text,
   ErrorPosition,
   Img,
+  SnowImg,
 } from './NoticesPage.styled';
 import Modal from '../../components/Modal';
 import { AddPetBtn } from '../../components/AddPetBtn/AddPetBtn';
@@ -31,7 +32,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PuffLoader from 'react-spinners/PuffLoader';
 import { AddNoticeForm } from 'components/AddNoticeForm/AddNoticeForm';
-import DancingBear from '../../../src/icons/dancingBear_min.gif';
+import DancingBear from '../../../src/icons/dancingBear_min2.gif';
+import SnowMan from '../../../src/icons/snow-man.gif';
 import { PaginationComponent } from 'components/Pagination/Pagination';
 
 const override = {
@@ -254,6 +256,7 @@ const NoticesPage = () => {
               </ErrorPosition>
             </Container>
           )}
+          {notices.length && search && <SnowImg src={SnowMan} alt="snow-man" />}
           {notices.length !== 0 && !loadNotices && (
             <NoticesList
               notices={notices}
