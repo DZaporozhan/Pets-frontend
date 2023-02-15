@@ -15,9 +15,12 @@ export const register = createAsyncThunk(
     try {
       const { user } = await api.register(credentials);
 
-      thunkAPI.dispatch(login({ email: user.email, password: user.password }));
+      const response = await api.login({
+        email: user.email,
+        password: user.password,
+      });
 
-      return user;
+      return response;
     } catch ({ response }) {
       const { status, data } = response;
       const error = {

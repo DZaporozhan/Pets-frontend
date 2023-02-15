@@ -33,35 +33,7 @@ export const SecPageContainer = styled.div`
 `;
 
 export const Button = styled.button`
-  /* position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 34px;
-  height: 34px;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 0;
-  background: #fdf7f2;
-  border-radius: 50%;
-  cursor: pointer;
-  color: #000;
-  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  &:hover,
-  &:focus {
-    color: #f59256;
-    opacity: 1;
-  }
-  @media ${p => p.theme.device.tablet} {
-    top: 24px;
-    right: 24px;
-    width: 44px;
-    height: 44px;
-  }
-   @media ${p => p.theme.device.desktop} {
-    top: 24px;
-    right: 24px;
-  } */
+ 
 `;
 
 export const Description = styled.p`
@@ -306,7 +278,7 @@ export const SexList = styled.ul`
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
-  gap: 10px;
+  gap: 50px;
   @media ${p => p.theme.device.tablet} {
     gap:80px;
   }
@@ -342,18 +314,31 @@ export const SexLabel = styled.label`
 export const MaleWraper = styled.div`
   width: 40px;
   height: 40px;
-  margin-bottom: 15px;
+  margin-bottom: 17px;
   @media ${p => p.theme.device.tablet} {
     width: 60px;
     height: 60px;
     margin-bottom: 23px;
   }
 `;
+
+export const MalePic = styled.svg`
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  //margin-bottom: 15px;
+  @media ${p => p.theme.device.tablet} {
+    width: 60px;
+    height: 60px;
+    //margin-bottom: 23px;
+  }
+`;
+
 export const FemaleWraper = styled.div`
   width: 40px;
   height: 40px;
  
-  margin-bottom: 12px;
+  margin-bottom: 17px;
   @media ${p => p.theme.device.tablet} {
     width: 60px;
     height: 60px;
@@ -488,6 +473,104 @@ export const TitleError = styled.p`
   color: red;
   min-width: 260px;
   top: 378px;
+  left: 80%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  @media ${p => p.theme.device.tablet} {
+    top: 435px;
+    left: 65%;
+  }
+`;
+
+export const BirthdayError = styled.p`
+  position: absolute;
+  color: red;
+  min-width: 260px;
+  bottom: 230px;
+  left: 80%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  @media ${p => p.theme.device.tablet} {
+    bottom: 202px;
+    left: 65%;
+  }
+`;
+
+export const NameError = styled.p`
+  position: absolute;
+  color: red;
+  min-width: 260px;
+  top: 467px;
+  left: 80%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  @media ${p => p.theme.device.tablet} {
+    top: 554px;
+    left: 65%;
+  }
+`;
+
+export const BreedError = styled.p`
+  position: absolute;
+  color: red;
+  min-width: 260px;
+  //top: 378px;
+  left: 80%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  @media ${p => p.theme.device.tablet} {
+    //top: 435px;
+    left: 65%;
+  }
+`;
+
+export const LocationError = styled.p`
+  position: absolute;
+  color: red;
+  min-width: 260px;
+  top: 328px;
+  left: 80%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  @media ${p => p.theme.device.tablet} {
+    top: 413px;
+    left: 65%;
+  }
+`;
+
+export const PriceError = styled.p`
+  position: absolute;
+  color: red;
+  min-width: 260px;
+  top: 417px;
+  left: 80%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  @media ${p => p.theme.device.tablet} {
+    top: 536px;
+    left: 65%;
+  }
+`;
+
+export const CommentError = styled.p`
+  position: absolute;
+  color: red;
+  min-width: 260px;
+  bottom: 141px;
+  left: 80%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  @media ${p => p.theme.device.tablet} {
+    bottom: 85px;
+    left: 65%;
+  }
+`;
+
+export const Error = styled.p`
+  position: absolute;
+  color: red;
+  min-width: 260px;
+  bottom: 150px;
   left: 80%;
   transform: translateX(-50%);
   font-size: 12px;

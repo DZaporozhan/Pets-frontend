@@ -40,7 +40,13 @@ import {
   MaleWraper,
   FemaleWraper,
   StarSpanLocation,
-  TitleError
+  TitleError,
+  BirthdayError,
+  NameError,
+  BreedError,
+  LocationError,
+  PriceError,
+  CommentError
 } from './AddNoticeForm.styled.';
 import { addNotice } from 'services/api/notices';
 
@@ -76,9 +82,10 @@ const validationSchema = Yup.object({
   location: Yup.string().required('Type the location'),
   sex: Yup.string().required('Choose sex'),
   price: Yup.string().when('category', {
-    is: category => category === 'sell',
+    is:'sell',
     then: Yup.string()
-      // .required('Price is required')
+      .required('Price is required')
+      .matches(/^-?\d*\d+.?(\d{1,2})?$/, 'can not be zero, sign $ is required'),
       
   }),
   comments: Yup.string()
@@ -106,7 +113,7 @@ export const AddNoticeForm = ({ onClose}) => {
       breed: '',
       sex: '',
       location: '',
-      price: 1,
+      price: '',
       imageURL: null,
       comments: '',
     },
@@ -187,8 +194,9 @@ export const AddNoticeForm = ({ onClose}) => {
                   value="sell"
                   id="sell"
                   defaultChecked={
-                    formik.values.category === 'sell' ? true : false
+                    formik.values.category === 'sell'
                   }
+                  onChange={() => formik.handleRadioButtonChange("sell", formik.setFieldValue)}
                 />
                 <CategoryRadio>sell</CategoryRadio>
               </CategoryLabel>
@@ -221,7 +229,7 @@ export const AddNoticeForm = ({ onClose}) => {
                   placeholder="Type name pet"
                 />
                  {formik.touched.name && formik.errors.name && (
-                    <p>{formik.errors.name}</p>
+                    <NameError>{formik.errors.name}</NameError>
                   )} 
               </TextLabel>
             </InputWraper>
@@ -238,7 +246,7 @@ export const AddNoticeForm = ({ onClose}) => {
                   placeholder="Type date of birth"
                 />
                  {formik.touched.birthday && formik.errors.birthday && (
-                    <p>{formik.errors.birthday}</p>
+                    <BirthdayError>{formik.errors.birthday}</BirthdayError>
                   )} 
               </TextLabel>
             </InputWraper>
@@ -254,7 +262,7 @@ export const AddNoticeForm = ({ onClose}) => {
                   placeholder="Type breed"
                 />
                  {formik.touched.breed && formik.errors.breed && (
-                    <p>{formik.errors.breed}</p>
+                    <BreedError>{formik.errors.breed}</BreedError>
                   )} 
               </TextLabel>
             </InputWraper>
@@ -306,9 +314,9 @@ export const AddNoticeForm = ({ onClose}) => {
             <InputWraper>
               <TextLabel htmlFor="locationPet">
                 Location<StarSpanLocation>&#42;</StarSpanLocation>:
-                {formik.values.location !== '' && formik.errors.location ? (
-                  <p>{formik.errors.location}</p>
-                ) : null}
+                {formik.touched.location && formik.errors.location &&(
+                  <LocationError>{formik.errors.location}</LocationError>
+                )}
                 <TextInput
                   value={formik.values.location}
                   id="location"
@@ -324,9 +332,9 @@ export const AddNoticeForm = ({ onClose}) => {
                 <TextLabel htmlFor="pricePet">
                   Price
                   <StarSpan>&#42;</StarSpan>:
-                  {formik.values.price !== '' && formik.errors.price ? (
-                    <p>{formik.errors.price}</p>
-                  ) : null}
+                  {formik.touched.price && formik.errors.price && (
+                    <PriceError>{formik.errors.price}</PriceError>
+                  )}
                   <TextInput
                     id="pricePet"
                     name="price"
@@ -363,9 +371,9 @@ export const AddNoticeForm = ({ onClose}) => {
             <InputContTextArea>
               <TextLabel htmlFor="commentsId">
                 Comments<StarSpan>&#42;</StarSpan>
-                {formik.values.comments !== '' && formik.errors.comments ? (
-                  <p>{formik.errors.comments}</p>
-                ) : null}
+                {formik.touched.comments && formik.errors.comments && (
+                  <CommentError>{formik.errors.comments}</CommentError>
+                )}
               </TextLabel>
               <TextAreaInput
                 id="commentsId"
