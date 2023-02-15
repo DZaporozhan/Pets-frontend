@@ -86,9 +86,9 @@ export const LearnMoreModal = ({
             </li>
             <li>
               <DescriptionStyle style={{ marginRight: 65 }}>
-                Prace:
+                Place:
               </DescriptionStyle>
-              <DescriptionValue>{noticeData.price}</DescriptionValue>
+              <DescriptionValue>{noticeData.location}</DescriptionValue>
             </li>
             <li>
               <DescriptionStyle style={{ marginRight: 49 }}>
@@ -107,6 +107,12 @@ export const LearnMoreModal = ({
                 Phone:
               </DescriptionStyle>
               <DescriptionValue>{noticeData.phone}</DescriptionValue>
+            </li>
+            <li>
+              <DescriptionStyle style={{ marginRight: 70 }}>
+                Price:
+              </DescriptionStyle>
+              <DescriptionValue>{noticeData.price}</DescriptionValue>
             </li>
           </ul>
         </div>

@@ -256,7 +256,7 @@ const ModalButton = styled.button`
   stroke: ${p => (p.authorized ? '#f59256' : 'rgba(17, 17, 17, 0.1)')};
   @media ${p => p.theme.device.tablet} {
     width: 180px;
-    height: 44px;
+    height: 40px;
   }
   ${props =>
     props.primary &&
