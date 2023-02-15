@@ -15,11 +15,11 @@ export const register = createAsyncThunk(
     try {
       const { user } = await api.register(credentials);
 
-      await thunkAPI.dispatch(
+      const { payload: response } = await thunkAPI.dispatch(
         login({ email: user.email, password: user.password })
       );
-
-      return user;
+      console.log(response);
+      return response;
     } catch ({ response }) {
       const { status, data } = response;
       const error = {
