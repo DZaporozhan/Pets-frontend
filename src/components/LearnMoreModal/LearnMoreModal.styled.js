@@ -103,9 +103,9 @@ const DescriptionText = styled.p`
   text-align: left;
   font-size: 14px;
   line-height: 1.4;
-  font-family: 'Manrope';
+  font-family: ${p => p.theme.fonts.body};
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
 
   @media ${p => p.theme.device.tablet} {
     margin-bottom: 50px;
@@ -119,7 +119,7 @@ const DescriptionText = styled.p`
 
 const DescriptionLabel = styled.span`
   font-weight: 600;
-  font-family: 'Manrope';
+  font-family: ${p => p.theme.fonts.body};
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -136,6 +136,7 @@ export const Description = ({ text }) => (
     {text}
   </DescriptionText>
 );
+//13:59
 
 // export const AddToFavorites = ({ authorized, onClick, favoriteId }) => (
 //   <ModalButton authorized={authorized} onClick={onClick}>
@@ -145,20 +146,21 @@ export const Description = ({ text }) => (
 // );
 
 export const DescriptionValue = styled.span`
-  font-family: 'Manrope';
+  font-family: ${p => p.theme.fonts.body};
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
-  color: ${p => p.theme.colors.primaryText};
+  color: #000000;
 `;
 
 export const DescriptionStyle = styled.span`
-  font-family: ${p => p.theme.colors.white};
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSizes[2]}px;
+  font-family: ${p => p.theme.fonts.body};
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
   line-height: 22px;
-  color: ${p => p.theme.colors.primaryText};
+  color: #000000;
 `;
 
 export const ImageThumb = styled.img`
@@ -187,11 +189,12 @@ export const CategoryTitleWraper = styled.div`
 `;
 
 export const CategoryTitle = styled.p`
-  font-family: Inter, sans-serif;
+  font-family: ${p => p.theme.fonts.body};
   text-align: ${({ category }) => (category === 'sell' ? 'center' : 'left')};
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes[0]}px;
-  line-height: 15px;
+  line-height: 16px;
+  align-items: center;
 `;
 
 export const DeleteButton = styled.button`
