@@ -6,11 +6,4 @@ export const PaginationStyled = styled(Pagination)`
   align-items: center;
   justify-content: center;
   margin-top: 90px;
-  ul {
-    li {
-      .css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
-        background-color: #f59256;
-      }
-    }
-  }
 `;
