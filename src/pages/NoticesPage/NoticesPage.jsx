@@ -172,13 +172,6 @@ const NoticesPage = () => {
     SetFilter(true);
   };
 
-  const onDeleteRequest = value => {
-    if (!filter) {
-      setTitleRequest('');
-      SetFilter(true);
-    }
-  };
-
   const onSubmit = e => {
     e.preventDefault();
     if (titleRequest.trim() === '') {
@@ -190,9 +183,12 @@ const NoticesPage = () => {
         return !prevState;
       });
     }
-    onDeleteRequest(titleRequest);
+
     SetSearch(titleRequest);
+
     if (!filter) {
+      setTitleRequest('');
+      SetFilter(true);
       SetSearch('');
     }
   };
