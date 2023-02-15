@@ -33,6 +33,7 @@ const authSlice = createSlice({
     [register.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = null;
+      state.isLoggedIn = true;
       state.isAuthLoading = false;
     },
     [register.rejected]: handleRejected,
