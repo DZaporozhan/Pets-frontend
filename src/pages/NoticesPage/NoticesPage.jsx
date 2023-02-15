@@ -250,6 +250,14 @@ const NoticesPage = () => {
             aria-label="Loading Spinner"
             cssOverride={override}
           />
+          {!notices.length && !filter && (
+            <Container>
+              <ErrorPosition>
+                <Text> Oops, Notices Not Found</Text>
+                <Img src={DancingBear} alt="dancing bear" />
+              </ErrorPosition>
+            </Container>
+          )}
           {notices.length !== 0 && !loadNotices && (
             <NoticesList
               notices={notices}
@@ -258,14 +266,6 @@ const NoticesPage = () => {
               addToFavoriteAndRemove={addToFavoriteAndRemove}
               isLoading={isLoading}
             />
-          )}
-          {!notices.length && !filter && (
-            <Container>
-              <ErrorPosition>
-                <Text> Oops, Notices Not Found</Text>
-                <Img src={DancingBear} alt="dancing bear" />
-              </ErrorPosition>
-            </Container>
           )}
           {totalPage >= 2 && (
             <PaginationComponent paginateData={{ totalPage, setPage }} />
