@@ -74,7 +74,7 @@ export const LearnMoreModal = ({
             </li>
             <li>
               <DescriptionStyle style={{ marginRight: 46 }}>
-                birthday:
+                Birthday:
               </DescriptionStyle>
               <DescriptionValue>{noticeData.birthday}</DescriptionValue>
             </li>
