@@ -3,13 +3,16 @@ import { createPortal } from 'react-dom';
 import { BackDrop, ModalWindow, BtnClose, IconClose } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
+const body = document.querySelector('#root');
 
 export default class Modal extends Component {
   componentDidMount() {
+    body.style.position = 'fixed';
     window.addEventListener('keydown', this.onKeyDown);
   }
 
   componentWillUnmount() {
+    body.style.position = 'unset';
     window.removeEventListener('keydown', this.onKeyDown);
   }
 
