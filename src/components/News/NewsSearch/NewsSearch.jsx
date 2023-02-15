@@ -18,7 +18,7 @@ export const NewsSearch =({setQuery, handleSubmit, query})=>{
             name="newsSearch"
           />
           <SearchFormButton type="submit">
-            <AiOutlineSearch size="20px" />
+            <AiOutlineSearch size="20px" style={{textRendering: "optimizeLegibility", fill: "inherit"}}/>
           </SearchFormButton>
         </SearchForm>
       </>

@@ -113,13 +113,15 @@ export const AddNoticeForm = ({ onClose}) => {
       breed: '',
       sex: '',
       location: '',
-      price: '',
       imageURL: null,
       comments: '',
     },
     validationSchema: validationSchema,
     onSubmit: async values => {
       const data = new FormData();
+      if (values.price) {
+        data.append('price', values.price);
+      }
       data.append('category', values.category);
       data.append('title', values.title);
       data.append('name', values.name);
@@ -127,7 +129,6 @@ export const AddNoticeForm = ({ onClose}) => {
       data.append('breed', values.breed);
       data.append('sex', values.sex);
       data.append('location', values.location);
-      data.append('price', values.price);
       data.append('imageURL', values.imageURL);
       data.append('comments',values.comments);
       
@@ -196,7 +197,6 @@ export const AddNoticeForm = ({ onClose}) => {
                   defaultChecked={
                     formik.values.category === 'sell'
                   }
-                  onChange={() => formik.handleRadioButtonChange("sell", formik.setFieldValue)}
                 />
                 <CategoryRadio>sell</CategoryRadio>
               </CategoryLabel>

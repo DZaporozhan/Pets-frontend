@@ -10,6 +10,7 @@ import {
   Text,
   ErrorPosition,
   Img,
+  SnowImg,
 } from './NoticesPage.styled';
 import Modal from '../../components/Modal';
 import { AddPetBtn } from '../../components/AddPetBtn/AddPetBtn';
@@ -31,7 +32,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PuffLoader from 'react-spinners/PuffLoader';
 import { AddNoticeForm } from 'components/AddNoticeForm/AddNoticeForm';
-import DancingBear from '../../../src/icons/dancingBear_min.gif';
+import DancingBear from '../../../src/icons/dancingBear_min2.gif';
+import SnowMan from '../../../src/icons/snow-man.gif';
 import { PaginationComponent } from 'components/Pagination/Pagination';
 
 const override = {
@@ -172,13 +174,6 @@ const NoticesPage = () => {
     SetFilter(true);
   };
 
-  const onDeleteRequest = value => {
-    if (!filter) {
-      setTitleRequest('');
-      SetFilter(true);
-    }
-  };
-
   const onSubmit = e => {
     e.preventDefault();
     if (titleRequest.trim() === '') {
@@ -190,9 +185,12 @@ const NoticesPage = () => {
         return !prevState;
       });
     }
-    onDeleteRequest(titleRequest);
+
     SetSearch(titleRequest);
+
     if (!filter) {
+      setTitleRequest('');
+      SetFilter(true);
       SetSearch('');
     }
   };
@@ -250,6 +248,15 @@ const NoticesPage = () => {
             aria-label="Loading Spinner"
             cssOverride={override}
           />
+          {!notices.length && !filter && (
+            <Container>
+              <ErrorPosition>
+                <Text> Oops, Notices Not Found</Text>
+                <Img src={DancingBear} alt="dancing bear" />
+              </ErrorPosition>
+            </Container>
+          )}
+          {notices.length && search && <SnowImg src={SnowMan} alt="snow-man" />}
           {notices.length !== 0 && !loadNotices && (
             <NoticesList
               notices={notices}
@@ -258,14 +265,6 @@ const NoticesPage = () => {
               addToFavoriteAndRemove={addToFavoriteAndRemove}
               isLoading={isLoading}
             />
-          )}
-          {!notices.length && !filter && (
-            <Container>
-              <ErrorPosition>
-                <Text> Oops, Notices Not Found</Text>
-                <Img src={DancingBear} alt="dancing bear" />
-              </ErrorPosition>
-            </Container>
           )}
           {totalPage >= 2 && (
             <PaginationComponent paginateData={{ totalPage, setPage }} />
