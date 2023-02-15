@@ -95,3 +95,14 @@ export const Img = styled.img`
     margin: 0 auto;
   } ;
 `;
+
+export const SnowImg = styled.img`
+  display: none;
+  @media screen and (${p => p.theme.device.desktop}) {
+    display: block;
+    position: absolute;
+    width: 350px;
+    top: 6vw;
+    left: 18vw;
+  }
+`;
