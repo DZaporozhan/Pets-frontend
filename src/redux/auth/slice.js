@@ -3,7 +3,10 @@ import { login, logout, register, current } from './operations';
 
 const initialState = {
   user: {
-    email: null,
+    email: ' ',
+    name: ' ',
+    city: ' ',
+    phone: ' ',
   },
   token: null,
   isLoggedIn: false,
@@ -30,7 +33,6 @@ const authSlice = createSlice({
     [register.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = null;
-      state.isLoggedIn = true;
       state.isAuthLoading = false;
     },
     [register.rejected]: handleRejected,
