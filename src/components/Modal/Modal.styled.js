@@ -22,33 +22,25 @@ export const ModalWindow = styled.div`
   padding: 20px;
   background-color: ${p => p.theme.colors.white};
   border-radius: ${p => p.theme.radii.small};
-  margin: 30vh 0;
+  margin: 19vh 0;
 
   @media screen and (${p => p.theme.device.tablet}) {
     min-width: 608px;
-  }
-
-  @media screen and (${p => p.theme.device.tablet}) {
-    min-width: 608px;
-    margin: 175px 0;
+    margin: 12vw 0;
   }
 
   @media screen and (orientation: landscape) {
     margin: 40vw 0;
   }
-  @media screen and (min-width: 820px) {
-    min-width: 608px;
-    margin: 10vw 0;
-  }
 
   @media screen and (min-width: 1024px) {
     min-width: 608px;
-    margin: 10vw 0;
+    margin: 12vw 0;
   }
 
   @media screen and (min-width: 1440px) {
     min-width: 608px;
-    margin: 5vw 0;
+    margin: 0vw 0;
   }
 `;
 

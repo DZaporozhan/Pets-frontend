@@ -7,14 +7,15 @@ import {
   AddBtnPosition,
   NavLinkPosition,
   BtnPosition,
-  Text,
-  ErrorPosition,
-  Img,
+  IconAdd,
+  TextAddBtn,
+  MobileAddBtn,
 } from './NoticesPage.styled';
 import Modal from '../../components/Modal';
 import { AddPetBtn } from '../../components/AddPetBtn/AddPetBtn';
 import { Section } from '../../components/Section/Section';
 import { Searchbar } from '../../components/Searchbar/Searchbar';
+import { SuccessSearch } from 'components/SuccessSearch/SuccessSearch';
 import {
   getNoticeByCategory,
   removeNotice,
@@ -31,8 +32,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PuffLoader from 'react-spinners/PuffLoader';
 import { AddNoticeForm } from 'components/AddNoticeForm/AddNoticeForm';
-import DancingBear from '../../../src/icons/dancingBear_min.gif';
 import { PaginationComponent } from 'components/Pagination/Pagination';
+import { ErrorSearch } from 'components/ErrorSearch/ErrorSearch';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const override = {
   display: 'block',
@@ -53,10 +55,14 @@ const NoticesPage = () => {
   const [loadNotices, setLoadNotices] = useState(false);
   const [page, setPage] = useState(parseInt(searchParams.get('page')) || 1);
   const [totalPage, setTotalPage] = useState(0);
-  //filter function state
+
+  const mobile = useMediaQuery('(max-width:666px)');
+  //search
   const [titleRequest, setTitleRequest] = useState('');
   const [filter, SetFilter] = useState(true);
   const [search, SetSearch] = useState(searchParams.get('search') || '');
+
+  const addPett = '';
 
   useEffect(() => {
     let categiryForRequest = 'sell';
@@ -112,7 +118,7 @@ const NoticesPage = () => {
       }
     };
     getNotices();
-  }, [categoryName, search, page]);
+  }, [categoryName, search, page, addPett]);
 
   useEffect(() => {
     if (!isLoggedIn) return;
@@ -122,12 +128,6 @@ const NoticesPage = () => {
       setFavorite(allFavorite.data.map(el => el._id));
     })();
   }, [isLoggedIn]);
-
-  useEffect(() => {
-    SetSearch('');
-    setTitleRequest('');
-    SetFilter(true);
-  }, [categoryName]);
 
   const toggleModal = () => {
     if (!isLoggedIn) {
@@ -213,6 +213,12 @@ const NoticesPage = () => {
     }
   };
 
+  useEffect(() => {
+    SetSearch('');
+    setTitleRequest('');
+    SetFilter(true);
+  }, [categoryName]);
+
   return (
     <main>
       <NavContainer>
@@ -247,14 +253,20 @@ const NoticesPage = () => {
           </NavLinkPosition>
           {!showModal && (
             <AddBtnPosition>
-              <AddPetBtn onClick={toggleModal}></AddPetBtn>
+              {mobile && (
+                <MobileAddBtn type="button" onClick={toggleModal}>
+                  <IconAdd />
+                  <TextAddBtn>Add pet</TextAddBtn>
+                </MobileAddBtn>
+              )}
+              {!mobile && <AddPetBtn onClick={toggleModal}></AddPetBtn>}
             </AddBtnPosition>
           )}
         </BtnPosition>
       </NavContainer>
       {showModal && (
         <Modal onClose={toggleModal}>
-          <AddNoticeForm onClose={toggleModal} />
+          <AddNoticeForm onClose={toggleModal} AddPet={addPett} />
         </Modal>
       )}
       <SectionList>
@@ -266,14 +278,6 @@ const NoticesPage = () => {
             aria-label="Loading Spinner"
             cssOverride={override}
           />
-          {!notices.length && !filter && (
-            <Container>
-              <ErrorPosition>
-                <Text> Oops, Notices Not Found</Text>
-                <Img src={DancingBear} alt="dancing bear" />
-              </ErrorPosition>
-            </Container>
-          )}
           {notices.length !== 0 && !loadNotices && (
             <NoticesList
               notices={notices}
@@ -283,6 +287,13 @@ const NoticesPage = () => {
               isLoading={isLoading}
             />
           )}
+          {!notices.length && !filter && (
+            <Container>
+              <ErrorSearch />
+            </Container>
+          )}
+          {notices.length && search && <SuccessSearch />}
+
           {totalPage >= 2 && (
             <PaginationComponent paginateData={{ totalPage, setPage, page }} />
           )}

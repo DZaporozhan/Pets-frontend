@@ -21,6 +21,8 @@ import { CiTrash } from 'react-icons/ci';
 
 import petImage from '../../icons/pets.png';
 
+import { useNavigate } from 'react-router';
+
 const onEditsText = text => {
   if (!text) return;
   if (text.length > 16) {
@@ -45,10 +47,16 @@ export const LearnMoreModal = ({
   console.log(noticeData);
   console.log(favorite);
   console.log(favoriteId);
+  //===============================================
+  const navigate = useNavigate();
 
   const onFavorite = async id => {
-    await addToFavoriteAndRemove(id);
-    return;
+    if (authorized) {
+      await addToFavoriteAndRemove(id);
+
+      return;
+    }
+    navigate('/login');
   };
 
   return (
@@ -92,7 +100,7 @@ export const LearnMoreModal = ({
             </li>
             <li>
               <DescriptionStyle style={{ marginRight: 49 }}>
-                The sex:
+                Thesex:
               </DescriptionStyle>
               <DescriptionValue>{noticeData.sex}</DescriptionValue>
             </li>
@@ -145,3 +153,4 @@ export const LearnMoreModal = ({
     </Container>
   );
 };
+//=====================================

@@ -1,3 +1,4 @@
+import { ReactComponent as AddIcon } from '../../icons/addIcon.svg';
 import styled from 'styled-components';
 
 export const SectionList = styled.section`
@@ -70,28 +71,32 @@ export const BtnPosition = styled.div`
   }
 `;
 
-export const Text = styled.p`
-  position: absolute;
-  top: 10px;
+// btn mobile
+export const MobileAddBtn = styled.button`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  padding: 16px;
+  border: 0;
+  cursor: pointer;
 
-  font-size: ${p => p.theme.fontSizes[7]}px;
+  border-radius: ${p => p.theme.radii.round};
+  background: ${p => p.theme.colors.accent};
+`;
+
+export const IconAdd = styled(AddIcon)`
+  width: 32px;
+  height: 32px;
+  color: #ffffff;
+`;
+
+export const TextAddBtn = styled.span`
   font-family: ${p => p.theme.fonts.body};
-  color: ${p => p.theme.colors.accent};
-  font-weight: ${p => p.theme.fontWeights.bold};
-  @media screen and (${p => p.theme.device.tablet}) {
-    position: static;
-  } ;
-`;
+  font-size: ${p => p.theme.fontSizes[0]}px;
+  line-height: 1.33;
 
-export const ErrorPosition = styled.div`
-  position: relative;
-  @media screen and (${p => p.theme.device.tablet}) {
-    position: static;
-    text-align: center;
-  } ;
-`;
-export const Img = styled.img`
-  @media screen and (${p => p.theme.device.tablet}) {
-    margin: 0 auto;
-  } ;
+  color: #ffffff;
 `;

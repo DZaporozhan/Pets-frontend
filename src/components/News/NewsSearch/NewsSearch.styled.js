@@ -53,11 +53,12 @@ export const SearchFormButton = styled.button`
   right: 10px;
   display: inline-block;
   background: transparent;
+  fill:black;
   border: 0;
   cursor: pointer;
   outline: none;
   &:hover {
-    color: #f59256;
+    fill: #f59256;
   }
   margin-left: -40px;
   transition: ${p => p.theme.transition};
