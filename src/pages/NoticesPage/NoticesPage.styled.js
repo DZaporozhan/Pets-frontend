@@ -1,3 +1,4 @@
+import { ReactComponent as AddIcon } from '../../icons/addIcon.svg';
 import styled from 'styled-components';
 
 export const SectionList = styled.section`
@@ -68,4 +69,34 @@ export const BtnPosition = styled.div`
     gap: 101px;
     justify-content: space-between;
   }
+`;
+
+// btn mobile
+export const MobileAddBtn = styled.button`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  padding: 16px;
+  border: 0;
+  cursor: pointer;
+
+  border-radius: ${p => p.theme.radii.round};
+  background: ${p => p.theme.colors.accent};
+`;
+
+export const IconAdd = styled(AddIcon)`
+  width: 32px;
+  height: 32px;
+  color: #ffffff;
+`;
+
+export const TextAddBtn = styled.span`
+  font-family: ${p => p.theme.fonts.body};
+  font-size: ${p => p.theme.fontSizes[0]}px;
+  line-height: 1.33;
+
+  color: #ffffff;
 `;
