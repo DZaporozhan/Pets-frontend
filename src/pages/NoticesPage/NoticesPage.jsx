@@ -7,15 +7,12 @@ import {
   AddBtnPosition,
   NavLinkPosition,
   BtnPosition,
-  Text,
-  ErrorPosition,
-  Img,
-  SnowImg,
 } from './NoticesPage.styled';
 import Modal from '../../components/Modal';
 import { AddPetBtn } from '../../components/AddPetBtn/AddPetBtn';
 import { Section } from '../../components/Section/Section';
 import { Searchbar } from '../../components/Searchbar/Searchbar';
+import { SuccessSearch } from 'components/SuccessSearch/SuccessSearch';
 import {
   getNoticeByCategory,
   removeNotice,
@@ -32,9 +29,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PuffLoader from 'react-spinners/PuffLoader';
 import { AddNoticeForm } from 'components/AddNoticeForm/AddNoticeForm';
-import DancingBear from '../../../src/icons/dancingBear_min2.gif';
-import SnowMan from '../../../src/icons/snow-man.gif';
 import { PaginationComponent } from 'components/Pagination/Pagination';
+import { ErrorSearch } from 'components/ErrorSearch/ErrorSearch';
 
 const override = {
   display: 'block',
@@ -51,7 +47,7 @@ const NoticesPage = () => {
   const [loadNotices, setLoadNotices] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
-  //filter function
+  //search
   const [titleRequest, setTitleRequest] = useState('');
   const [filter, SetFilter] = useState(true);
   const [search, SetSearch] = useState('');
@@ -248,15 +244,12 @@ const NoticesPage = () => {
             aria-label="Loading Spinner"
             cssOverride={override}
           />
+
           {!notices.length && !filter && (
             <Container>
-              <ErrorPosition>
-                <Text> Oops, Notices Not Found</Text>
-                <Img src={DancingBear} alt="dancing bear" />
-              </ErrorPosition>
+              <ErrorSearch />
             </Container>
           )}
-          {notices.length && search && <SnowImg src={SnowMan} alt="snow-man" />}
           {notices.length !== 0 && !loadNotices && (
             <NoticesList
               notices={notices}
@@ -266,6 +259,7 @@ const NoticesPage = () => {
               isLoading={isLoading}
             />
           )}
+          {notices.length && search && <SuccessSearch />}
           {totalPage >= 2 && (
             <PaginationComponent paginateData={{ totalPage, setPage }} />
           )}
