@@ -20,10 +20,12 @@ import {
   UserAvatar,
   UserInfoWrap,
   IconWraper,
+  CheckIcon,
 } from './UserData.styled';
 
 import avatar from './img/temp-avatar.jpg';
 import Logout from 'components/Logout';
+import { useState } from 'react';
 // import { ReactComponent as SvgCross } from './img/svgCross.svg';
 
 const nameRegExp = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
@@ -47,7 +49,7 @@ let schema = yup.object().shape({
     .required(),
 });
 
-const initialValues = {
+let initialValues = {
   name: '',
   email: '',
   birthday: '',
@@ -56,22 +58,51 @@ const initialValues = {
 };
 
 const UserData = () => {
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [inputValue, setInputValue] = useState();
   // const dispatch = useDispatch();
 
-  // const { imageURL, name, email, birthday, phone, city } =
+  // const { imageURL, name, email, birthday, phone, city } = useSelector(selectUser);
   const { name, email, birthday, phone, city } = useSelector(selectUser);
 
+  initialValues = {
+    name,
+    email,
+    birthday,
+    phone,
+    city,
+  };
+
+  // const handleChange = e => dispatch(setInputValue(e.currentTarget.value));
+  const handleChange = e => {
+    console.log(e.currentTarget.value);
+    console.log(e.currentTarget);
+    setInputValue(e.currentTarget.value);
+  };
+
+  const handleClick = e => {
+    setIsDisabled(() => !isDisabled);
+    console.log(e.currentTarget.id);
+
+    if (!isDisabled || e.currentTarget.id) {
+    }
+  };
+
+  const handleSubmit = value => {
+    console.log(value);
+  };
+
+  ////////////////////////////
+  // Червона консоль не працює
   // const user = useSelector(getUserInfo);
   // console.log(user);
-
-  // Червона консоль не працює
+  //
   // const {
-  //   imageURL,
   //   userInfo: { name, email, birthday, phone, city },
   // } = useSelector(getUserInfo);
   ////////////////////////////
 
-  // const handleSubmit = value => {
+  // const handleSubmit = value => {`
   //   dispatch(updateUser(value));
   // };
 
@@ -101,45 +132,74 @@ const UserData = () => {
           </AddPhoto>
         </Thumb>
       </EditPhotoContainer>
+
       <InfoContainer>
         <Formik
           initialValues={initialValues}
           validationSchema={schema}
-          //   onSubmit={handleSubmit}
+          onSubmit={handleSubmit}
         >
           <InfoForm autoComplete="off">
             <Label htmlFor="name">Name:</Label>
-            <Input type="text" name="name" value={name} />
-            <Button type="button">
-              <EditIcon />
+            <Input
+              id="name"
+              type="text"
+              name="name"
+              // value={inputValue}
+              onChange={handleChange}
+              disabled={isDisabled}
+              // touched="true"
+            />
+            <Button id="name" type="button" onClick={handleClick}>
+              {isDisabled ? <EditIcon /> : <CheckIcon />}
             </Button>
             {/* <ErrorText name="name" component="div" /> */}
 
             <Label htmlFor="email">Email:</Label>
-            <Input type="text" name="email" value={email} />
-            <Button type="button">
-              <EditIcon />
+            <Input
+              type="text"
+              name="email"
+              // value={email}
+              disabled={isDisabled}
+            />
+            <Button id="email" type="button" onClick={handleClick}>
+              {isDisabled ? <EditIcon /> : <CheckIcon />}
             </Button>
             {/* <ErrorText name="email" component="div" /> */}
 
             <Label htmlFor="birthday">Birthday:</Label>
-            <Input type="text" name="birthday" value={birthday} />
-            <Button type="button">
-              <EditIcon />
+            <Input
+              type="text"
+              name="birthday"
+              // value={birthday}
+              disabled={isDisabled}
+            />
+            <Button id="birthday" type="button" onClick={handleClick}>
+              {isDisabled ? <EditIcon /> : <CheckIcon />}
             </Button>
             {/* <ErrorText name="birthday" component="div" /> */}
 
             <Label htmlFor="phone">Phone:</Label>
-            <Input type="tel" name="phone" value={phone} />
-            <Button type="button">
-              <EditIcon />
+            <Input
+              type="tel"
+              name="phone"
+              // value={phone}
+              disabled={isDisabled}
+            />
+            <Button id="phone" type="button" onClick={handleClick}>
+              {isDisabled ? <EditIcon /> : <CheckIcon />}
             </Button>
             {/* <ErrorText name="phone" component="div" /> */}
 
             <Label htmlFor="city">City:</Label>
-            <Input type="text" name="city" value={city} />
-            <Button type="button">
-              <EditIcon />
+            <Input
+              type="text"
+              name="city"
+              // value={city}
+              disabled={isDisabled}
+            />
+            <Button id="city" type="button" onClick={handleClick}>
+              {isDisabled ? <EditIcon /> : <CheckIcon />}
             </Button>
             {/* <ErrorText name="city" component="div" /> */}
           </InfoForm>

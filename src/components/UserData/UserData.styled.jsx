@@ -1,6 +1,7 @@
 import { Field, ErrorMessage, Form } from 'formik';
 import { ReactComponent as EditSvg } from './img/edit-icon.svg';
 import { ReactComponent as CameraSvg } from './img/camera-icon.svg';
+import { ReactComponent as CheckSvg } from './img/check-icon.svg';
 
 import styled from 'styled-components';
 
@@ -109,8 +110,7 @@ export const IconWraper = styled.div`
 `;
 
 export const CameraIcon = styled(CameraSvg)`
-  fill: ${p => p.theme.colors.accent};  
-
+  fill: ${p => p.theme.colors.accent};
 `;
 
 export const InfoContainer = styled.div`
@@ -179,6 +179,7 @@ export const Input = styled(Field)`
 
   padding-left: 18px;
   border: 1px solid #ffffff;
+  background-color: #fdf7f2;
   border-radius: 40px;
   outline: none;
   color: #111111;
@@ -186,11 +187,15 @@ export const Input = styled(Field)`
   transition: background-color 250ms linear;
   transition: border 250ms linear;
 
+  &:disabled {
+    background-color: #ffffff;
+  }
+  /* 
   &:hover,
   &:focus {
     background-color: #fdf7f2;
     border: 1px solid rgba(245, 146, 86, 0.5);
-  }
+  } */
 
   @media ${p => p.theme.device.tablet} {
     font-size: 18px;
@@ -238,6 +243,22 @@ export const EditIcon = styled(EditSvg)`
   height: 12.5px;
 
   fill: rgba(17, 17, 17, 0.6);
+
+  @media ${p => p.theme.device.tablet} {
+    width: 20px;
+    height: 20px;
+  }
+`;
+
+export const CheckIcon = styled(CheckSvg)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-repeat: no-repeat; */
+  width: 12.5px;
+  height: 12.5px;
+
+  fill: #f59256;
 
   @media ${p => p.theme.device.tablet} {
     width: 20px;
