@@ -34,6 +34,8 @@ export const DeleteIcon = styled.button`
   &:hover,
   &:focus {
     background-color: ${p => p.theme.colors.accent};
+    /* box-shadow: 7px 4px 14px #f59256; */
+    box-shadow: 2px 2px 20px 2px #f59256;
     transition: ${p => p.theme.transition};
   }
 `;
@@ -47,6 +49,28 @@ export const ImgWrapper = styled.div`
     width: 161px;
     height: 161px;
     /* border-radius: ${p => p.theme.radii.normal}; */
+  }
+`;
+
+export const Btn = styled.button`
+  width: 240px;
+  height: 240px;
+  background-color: transparent;
+  border: none;
+  border-radius: ${p => p.theme.radii.small};
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    box-shadow: 7px 4px 14px #f59256;
+    /* box-shadow: 2px 2px 20px 2px #f59256; */
+    transition: ${p => p.theme.transition};
+  }
+
+  @media ${p => p.theme.device.tablet} {
+    width: 161px;
+    height: 161px;
+    border-radius: ${p => p.theme.radii.normal};
   }
 `;
 

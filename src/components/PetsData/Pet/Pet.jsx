@@ -1,5 +1,12 @@
 import { RiDeleteBin6Fill } from 'react-icons/ri';
-import { DeleteIcon, Img, ImgWrapper, Text, TextWrapper } from './Pet.styled';
+import {
+  Btn,
+  DeleteIcon,
+  Img,
+  // ImgWrapper,
+  Text,
+  TextWrapper,
+} from './Pet.styled';
 import { IconContext } from 'react-icons';
 import { useDispatch } from 'react-redux';
 import { deletePet } from 'redux/user/operations';
@@ -10,12 +17,14 @@ const Pet = ({ userPet }) => {
 
   return (
     <>
-      <ImgWrapper>
+      {/* <ImgWrapper> */}
+      <Btn>
         <Img
           src={`https://res.cloudinary.com/dqupdbup3/image/upload/${imageURL}`}
           alt={`Your pet ${name}`}
         />
-      </ImgWrapper>
+      </Btn>
+      {/* </ImgWrapper> */}
 
       <TextWrapper>
         <Text>Name: {name}</Text>

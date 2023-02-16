@@ -43,45 +43,45 @@ const Step2 = ({ data, next, back }) => {
           <ImageLabel>Add photo and some comments</ImageLabel>
 
           <ImageWrapper>
-            {formProps.values.imageURL === null ? (
-              <div>
-                <PhotoPetText
-                  ref={fileRef}
-                  hidden
-                  id="imageURL"
-                  name="imageURL"
-                  type="file"
-                  accept=".png, .jpg, .jpeg"
-                  value={undefined}
-                  onChange={e => {
-                    const { files } = e.currentTarget;
-                    if (files) {
-                      setImage(URL.createObjectURL(files[0]));
-                      formProps.setFieldValue('imageURL', files[0]);
-                    }
-                  }}
-                />
-                <ImageBtn
-                  type="button"
-                  onClick={() => {
-                    fileRef.current.click();
-                  }}
-                >
-                  <CrossPic width="48" height="48" fill="none" />
-                </ImageBtn>
-              </div>
-            ) : (
-              <ImageExample>
-                <Image
-                  alt="pet"
-                  src={
-                    image === null
-                      ? URL.createObjectURL(formProps.values.imageURL)
-                      : image
+            <div>
+              <PhotoPetText
+                ref={fileRef}
+                hidden
+                id="imageURL"
+                name="imageURL"
+                type="file"
+                accept=".png, .jpg, .jpeg"
+                value={undefined}
+                onChange={e => {
+                  const { files } = e.currentTarget;
+                  if (files) {
+                    setImage(URL.createObjectURL(files[0]));
+                    formProps.setFieldValue('imageURL', files[0]);
                   }
-                />
-              </ImageExample>
-            )}
+                }}
+              />
+              <ImageBtn
+                type="button"
+                onClick={() => {
+                  fileRef.current.click();
+                }}
+              >
+                {formProps.values.imageURL ? (
+                  <ImageExample>
+                    <Image
+                      alt="pet"
+                      src={
+                        image === null
+                          ? URL.createObjectURL(formProps.values.imageURL)
+                          : image
+                      }
+                    />
+                  </ImageExample>
+                ) : (
+                  <CrossPic width="48" height="48" fill="none" />
+                )}
+              </ImageBtn>
+            </div>
           </ImageWrapper>
           <ErrorMessage
             name="imageURL"
