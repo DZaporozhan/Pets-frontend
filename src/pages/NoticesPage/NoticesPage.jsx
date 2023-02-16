@@ -22,7 +22,7 @@ import {
   addNoticeToFavorite,
   removeNoticeFromFavorite,
 } from 'services/api/notices';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { CategoryBtn } from 'components/CategoryBtn/CategoryBtn';
 import { selectIsAuth } from '../../redux/auth/selectors';
 import { useSelector } from 'react-redux';
@@ -40,28 +40,47 @@ const override = {
 };
 
 const NoticesPage = () => {
+  //react-router-dom hooks
+  const { categoryName } = useParams();
+  const [searchParams] = useSearchParams();
+  // , setSearchParams
+  //state
   const isLoggedIn = useSelector(selectIsAuth);
   const [notices, setNotices] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [favorite, setFavorite] = useState([]);
-  const { categoryName } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [loadNotices, setLoadNotices] = useState(false);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(parseInt(searchParams.get('page')) || 1);
   const [totalPage, setTotalPage] = useState(0);
-  //filter function
+  //filter function state
   const [titleRequest, setTitleRequest] = useState('');
   const [filter, SetFilter] = useState(true);
-  const [search, SetSearch] = useState('');
+  const [search, SetSearch] = useState(searchParams.get('search') || '');
 
   useEffect(() => {
+    let categiryForRequest = 'sell';
+
+    switch (categoryName) {
+      case 'lost-found':
+        categiryForRequest = 'lost found';
+        break;
+
+      case 'for-free':
+        categiryForRequest = 'in good hands';
+        break;
+      default:
+        categiryForRequest = categoryName;
+        break;
+    }
+
     const getNotices = async () => {
       try {
         setLoadNotices(true);
         setIsLoading(true);
 
         const noticesByCategory = await getNoticeByCategory({
-          category: categoryName,
+          category: categiryForRequest,
           filter: search,
           page,
         });
@@ -69,8 +88,9 @@ const NoticesPage = () => {
         if (
           Math.ceil(noticesByCategory.data.total / 8) < page ||
           Math.ceil(noticesByCategory.data.data.total / 8) < page
-        )
+        ) {
           setPage(1);
+        }
 
         if (['favorite', 'owner'].includes(categoryName)) {
           setTotalPage(Math.ceil(noticesByCategory.data.total / 8));
@@ -208,11 +228,11 @@ const NoticesPage = () => {
           <NavLinkPosition>
             <CategoryBtn
               title={'lost/found'}
-              to={'/notices/lost found'}
+              to={'/notices/lost-found'}
             ></CategoryBtn>
             <CategoryBtn
               title={'in good hands'}
-              to={'/notices/in good hands'}
+              to={'/notices/for-free'}
             ></CategoryBtn>
             <CategoryBtn title={'sell'} to={'/notices/sell'}></CategoryBtn>
             {isLoggedIn && (
@@ -264,7 +284,7 @@ const NoticesPage = () => {
             />
           )}
           {totalPage >= 2 && (
-            <PaginationComponent paginateData={{ totalPage, setPage }} />
+            <PaginationComponent paginateData={{ totalPage, setPage, page }} />
           )}
         </Container>
       </SectionList>
