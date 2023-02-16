@@ -134,7 +134,8 @@ export const AddNoticeForm = ({ onClose, AddPet }) => {
       data.append('imageURL', values.imageURL);
       data.append('comments', values.comments);
 
-      const AddPet = await addNotice(data);
+      // const AddPet =
+      await addNotice(data);
       onClose();
       navigate('/notices/owner');
       toast.success(`Your pet ${values.name} has been added successfully`);
