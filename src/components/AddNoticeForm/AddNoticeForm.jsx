@@ -1,8 +1,8 @@
 import { format } from 'date-fns';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useState} from 'react';
-import { useNavigate} from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ReactComponent as MalePic } from '../../icons/Vectormale.svg';
 import { ReactComponent as FemalePic } from '../../icons/Vectorfemale.svg';
 import { ReactComponent as CrossPic } from '../../icons/Vectorcross.svg';
@@ -46,7 +46,7 @@ import {
   BreedError,
   LocationError,
   PriceError,
-  CommentError
+  CommentError,
 } from './AddNoticeForm.styled.';
 import { addNotice } from 'services/api/notices';
 
@@ -82,11 +82,10 @@ const validationSchema = Yup.object({
   location: Yup.string().required('Type the location'),
   sex: Yup.string().required('Choose sex'),
   price: Yup.string().when('category', {
-    is:'sell',
+    is: 'sell',
     then: Yup.string()
       .required('Price is required')
       .matches(/^-?\d*\d+.?(\d{1,2})?$/, 'can not be zero, sign $ is required'),
-      
   }),
   comments: Yup.string()
     .trim()
@@ -95,18 +94,18 @@ const validationSchema = Yup.object({
     .max(120, 'Max 120 letters'),
 });
 
-export const AddNoticeForm = ({ onClose}) => {
+export const AddNoticeForm = ({ onClose, AddPet }) => {
   const [isFirstPage, setIsFirstPage] = useState(true);
   const [image, setImage] = useState(null);
-  const navigate = useNavigate();  
-        
+  const navigate = useNavigate();
+
   const moveToNextPage = () => {
     isFirstPage ? setIsFirstPage(false) : setIsFirstPage(true);
   };
 
   const formik = useFormik({
     initialValues: {
-      category: "sell",
+      category: 'sell',
       title: '',
       name: '',
       birthday: '',
@@ -120,7 +119,10 @@ export const AddNoticeForm = ({ onClose}) => {
     onSubmit: async values => {
       const data = new FormData();
       if (values.price) {
-        data.append('price', values.price);
+        const price = values.price.includes('$')
+          ? values.price
+          : `${values.price}$`;
+        data.append('price', price);
       }
       data.append('category', values.category);
       data.append('title', values.title);
@@ -130,9 +132,9 @@ export const AddNoticeForm = ({ onClose}) => {
       data.append('sex', values.sex);
       data.append('location', values.location);
       data.append('imageURL', values.imageURL);
-      data.append('comments',values.comments);
-      
-      await addNotice(data);
+      data.append('comments', values.comments);
+
+      const AddPet = await addNotice(data);
       onClose();
       navigate('/notices/owner');
       toast.success(`Your pet ${values.name} has been added successfully`);
@@ -146,17 +148,18 @@ export const AddNoticeForm = ({ onClose}) => {
     }
   };
 
-  const IsSellCategorySelected = formik.values.category === "sell";
+  const IsSellCategorySelected = formik.values.category === 'sell';
 
   return (
     <FormWraper>
       <Title>Add pet</Title>
-      <form encType="multipart/form-data"
-        onSubmit={
-        e => {
-        e.preventDefault();
+      <form
+        encType="multipart/form-data"
+        onSubmit={e => {
+          e.preventDefault();
           formik.handleSubmit();
-      }}>
+        }}
+      >
         {isFirstPage && (
           <FirstPageContainer>
             <Description>
@@ -194,9 +197,7 @@ export const AddNoticeForm = ({ onClose}) => {
                   name="category"
                   value="sell"
                   id="sell"
-                  defaultChecked={
-                    formik.values.category === 'sell'
-                  }
+                  defaultChecked={formik.values.category === 'sell'}
                 />
                 <CategoryRadio>sell</CategoryRadio>
               </CategoryLabel>
@@ -211,9 +212,9 @@ export const AddNoticeForm = ({ onClose}) => {
                   onChange={formik.handleChange}
                   placeholder="Type name pet"
                 />
-                 {formik.touched.title && formik.errors.title && (
-                    <TitleError>{formik.errors.title}</TitleError>
-                  )} 
+                {formik.touched.title && formik.errors.title && (
+                  <TitleError>{formik.errors.title}</TitleError>
+                )}
               </TextLabel>
             </InputWraper>
             <InputWraper>
@@ -228,9 +229,9 @@ export const AddNoticeForm = ({ onClose}) => {
                   onChange={formik.handleChange}
                   placeholder="Type name pet"
                 />
-                 {formik.touched.name && formik.errors.name && (
-                    <NameError>{formik.errors.name}</NameError>
-                  )} 
+                {formik.touched.name && formik.errors.name && (
+                  <NameError>{formik.errors.name}</NameError>
+                )}
               </TextLabel>
             </InputWraper>
 
@@ -245,9 +246,9 @@ export const AddNoticeForm = ({ onClose}) => {
                   onChange={formik.handleChange}
                   placeholder="Type date of birth"
                 />
-                 {formik.touched.birthday && formik.errors.birthday && (
-                    <BirthdayError>{formik.errors.birthday}</BirthdayError>
-                  )} 
+                {formik.touched.birthday && formik.errors.birthday && (
+                  <BirthdayError>{formik.errors.birthday}</BirthdayError>
+                )}
               </TextLabel>
             </InputWraper>
 
@@ -261,9 +262,9 @@ export const AddNoticeForm = ({ onClose}) => {
                   onChange={formik.handleChange}
                   placeholder="Type breed"
                 />
-                 {formik.touched.breed && formik.errors.breed && (
-                    <BreedError>{formik.errors.breed}</BreedError>
-                  )} 
+                {formik.touched.breed && formik.errors.breed && (
+                  <BreedError>{formik.errors.breed}</BreedError>
+                )}
               </TextLabel>
             </InputWraper>
           </FirstPageContainer>
@@ -288,8 +289,8 @@ export const AddNoticeForm = ({ onClose}) => {
                   />
                   <SexLabel htmlFor="malePet">
                     <MaleWraper>
-                      <MalePic/>
-                    </MaleWraper>  
+                      <MalePic />
+                    </MaleWraper>
                     Male
                   </SexLabel>
                 </SexItem>
@@ -304,8 +305,8 @@ export const AddNoticeForm = ({ onClose}) => {
                   />
                   <SexLabel htmlFor="femalePet">
                     <FemaleWraper>
-                      <FemalePic/>
-                    </FemaleWraper>  
+                      <FemalePic />
+                    </FemaleWraper>
                     Female
                   </SexLabel>
                 </SexItem>
@@ -314,7 +315,7 @@ export const AddNoticeForm = ({ onClose}) => {
             <InputWraper>
               <TextLabel htmlFor="locationPet">
                 Location<StarSpanLocation>&#42;</StarSpanLocation>:
-                {formik.touched.location && formik.errors.location &&(
+                {formik.touched.location && formik.errors.location && (
                   <LocationError>{formik.errors.location}</LocationError>
                 )}
                 <TextInput

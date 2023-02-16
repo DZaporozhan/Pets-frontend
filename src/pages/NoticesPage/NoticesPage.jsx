@@ -57,6 +57,8 @@ const NoticesPage = () => {
   const [filter, SetFilter] = useState(true);
   const [search, SetSearch] = useState('');
 
+  const addPett = '';
+
   useEffect(() => {
     const getNotices = async () => {
       try {
@@ -95,7 +97,7 @@ const NoticesPage = () => {
       }
     };
     getNotices();
-  }, [categoryName, search, page]);
+  }, [categoryName, search, page, addPett]);
 
   useEffect(() => {
     if (!isLoggedIn) return;
@@ -243,7 +245,7 @@ const NoticesPage = () => {
       </NavContainer>
       {showModal && (
         <Modal onClose={toggleModal}>
-          <AddNoticeForm onClose={toggleModal} />
+          <AddNoticeForm onClose={toggleModal} AddPet={addPett} />
         </Modal>
       )}
       <SectionList>
