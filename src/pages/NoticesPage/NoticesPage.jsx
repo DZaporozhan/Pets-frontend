@@ -101,12 +101,6 @@ const NoticesPage = () => {
     })();
   }, [isLoggedIn]);
 
-  useEffect(() => {
-    SetSearch('');
-    setTitleRequest('');
-    SetFilter(true);
-  }, [categoryName]);
-
   const toggleModal = () => {
     if (!isLoggedIn) {
       return toast.error('Please, log in to add notice', {
@@ -191,6 +185,12 @@ const NoticesPage = () => {
     }
   };
 
+  useEffect(() => {
+    SetSearch('');
+    setTitleRequest('');
+    SetFilter(true);
+  }, [categoryName]);
+
   return (
     <main>
       <NavContainer>
@@ -244,12 +244,6 @@ const NoticesPage = () => {
             aria-label="Loading Spinner"
             cssOverride={override}
           />
-
-          {!notices.length && !filter && (
-            <Container>
-              <ErrorSearch />
-            </Container>
-          )}
           {notices.length !== 0 && !loadNotices && (
             <NoticesList
               notices={notices}
@@ -259,7 +253,13 @@ const NoticesPage = () => {
               isLoading={isLoading}
             />
           )}
+          {!notices.length && !filter && (
+            <Container>
+              <ErrorSearch />
+            </Container>
+          )}
           {notices.length && search && <SuccessSearch />}
+
           {totalPage >= 2 && (
             <PaginationComponent paginateData={{ totalPage, setPage }} />
           )}
