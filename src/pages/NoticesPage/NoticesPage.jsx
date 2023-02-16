@@ -62,8 +62,6 @@ const NoticesPage = () => {
   const [filter, SetFilter] = useState(true);
   const [search, SetSearch] = useState(searchParams.get('search') || '');
 
-  const addPett = '';
-
   useEffect(() => {
     let categiryForRequest = 'sell';
 
@@ -97,7 +95,6 @@ const NoticesPage = () => {
         ) {
           setPage(1);
         }
-
         if (['favorite', 'owner'].includes(categoryName)) {
           setTotalPage(Math.ceil(noticesByCategory.data.total / 8));
           setNotices(noticesByCategory.data.data);
@@ -118,7 +115,7 @@ const NoticesPage = () => {
       }
     };
     getNotices();
-  }, [categoryName, search, page, addPett]);
+  }, [categoryName, search, page, showModal]);
 
   useEffect(() => {
     if (!isLoggedIn) return;
@@ -266,7 +263,7 @@ const NoticesPage = () => {
       </NavContainer>
       {showModal && (
         <Modal onClose={toggleModal}>
-          <AddNoticeForm onClose={toggleModal} AddPet={addPett} />
+          <AddNoticeForm onClose={toggleModal} />
         </Modal>
       )}
       <SectionList>
