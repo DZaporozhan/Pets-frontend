@@ -7,6 +7,9 @@ import {
   AddBtnPosition,
   NavLinkPosition,
   BtnPosition,
+  IconAdd,
+  TextAddBtn,
+  MobileAddBtn,
 } from './NoticesPage.styled';
 import Modal from '../../components/Modal';
 import { AddPetBtn } from '../../components/AddPetBtn/AddPetBtn';
@@ -31,6 +34,7 @@ import PuffLoader from 'react-spinners/PuffLoader';
 import { AddNoticeForm } from 'components/AddNoticeForm/AddNoticeForm';
 import { PaginationComponent } from 'components/Pagination/Pagination';
 import { ErrorSearch } from 'components/ErrorSearch/ErrorSearch';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const override = {
   display: 'block',
@@ -47,6 +51,7 @@ const NoticesPage = () => {
   const [loadNotices, setLoadNotices] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
+  const mobile = useMediaQuery('(max-width:666px)');
   //search
   const [titleRequest, setTitleRequest] = useState('');
   const [filter, SetFilter] = useState(true);
@@ -225,7 +230,13 @@ const NoticesPage = () => {
           </NavLinkPosition>
           {!showModal && (
             <AddBtnPosition>
-              <AddPetBtn onClick={toggleModal}></AddPetBtn>
+              {mobile && (
+                <MobileAddBtn type="button" onClick={toggleModal}>
+                  <IconAdd />
+                  <TextAddBtn>Add pet</TextAddBtn>
+                </MobileAddBtn>
+              )}
+              {!mobile && <AddPetBtn onClick={toggleModal}></AddPetBtn>}
             </AddBtnPosition>
           )}
         </BtnPosition>
