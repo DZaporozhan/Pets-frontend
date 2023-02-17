@@ -17,6 +17,7 @@ export const theme = {
   colors: {
     accent: '#F59256',
     placeholder: 'rgba(27, 27, 27, 0.6)',
+    disabled: 'rgba(16, 16, 16, 0.3)',
     background: '#FDF7F2',
     buttonAccent: '#FF6101',
     black: '#111111',
