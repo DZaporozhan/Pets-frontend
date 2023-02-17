@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { ReactComponent as MalePic } from '../../icons/Vectormale.svg';
 import { ReactComponent as FemalePic } from '../../icons/Vectorfemale.svg';
 import { ReactComponent as CrossPic } from '../../icons/Vectorcross.svg';
+import HeartLove from "../../../src/icons/heart-love.gif"
 import { toast } from 'react-toastify';
 import {
   CategoryContainer,
@@ -47,6 +48,8 @@ import {
   LocationError,
   PriceError,
   CommentError,
+  SexError,
+  LoveGifWrapper,
 } from './AddNoticeForm.styled.';
 import { addNotice } from 'services/api/notices';
 
@@ -80,7 +83,7 @@ const validationSchema = Yup.object({
     .trim()
     .max(24, 'Max 24 letters'),
   location: Yup.string().required('Type the location'),
-  sex: Yup.string().required('Choose sex'),
+  sex: Yup.string().required('Boy or girl'),
   price: Yup.string().when('category', {
     is: 'sell',
     then: Yup.string()
@@ -118,7 +121,8 @@ export const AddNoticeForm = ({ onClose, AddPet }) => {
     validationSchema: validationSchema,
     onSubmit: async values => {
       const data = new FormData();
-      if (values.price) {
+      if (values.price)
+      {
         const price = values.price.includes('$')
           ? values.price
           : `${values.price}$`;
@@ -286,13 +290,26 @@ export const AddNoticeForm = ({ onClose, AddPet }) => {
                     type="radio"
                     value="male"
                     checked={formik.values.sex === 'male'}
-                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    onChange={e => {
+                      e.currentTarget.blur();
+                      formik.handleChange(e);
+                    }}
                   />
                   <SexLabel htmlFor="malePet">
                     <MaleWraper>
                       <MalePic />
                     </MaleWraper>
                     Male
+                    {formik.touched.sex && formik.errors.sex &&(
+                      <LoveGifWrapper>
+                        <SexError>{formik.errors.sex}
+                          <img src={HeartLove} width="46" height="42" alt="dancing bear" />
+                        </SexError>  
+                      </LoveGifWrapper>
+                      
+                )}
+
                   </SexLabel>
                 </SexItem>
                 <SexItem>
@@ -302,13 +319,20 @@ export const AddNoticeForm = ({ onClose, AddPet }) => {
                     type="radio"
                     value="female"
                     checked={formik.values.sex === 'female'}
-                    onChange={formik.handleChange}
+                    onChange={e => {
+                      e.currentTarget.blur();
+                      formik.handleChange(e);
+                    }}
+                    onBlur={formik.handleBlur}
                   />
                   <SexLabel htmlFor="femalePet">
                     <FemaleWraper>
                       <FemalePic />
                     </FemaleWraper>
                     Female
+                    {/* {formik.touched.sex && formik.errors.sex && (
+                  <SexError>{formik.errors.sex}</SexError>
+                )} */}
                   </SexLabel>
                 </SexItem>
               </SexList>
@@ -329,12 +353,12 @@ export const AddNoticeForm = ({ onClose, AddPet }) => {
                 />
               </TextLabel>
             </InputWraper>
-            <InputWraper>
-              {IsSellCategorySelected && (
+            
+            {IsSellCategorySelected && (
+              <InputWraper>
                 <TextLabel htmlFor="pricePet">
-                  Price
-                  <StarSpan>&#42;</StarSpan>:
-                  {formik.touched.price && formik.errors.price && (
+                  Price<StarSpan>&#42;</StarSpan>:
+                  {!formik.dirty.price && formik.errors.price && (
                     <PriceError>{formik.errors.price}</PriceError>
                   )}
                   <TextInput
@@ -346,8 +370,8 @@ export const AddNoticeForm = ({ onClose, AddPet }) => {
                     placeholder="Type price"
                   />
                 </TextLabel>
-              )}
-            </InputWraper>
+              {/* )} */}
+              </InputWraper>)}
             <ImageWrapper>
               <ImageTitle>Load the pet's image:</ImageTitle>
               {formik.values.imageURL === null ? (
@@ -406,7 +430,7 @@ export const AddNoticeForm = ({ onClose, AddPet }) => {
               Next
             </ActButton>
           ) : (
-            <ActButton type="submit">Done</ActButton>
+            <ActButton type="submit" disabled={!formik.isValid} >Done</ActButton>
           )}
         </ActionButtons>
       </form>

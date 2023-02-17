@@ -455,6 +455,7 @@ export const ActButton = styled.button`
   font-weight: ${p => p.theme.fontWeights.medium};
   font-family: ${p => p.theme.fonts.body};
   background-color: ${p => p.theme.colors.white};
+  
   :hover:not(.active),
   :focus-visible:not(.active) {
     background-color: ${p => p.theme.colors.accent};
@@ -465,6 +466,14 @@ export const ActButton = styled.button`
   &.active {
     background-color: ${p => p.theme.colors.accent};
     color: ${p => p.theme.colors.white};
+  }
+  :disabled {
+    background-color: ${p => p.theme.colors.background};
+    cursor: auto;
+    :hover {
+      background-color: ${p => p.theme.colors.background};
+      color: ${p => p.theme.colors.placeholder};
+    }
   }
 `;
 
@@ -519,7 +528,7 @@ export const BreedError = styled.p`
   transform: translateX(-50%);
   font-size: 12px;
   @media ${p => p.theme.device.tablet} {
-    //top: 435px;
+    top: 795px;
     left: 65%;
   }
 `;
@@ -533,7 +542,7 @@ export const LocationError = styled.p`
   transform: translateX(-50%);
   font-size: 12px;
   @media ${p => p.theme.device.tablet} {
-    top: 413px;
+    top: 415px;
     left: 65%;
   }
 `;
@@ -561,21 +570,28 @@ export const CommentError = styled.p`
   transform: translateX(-50%);
   font-size: 12px;
   @media ${p => p.theme.device.tablet} {
-    bottom: 85px;
+    bottom: 83px;
     left: 65%;
   }
 `;
 
-export const Error = styled.p`
+export const SexError = styled.p`
+  font-family: ${p => p.theme.fonts.sex};
   position: absolute;
   color: red;
   min-width: 260px;
-  bottom: 150px;
+  //bottom: 150px;
   left: 80%;
   transform: translateX(-50%);
-  font-size: 12px;
+  font-size: 24px;
   @media ${p => p.theme.device.tablet} {
-    top: 435px;
-    left: 65%;
+    top: 30px;
+    left: 400px;
   }
 `;
+
+export const LoveGifWrapper = styled.div`
+display: flex;
+flex-direction: row;
+align-items: baseline;
+`
