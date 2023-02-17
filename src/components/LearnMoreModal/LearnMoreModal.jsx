@@ -81,7 +81,7 @@ export const LearnMoreModal = ({
               <DescriptionValue>{noticeData.name}</DescriptionValue>
             </li>
             <li>
-              <DescriptionStyle style={{ marginRight: 46 }}>
+              <DescriptionStyle style={{ marginRight: 42 }}>
                 Birthday:
               </DescriptionStyle>
               <DescriptionValue>{noticeData.birthday}</DescriptionValue>
@@ -93,13 +93,13 @@ export const LearnMoreModal = ({
               <DescriptionValue>{noticeData.breed}</DescriptionValue>
             </li>
             <li>
-              <DescriptionStyle style={{ marginRight: 65 }}>
+              <DescriptionStyle style={{ marginRight: 67 }}>
                 Place:
               </DescriptionStyle>
               <DescriptionValue>{noticeData.location}</DescriptionValue>
             </li>
             <li>
-              <DescriptionStyle style={{ marginRight: 49 }}>
+              <DescriptionStyle style={{ marginRight: 53 }}>
                 Thesex:
               </DescriptionStyle>
               <DescriptionValue>{noticeData.sex}</DescriptionValue>
