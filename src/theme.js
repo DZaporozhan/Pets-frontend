@@ -2,6 +2,7 @@ export const theme = {
   fonts: {
     body: 'Manrope, sans-serif',
     logo: 'Poppins, sans-serif',
+    sex: 'Love Light',
   },
 
   //           0   1   2   3   4   5   6   7   8   9  10  11
@@ -15,6 +16,7 @@ export const theme = {
 
   colors: {
     accent: '#F59256',
+    placeholder: 'rgba(27, 27, 27, 0.6)',
     background: '#FDF7F2',
     buttonAccent: '#FF6101',
     black: '#111111',
