@@ -14,10 +14,13 @@ export const NavLinkStyled = styled(NavLink)`
 
 
 &.active {
-    color:  ${p => p.theme.colors.accent};
-    font-weight: ${p => p.theme.fontWeights.bold};
+
+    font-weight: ${props =>
+     props.theme.fontWeights.bold };
     text-decoration-line: underline;
     text-decoration-thickness: 1px;
+    color: ${props =>
+    props.theme.colors.accent };
   }
 
     :hover:not(.active),
