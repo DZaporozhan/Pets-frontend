@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Pets-frontend/static/css/main.56812b31.css",
-    "main.js": "/Pets-frontend/static/js/main.3df3a002.js",
-    "static/js/656.45aedbe1.chunk.js": "/Pets-frontend/static/js/656.45aedbe1.chunk.js",
+    "main.js": "/Pets-frontend/static/js/main.06fc1ff0.js",
+    "static/js/656.e84b0c02.chunk.js": "/Pets-frontend/static/js/656.e84b0c02.chunk.js",
     "static/js/589.9b3f6547.chunk.js": "/Pets-frontend/static/js/589.9b3f6547.chunk.js",
     "static/js/664.3bb3bc96.chunk.js": "/Pets-frontend/static/js/664.3bb3bc96.chunk.js",
     "static/js/410.15d76730.chunk.js": "/Pets-frontend/static/js/410.15d76730.chunk.js",
@@ -21,9 +21,9 @@
     "static/media/girlWithDog_2x-tablet-min.png": "/Pets-frontend/static/media/girlWithDog_2x-tablet-min.93b9f036cbf4d51197ce.png",
     "static/media/girlWithDog_2x-desktop-min.png": "/Pets-frontend/static/media/girlWithDog_2x-desktop-min.da1be3ffcfa556487447.png",
     "static/media/background-tablet-min.png": "/Pets-frontend/static/media/background-tablet-min.0b60ccd694bc9d7d528f.png",
-    "static/media/background-desktopE2-min.png": "/Pets-frontend/static/media/background-desktopE2-min.3dcd407672900a755240.png",
     "static/media/dancingBear_min2.gif": "/Pets-frontend/static/media/dancingBear_min2.88fe002fcd29dd2223e0.gif",
     "static/media/girlWithDog_1x-tablet-min.png": "/Pets-frontend/static/media/girlWithDog_1x-tablet-min.8c92d83ed6135a4c3c03.png",
+    "static/media/background-desktopE5-min.png": "/Pets-frontend/static/media/background-desktopE5-min.2e3d3a49797a32055f4f.png",
     "static/media/girlWithDog_2x-mobile-min.png": "/Pets-frontend/static/media/girlWithDog_2x-mobile-min.40d28d4cc897ec55af35.png",
     "static/media/dancingBear-cropped.gif": "/Pets-frontend/static/media/dancingBear-cropped.d72296db788c34915b70.gif",
     "static/media/girlWithDog_1x-desktop-min.png": "/Pets-frontend/static/media/girlWithDog_1x-desktop-min.58a2c9c55617ccdb80b6.png",
@@ -47,8 +47,8 @@
     "static/media/close.svg": "/Pets-frontend/static/media/close.73b1d8773d59eabcd477439289b362e4.svg",
     "static/media/Vectorcross.svg": "/Pets-frontend/static/media/Vectorcross.81616c979b85ab6f0858cbc6c9a000de.svg",
     "main.56812b31.css.map": "/Pets-frontend/static/css/main.56812b31.css.map",
-    "main.3df3a002.js.map": "/Pets-frontend/static/js/main.3df3a002.js.map",
-    "656.45aedbe1.chunk.js.map": "/Pets-frontend/static/js/656.45aedbe1.chunk.js.map",
+    "main.06fc1ff0.js.map": "/Pets-frontend/static/js/main.06fc1ff0.js.map",
+    "656.e84b0c02.chunk.js.map": "/Pets-frontend/static/js/656.e84b0c02.chunk.js.map",
     "589.9b3f6547.chunk.js.map": "/Pets-frontend/static/js/589.9b3f6547.chunk.js.map",
     "664.3bb3bc96.chunk.js.map": "/Pets-frontend/static/js/664.3bb3bc96.chunk.js.map",
     "410.15d76730.chunk.js.map": "/Pets-frontend/static/js/410.15d76730.chunk.js.map",
@@ -67,6 +67,6 @@
   },
   "entrypoints": [
     "static/css/main.56812b31.css",
-    "static/js/main.3df3a002.js"
+    "static/js/main.06fc1ff0.js"
   ]
 }
