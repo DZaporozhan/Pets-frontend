@@ -60,6 +60,7 @@ export const BtnClose = styled.button`
   background: ${p => p.theme.colors.background};
   backdrop-filter: blur(2px);
   padding: 3px;
+  z-index: 1;
 `;
 
 export const IconClose = styled(CloseIcon)`

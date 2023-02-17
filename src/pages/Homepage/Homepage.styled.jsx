@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import backgroundImageMob from "./images/background-mobile-min.png"
 import backgroundImageTablet from "./images/background-tablet-min.png"
-import backgroundImageDesk from "./images/background-desktopE2-min.png"
+import backgroundImageDesk from "./images/background-desktopE5-min.png"
 
 
 export const Main = styled.main`
@@ -9,8 +9,9 @@ export const Main = styled.main`
 	
 	@media screen and (min-width: 1280px) {
 		max-width: 1280px;
-	
+		margin-top: 30px;
 	}
+
 }
 `
 
@@ -40,6 +41,10 @@ export const Container = styled.div`
 	background-repeat: no-repeat;
 	height: calc(100vh - 58px);
 
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+
     @media screen and (min-width: 768px) {  
         flex-direction: column;
 		background: url(${backgroundImageTablet});
@@ -50,15 +55,15 @@ export const Container = styled.div`
 
 	@media screen and (min-width: 1024px) {
         padding-top: 40px;
-        flex-direction: column;
-		background:  url(${backgroundImageDesk});
+        
+		background:  url(${backgroundImageTablet});
 		background-position: 60% calc(22vh + 100%);
         background-repeat: no-repeat;
         background-size: contain;
         height: calc(100vh - 58px);
 
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: flex-end;
         align-items: center;
 	
@@ -67,11 +72,12 @@ export const Container = styled.div`
         padding-top: 40px;
         flex-direction: column;
 		background:  url(${backgroundImageDesk});
-		background-position:  0px 342px;
+		background-position:  100% calc(10vh + 100%);
         background-repeat: no-repeat;
         background-size: contain;
 		
 	}
+
 `
 export const ImageWrapper = styled.div`
 	display: none;
@@ -81,19 +87,21 @@ export const ImageWrapper = styled.div`
         display: flex;
 		justify-content: center;
         position: relative;
-		
   }
+
 `
 
 export const SectionWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
+	justify-content: flex-end;
    
 	@media screen and (min-width: 1024px) {
 		flex-direction: row;
         padding: 0 16px;
         justify-content: flex-end;
-	} `
+	}
+	`
 
 export const MobileWrapper = styled.div`
 
@@ -120,7 +128,6 @@ export const Image = styled.img`
 	}
 	@media screen and (min-width: 1180px) {
 		width: 590px;
-		
 	}
 `
 
@@ -133,6 +140,5 @@ export const HeartWrapper = styled.div`
 		position: absolute;
 		left: 48px;
 		top: 43px;
-		
 	}
 `

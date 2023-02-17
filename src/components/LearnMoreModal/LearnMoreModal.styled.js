@@ -2,19 +2,20 @@ import styled from 'styled-components';
 // import { FiHeart } from 'react-icons/fi';
 // import { ModalButton } from 'components/ModalBtn/ModalBtn';
 // import { ReactComponent as IconHeart } from '../../../src/icons/smallHeart.svg';
+//===========================================
 
 export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
   border-radius: ${p => p.theme.radii.small};
-  margin: 60px 20px 40px 20px;
+  margin: 60px 0px 40px 20px;
   background-color: ${p => p.theme.colors.white};
 
   @media ${p => p.theme.device.tablet} {
     border-radius: ${p => p.theme.radii.normal};
     margin: 0px 20px 0px 0px;
-    width: 608px;
+    width: 600px;
   }
 `;
 
@@ -165,7 +166,7 @@ export const DescriptionStyle = styled.span`
 
 export const ImageThumb = styled.img`
   position: relative;
-  object-fit: hidden;
+  object-fit: cover;
   width: 288px;
   height: 328px;
   //================

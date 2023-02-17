@@ -21,7 +21,6 @@ position: fixed;
     
     @media (min-width: 768px) {
      top: 72px; 
-    
     }
 
     @media (min-width: 1280px) {
@@ -112,7 +111,8 @@ width: 130px;
 margin-top: 20px;
 
 @media (min-width: 768px) {
-width: 320px;
-margin-top: 80px;
+
+width: 200px;
+margin-top: 60px;
 }
 `

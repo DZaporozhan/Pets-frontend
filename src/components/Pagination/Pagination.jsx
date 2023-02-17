@@ -2,7 +2,6 @@ import { PaginationStyled } from './Pagination.styled';
 import { PaginationItem } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-// , useSearchParams
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -24,7 +23,6 @@ const theme = createTheme({
 export const PaginationComponent = ({ paginateData }) => {
   const { setPage, totalPage, page } = paginateData;
   const { pathname } = useLocation();
-  // const [searchParams, setSearchParams] = useSearchParams();
 
   const scrollToTop = num => {
     if (page === num) return;
