@@ -45,7 +45,7 @@ const NoticesPage = () => {
   //react-router-dom hooks
   const { categoryName } = useParams();
   const [searchParams] = useSearchParams();
-  // , setSearchParams
+
   //state
   const isLoggedIn = useSelector(selectIsAuth);
   const [notices, setNotices] = useState([]);
@@ -90,13 +90,6 @@ const NoticesPage = () => {
           filter: search,
           page,
         });
-
-        if (
-          Math.ceil(noticesByCategory.data.total / 8) < page ||
-          Math.ceil(noticesByCategory.data.data.total / 8) < page
-        ) {
-          setPage(1);
-        }
 
         if (['favorite', 'owner'].includes(categoryName)) {
           setTotalPage(Math.ceil(noticesByCategory.data.total / 8));
@@ -235,20 +228,31 @@ const NoticesPage = () => {
             <CategoryBtn
               title={'lost/found'}
               to={'/notices/lost-found'}
+              onClick={() => setPage(1)}
             ></CategoryBtn>
             <CategoryBtn
               title={'in good hands'}
               to={'/notices/for-free'}
+              onClick={() => setPage(1)}
             ></CategoryBtn>
-            <CategoryBtn title={'sell'} to={'/notices/sell'}></CategoryBtn>
+            <CategoryBtn
+              title={'sell'}
+              to={'/notices/sell'}
+              onClick={() => setPage(1)}
+            ></CategoryBtn>
             {isLoggedIn && (
               <CategoryBtn
                 title={'favorite ads'}
                 to={'/notices/favorite'}
+                onClick={() => setPage(1)}
               ></CategoryBtn>
             )}
             {isLoggedIn && (
-              <CategoryBtn title={'my ads'} to={'/notices/owner'}></CategoryBtn>
+              <CategoryBtn
+                title={'my ads'}
+                to={'/notices/owner'}
+                onClick={() => setPage(1)}
+              ></CategoryBtn>
             )}
           </NavLinkPosition>
           {!showModal && (
