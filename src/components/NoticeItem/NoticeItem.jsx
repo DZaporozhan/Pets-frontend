@@ -45,6 +45,8 @@ export const NoticeItem = ({
     _id,
   } = notices;
 
+  const className = 'learnMore';
+
   const [showModal, setShowModal] = useState(false);
   const [clickId, setClickId] = useState(null);
 
@@ -153,7 +155,10 @@ export const NoticeItem = ({
         )}
       </BtnAddFavorite>
       {showModal && (
-        <Modal onClose={() => setShowModal(prev => !prev)}>
+        <Modal
+          onClose={() => setShowModal(prev => !prev)}
+          className={className}
+        >
           <LearnMoreModal
             noticeData={notices}
             favorite={favorite}

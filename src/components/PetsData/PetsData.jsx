@@ -6,6 +6,7 @@ import Modal from 'components/Modal';
 import ModalAddsPet from './Form/ModalAddsPet';
 
 const PetsData = () => {
+  const className = 'user';
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
@@ -23,7 +24,7 @@ const PetsData = () => {
 
       <PetsList />
       {showModal && (
-        <Modal onClose={toggleModal}>
+        <Modal onClose={toggleModal} className={className}>
           <ModalAddsPet onCancel={toggleModal} />
         </Modal>
       )}
