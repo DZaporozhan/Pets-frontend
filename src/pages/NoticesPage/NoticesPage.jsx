@@ -45,7 +45,7 @@ const override = {
 const NoticesPage = () => {
   //react-router-dom hooks
   const { categoryName } = useParams();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   //state
   const isLoggedIn = useSelector(selectIsAuth);
@@ -178,8 +178,10 @@ const NoticesPage = () => {
   const onInputChange = e => {
     const titleRequest = e.currentTarget.value;
     setTitleRequest(titleRequest);
+    setSearchParams({ search: titleRequest });
     if (titleRequest === '') {
       SetSearch('');
+      setSearchParams({});
     }
     SetFilter(true);
   };
@@ -196,9 +198,12 @@ const NoticesPage = () => {
       });
     }
     setPage(1);
+
+    setSearchParams({ search: titleRequest });
     SetSearch(titleRequest);
 
     if (!filter) {
+      setSearchParams({});
       setTitleRequest('');
       SetFilter(true);
       SetSearch('');
@@ -289,7 +294,7 @@ const NoticesPage = () => {
               isLoading={isLoading}
             />
           )}
-          {notices.length === 0 && filter && !isLoading && (
+          {notices.length === 0 && filter && !isLoading && search === '' && (
             <NoAdsInThisCategory>
               There are no ads in this category
             </NoAdsInThisCategory>
@@ -301,7 +306,9 @@ const NoticesPage = () => {
             </Container>
           )}
           {totalPage >= 2 && (
-            <PaginationComponent paginateData={{ totalPage, setPage, page }} />
+            <PaginationComponent
+              paginateData={{ totalPage, setPage, page, titleRequest }}
+            />
           )}
         </Container>
       </SectionList>
