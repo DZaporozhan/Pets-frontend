@@ -47,6 +47,27 @@ export const deletePet = createAsyncThunk(
     try {
       const response = await api.removeUserPet(id);
       Notify.success(response.message);
+      console.log(response);
+      return response;
+    } catch ({ response }) {
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      Notify.error(data.message);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+// Update Pet Image
+export const updateImage = createAsyncThunk(
+  'user/updateImage',
+  async ({ id, file }, thunkAPI) => {
+    try {
+      const response = await api.updatePetData(id, file);
+      Notify.success(response.message);
       return response;
     } catch ({ response }) {
       const { status, data } = response;

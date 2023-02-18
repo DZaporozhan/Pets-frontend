@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addPet, deletePet, getUserData } from './operations';
+// import { useDispatch } from 'react-redux';
+import { addPet, deletePet, getUserData, updateImage } from './operations';
 
 const initialState = {
   userInfo: {},
@@ -45,6 +46,18 @@ const userSlice = createSlice({
       state.isLoading = false;
     },
     [deletePet.rejected]: handleRejected,
+
+    //UPDATE PET IMG
+    [updateImage.pending]: handlePending,
+    [updateImage.fulfilled](state, action) {
+      const pet = state.userInfo.userPets.find(
+        ({ _id }) => _id === action.payload.id
+      );
+      if (!pet) throw new Error(`Pet with id ${action.payload.id} not found`);
+      pet.imageURL = action.payload.imageURL;
+      state.isLoading = false;
+    },
+    [updateImage.rejected]: handleRejected,
   },
 });
 

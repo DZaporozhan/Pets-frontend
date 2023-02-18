@@ -294,9 +294,11 @@ export const ImageTitle = styled.label`
 `;
 
 export const ImageBtn = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: ${p => p.theme.colors.background};
   border: none;
-  padding: 67px;
   margin-bottom: 28px;
   width: 208px;
   height: 208px;
@@ -320,7 +322,7 @@ export const ImageBtn = styled.button`
 `;
 
 export const ImageExample = styled.div`
-  margin-bottom: 28px;
+  /* margin-bottom: 28px; */
   width: 208px;
   height: 208px;
   background-color: ${p => p.theme.colors.background};
