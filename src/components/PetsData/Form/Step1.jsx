@@ -13,27 +13,23 @@ import {
 const inputReGeX = /^[aA-zZ\s]+$/;
 const validationSchema = Yup.object({
   name: Yup.string()
-    .min(2, 'Must contain at least 2 characters')
-    .max(16, 'Must be 15 characters or less')
-    .matches(
-      inputReGeX,
-      `Your value is not in correct format! English characters only`
-    )
-    .required('Name is required!'),
+    .min(2, 'Please enter at least 2 characters')
+    .max(16, 'Name should be 15 characters or less')
+    .matches(inputReGeX, `Please enter a valid value using English characters`)
+    .required(`Please enter your pet's name`),
   birthdate: Yup.date()
     .typeError('Please choose the date')
-    .required(`Birthdate is required!`),
+    .required(`Please enter your pet's date of birth`),
   breed: Yup.string()
-    .min(2, 'Must contain at least 2 characters')
-    .max(16, 'Must be 15 characters or less')
-    .matches(
-      inputReGeX,
-      `Your value is not in correct format! English characters only`
-    )
-    .required('Breed is required!'),
+    .min(2, 'Please enter at least 2 characters')
+    .max(16, 'Breed should be 15 characters or less')
+    .matches(inputReGeX, `Please enter a valid value using English characters`)
+    .required(`Please enter your pet's breed`),
 });
 
 const Step1 = ({ data, next, onCancel }) => {
+  const today = new Date().toISOString().split('T')[0];
+
   const handleSubmit = values => {
     next(values);
   };
@@ -60,6 +56,8 @@ const Step1 = ({ data, next, onCancel }) => {
             id="birthdate"
             name="birthdate"
             type="date"
+            min="1950-01-01"
+            max={today}
             placeholder="Type date of birth"
           />
           <ErrorMessage
