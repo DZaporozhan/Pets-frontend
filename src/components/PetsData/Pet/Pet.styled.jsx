@@ -24,6 +24,8 @@ export const DeleteIcon = styled.button`
   border-radius: ${p => p.theme.radii.round};
   background-color: ${p => p.theme.colors.white};
   border: none;
+  color: ${p => p.theme.colors.gray};
+  /* color: 'rgba(17, 17, 17, 0.6)'  */
   cursor: pointer;
 
   @media ${p => p.theme.device.tablet} {
@@ -33,9 +35,10 @@ export const DeleteIcon = styled.button`
 
   &:hover,
   &:focus {
+    box-shadow: 7px 4px 14px #f59256;
+    color: white;
     background-color: ${p => p.theme.colors.accent};
-    /* box-shadow: 7px 4px 14px #f59256; */
-    box-shadow: 2px 2px 20px 2px #f59256;
+    /* box-shadow: 2px 2px 20px 2px #f59256; */
     transition: ${p => p.theme.transition};
   }
 `;
