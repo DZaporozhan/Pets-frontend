@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const ContainerBox = styled.div`
   margin-right: auto;
   margin-left: auto;
-    position: relative;
+  position: relative;
+  max-width: 1280px;
   
   @media screen and (max-width: 319px) {
     padding: 16px 10px 0 10px;
