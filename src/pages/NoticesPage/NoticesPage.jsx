@@ -209,7 +209,6 @@ const NoticesPage = () => {
     setTitleRequest('');
     SetFilter(true);
   }, [categoryName]);
-
   return (
     <main>
       <NavContainer>
@@ -289,13 +288,12 @@ const NoticesPage = () => {
               isLoading={isLoading}
             />
           )}
+          {!notices.length === 0 && search && <SuccessSearch />}
           {!notices.length && !filter && (
             <Container>
               <ErrorSearch />
             </Container>
           )}
-          {notices.length && search && <SuccessSearch />}
-
           {totalPage >= 2 && (
             <PaginationComponent paginateData={{ totalPage, setPage, page }} />
           )}

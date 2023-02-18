@@ -14,7 +14,6 @@ export const Text = styled.p`
 `;
 
 export const ErrorPosition = styled.div`
-  height: 10000px;
   position: relative;
   @media screen and (${p => p.theme.device.tablet}) {
     position: static;
