@@ -209,9 +209,6 @@ const NoticesPage = () => {
     setTitleRequest('');
     SetFilter(true);
   }, [categoryName]);
-  console.log('notices leng', notices.length);
-  console.log('search', search);
-
   return (
     <main>
       <NavContainer>
