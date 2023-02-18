@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+import malePic from '../../icons/male-icon.png';
+import femalePic from '../../icons/female-icon.png';
+
 export const FormWraper = styled.div`
   display: flex;
   flex-direction: column;
@@ -222,6 +225,9 @@ export const TextAreaInput = styled.textarea`
   background-color: #FDF7F2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   font-size: 14px;
+  ::placeholder {
+    font-family: ${p => p.theme.fonts.body};
+  }
   @media ${p => p.theme.device.tablet} {
     width: 448px;
   }
@@ -311,36 +317,29 @@ export const SexLabel = styled.label`
   }
 `;
 
-export const MaleWraper = styled.div`
-  width: 40px;
-  height: 40px;
-  margin-bottom: 17px;
-  @media ${p => p.theme.device.tablet} {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 23px;
-  }
-`;
-
-export const MalePic = styled.svg`
-  display: inline-block;
+export const MalePicture = styled.div`
   width: 36px;
   height: 36px;
-  //margin-bottom: 15px;
+  margin-bottom: 16px;
+  background-image: url(${malePic});
+  background-repeat: no-repeat;
+  background-size: contain, cover;
   @media ${p => p.theme.device.tablet} {
-    width: 60px;
-    height: 60px;
-    //margin-bottom: 23px;
+    width: 54px;
+    height: 54px;
+    margin-bottom: 25px;
   }
 `;
 
-export const FemaleWraper = styled.div`
-  width: 40px;
+export const FemalePicture = styled.div`
+  width: 26px;
   height: 40px;
- 
-  margin-bottom: 17px;
+  margin-bottom: 12px;
+  background-image: url(${femalePic});
+  background-repeat: no-repeat;
+  background-size: contain, cover;
   @media ${p => p.theme.device.tablet} {
-    width: 60px;
+    width: 39px;
     height: 60px;
     margin-bottom: 20px;
   }
@@ -472,7 +471,7 @@ export const ActButton = styled.button`
     cursor: auto;
     :hover {
       background-color: ${p => p.theme.colors.background};
-      color: ${p => p.theme.colors.placeholder};
+      color: ${p => p.theme.colors.disabled};
     }
   }
 `;
@@ -580,11 +579,12 @@ export const SexError = styled.p`
   position: absolute;
   color: red;
   min-width: 260px;
-  //bottom: 150px;
-  left: 80%;
+  top: 23px;
+  left: 300px;
   transform: translateX(-50%);
-  font-size: 24px;
+  font-size: 14px;
   @media ${p => p.theme.device.tablet} {
+    font-size: 24px;
     top: 30px;
     left: 400px;
   }

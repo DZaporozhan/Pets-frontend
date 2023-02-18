@@ -3,8 +3,6 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ReactComponent as MalePic } from '../../icons/Vectormale.svg';
-import { ReactComponent as FemalePic } from '../../icons/Vectorfemale.svg';
 import { ReactComponent as CrossPic } from '../../icons/Vectorcross.svg';
 import HeartLove from "../../../src/icons/heart-love.gif"
 import { toast } from 'react-toastify';
@@ -38,8 +36,6 @@ import {
   FormWraper,
   FirstPageContainer,
   SecPageContainer,
-  MaleWraper,
-  FemaleWraper,
   StarSpanLocation,
   TitleError,
   BirthdayError,
@@ -50,6 +46,8 @@ import {
   CommentError,
   SexError,
   LoveGifWrapper,
+  FemalePicture,
+  MalePicture,
 } from './AddNoticeForm.styled.';
 import { addNotice } from 'services/api/notices';
 
@@ -97,7 +95,7 @@ const validationSchema = Yup.object({
     .max(120, 'Max 120 letters'),
 });
 
-export const AddNoticeForm = ({ onClose, AddPet }) => {
+export const AddNoticeForm = ({ onClose }) => {
   const [isFirstPage, setIsFirstPage] = useState(true);
   const [image, setImage] = useState(null);
   const navigate = useNavigate();
@@ -297,9 +295,7 @@ export const AddNoticeForm = ({ onClose, AddPet }) => {
                     }}
                   />
                   <SexLabel htmlFor="malePet">
-                    <MaleWraper>
-                      <MalePic />
-                    </MaleWraper>
+                    <MalePicture></MalePicture>
                     Male
                     {formik.touched.sex && formik.errors.sex &&(
                       <LoveGifWrapper>
@@ -326,10 +322,8 @@ export const AddNoticeForm = ({ onClose, AddPet }) => {
                     onBlur={formik.handleBlur}
                   />
                   <SexLabel htmlFor="femalePet">
-                    <FemaleWraper>
-                      <FemalePic />
-                    </FemaleWraper>
-                    Female
+                    <FemalePicture></FemalePicture>
+                     Female
                     {/* {formik.touched.sex && formik.errors.sex && (
                   <SexError>{formik.errors.sex}</SexError>
                 )} */}
