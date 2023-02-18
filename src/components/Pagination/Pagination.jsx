@@ -21,8 +21,11 @@ const theme = createTheme({
 });
 
 export const PaginationComponent = ({ paginateData }) => {
-  const { setPage, totalPage, page } = paginateData;
+  const { setPage, totalPage, page, titleRequest } = paginateData;
   const { pathname } = useLocation();
+  // const [searchParams, setSearchParams] = useSearchParams();
+
+  // const search = searchParams.get('search');
 
   const scrollToTop = num => {
     if (page === num) return;
@@ -43,7 +46,10 @@ export const PaginationComponent = ({ paginateData }) => {
         renderItem={item => (
           <PaginationItem
             component={Link}
-            to={`${pathname}?page=${item.page}`}
+            to={
+              `${pathname}?page=${item.page}` +
+              (titleRequest !== '' ? `&search=${titleRequest}` : '')
+            }
             {...item}
           />
         )}

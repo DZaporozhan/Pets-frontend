@@ -56,8 +56,8 @@ export const NoticeItem = ({
 
   const onEditsText = text => {
     if (!text) return;
-    if (text.length > 16) {
-      return text.slice(0, 16) + '...';
+    if (text.length > 15) {
+      return text.slice(0, 15) + '...';
     }
     return text;
   };

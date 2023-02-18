@@ -10,6 +10,7 @@ import {
   IconAdd,
   TextAddBtn,
   MobileAddBtn,
+  NoAdsInThisCategory,
 } from './NoticesPage.styled';
 import Modal from '../../components/Modal';
 import { AddPetBtn } from '../../components/AddPetBtn/AddPetBtn';
@@ -44,7 +45,7 @@ const override = {
 const NoticesPage = () => {
   //react-router-dom hooks
   const { categoryName } = useParams();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   //state
   const isLoggedIn = useSelector(selectIsAuth);
@@ -177,8 +178,10 @@ const NoticesPage = () => {
   const onInputChange = e => {
     const titleRequest = e.currentTarget.value;
     setTitleRequest(titleRequest);
+    setSearchParams({ search: titleRequest });
     if (titleRequest === '') {
       SetSearch('');
+      setSearchParams({});
     }
     SetFilter(true);
   };
@@ -194,10 +197,13 @@ const NoticesPage = () => {
         return !prevState;
       });
     }
+    setPage(1);
 
+    setSearchParams({ search: titleRequest });
     SetSearch(titleRequest);
 
     if (!filter) {
+      setSearchParams({});
       setTitleRequest('');
       SetFilter(true);
       SetSearch('');
@@ -288,6 +294,11 @@ const NoticesPage = () => {
               isLoading={isLoading}
             />
           )}
+          {notices.length === 0 && filter && !isLoading && search === '' && (
+            <NoAdsInThisCategory>
+              There are no ads in this category
+            </NoAdsInThisCategory>
+          )}
           {!notices.length === 0 && search && <SuccessSearch />}
           {!notices.length && !filter && (
             <Container>
@@ -295,7 +306,9 @@ const NoticesPage = () => {
             </Container>
           )}
           {totalPage >= 2 && (
-            <PaginationComponent paginateData={{ totalPage, setPage, page }} />
+            <PaginationComponent
+              paginateData={{ totalPage, setPage, page, titleRequest }}
+            />
           )}
         </Container>
       </SectionList>
