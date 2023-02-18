@@ -10,6 +10,7 @@ import {
   IconAdd,
   TextAddBtn,
   MobileAddBtn,
+  NoAdsInThisCategory,
 } from './NoticesPage.styled';
 import Modal from '../../components/Modal';
 import { AddPetBtn } from '../../components/AddPetBtn/AddPetBtn';
@@ -194,7 +195,7 @@ const NoticesPage = () => {
         return !prevState;
       });
     }
-
+    setPage(1);
     SetSearch(titleRequest);
 
     if (!filter) {
@@ -287,6 +288,11 @@ const NoticesPage = () => {
               addToFavoriteAndRemove={addToFavoriteAndRemove}
               isLoading={isLoading}
             />
+          )}
+          {notices.length === 0 && filter && !isLoading && (
+            <NoAdsInThisCategory>
+              There are no ads in this category
+            </NoAdsInThisCategory>
           )}
           {!notices.length === 0 && search && <SuccessSearch />}
           {!notices.length && !filter && (

@@ -100,3 +100,11 @@ export const TextAddBtn = styled.span`
 
   color: #ffffff;
 `;
+
+export const NoAdsInThisCategory = styled.h2`
+  text-align: center;
+  padding-top: 20px;
+  font-family: ${p => p.theme.fonts.body};
+  font-size: ${p => p.theme.fontSizes[6]}px;
+  color: ${p => p.theme.colors.secondaryText};
+`;
