@@ -25,7 +25,7 @@ const validationSchema = Yup.object({
     .matches(cityRegEx, 'Entered city should have the format: City, Region'),
   phone: Yup.string()
     .required('Phone is required')
-    .matches(/^\+380\d{9}$/, 'Entered phote should have the format: +380()'),
+    .matches(/^\+380\d{9}$/, 'Phone should have the format: +380()'),
 });
 
 const SignUpStep2 = ({ data, step1, onBack }) => {
