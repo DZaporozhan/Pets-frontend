@@ -43,6 +43,7 @@ const override = {
 };
 
 const NoticesPage = () => {
+  const className = 'notice';
   //react-router-dom hooks
   const { categoryName } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -272,7 +273,7 @@ const NoticesPage = () => {
         </BtnPosition>
       </NavContainer>
       {showModal && (
-        <Modal onClose={toggleModal}>
+        <Modal onClose={toggleModal} className={className}>
           <AddNoticeForm onClose={toggleModal} />
         </Modal>
       )}

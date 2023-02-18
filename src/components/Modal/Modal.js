@@ -29,10 +29,10 @@ export default class Modal extends Component {
   };
 
   render() {
-    const { onClose } = this.props;
+    const { onClose, className } = this.props;
     return createPortal(
       <BackDrop onClick={this.onBackdropClick}>
-        <ModalWindow>
+        <ModalWindow className={className}>
           <BtnClose type="button" onClick={onClose}>
             <IconClose width={16} height={16}></IconClose>
           </BtnClose>
