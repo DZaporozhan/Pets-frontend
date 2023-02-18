@@ -29,13 +29,13 @@ export const OurFriendsInfo = ({
 			</div>
 			<p>Email:</p>
 
-			<Links  href="mailto:{email}">
+			<Links  href={"mailto:" + email}>
 				{email ? `${email}` : '------------------'}
 			</Links>
 
 			<p>Phone: </p>
 
-			<Links  href="tel:{phone}" >
+			<Links  href={"tel:" + phone} >
 				{phone ? `${phone}` : '------------------'}
 			</Links>
 		</Info>
