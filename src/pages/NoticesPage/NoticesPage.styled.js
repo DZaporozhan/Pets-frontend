@@ -18,7 +18,7 @@ export const Container = styled.div`
   margin: 0 auto;
 
   @media screen and (${p => p.theme.device.desktop}) {
-    width: 1248px;
+    width: 1280px;
   }
   @media screen and (max-width: 1279px) {
     width: 736px;

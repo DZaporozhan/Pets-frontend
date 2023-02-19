@@ -10,7 +10,7 @@ export const Item = styled.li`
     width: 336px;
   }
   @media screen and (${p => p.theme.device.desktop}) {
-    width: 280px;
+    width: 288px;
   }
 
   border-bottom-right-radius: 20px;
