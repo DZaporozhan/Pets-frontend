@@ -29,15 +29,16 @@ export const OurFriendsInfo = ({
 			</div>
 			<p>Email:</p>
 
-			<Links  href={"mailto:" + email}>
-				{email ? `${email}` : '------------------'}
-			</Links>
+		
+			{email ? <Links  href={"mailto:" + email}>
+				{email}
+			</Links> : <p>------------------</p>}
 
 			<p>Phone: </p>
-
-			<Links  href={"tel:" + phone} >
-				{phone ? `${phone}` : '------------------'}
-			</Links>
+		
+			{phone ? <Links  href={"tel:" + phone}>
+				{phone}
+			</Links> : <p>------------------</p>}
 		</Info>
 	);
 };
