@@ -18,10 +18,10 @@ import {
 } from './ModalAddsPet.styled';
 
 const validationSchema = Yup.object({
-  imageURL: Yup.mixed().required('Image is required!'),
+  imageURL: Yup.mixed().required(`Please upload your pet's photo`),
   comments: Yup.string()
-    .min(8, 'Must contain at least 8 characters')
-    .max(120, 'Must be 120 characters or less')
+    .min(8, 'Please enter at least 8 characters')
+    .max(120, 'Comments should be 120 characters or less')
     .required('Comments section is required!'),
 });
 
@@ -54,7 +54,9 @@ const Step2 = ({ data, next, back }) => {
                 value={undefined}
                 onChange={e => {
                   const { files } = e.currentTarget;
-                  if (files) {
+                  if (!files || !files[0]) {
+                    return;
+                  } else {
                     setImage(URL.createObjectURL(files[0]));
                     formProps.setFieldValue('imageURL', files[0]);
                   }

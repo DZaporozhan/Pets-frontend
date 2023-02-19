@@ -49,8 +49,10 @@ const Pet = ({ userPet }) => {
                 onChange={async e => {
                   const { files } = e.currentTarget;
                   const file = files[0];
+                  if (!file) return;
                   if (file === image) {
-                    Notify.info('You traing to add the same image');
+                    Notify.info('You trying to add the same image');
+                    return;
                   }
                   setImage(file);
                   await formik.submitForm();

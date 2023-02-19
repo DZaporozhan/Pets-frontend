@@ -78,13 +78,15 @@ export const Btn = styled.button`
 `;
 
 export const Img = styled.img`
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   /* width: 240px;
   height: 240px; */
   border-radius: ${p => p.theme.radii.small};
 
   @media ${p => p.theme.device.tablet} {
-    /* width: 161px;
-    height: 161px; */
     border-radius: ${p => p.theme.radii.normal};
   }
 `;

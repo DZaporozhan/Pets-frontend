@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { Notify } from 'notiflix';
 // import { useDispatch } from 'react-redux';
 import { addPet, deletePet, getUserData, updateImage } from './operations';
 
@@ -53,8 +54,9 @@ const userSlice = createSlice({
       const pet = state.userInfo.userPets.find(
         ({ _id }) => _id === action.payload.id
       );
-      if (!pet) throw new Error(`Pet with id ${action.payload.id} not found`);
-      pet.imageURL = action.payload.imageURL;
+      if (!pet) {
+        Notify.failure('Ooops! Something goes wrong. Please, reload the page.');
+      } else pet.imageURL = action.payload.imageURL;
       state.isLoading = false;
     },
     [updateImage.rejected]: handleRejected,
