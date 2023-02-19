@@ -14,17 +14,23 @@ const emailRegexp =
 
 const validationSchema = Yup.object({
   email: Yup.string()
-    .email('Invalid email')
-    .required('Email is required')
-    .matches(emailRegexp, 'Must contain only latin letters'),
+    .email('Please enter valid email')
+    .required('Please enter your email')
+    .matches(
+      emailRegexp,
+      'Please enter a valid value using English characters'
+    ),
   password: Yup.string()
     .trim()
-    .required('Password is required')
-    .min(7, 'Password must have min 7 symbol')
-    .max(32, 'Password must have max 32 symbol'),
+    .required('Please enter password')
+    .min(7, 'Please enter at least 7 characters')
+    .max(32, 'Name should be 32 characters or less'),
   confirmPassword: Yup.string()
-    .required('Email is required')
-    .oneOf([Yup.ref('password'), null], 'Password is not coincide'),
+    .required('Please enter your password again ')
+    .oneOf(
+      [Yup.ref('password'), null],
+      'Password doesn’t match. Please, try again'
+    ),
 });
 
 const SignUpStep1 = ({ data, onSubmit }) => {

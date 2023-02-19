@@ -40,7 +40,7 @@ export const login = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await api.login(credentials);
-      Notify.success('SingIn successfully');
+      Notify.success('Login successfully');
       return response;
     } catch ({ response }) {
       const { status, data } = response;
@@ -48,9 +48,14 @@ export const login = createAsyncThunk(
         status,
         message: data.message,
       };
-
+      if (error.status === 403) {
+        Notify.failure('Invalid password');
+      }
+      if (error.message === "Cannot read property '_id' of null") {
+        Notify.failure(`User with Email ${credentials.email} not found`);
+      }
       console.log(error);
-      Notify.failure(data.message);
+
       return thunkAPI.rejectWithValue(error);
     }
   }

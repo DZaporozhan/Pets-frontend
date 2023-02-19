@@ -16,16 +16,19 @@ const cityRegEx = /^[-a-z]+(?:(?:(,\s|,)[-a-z]+))$/i;
 
 const validationSchema = Yup.object({
   name: Yup.string()
-    .required('Name is required')
-    .matches(nameRegexp, 'Must contain only latin letters')
-    .min(2, 'Name must have min 2 letters')
+    .required('Please enter your name')
+    .matches(nameRegexp, 'Please enter a valid value using English characters')
+    .min(2, 'Please enter at least 2 characters')
     .max(16, 'Name must have max 16 letters'),
   city: Yup.string()
-    .required('City is required')
-    .matches(cityRegEx, 'Entered city should have the format: City, Region'),
+    .required('Please enter your City and Region')
+    .matches(cityRegEx, 'Please enter a valid city format: City, Region'),
   phone: Yup.string()
-    .required('Phone is required')
-    .matches(/^\+380\d{9}$/, 'Phone should have the format: +380()'),
+    .required('Please enter your phone')
+    .matches(
+      /^\+380\d{9}$/,
+      'Please enter a valid value using +380XXXXXXXXX format'
+    ),
 });
 
 const SignUpStep2 = ({ data, step1, onBack }) => {
