@@ -8,8 +8,8 @@ export const StyledBtn = styled.button`
   border: 0;
   cursor: pointer;
 
-  width: 129px;
-  height: 44px;
+  width: ${p => (p.page === 'user' ? '125px' : '129px')};
+  height: ${p => (p.page === 'user' ? '40px' : '44px')};
   padding: 0;
   border-radius: 0;
   background: transparent;
