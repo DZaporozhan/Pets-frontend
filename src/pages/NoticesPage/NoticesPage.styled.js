@@ -30,6 +30,7 @@ export const Container = styled.div`
 `;
 
 export const NavContainer = styled.div`
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 20px;
 
