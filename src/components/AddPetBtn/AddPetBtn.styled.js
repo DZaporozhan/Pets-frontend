@@ -21,8 +21,8 @@ export const Wrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 44px;
-  height: 44px;
+  width: ${p => (p.page === 'user' ? '40px' : '44px')};
+  height: ${p => (p.page === 'user' ? '40px' : '44px')};
   background-color: ${p => p.theme.colors.accent};
   border-radius: ${p => p.theme.radii.round};
 `;
