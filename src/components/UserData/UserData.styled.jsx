@@ -34,6 +34,7 @@ export const UserInfoWrap = styled.div`
     display: block;
     width: 411px;
     left: -16px;
+    width: calc(100% + 16px);
   }
 `;
 
