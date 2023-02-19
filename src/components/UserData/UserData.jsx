@@ -67,8 +67,8 @@ const UserData = () => {
 
   const [iconColor, setIconColor] = useState('#f59256');
 
-  const [typeBtn, setTypeBtn] = useState('button');
-  const [inputValue, setInputValue] = useState();
+  const [typeBtn, setTypeBtn] = useState('submit');
+  // const [inputValue, setInputValue] = useState();
 
   // const ref = useRef(null);
 
@@ -86,20 +86,20 @@ const UserData = () => {
   };
 
   // const handleChange = e => dispatch(setInputValue(e.currentTarget.value));
-  const handleChange = e => {
-    console.log(e.currentTarget.value);
-    console.log(e.currentTarget);
-    setInputValue(e.currentTarget.value);
-    console.log(inputValue);
-  };
-
-  // const handleSubmit = value => {
-  //   console.log(value);
-  //   // console.log(actions);
+  // const handleChange = e => {
+  //   console.log(e.currentTarget.value);
+  //   console.log(e.currentTarget);
+  //   setInputValue(e.currentTarget.value);
+  //   console.log(inputValue);
   // };
 
+  const handleSubmit = value => {
+    console.log(value);
+    // console.log(actions);
+  };
+
   const handleClick = (e, disabled, setDisabled, fieldValue) => {
-    const { type } = e.currentTarget;
+    // const { type } = e.currentTarget;
 
     if (disabled) {
       setDisabled(false);
@@ -127,7 +127,7 @@ const UserData = () => {
     // console.log(e.currentTarget.id);
     // console.log(name);
 
-    // setTypeBtn(prevState => (prevState === 'submit' ? 'button' : 'submit'));
+    setTypeBtn(prevState => (prevState === 'submit' ? 'button' : 'submit'));
     // console.log(typeBtn);
 
     // if (!isDisabled || e.currentTarget.id) {
@@ -179,7 +179,7 @@ const UserData = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={schema}
-          // onSubmit={handleSubmit}
+          onSubmit={handleSubmit}
         >
           {({ values }) => (
             <InfoForm autoComplete="off">
