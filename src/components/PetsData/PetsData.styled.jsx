@@ -21,5 +21,6 @@ export const Title = styled.h2`
 
   @media ${p => p.theme.device.tablet} {
     font-size: ${p => p.theme.fontSizes[6]}px;
+    line-height: 1.36;
   }
 `;

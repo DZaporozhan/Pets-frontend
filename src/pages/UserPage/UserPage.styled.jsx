@@ -3,15 +3,13 @@ import styled from 'styled-components';
 export const MainContainer = styled.main`
   font-family: ${p => p.theme.fonts.body};
   font-style: normal;
-  padding-top: 60px; // check this
+  padding-top: 61px; // check this
   padding-bottom: 80px; // check this
   padding-left: 20px;
   padding-right: 20px;
-  /* margin-left: auto;
-  margin-right: auto; */
 
   @media ${p => p.theme.device.tablet} {
-    padding-top: 80px; // check this
+    padding-top: 88px; // check this
     padding-bottom: 100px; // check this
     padding-left: 32px;
     padding-right: 32px;
@@ -19,10 +17,13 @@ export const MainContainer = styled.main`
 
   @media ${p => p.theme.device.desktop} {
     display: flex;
-    padding-top: 50px; // check this
+    padding-top: 55px; // check this
     padding-bottom: 40px; // check this
     padding-left: 16px;
     padding-right: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
   }
 `;
 
@@ -44,8 +45,7 @@ export const TitleUser = styled.h2`
 
   margin-bottom: 18px;
 
-  font-family: inherit;
-  font-style: inherit;
+  font-family: ${p => p.theme.fonts.body};
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes[4]}px;
   line-height: 1.35;
@@ -54,14 +54,13 @@ export const TitleUser = styled.h2`
   color: #111111;
 
   @media ${p => p.theme.device.tablet} {
-    font-size: 28px;
+    font-size: ${p => p.theme.fontSizes[6]}px;
     line-height: 1.36;
-
     margin-bottom: 40px;
   }
 
   @media ${p => p.theme.device.desktop} {
-    margin-bottom: 40px;
+    margin-bottom: 24px;
   }
 `;
 
