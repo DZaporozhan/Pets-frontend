@@ -39,6 +39,10 @@ export const BackDrop = styled.div`
     @media screen and (min-height: 1024px) and (orientation: landscape) {
       margin: 0vw 0;
     }
+
+    @media screen and (width: 1920px) and (height: 1080) {
+      margin: 15vw 0;
+    }
   }
 
   .learnMore {
