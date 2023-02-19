@@ -50,7 +50,7 @@ export const Container = styled.div`
 		background: url(${backgroundImageTablet});
 		background-position: 22% calc(9vh + 100%);
 		background-repeat: no-repeat;
-        height: calc(100vh - 75px);
+        height: calc(100vh - 74px);
         }
 
 	@media screen and (min-width: 1024px) {
@@ -60,7 +60,7 @@ export const Container = styled.div`
 		background-position: 60% calc(22vh + 100%);
         background-repeat: no-repeat;
         background-size: contain;
-        height: calc(100vh - 101px);
+        height: calc(100vh - 99px);
 
         display: flex;
         flex-direction: column;
