@@ -300,7 +300,7 @@ const NoticesPage = () => {
               There are no ads in this category
             </NoAdsInThisCategory>
           )}
-          {!notices.length === 0 && search && <SuccessSearch />}
+          {notices.length !== 0 && search && <SuccessSearch />}
           {!notices.length && !filter && (
             <Container>
               <ErrorSearch />
