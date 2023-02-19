@@ -19,7 +19,7 @@ const PetsData = () => {
     <>
       <TitleWrapper>
         <Title>My pets:</Title>
-        <AddPetBtn onClick={toggleModal} />
+        <AddPetBtn onClick={toggleModal} page={className} />
       </TitleWrapper>
 
       <PetsList />
