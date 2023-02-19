@@ -6,10 +6,10 @@ import 'react-toastify/dist/ReactToastify.css';
 // Components
 import { Section } from '../../components/Section/Section';
 import { NewsList } from 'components/News/NewsList/NewsList';
-import { NewsSearch } from 'components/News/NewsSearch/NewsSearch';
 import { Loader } from 'components/Loader/Loader';
-import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
-
+import { Searchbar } from '../../components/Searchbar/Searchbar';
+import { ErrorSearch } from 'components/ErrorSearch/ErrorSearch';
+import { Container } from 'pages/NoticesPage/NoticesPage.styled';
 // Services
 import { getAllNews } from 'services/api/news';
 
@@ -17,31 +17,41 @@ const NewsPage = () => {
   const [news, setNews] = useState([]);
   const [filteredNews, setFilteredNews] = useState([]);
   const [isNewsLoading, setIsNewsLoading] = useState(true);
-  const [notFound, setNotFound] = useState(false);
-  const [query, setQuery] = useState('');
+  
+  const [titleRequest, setTitleRequest] = useState('');
+  const [filter, SetFilter] = useState(true);
+  
+  const onInputChange = e => {
+    const titleRequest = e.currentTarget.value;
+    setTitleRequest(titleRequest);
+    SetFilter(true);
+  };
 
-  const handleSubmit = e => {
+  const onSubmit = e => {
     e.preventDefault();
-
-    // Show error message on empty query
-    if (query.trim() === '') {
-      return toast.error(
-        'Trying to find some news? Enter the search query first!'
-      );
+    if (titleRequest.trim() === '') {
+      setTitleRequest('');
+      return toast.error('Please enter a request');
     }
-
-    // Filter all news based on query
-    const lowerQuery = query.trim().toLowerCase();
+    if (titleRequest) {
+      SetFilter(prevState => {
+        return !prevState;
+      });
+    }
+    const lowerQuery = titleRequest.trim().toLowerCase();
     const result = news.filter(
       el =>
         el.description.toLowerCase().includes(lowerQuery) ||
         el.title.toLowerCase().includes(lowerQuery)
     );
-
-    // Set results
-    result.length === 0 ? setNotFound(true) : setNotFound(false);
+    
     setFilteredNews(result);
-    setQuery('');
+
+    if (!filter) { 
+      setFilteredNews(news)
+      setTitleRequest('');
+      SetFilter(true);
+    }
   };
 
   useEffect(() => {
@@ -56,15 +66,23 @@ const NewsPage = () => {
   return (
     <main>
       <Section title={'News'}>
-        {/* <Searchbar ></Searchbar> */}
-        <NewsSearch
-          setQuery={setQuery}
-          handleSubmit={handleSubmit}
-          query={query}
-        ></NewsSearch>
+      <Searchbar
+            filter={filter}
+            onSubmit={onSubmit}
+            onChange={onInputChange}
+            titleRequest={titleRequest}
+          ></Searchbar>
+       
       </Section>
       {isNewsLoading && <Loader />}
-      {!notFound ? <NewsList data={filteredNews} /> : <NotFoundPage />}
+     
+       <NewsList data={filteredNews} /> 
+   
+      {!filteredNews.length && !filter && (
+            <Container>
+              <ErrorSearch />
+            </Container>
+          )}
       <ToastContainer />
     </main>
   );
