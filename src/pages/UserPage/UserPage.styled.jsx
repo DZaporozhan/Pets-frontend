@@ -61,6 +61,7 @@ export const TitleUser = styled.h2`
   }
 
   @media ${p => p.theme.device.desktop} {
+    height: 40px;
     margin-bottom: 24px;
   }
 `;
