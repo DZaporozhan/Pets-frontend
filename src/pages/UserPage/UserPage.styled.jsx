@@ -3,22 +3,22 @@ import styled from 'styled-components';
 export const MainContainer = styled.main`
   font-family: ${p => p.theme.fonts.body};
   font-style: normal;
-  padding-top: 61px; // check this
-  padding-bottom: 80px; // check this
+  padding-top: 61px;
+  padding-bottom: 80px;
   padding-left: 20px;
   padding-right: 20px;
 
   @media ${p => p.theme.device.tablet} {
-    padding-top: 88px; // check this
-    padding-bottom: 100px; // check this
+    padding-top: 88px;
+    padding-bottom: 100px;
     padding-left: 32px;
     padding-right: 32px;
   }
 
   @media ${p => p.theme.device.desktop} {
     display: flex;
-    padding-top: 55px; // check this
-    padding-bottom: 40px; // check this
+    padding-top: 55px;
+    padding-bottom: 40px;
     padding-left: 16px;
     padding-right: 16px;
     margin-left: auto;
@@ -36,6 +36,7 @@ export const UserSection = styled.section`
 
   @media ${p => p.theme.device.desktop} {
     margin-bottom: 0;
+    margin-right: 32px;
   }
 `;
 
