@@ -52,7 +52,7 @@ export const login = createAsyncThunk(
         Notify.failure('Invalid password');
       }
       if (error.message === "Cannot read property '_id' of null") {
-        Notify.failure(`User with Email ${credentials.email} not found`);
+        Notify.failure(`Please enter your registered email`);
       }
       console.log(error);
 
