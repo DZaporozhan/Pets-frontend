@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as SvgLogout } from './img/logout-icon.svg';
+import { ReactComponent as SvgLogout } from 'icons/logout-icon.svg';
 
 export const Button = styled.button`
   display: inline-flex;
