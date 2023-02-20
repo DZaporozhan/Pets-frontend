@@ -23,7 +23,7 @@ line-height: 1.38;
 
  :hover:not(.active),
  :focus-visible:not(.active) {
-   background-color:  ${ props  => props.theme.colors.hoverButton}; ;
+    background-color:  ${ props  => props.theme.colors.hoverButton};
     border-color: ${p => p.theme.colors.hoverButton};
   }
 

@@ -20,23 +20,17 @@ export const NavLinkStyled = styled(NavLink)`
   font-weight: ${p => p.theme.fontWeights.medium};
   transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0s;
 
-  /* &.active {
-    background-color: ${props =>
-    props.primary ? props.theme.colors.accent : props.theme.colors.white};
-    color: ${props =>
-    props.primary ? props.theme.colors.white : props.theme.colors.black};
-  } */
+  &.active {
+   border-color: ${p => p.theme.colors.accent};
+  } 
 
-  /* :hover:not(.active),
+  :hover:not(.active),
   :focus-visible:not(.active) {
     background-color: ${props =>
-    props.primary
-      ? props.theme.colors.hoverButton
-      : props.theme.colors.hoverButton};
-    color: ${props =>
-    props.primary ? props.theme.colors.black : props.theme.colors.white};
-    border-color: ${p => p.theme.colors.hoverButton};
-  } */
+    props.theme.colors.hoverButton};
+   color: ${props =>
+   props.theme.colors.white};
+  }} 
 
   @media (min-width: 768px) {
     font-size: ${p => p.theme.fontSizes[4]}px;
