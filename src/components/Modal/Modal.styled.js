@@ -40,8 +40,8 @@ export const BackDrop = styled.div`
       margin: 0vw 0;
     }
 
-    @media screen and (width: 1920px) and (height: 1080) {
-      margin: 15vw 0;
+    @media screen and (min-width: 1050px) {
+      margin: 12vw 0;
     }
   }
 
