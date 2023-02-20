@@ -154,6 +154,18 @@ const NoticesPage = () => {
   };
 
   const addToFavoriteAndRemove = async id => {
+    if (!isLoggedIn) {
+      return toast.error('Please, log in to add notice', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark',
+      });
+    }
     try {
       if (!favorite.includes(id)) {
         setIsLoading(true);
@@ -237,7 +249,7 @@ const NoticesPage = () => {
         <BtnPosition>
           <NavLinkPosition>
             <CategoryBtn
-              title={'lost/found'}
+              title={'lost found'}
               to={'/notices/lost-found'}
               onClick={() => setPage(1)}
             ></CategoryBtn>
