@@ -109,3 +109,5 @@ export const NoAdsInThisCategory = styled.h2`
   font-size: ${p => p.theme.fontSizes[6]}px;
   color: ${p => p.theme.colors.secondaryText};
 `;
+
+export const A = styled.div``;
