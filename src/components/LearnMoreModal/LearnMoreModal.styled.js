@@ -300,6 +300,14 @@ export const ModalBtn = styled(ModalButton)`
     return '#080706';
   }};
   width: 248px;
+  :hover:not(.active),
+  :focus-visible:not(.active) {
+    color: ${props =>
+      props.primary
+        ? props.theme.colors.black
+        : props.theme.colors.hoverButton};
+    border-color: ${props => props.theme.colors.hoverButton};
+  }
   @media ${p => p.theme.device.tablet} {
     width: 203px;
   }
