@@ -6,7 +6,7 @@ export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 148px;
+  margin-top: 80px;
   margin-left: auto;
   margin-right: auto;
   padding: 20px 0;
@@ -76,7 +76,7 @@ export const FormInput = styled.input`
 export const AuthButton = styled.button`
   width: 100%;
   margin-top: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 16px;
   padding: 10.5px 0;
   border-radius: ${p => p.theme.radii.normal};
   letter-spacing: 0.04em;
@@ -91,10 +91,9 @@ export const AuthButton = styled.button`
   outline: ${p => p.theme.colors.accent};
   &:hover,
   &:focus {
-    color: black;
     box-shadow: none;
-    border: 2px solid rgba(245, 146, 86, 0.5);
-    background-color: ${p => p.theme.colors.white};
+    border: 2px solid #ff7e2f;
+    background-color: #ff7e2f;
   }
 `;
 
@@ -114,10 +113,9 @@ export const BackButton = styled.button`
   font-weight: ${p => p.theme.fontWeights.medium};
   &:hover,
   &:focus {
-    color: ${p => p.theme.colors.white};
+    color: #ff7e2f;
     box-shadow: none;
-    border: 2px solid #f59256;
-    background-color: ${p => p.theme.colors.accent};
+    border: 2px solid #ff7e2f;
   }
 `;
 
