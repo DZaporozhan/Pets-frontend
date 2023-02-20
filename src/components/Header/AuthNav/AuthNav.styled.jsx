@@ -22,13 +22,16 @@ export const NavLinkStyled = styled(NavLink)`
 
   &.active {
     border-color: ${p => p.theme.colors.accent};
+    
   }
 
   :hover:not(.active),
   :focus-visible:not(.active) {
     /* background-color: ${props => props.theme.colors.hoverButton}; */
-    color: #ff7e2f;
-    border-color: #ff7e2f;
+
+    color: ${props =>
+    props.primary ? props.theme.colors.black : props.theme.colors.hoverButton};
+    border-color: ${props => props.theme.colors.hoverButton};
   }
 
   @media (min-width: 768px) {
