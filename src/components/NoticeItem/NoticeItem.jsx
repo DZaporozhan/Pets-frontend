@@ -14,12 +14,11 @@ import {
   IconBtnDel,
   NoticePhoto,
 } from './NoticeItem.styled';
-import { selectUser, selectIsAuth } from 'redux/auth/selectors';
+import { selectUser } from 'redux/auth/selectors';
 import { useSelector } from 'react-redux';
 import Modal from '../Modal/Modal';
 import { useState } from 'react';
 import { LearnMoreModal } from '../LearnMoreModal/LearnMoreModal';
-import { useNavigate } from 'react-router';
 import calculateAge from 'calculate-age';
 import numberToText from 'number-to-text';
 import ClockLoader from 'react-spinners/ClockLoader';
@@ -51,10 +50,8 @@ export const NoticeItem = ({
   const [clickId, setClickId] = useState(null);
 
   const { _id: userId } = useSelector(selectUser);
-  const isLoggedIn = useSelector(selectIsAuth);
 
   const ownerNotice = owner === userId;
-  const navigate = useNavigate();
 
   const onEditsText = text => {
     if (!text) return;
@@ -82,13 +79,9 @@ export const NoticeItem = ({
   };
 
   const onFavorite = async () => {
-    if (isLoggedIn) {
-      setClickId(_id);
-      await addToFavoriteAndRemove(_id);
-      setClickId(null);
-      return;
-    }
-    navigate('/login');
+    setClickId(_id);
+    await addToFavoriteAndRemove(_id);
+    setClickId(null);
   };
 
   return (
