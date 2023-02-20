@@ -26,11 +26,14 @@ export const NavLinkStyled = styled(NavLink)`
 
   :hover:not(.active),
   :focus-visible:not(.active) {
-    background-color: ${props =>
+  background-color: ${props =>
     props.theme.colors.hoverButton};
-   color: ${props =>
-   props.theme.colors.white};
-  }} 
+  color: ${props =>
+  props.theme.colors.white};
+  border-color: ${p => p.theme.colors.hoverButton};
+  }
+ 
+
 
   @media (min-width: 768px) {
     font-size: ${p => p.theme.fontSizes[4]}px;
