@@ -51,6 +51,7 @@ const NoticesPage = () => {
   //state
   const isLoggedIn = useSelector(selectIsAuth);
   const [notices, setNotices] = useState([]);
+  const [reFetch, setReFetch] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [favorite, setFavorite] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -111,7 +112,7 @@ const NoticesPage = () => {
       }
     };
     getNotices();
-  }, [categoryName, search, page, showModal]);
+  }, [categoryName, search, page, showModal, reFetch]);
 
   useEffect(() => {
     if (!isLoggedIn) return;
@@ -161,11 +162,17 @@ const NoticesPage = () => {
         setIsLoading(false);
         return;
       }
-      if (categoryName === 'favorite') {
-        setNotices(prev => prev.filter(({ _id }) => _id !== id));
-      }
+
       setIsLoading(true);
       await removeNoticeFromFavorite(id);
+      if (categoryName === 'favorite') {
+        if (notices.length === 1 && favorite.length !== 1) {
+          setReFetch(prev => !prev);
+          setPage(page === Math.ceil(favorite.length / 8) ? page - 1 : page);
+        }
+
+        setNotices(prev => prev.filter(({ _id }) => _id !== id));
+      }
       setFavorite(prev => prev.filter(el => el !== id));
       setIsLoading(false);
     } catch (error) {

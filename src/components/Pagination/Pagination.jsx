@@ -23,9 +23,6 @@ const theme = createTheme({
 export const PaginationComponent = ({ paginateData }) => {
   const { setPage, totalPage, page, titleRequest } = paginateData;
   const { pathname } = useLocation();
-  // const [searchParams, setSearchParams] = useSearchParams();
-
-  // const search = searchParams.get('search');
 
   const scrollToTop = num => {
     if (page === num) return;
@@ -36,6 +33,7 @@ export const PaginationComponent = ({ paginateData }) => {
     <ThemeProvider theme={theme}>
       <PaginationStyled
         count={totalPage}
+        siblingCount={0}
         onChange={(_, num) => {
           setPage(num);
           scrollToTop(num);
