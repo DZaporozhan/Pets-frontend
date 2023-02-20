@@ -22,7 +22,7 @@ const validationSchema = Yup.object({
   comments: Yup.string()
     .min(8, 'Please enter at least 8 characters')
     .max(120, 'Comments should be 120 characters or less')
-    .required('Comments section is required!'),
+    .required('Please enter some comments'),
 });
 
 const Step2 = ({ data, next, back }) => {
