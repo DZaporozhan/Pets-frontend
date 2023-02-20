@@ -14,6 +14,8 @@ import {
   ActionButtons,
   DeleteButton,
   ModalBtn,
+  ContactBtnTel,
+  ContactBtnEmail,
 } from './LearnMoreModal.styled';
 
 import { FcDislike, FcLike } from 'react-icons/fc';
@@ -108,13 +110,17 @@ export const LearnMoreModal = ({
               <DescriptionStyle style={{ marginRight: 67 }}>
                 Email:
               </DescriptionStyle>
-              <DescriptionValue>{noticeData.email}</DescriptionValue>
+              <ContactBtnEmail href="mailto:noticeData.email">
+                {noticeData.email}
+              </ContactBtnEmail>
             </li>
             <li>
               <DescriptionStyle style={{ marginRight: 59 }}>
                 Phone:
               </DescriptionStyle>
-              <DescriptionValue>{noticeData.phone}</DescriptionValue>
+              <ContactBtnTel href="tel:noticeData.phone">
+                {noticeData.phone}
+              </ContactBtnTel>
             </li>
             <li>
               <DescriptionStyle style={{ marginRight: 70 }}>

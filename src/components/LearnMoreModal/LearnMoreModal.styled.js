@@ -50,9 +50,9 @@ export const ContactBtn = styled.a`
   margin-left: auto;
   margin-right: auto;
   margin-top: ${({ ownerNotice }) => (ownerNotice ? '20px' : '0px')};
-  font-family: 'Manrope';
+  font-family: ${p => p.theme.fonts.body};
   color: ${p => p.theme.colors.white};
-  font-weight: ${p => p.theme.fontWeights.medium};
+  font-weight: 500;
   font-size: 16px;
   line-height: 22px;
   align-items: center;
@@ -62,7 +62,7 @@ export const ContactBtn = styled.a`
   :hover {
     transform: scale(1.02);
     color: ${p => p.theme.colors.white};
-    border-color: ${p => p.theme.colors.notFoundPage};
+    border-color: ${p => p.theme.colors.hoverButton};
     cursor: pointer;
   }
 `;
@@ -153,6 +153,30 @@ export const DescriptionValue = styled.span`
   font-size: 16px;
   line-height: 22px;
   color: #000000;
+`;
+export const ContactBtnTel = styled.a`
+  font-family: ${p => p.theme.fonts.body};
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+  :focus,
+  :hover {
+    color: #ff6101;
+  }
+`;
+export const ContactBtnEmail = styled.a`
+  font-family: ${p => p.theme.fonts.body};
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+  :focus,
+  :hover {
+    color: #ff6101;
+  }
 `;
 
 export const DescriptionStyle = styled.span`
