@@ -25,6 +25,13 @@ export const Wrap = styled.div`
   height: ${p => (p.page === 'user' ? '40px' : '44px')};
   background-color: ${p => p.theme.colors.accent};
   border-radius: ${p => p.theme.radii.round};
+
+  &:hover,
+  &:focus {
+    box-shadow: 7px 4px 14px #f59256;
+    background-color: ${p => p.theme.colors.buttonAccent};
+    transition: ${p => p.theme.transition};
+  }
 `;
 
 export const IconAdd = styled(AddIcon)`

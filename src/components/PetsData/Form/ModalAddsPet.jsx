@@ -31,7 +31,7 @@ const ModalAddsPet = ({ onCancel }) => {
     data.append('imageURL', formData.imageURL);
 
     try {
-      await dispatch(addPet(data));
+      dispatch(addPet(data));
       Notify.success('You added new Pet successfully!');
       onCancel();
     } catch (error) {
