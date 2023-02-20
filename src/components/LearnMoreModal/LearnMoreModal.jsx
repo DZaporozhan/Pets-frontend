@@ -91,7 +91,7 @@ export const LearnMoreModal = ({
               <DescriptionValue>{noticeData.location}</DescriptionValue>
             </li>
             <li>
-              <DescriptionStyle style={{ marginRight: 53 }}>
+              <DescriptionStyle style={{ marginRight: 49 }}>
                 The sex:
               </DescriptionStyle>
               <DescriptionValue>{noticeData.sex}</DescriptionValue>
