@@ -22,6 +22,12 @@ export const NavBtn = styled(NavLink)`
     background: ${p => p.theme.colors.accent};
   }
 
+  &:hover,
+  :focus {
+    color: ${p => p.theme.colors.white};
+    background: ${p => p.theme.colors.accent};
+  }
+
   @media screen and (${p => p.theme.device.tablet}) {
     padding: 10px 28px;
     font-size: ${p => p.theme.fontSizes[4]}px;

@@ -86,6 +86,10 @@ export const MobileAddBtn = styled.button`
 
   border-radius: ${p => p.theme.radii.round};
   background: ${p => p.theme.colors.accent};
+  &:hover,
+  :focus {
+    background: ${p => p.theme.colors.hoverButton};
+  }
 `;
 
 export const IconAdd = styled(AddIcon)`
