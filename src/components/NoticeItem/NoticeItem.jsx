@@ -87,12 +87,12 @@ export const NoticeItem = ({
   return (
     <Item>
       <NoticePhoto
-        src={
-          (imageURL &&
-            `https://res.cloudinary.com/dqupdbup3/image/upload/${imageURL?.toLowerCase()}`) ||
-          petImage
-        }
+        src={`https://res.cloudinary.com/dqupdbup3/image/upload/${imageURL?.toLowerCase()}`}
         alt={title}
+        onError={e => {
+          e.target.onerror = null;
+          e.target.src = petImage;
+        }}
       />
       <Tumb ownerNotice={ownerNotice}>
         <Title>{onEditsText(title)}</Title>
