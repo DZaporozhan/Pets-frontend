@@ -42,8 +42,12 @@ const Step1 = ({ data, next, onCancel }) => {
     >
       {() => (
         <StaledForm>
-          <Label htmlFor="name">Name pet</Label>
-          <TextInput id="name" name="name" placeholder="Type name pet" />
+          <Label htmlFor="name">Pet`s name</Label>
+          <TextInput
+            id="name"
+            name="name"
+            placeholder="Please, enter your pet`s name"
+          />
           <ErrorMessage
             name="name"
             render={message => (
@@ -58,7 +62,7 @@ const Step1 = ({ data, next, onCancel }) => {
             type="date"
             min="1950-01-01"
             max={today}
-            placeholder="Type date of birth"
+            placeholder="01.01.2019"
           />
           <ErrorMessage
             name="birthdate"
@@ -68,7 +72,11 @@ const Step1 = ({ data, next, onCancel }) => {
           />
 
           <Label htmlFor="breed">Breed</Label>
-          <TextInput id="breed" name="breed" placeholder="Type breed" />
+          <TextInput
+            id="breed"
+            name="breed"
+            placeholder="Please, enter your pet`s breed"
+          />
           <ErrorMessage
             name="breed"
             render={message => (
