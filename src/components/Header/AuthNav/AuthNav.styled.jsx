@@ -21,19 +21,15 @@ export const NavLinkStyled = styled(NavLink)`
   transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0s;
 
   &.active {
-   border-color: ${p => p.theme.colors.accent};
-  } 
+    border-color: ${p => p.theme.colors.accent};
+  }
 
   :hover:not(.active),
   :focus-visible:not(.active) {
-  background-color: ${props =>
-    props.theme.colors.hoverButton};
-  color: ${props =>
-  props.theme.colors.white};
-  border-color: ${p => p.theme.colors.hoverButton};
+    /* background-color: ${props => props.theme.colors.hoverButton}; */
+    color: #ff7e2f;
+    border-color: #ff7e2f;
   }
- 
-
 
   @media (min-width: 768px) {
     font-size: ${p => p.theme.fontSizes[4]}px;
