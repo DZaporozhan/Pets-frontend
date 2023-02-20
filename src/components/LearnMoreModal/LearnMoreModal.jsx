@@ -25,14 +25,6 @@ import petImage from '../../icons/pets.png';
 
 import { useNavigate } from 'react-router';
 
-const onEditsText = text => {
-  if (!text) return;
-  if (text.length > 16) {
-    return text.slice(0, 16) + '...';
-  }
-  return text;
-};
-
 export const LearnMoreModal = ({
   noticeData,
   onDeleteNotice,
@@ -46,9 +38,7 @@ export const LearnMoreModal = ({
   //дізнаємось що ми owner↑
   const favoriteId = favorite.find(elem => elem === noticeData._id);
   // Зміна кнопки або наповнення кнопки↑
-  console.log(noticeData);
-  console.log(favorite);
-  console.log(favoriteId);
+
   //===============================================
   const navigate = useNavigate();
 
@@ -65,16 +55,16 @@ export const LearnMoreModal = ({
     <Container>
       <InfoWrapper>
         <ImageThumb
-          src={
-            (noticeData.imageURL &&
-              `https://res.cloudinary.com/dqupdbup3/image/upload/${noticeData.imageURL?.toLowerCase()}`) ||
-            petImage
-          }
+          src={`https://res.cloudinary.com/dqupdbup3/image/upload/${noticeData.imageURL?.toLowerCase()}`}
           alt={noticeData.title}
+          onError={e => {
+            e.target.onerror = null;
+            e.target.src = petImage;
+          }}
         />
 
         <div>
-          <Title>{onEditsText(noticeData.title)}</Title>
+          <Title>{noticeData.title}</Title>
           <ul>
             <li>
               <DescriptionStyle style={{ marginRight: 65 }}>
