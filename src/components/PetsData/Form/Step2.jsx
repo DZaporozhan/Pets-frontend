@@ -125,7 +125,7 @@ export function MyFormikTextareaField({ fieldName }) {
     <TextAreaInput
       value={meta.value}
       onChange={field.onChange}
-      placeholder={`Type some ${fieldName}`}
+      placeholder={`Please, enter your comment here`}
       id={fieldName}
       name={fieldName}
     />
