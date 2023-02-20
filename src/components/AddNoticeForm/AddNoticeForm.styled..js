@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import malePic from '../../icons/male-icon.png';
 import femalePic from '../../icons/female-icon.png';
+import { Field } from 'formik';
 
 export const FormWraper = styled.div`
   display: flex;
@@ -72,7 +73,7 @@ export const CategoryLabel = styled.label`
   /* margin-bottom: 4px; */
 `;
 
-export const CategoryInput = styled.input`
+export const CategoryInput = styled(Field)`
   position: absolute;
   width: 1px;
   height: 1px;

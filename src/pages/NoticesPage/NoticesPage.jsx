@@ -36,6 +36,7 @@ import { AddNoticeForm } from 'components/AddNoticeForm/AddNoticeForm';
 import { PaginationComponent } from 'components/Pagination/Pagination';
 import { ErrorSearch } from 'components/ErrorSearch/ErrorSearch';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import NoticeForm from 'components/AddNoticeForm/NoticeForm';
 
 const override = {
   display: 'block',
@@ -281,7 +282,7 @@ const NoticesPage = () => {
       </NavContainer>
       {showModal && (
         <Modal onClose={toggleModal} className={className}>
-          <AddNoticeForm onClose={toggleModal} />
+          <NoticeForm onClose={toggleModal} />
         </Modal>
       )}
       <SectionList>
