@@ -22,8 +22,8 @@ import { FcDislike, FcLike } from 'react-icons/fc';
 import { CiTrash } from 'react-icons/ci';
 
 import petImage from '../../icons/pets.png';
-
-import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 export const LearnMoreModal = ({
   noticeData,
@@ -40,7 +40,6 @@ export const LearnMoreModal = ({
   // Зміна кнопки або наповнення кнопки↑
 
   //===============================================
-  const navigate = useNavigate();
 
   const onFavorite = async id => {
     if (authorized) {
@@ -48,7 +47,17 @@ export const LearnMoreModal = ({
 
       return;
     }
-    navigate('/login');
+
+    return toast.error('Please, log in to add notice', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'dark',
+    });
   };
 
   return (
@@ -146,6 +155,7 @@ export const LearnMoreModal = ({
         </ModalBtn>
         <ContactBtn href="tel:noticeData.phone">Contact</ContactBtn>
       </ActionButtons>
+      <ToastContainer />
     </Container>
   );
 };
