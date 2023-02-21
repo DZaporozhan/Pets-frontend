@@ -24,14 +24,15 @@ export const NavBtn = styled(NavLink)`
 
   :hover:not(.active),
   :focus-visible:not(.active) {
-    color: ${p => p.theme.colors.hoverButton};
-    border-color: ${props => props.theme.colors.hoverButton};
+    background-color: ${props => props.theme.colors.hoverOrange};
+    color: ${props => props.theme.colors.white};
+    border-color: ${props => props.theme.colors.hoverOrange};
   }
 
-  &.active:hover:focus {
+  /*  &.active:hover:focus {
     color: black;
     border-color: ${props => props.theme.colors.hoverButton};
-  }
+  } */
 
   @media screen and (${p => p.theme.device.tablet}) {
     padding: 10px 28px;
