@@ -88,8 +88,8 @@ export const LearnMore = styled.button`
   :focus,
   :hover {
     transform: scale(1.02);
-    color: ${p => p.theme.colors.hoverButton};
-    border-color: ${p => p.theme.colors.hoverButton};
+    color: #ffffff;
+    background-color: ${p => p.theme.colors.accent};
     cursor: pointer;
   }
 `;
@@ -115,8 +115,8 @@ export const BtnDelete = styled.button`
   :focus,
   :hover {
     transform: scale(1.02);
-    color: ${p => p.theme.colors.hoverButton};
-    border-color: ${p => p.theme.colors.hoverButton};
+    color: #ffffff;
+    background-color: ${p => p.theme.colors.accent};
     cursor: pointer;
   }
 `;
