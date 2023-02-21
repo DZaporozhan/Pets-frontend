@@ -54,7 +54,7 @@ export const EditPhotoContainer = styled.div`
   }
 `;
 
-export const Thumb = styled.div``;
+export const Thumb = styled.form``;
 
 export const UserAvatar = styled.img`
   display: block;

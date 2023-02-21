@@ -1,31 +1,28 @@
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
 // import { getUserInfo } from 'redux/user/selectors';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import UserImage from './UserImage';
 
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import {
   Button,
-  CameraIcon,
   EditIcon,
   EditPhotoContainer,
   InfoContainer,
   // ErrorText,
   InfoForm,
   Input,
-  InputPhoto,
   Label,
-  AddPhoto,
-  Thumb,
-  UserAvatar,
   UserInfoWrap,
-  IconWraper,
   CheckIcon,
 } from './UserData.styled';
 
-import avatar from 'icons/temp-avatar.jpg';
 import Logout from 'components/Logout';
 import { useState } from 'react';
+// import { getUserInfo } from 'redux/user/selectors';
+
 // import { useRef } from 'react';
 // import { ReactComponent as SvgCross } from './img/svgCross.svg';
 
@@ -51,6 +48,7 @@ let schema = yup.object().shape({
 });
 
 let initialValues = {
+  imageURL: '',
   name: '',
   email: '',
   birthday: '',
@@ -151,28 +149,7 @@ const UserData = () => {
   return (
     <UserInfoWrap>
       <EditPhotoContainer>
-        <Thumb>
-          <UserAvatar
-            // src={imageURL || avatar}
-            src={avatar}
-            alt="User avatar"
-            loading="lazy"
-            width="233"
-            height="233"
-          />
-          <AddPhoto htmlFor="user-photo">
-            <InputPhoto
-              id="user-photo"
-              type="file"
-              accept="image/*"
-              name="user-photo"
-            />
-            <IconWraper>
-              <CameraIcon />
-            </IconWraper>
-            <span name="image">Edit photo</span>
-          </AddPhoto>
-        </Thumb>
+        <UserImage />
       </EditPhotoContainer>
 
       <InfoContainer>

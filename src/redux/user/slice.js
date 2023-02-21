@@ -1,7 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Notify } from 'notiflix';
 // import { useDispatch } from 'react-redux';
-import { addPet, deletePet, getUserData, updateImage } from './operations';
+import {
+  addPet,
+  deletePet,
+  getUserData,
+  updateAvatar,
+  updateImage,
+} from './operations';
 
 const initialState = {
   userInfo: {},
@@ -22,7 +28,7 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   extraReducers: {
-    // GET USER
+    // GET USER Info
     [getUserData.pending]: handlePending,
     [getUserData.fulfilled](state, action) {
       state.userInfo = action.payload;
@@ -60,6 +66,17 @@ const userSlice = createSlice({
       state.isLoading = false;
     },
     [updateImage.rejected]: handleRejected,
+
+    //UPDATE USER Avatar
+    [updateAvatar.pending]: handlePending,
+    [updateAvatar.fulfilled](state, action) {
+      const user = state.userInfo;
+      if (!user) {
+        Notify.failure('Ooops! Something goes wrong. Please, reload the page.');
+      } else user.imageURL = action.payload.imageURL;
+      state.isLoading = false;
+    },
+    [updateAvatar.rejected]: handleRejected,
   },
 });
 
