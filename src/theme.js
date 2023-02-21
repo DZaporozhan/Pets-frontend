@@ -33,6 +33,7 @@ export const theme = {
     femaleColor: '#FF8787',
     hoverButton: ' #FF6101',
     notFoundPage: '#f5ece4',
+    hoverOrange: '#ff7e2f',
   },
 
   //border-radius
