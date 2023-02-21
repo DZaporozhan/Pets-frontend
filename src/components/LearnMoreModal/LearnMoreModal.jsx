@@ -16,6 +16,7 @@ import {
   ModalBtn,
   ContactBtnTel,
   ContactBtnEmail,
+  DescriptionList,
 } from './LearnMoreModal.styled';
 
 import { FcDislike, FcLike } from 'react-icons/fc';
@@ -74,7 +75,7 @@ export const LearnMoreModal = ({
 
         <div>
           <Title>{noticeData.title}</Title>
-          <ul>
+          <DescriptionList>
             <li>
               <DescriptionStyle style={{ marginRight: 65 }}>
                 Name:
@@ -121,6 +122,13 @@ export const LearnMoreModal = ({
                 {noticeData.phone}
               </ContactBtnTel>
             </li>
+            <li>
+              <DescriptionStyle style={{ marginRight: 70 }}>
+                Price:
+              </DescriptionStyle>
+              <DescriptionValue>{noticeData.price}</DescriptionValue>
+            </li>
+          </DescriptionList>
             {isPrice && (
               <li>
                 <DescriptionStyle style={{ marginRight: 70 }}>
@@ -130,6 +138,7 @@ export const LearnMoreModal = ({
               </li>
             )}
           </ul>
+
         </div>
       </InfoWrapper>
       <CategoryTitleWraper>
