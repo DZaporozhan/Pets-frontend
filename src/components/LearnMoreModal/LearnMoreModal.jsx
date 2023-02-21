@@ -38,7 +38,7 @@ export const LearnMoreModal = ({
   //дізнаємось що ми owner↑
   const favoriteId = favorite.find(elem => elem === noticeData._id);
   // Зміна кнопки або наповнення кнопки↑
-
+  const isPrice = noticeData.category === 'sell';
   //===============================================
 
   const onFavorite = async id => {
@@ -121,12 +121,14 @@ export const LearnMoreModal = ({
                 {noticeData.phone}
               </ContactBtnTel>
             </li>
-            <li>
-              <DescriptionStyle style={{ marginRight: 70 }}>
-                Price:
-              </DescriptionStyle>
-              <DescriptionValue>{noticeData.price}</DescriptionValue>
-            </li>
+            {isPrice && (
+              <li>
+                <DescriptionStyle style={{ marginRight: 70 }}>
+                  Price:
+                </DescriptionStyle>
+                <DescriptionValue>{noticeData.price}</DescriptionValue>
+              </li>
+            )}
           </ul>
         </div>
       </InfoWrapper>
