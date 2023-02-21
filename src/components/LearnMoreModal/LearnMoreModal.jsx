@@ -128,7 +128,7 @@ export const LearnMoreModal = ({
               </DescriptionStyle>
               <DescriptionValue>{noticeData.price}</DescriptionValue>
             </li>
-          </DescriptionList>
+
             {isPrice && (
               <li>
                 <DescriptionStyle style={{ marginRight: 70 }}>
@@ -137,8 +137,7 @@ export const LearnMoreModal = ({
                 <DescriptionValue>{noticeData.price}</DescriptionValue>
               </li>
             )}
-          </ul>
-
+          </DescriptionList>
         </div>
       </InfoWrapper>
       <CategoryTitleWraper>
