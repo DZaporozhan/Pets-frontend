@@ -17,6 +17,11 @@ export const Button = styled.button`
   letter-spacing: 0.04em;
   color: rgba(17, 17, 17, 0.6);
 
+  &:hover span,
+  :focus span {
+    color: ${p => p.theme.colors.hoverButton};
+  }
+
   @media ${p => p.theme.device.tablet} {
     margin-left: 0;
   }

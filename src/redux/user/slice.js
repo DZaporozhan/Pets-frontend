@@ -7,6 +7,7 @@ import {
   getUserData,
   updateAvatar,
   updateImage,
+  updateUserInfo,
 } from './operations';
 
 const initialState = {
@@ -77,6 +78,17 @@ const userSlice = createSlice({
       state.isLoading = false;
     },
     [updateAvatar.rejected]: handleRejected,
+
+    //Update User Info
+    [updateUserInfo.pending]: handlePending,
+    [updateUserInfo.fulfilled](state, action) {
+      const user = state.userInfo;
+      if (!user) {
+        Notify.failure('Ooops! Something goes wrong. Please, reload the page.');
+      } else user.userInfo = action.payload.userInfo;
+      state.isLoading = false;
+    },
+    [updateUserInfo.rejected]: handleRejected,
   },
 });
 

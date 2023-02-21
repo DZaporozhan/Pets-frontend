@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
 // import { getUserInfo } from 'redux/user/selectors';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -21,6 +21,7 @@ import {
 
 import Logout from 'components/Logout';
 import { useState } from 'react';
+import { updateUserInfo } from 'redux/user/operations';
 // import { getUserInfo } from 'redux/user/selectors';
 
 // import { useRef } from 'react';
@@ -57,6 +58,7 @@ let initialValues = {
 };
 
 const UserData = () => {
+  const dispatch = useDispatch();
   const [nameDisabled, setNameDisabled] = useState(true);
   const [emailDisabled, setEmailDisabled] = useState(true);
   const [birthdayDisabled, setBirthdayDisabled] = useState(true);
@@ -68,11 +70,6 @@ const UserData = () => {
   const [typeBtn, setTypeBtn] = useState('submit');
   // const [inputValue, setInputValue] = useState();
 
-  // const ref = useRef(null);
-
-  // const dispatch = useDispatch();
-
-  // const { imageURL, name, email, birthday, phone, city } = useSelector(selectUser);
   const { name, email, birthday, phone, city } = useSelector(selectUser);
 
   initialValues = {
@@ -92,7 +89,9 @@ const UserData = () => {
   // };
 
   const handleSubmit = value => {
-    console.log(value);
+    // console.log(value);
+    dispatch(updateUserInfo(value));
+
     // console.log(actions);
   };
 
@@ -131,20 +130,6 @@ const UserData = () => {
     // if (!isDisabled || e.currentTarget.id) {
     // }
   };
-
-  ////////////////////////////
-  // Червона консоль не працює
-  // const user = useSelector(getUserInfo);
-  // console.log(user);
-  //
-  // const {
-  //   userInfo: { name, email, birthday, phone, city },
-  // } = useSelector(getUserInfo);
-  ////////////////////////////
-
-  // const handleSubmit = value => {`
-  //   dispatch(updateUser(value));
-  // };
 
   return (
     <UserInfoWrap>

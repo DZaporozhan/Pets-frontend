@@ -39,7 +39,7 @@ export const LearnMoreModal = ({
   //дізнаємось що ми owner↑
   const favoriteId = favorite.find(elem => elem === noticeData._id);
   // Зміна кнопки або наповнення кнопки↑
-
+  const isPrice = noticeData.category === 'sell';
   //===============================================
 
   const onFavorite = async id => {
@@ -129,6 +129,16 @@ export const LearnMoreModal = ({
               <DescriptionValue>{noticeData.price}</DescriptionValue>
             </li>
           </DescriptionList>
+            {isPrice && (
+              <li>
+                <DescriptionStyle style={{ marginRight: 70 }}>
+                  Price:
+                </DescriptionStyle>
+                <DescriptionValue>{noticeData.price}</DescriptionValue>
+              </li>
+            )}
+          </ul>
+
         </div>
       </InfoWrapper>
       <CategoryTitleWraper>
