@@ -1,8 +1,4 @@
 import styled from 'styled-components';
-// import { FiHeart } from 'react-icons/fi';
-// import { ModalButton } from 'components/ModalBtn/ModalBtn';
-// import { ReactComponent as IconHeart } from '../../../src/icons/smallHeart.svg';
-//===========================================
 
 export const Container = styled.div`
   flex-direction: column;
@@ -66,30 +62,7 @@ export const ContactBtn = styled.a`
     cursor: pointer;
   }
 `;
-// export const BtnAddFavorite = styled.button`
-//   position: absolute;
-//   top: 12px;
-//   right: 12px;
-//   width: 44px;
-//   height: 44px;
-//   border-radius: 100%;
-//   border-color: transparent;
-//   align-items: center;
-//   justify-content: center;
-//   display: flex;
-//   background-color: rgba(255, 255, 255, 0.6);
-//   transition: ${p => p.theme.transition};
-//   :focus,
-//   :hover {
-//     transform: scale(1.05);
-//     cursor: pointer;
-//   }
-// `;
-// export const BtnAddFavoriteIcon = styled(FiHeart)`
-//   color: #f59256;
-//   fill: ${({ orfavorites: { favorite, _id } }) =>
-//     favorite.includes(_id) ? '#f59256' : 'rgba(255, 255, 255, 0.6)'};
-// `;
+
 export const InfoWrapper = styled.div`
   @media ${p => p.theme.device.tablet} {
     display: flex;
@@ -137,14 +110,6 @@ export const Description = ({ text }) => (
     {text}
   </DescriptionText>
 );
-//13:59
-
-// export const AddToFavorites = ({ authorized, onClick, favoriteId }) => (
-//   <ModalButton authorized={authorized} onClick={onClick}>
-//     {!favoriteId ? 'Add to' : 'Delete'}
-//     <IconHeart />
-//   </ModalButton>
-// );
 
 export const DescriptionValue = styled.span`
   font-family: ${p => p.theme.fonts.body};
@@ -310,5 +275,11 @@ export const ModalBtn = styled(ModalButton)`
   }
   @media ${p => p.theme.device.tablet} {
     width: 203px;
+  }
+`;
+export const DescriptionList = styled.ul`
+  padding-left: 4px;
+  li:not(:last-child) {
+    margin-bottom: 8px;
   }
 `;
