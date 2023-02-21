@@ -302,11 +302,10 @@ export const ModalBtn = styled(ModalButton)`
   width: 248px;
   :hover:not(.active),
   :focus-visible:not(.active) {
-    color: ${props =>
-      props.primary
-        ? props.theme.colors.black
-        : props.theme.colors.hoverButton};
-    border-color: ${props => props.theme.colors.hoverButton};
+    background-color: ${props => props.theme.colors.hoverOrange};
+
+    color: ${props => props.theme.colors.white};
+    border-color: ${props => props.theme.colors.hoverOrange};
   }
   @media ${p => p.theme.device.tablet} {
     width: 203px;
