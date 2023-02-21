@@ -12,7 +12,8 @@ import {
 import { register } from 'redux/auth/operations';
 
 const nameRegexp = /^(?=.{2,16}$)([- A-Za-z])*$/;
-const cityRegEx = /^[- a-z]+(?:(?:(,\s|,)[-a-z]+))$/i;
+// eslint-disable-next-line no-useless-escape
+const cityRegEx = /^[- a-z\']+(?:(?:(,\s|,)[-a-z]+))$/i;
 const validationSchema = Yup.object({
   name: Yup.string()
     .trim()
