@@ -11,16 +11,16 @@ export const updateUserData = async data => {
 };
 
 export const addUserPet = async data => {
-  const { data: result } = await instance.post('/user/pets', data);
+  const { data: result } = await instance.post('/pets', data);
   return result;
 };
 
 export const removeUserPet = async id => {
-  const { data } = await instance.delete(`/user/pets/${id}`);
+  const { data } = await instance.delete(`/pets/${id}`);
   return data;
 };
 
 export const updatePetData = async (id, data) => {
-  const { data: result } = await instance.patch(`/user/pets/${id}`, data);
+  const { data: result } = await instance.patch(`/pets/${id}`, data);
   return result;
 };
