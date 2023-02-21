@@ -87,6 +87,12 @@ export const AddPhoto = styled.label`
   line-height: 1.83;
   letter-spacing: 0.04em;
 
+  &:hover span,
+  &:focus span {
+    color: ${p => p.theme.colors.buttonAccent};
+    transition: ${p => p.theme.transition};
+  }
+
   @media ${p => p.theme.device.desktop} {
     position: absolute;
     bottom: 0;
@@ -186,19 +192,13 @@ export const Input = styled(Field)`
   outline: none;
   color: #111111;
 
-  transition: background-color 250ms linear;
-  transition: border 250ms linear;
+  transition: background-color 200ms linear;
+  transition: border 200ms linear;
 
   &:disabled {
     background-color: #ffffff;
     border: 1px solid #ffffff;
   }
-  /* 
-  &:hover,
-  &:focus {
-    background-color: #fdf7f2;
-    border: 1px solid rgba(245, 146, 86, 0.5);
-  } */
 
   @media ${p => p.theme.device.tablet} {
     font-size: 18px;
@@ -230,6 +230,12 @@ export const Button = styled.button`
   backdrop-filter: blur(2px);
 
   cursor: pointer;
+
+  :hover:not(.active),
+  :focus-visible:not(.active) {
+    box-shadow: 7px 4px 14px #f59256;
+    transition: 200ms box-shadow linear;
+  }
 
   @media ${p => p.theme.device.tablet} {
     width: 32px;
