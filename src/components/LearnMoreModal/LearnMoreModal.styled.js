@@ -43,7 +43,7 @@ export const ContactBtn = styled.a`
   border-radius: 44px;
   padding: 8px 0px;
   border: 2px solid #ffffff;
-  background: #f59256;
+  background: ${props => props.theme.colors.hoverOrange};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,7 +62,7 @@ export const ContactBtn = styled.a`
   :hover {
     transform: scale(1.02);
     color: ${p => p.theme.colors.white};
-    border-color: ${p => p.theme.colors.hoverButton};
+    border-color: ${props => props.theme.colors.hoverOrange};
     cursor: pointer;
   }
 `;
@@ -299,6 +299,7 @@ export const ModalBtn = styled(ModalButton)`
     if (primary) return 'white';
     return '#080706';
   }};
+  border-color: ${props => props.theme.colors.hoverOrange};
   width: 248px;
   :hover:not(.active),
   :focus-visible:not(.active) {
