@@ -100,3 +100,23 @@ export const updateAvatar = createAsyncThunk(
     }
   }
 );
+
+// Update User Avatar
+export const updateUserInfo = createAsyncThunk(
+  'user/updateUserInfo',
+  async ({ value }, thunkAPI) => {
+    try {
+      const response = await api.updateUserData(value);
+      Notify.success('You have changed your data');
+      return response;
+    } catch ({ response }) {
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      Notify.error(data.message);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
