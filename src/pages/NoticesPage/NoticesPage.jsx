@@ -32,11 +32,10 @@ import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PuffLoader from 'react-spinners/PuffLoader';
-import { AddNoticeForm } from 'components/AddNoticeForm/AddNoticeForm';
 import { PaginationComponent } from 'components/Pagination/Pagination';
 import { ErrorSearch } from 'components/ErrorSearch/ErrorSearch';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import NoticeForm from 'components/AddNoticeForm/NoticeForm';
+import NoticeForm from 'components/AddNoticeForm/AddNoticeForm';
 
 const override = {
   display: 'block',

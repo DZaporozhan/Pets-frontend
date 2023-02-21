@@ -1,33 +1,41 @@
-import { ErrorMessage, Formik } from 'formik';
+import { ErrorMessage, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import {
   ActButton,
-  ButtonWrapper,
-  DateInput,
-  Label,
-  StaledForm,
-  StyledError,
   TextInput,
-} from '../PetsData/Form/ModalAddsPet.styled';
-import { CategoryContainer, CategoryInput, CategoryLabel, CategoryRadio, Description, FirstPageContainer } from './AddNoticeForm.styled.';
+  DateInput,
+  BirthdayError,
+  CategoryContainer,
+  CategoryInput,
+  CategoryLabel,
+  CategoryRadio,
+  Description,
+  FirstPageContainer,
+  InputWraper,
+  StarSpan,
+  TextLabel,
+  TitleError,
+  BreedError,
+  ActionButtons,
+  NameError
+} from './AddNoticeForm.styled.';
 
 const inputReGeX = /^[aA-zZ\s]+$/;
-const categoryArray = ["sell", "in good hand", "lost/found"]
+
 const validationSchema = Yup.object({
-  //category: Yup.string().required('Choose category'),
-  // title: Yup.string()
-  //   .required('Title is required')
-  //   .min(2, 'Min 2 letters')
-  //   .matches(
-  //     /^([А-Яа-я\s]+|[a-zA-Z\s]+){2,}$/,
-  //     'Must contain only letters and spaces'
-  //   )
-  //   .trim()
-  //   .max(48, 'Max 48 letters'),
+  category: Yup.string().required('Please, choose category'),
+  title: Yup.string()
+    .required('Please enter a title')
+    .min(2, 'Please enter at least 2 characters')
+    .matches(
+      inputReGeX,
+      'Please enter a valid value using Latin characters'
+    )
+    .max(48, 'Name should be 48 characters or less'),
   name: Yup.string()
     .min(2, 'Please enter at least 2 characters')
     .max(16, 'Name should be 15 characters or less')
-    .matches(inputReGeX, `Please enter a valid value using English characters`)
+    .matches(inputReGeX, `Please enter a valid value using Latin characters`)
     .required(`Please enter your pet's name`),
   birthday: Yup.date()
     .typeError('Please choose the date')
@@ -39,7 +47,7 @@ const validationSchema = Yup.object({
     .required(`Please enter your pet's breed`),
 });
 
-const Step1 = ({ data, next, onCancel }) => {
+const Step1 = ({ data, next, onClose }) => {
   
   const today = new Date().toISOString().split('T')[0];
 
@@ -55,25 +63,21 @@ const Step1 = ({ data, next, onCancel }) => {
       initialValues={data}
       onSubmit={handleSubmit}
     >
-      {({values}) => (
+      {() => (
+        <Form>
         <FirstPageContainer>
           <Description>
             Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit
               amet, consectetur
           </Description>
           
-          <CategoryContainer id='my-radio-group'>
-            <div role="group" aria-labelledby="my-radio-group">
+          <CategoryContainer>
             <CategoryLabel>
             <CategoryInput
                   type="radio"
                   name="category"
                   value="lost found"
-                  id="lost found"
-                  // defaultChecked={
-                  //   formik.values.category === 'lost found' ? true : false
-                  // }
-              />
+            />
                 <CategoryRadio>lost/found</CategoryRadio>
                 </CategoryLabel>
               
@@ -82,10 +86,6 @@ const Step1 = ({ data, next, onCancel }) => {
                   type="radio"
                   name="category"
                   value="in good hands"
-                  id="in good hands"
-                  // defaultChecked={
-                  //   formik.values.category === 'in good hands' ? true : false
-                  // }
                 />
                 <CategoryRadio>in good hands</CategoryRadio>
               </CategoryLabel>
@@ -94,24 +94,47 @@ const Step1 = ({ data, next, onCancel }) => {
                   type="radio"
                   name="category"
                   value="sell"
-                  id="sell"
-                  // defaultChecked={formik.values.category === 'sell'}
                 />
                 <CategoryRadio>sell</CategoryRadio>
               </CategoryLabel>
-              <div>Picked: {values.category}</div>
-              </div>
-          </CategoryContainer>
-          <Label htmlFor="name">Name pet</Label>
-          <TextInput id="name" name="name" placeholder="Type name pet" />
+             </CategoryContainer>
+            <InputWraper>
+              <TextLabel>
+                Title of ad<StarSpan>&#42;</StarSpan>
+                <TextInput
+                  id="title"
+                  name="title"
+                  placeholder="Type name pet"
+                />
+                <ErrorMessage
+            name="title"
+            render={message => (
+              <TitleError>{message}</TitleError>
+            )}
+          />
+            </TextLabel>
+            </InputWraper>
+
+            <InputWraper>
+            <TextLabel>
+              Name pet
+              <TextInput
+                id="name"
+                name="name"
+                placeholder="Type name pet"
+              />
           <ErrorMessage
             name="name"
             render={message => (
-              <StyledError style={{ color: 'red' }}>{message}</StyledError>
+              <NameError style={{ color: 'red' }}>{message}</NameError>
             )}
           />
-
-          <Label htmlFor="birthday">Date of birth</Label>
+              </TextLabel>
+            </InputWraper>
+            
+            <InputWraper>
+            <TextLabel>
+              Date of birth
           <DateInput
             id="birthday"
             name="birthday"
@@ -123,29 +146,38 @@ const Step1 = ({ data, next, onCancel }) => {
           <ErrorMessage
             name="birthday"
             render={message => (
-              <StyledError style={{ color: 'red' }}>{message}</StyledError>
+              <BirthdayError >{message}</BirthdayError>
             )}
           />
-
-          <Label htmlFor="breed">Breed</Label>
-          <TextInput id="breed" name="breed" placeholder="Type breed" />
+              </TextLabel>
+            </InputWraper>
+            
+            <InputWraper>
+            <TextLabel>
+              Breed
+              <TextInput
+                id="breed"
+                name="breed"
+                placeholder="Type breed"
+              />
           <ErrorMessage
             name="breed"
             render={message => (
-              <StyledError style={{ color: 'red' }}>{message}</StyledError>
+              <BreedError>{message}</BreedError>
             )}
           />
-          <div>Picked: {values.breed} {values.birthday}
-            {values.name}</div>
-          
-        
-          <ButtonWrapper>
-            <ActButton type="button" onClick={onCancel}>
+              </TextLabel>
+            </InputWraper>
+            </FirstPageContainer>
+            
+          <ActionButtons>
+            <ActButton type="button" onClick={onClose}>
               Cancel
             </ActButton>
             <ActButton type="submit">Next</ActButton>
-          </ButtonWrapper>
-        </FirstPageContainer>
+          </ActionButtons>
+          
+          </Form>
       )}
     </Formik>
   );

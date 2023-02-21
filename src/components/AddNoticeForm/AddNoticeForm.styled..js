@@ -10,8 +10,10 @@ export const FormWraper = styled.div`
   align-items: center;
   width: 240 px;
   padding-top: 20px;
+  padding-bottom: 40px;
   @media ${p => p.theme.device.tablet} {
     width: 448 px;
+    padding-bottom: 40px;
   }
 `;
 
@@ -138,7 +140,7 @@ export const TextLabel = styled.label`
   }
 `;
 
-export const TextInput = styled.input`
+export const TextInput = styled(Field)`
   display: block;
   box-sizing: border-box;
   align-items: center;
@@ -171,7 +173,7 @@ export const TextInput = styled.input`
   }
 `;
 
-export const DateInput = styled.input`
+export const DateInput = styled(Field)`
   position: relative;
   display: block;
   box-sizing: border-box;
@@ -346,7 +348,7 @@ export const FemalePicture = styled.div`
   }
 `;
 
-export const InputRadio = styled.input`
+export const InputRadio = styled(Field)`
   opacity: 0;
   width: 0;
   height: 0;
@@ -384,7 +386,6 @@ export const PhotoAddContainer = styled.label`
 export const ImageWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  // align-items: center;
   box-sizing: border-box;
   border: none;
   padding: 0;
@@ -392,7 +393,6 @@ export const ImageWrapper = styled.div`
 `;
 
 export const ImageTitle = styled.label`
-  // text-align: center;
   margin-bottom: 8px;
   font-family: ${p => p.theme.fonts.body};
   font-weight: ${p => p.theme.fontWeights.medium};
@@ -487,7 +487,7 @@ export const TitleError = styled.p`
   font-size: 12px;
   @media ${p => p.theme.device.tablet} {
     top: 435px;
-    left: 65%;
+    left: 60%;
   }
 `;
 
@@ -500,8 +500,8 @@ export const BirthdayError = styled.p`
   transform: translateX(-50%);
   font-size: 12px;
   @media ${p => p.theme.device.tablet} {
-    bottom: 202px;
-    left: 65%;
+    bottom: 227px;
+    left: 60%;
   }
 `;
 
@@ -515,7 +515,7 @@ export const NameError = styled.p`
   font-size: 12px;
   @media ${p => p.theme.device.tablet} {
     top: 554px;
-    left: 65%;
+    left: 60%;
   }
 `;
 
@@ -529,7 +529,7 @@ export const BreedError = styled.p`
   font-size: 12px;
   @media ${p => p.theme.device.tablet} {
     top: 795px;
-    left: 65%;
+    left: 60%;
   }
 `;
 
@@ -543,7 +543,7 @@ export const LocationError = styled.p`
   font-size: 12px;
   @media ${p => p.theme.device.tablet} {
     top: 415px;
-    left: 65%;
+    left: 60%;
   }
 `;
 
@@ -557,7 +557,7 @@ export const PriceError = styled.p`
   font-size: 12px;
   @media ${p => p.theme.device.tablet} {
     top: 536px;
-    left: 65%;
+    left: 60%;
   }
 `;
 
@@ -570,8 +570,8 @@ export const CommentError = styled.p`
   transform: translateX(-50%);
   font-size: 12px;
   @media ${p => p.theme.device.tablet} {
-    bottom: 83px;
-    left: 65%;
+    bottom: 123px;
+    left: 60%;
   }
 `;
 
