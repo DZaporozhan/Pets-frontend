@@ -109,7 +109,7 @@ export const LearnMoreModal = ({
               <DescriptionStyle style={{ marginRight: 67 }}>
                 Email:
               </DescriptionStyle>
-              <ContactBtnEmail href="mailto:noticeData.email">
+              <ContactBtnEmail href={`mailto:${noticeData.email}`}>
                 {noticeData.email}
               </ContactBtnEmail>
             </li>
@@ -117,7 +117,7 @@ export const LearnMoreModal = ({
               <DescriptionStyle style={{ marginRight: 59 }}>
                 Phone:
               </DescriptionStyle>
-              <ContactBtnTel href="tel:noticeData.phone">
+              <ContactBtnTel href={`tel:${noticeData.phone}`}>
                 {noticeData.phone}
               </ContactBtnTel>
             </li>
@@ -153,7 +153,7 @@ export const LearnMoreModal = ({
           {!favoriteId ? 'Add to' : 'Delete'}
           {!favoriteId ? <FcLike /> : <FcDislike />}
         </ModalBtn>
-        <ContactBtn href="tel:noticeData.phone">Contact</ContactBtn>
+        <ContactBtn href={`tel:${noticeData.phone}`}>Contact</ContactBtn>
       </ActionButtons>
       <ToastContainer />
     </Container>
