@@ -49,7 +49,9 @@ export const login = createAsyncThunk(
         message: data.message,
       };
       if (error.status === 403) {
-        Notify.failure('Invalid password');
+        Notify.failure(
+          'The password you entered is incorrect. Please try again'
+        );
       }
       if (error.message === "Cannot read property '_id' of null") {
         Notify.failure(`Please enter your registered email`);
