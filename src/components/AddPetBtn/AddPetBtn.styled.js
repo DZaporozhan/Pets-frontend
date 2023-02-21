@@ -15,6 +15,13 @@ export const StyledBtn = styled.button`
   background: transparent;
   flex-direction: row-reverse;
   gap: 12px;
+  //
+
+  &:hover span,
+  :focus span {
+    color: ${p => p.theme.colors.hoverButton};
+  }
+
   &:hover div,
   &:focus div {
     box-shadow: 7px 4px 14px #f59256;
