@@ -4,10 +4,11 @@ import styled from 'styled-components';
 export const NavMobMenu = styled.div`
 position: fixed;
   right: 0;
-  top: 60px;
+  top: 59px;
   width: 100vw;
   height: 100vh;
   z-index: 2;
+  overflow: auto;
   
     text-align: center;
     z-index: 100;
@@ -109,6 +110,7 @@ export const Image = styled.img`
 border-radius: 50%;
 width: 130px;
 margin-top: 20px;
+margin-bottom: 60px;
 
 @media (min-width: 768px) {
 

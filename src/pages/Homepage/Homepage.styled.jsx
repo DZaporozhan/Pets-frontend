@@ -56,7 +56,7 @@ export const Container = styled.div`
     background-position: 60% calc(22vh + 100%);
     background-repeat: no-repeat;
     background-size: contain;
-    height: calc(100vh - 99px);
+    
 
     display: flex;
     flex-direction: column;
@@ -70,6 +70,7 @@ export const Container = styled.div`
     background-position: 100% calc(10vh + 100%);
     background-repeat: no-repeat;
     background-size: contain;
+    
   }
 `;
 export const ImageWrapper = styled.div`
