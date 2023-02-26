@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Pets-frontend/static/css/main.56812b31.css",
-    "main.js": "/Pets-frontend/static/js/main.31b37309.js",
-    "static/js/656.f8a1cbfb.chunk.js": "/Pets-frontend/static/js/656.f8a1cbfb.chunk.js",
+    "main.js": "/Pets-frontend/static/js/main.b4852bb0.js",
+    "static/js/656.dfbd006f.chunk.js": "/Pets-frontend/static/js/656.dfbd006f.chunk.js",
     "static/js/215.d5ef4e4d.chunk.js": "/Pets-frontend/static/js/215.d5ef4e4d.chunk.js",
     "static/js/977.067705d2.chunk.js": "/Pets-frontend/static/js/977.067705d2.chunk.js",
     "static/js/410.9119af2b.chunk.js": "/Pets-frontend/static/js/410.9119af2b.chunk.js",
@@ -22,14 +22,15 @@
     "static/media/girlWithDog_2x-tablet-min.png": "/Pets-frontend/static/media/girlWithDog_2x-tablet-min.93b9f036cbf4d51197ce.png",
     "static/media/girlWithDog_2x-desktop-min.png": "/Pets-frontend/static/media/girlWithDog_2x-desktop-min.da1be3ffcfa556487447.png",
     "static/media/background-tablet-min.png": "/Pets-frontend/static/media/background-tablet-min.0b60ccd694bc9d7d528f.png",
+    "static/media/backgroundImageDesk-V2-2x.png": "/Pets-frontend/static/media/backgroundImageDesk-V2-2x.13d4f1d3c35e23819ccd.png",
     "static/media/dancingBear_min2.gif": "/Pets-frontend/static/media/dancingBear_min2.88fe002fcd29dd2223e0.gif",
     "static/media/girlWithDog_1x-tablet-min.png": "/Pets-frontend/static/media/girlWithDog_1x-tablet-min.8c92d83ed6135a4c3c03.png",
-    "static/media/background-desktopE5-min.png": "/Pets-frontend/static/media/background-desktopE5-min.2e3d3a49797a32055f4f.png",
     "static/media/girlWithDog_2x-mobile-min.png": "/Pets-frontend/static/media/girlWithDog_2x-mobile-min.40d28d4cc897ec55af35.png",
     "static/media/dancingBear-cropped.gif": "/Pets-frontend/static/media/dancingBear-cropped.d72296db788c34915b70.gif",
     "static/media/girlWithDog_1x-desktop-min.png": "/Pets-frontend/static/media/girlWithDog_1x-desktop-min.58a2c9c55617ccdb80b6.png",
     "static/media/cat-min.gif": "/Pets-frontend/static/media/cat-min.db57ec04c8c41d4ffafc.gif",
     "static/media/snowMan2.gif": "/Pets-frontend/static/media/snowMan2.ecfdd39b5f187c969bb0.gif",
+    "static/media/backgroundImageDesk-V2-1x.png": "/Pets-frontend/static/media/backgroundImageDesk-V2-1x.2f03b0a4acb559da6223.png",
     "static/media/background-mobile-min.png": "/Pets-frontend/static/media/background-mobile-min.12dfcc2bf906a7b8b408.png",
     "static/media/temp-avatar.jpg": "/Pets-frontend/static/media/temp-avatar.416e05ba97c2d8a86f69.jpg",
     "static/media/girlWithDog_1x-mobile-min.png": "/Pets-frontend/static/media/girlWithDog_1x-mobile-min.90e1e3dd24b046801a14.png",
@@ -48,8 +49,8 @@
     "static/media/close.svg": "/Pets-frontend/static/media/close.73b1d8773d59eabcd477439289b362e4.svg",
     "static/media/Vectorcross.svg": "/Pets-frontend/static/media/Vectorcross.81616c979b85ab6f0858cbc6c9a000de.svg",
     "main.56812b31.css.map": "/Pets-frontend/static/css/main.56812b31.css.map",
-    "main.31b37309.js.map": "/Pets-frontend/static/js/main.31b37309.js.map",
-    "656.f8a1cbfb.chunk.js.map": "/Pets-frontend/static/js/656.f8a1cbfb.chunk.js.map",
+    "main.b4852bb0.js.map": "/Pets-frontend/static/js/main.b4852bb0.js.map",
+    "656.dfbd006f.chunk.js.map": "/Pets-frontend/static/js/656.dfbd006f.chunk.js.map",
     "215.d5ef4e4d.chunk.js.map": "/Pets-frontend/static/js/215.d5ef4e4d.chunk.js.map",
     "977.067705d2.chunk.js.map": "/Pets-frontend/static/js/977.067705d2.chunk.js.map",
     "410.9119af2b.chunk.js.map": "/Pets-frontend/static/js/410.9119af2b.chunk.js.map",
@@ -69,6 +70,6 @@
   },
   "entrypoints": [
     "static/css/main.56812b31.css",
-    "static/js/main.31b37309.js"
+    "static/js/main.b4852bb0.js"
   ]
 }
