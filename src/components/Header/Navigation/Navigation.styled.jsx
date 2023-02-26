@@ -4,13 +4,13 @@ import styled from 'styled-components';
 export const NavMobMenu = styled.div`
 position: fixed;
   right: 0;
-  top: 60px;
+  top: 59px;
   width: 100vw;
   height: 100vh;
   z-index: 2;
+  overflow: auto;
   
     text-align: center;
-    z-index: 100;
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
     opacity: ${({ menuToggle }) => (menuToggle ? 1 : 0)};
     background-color: ${p => p.theme.colors.background};
@@ -20,7 +20,7 @@ position: fixed;
     flex-direction: column;
     
     @media (min-width: 768px) {
-     top: 72px; 
+     top: 71px; 
     }
 
     @media (min-width: 1280px) {
@@ -109,6 +109,7 @@ export const Image = styled.img`
 border-radius: 50%;
 width: 130px;
 margin-top: 20px;
+margin-bottom: 80px;
 
 @media (min-width: 768px) {
 
