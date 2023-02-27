@@ -73,7 +73,7 @@ export const social = createAsyncThunk(
       const response = { user, token };
       console.log(response);
       Notify.success('Login successfully');
-      return token;
+      return response;
     } catch ({ response }) {
       const { status, data } = response;
       const error = {
