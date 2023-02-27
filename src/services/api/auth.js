@@ -40,6 +40,13 @@ export const login = async data => {
   return result;
 };
 
+export const socialAuth = async accessToken => {
+  if (accessToken) {
+    setToken(accessToken);
+    return accessToken;
+  }
+};
+
 export const logout = async () => {
   const data = await instance.post('/auth/logout');
   setToken();

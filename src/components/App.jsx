@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useSearchParams } from 'react-router-dom';
 import SharedLayout from './SharedLayout/SharedLayout';
 import { lazy, useEffect } from 'react';
 import { PrivateRoute } from 'components/Routes/PrivateRoute';
@@ -6,7 +6,7 @@ import { RestrictedRoute } from 'components/Routes/RestrictedRoute';
 
 import { selectIsRefreshing, selectToken } from 'redux/auth/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { current } from 'redux/auth/operations';
+import { current, social } from 'redux/auth/operations';
 import { Loader } from './Loader/Loader';
 
 const Homepage = lazy(() => import('pages/Homepage/Homepage'));
@@ -24,6 +24,15 @@ export const App = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const isRefreshisng = useSelector(selectIsRefreshing);
+  const [searchParams] = useSearchParams();
+  const accessToken = searchParams.get('accessToken');
+
+  useEffect(() => {
+    if (accessToken) {
+      dispatch(social(accessToken));
+    }
+  }, [accessToken, dispatch]);
+
   useEffect(() => {
     if (token) {
       dispatch(current());
@@ -48,6 +57,7 @@ export const App = () => {
             <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
           }
         />
+
         <Route path="/friends" element={<OurFriendsPage />} />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/notices/:categoryName" element={<NoticesPage />} />

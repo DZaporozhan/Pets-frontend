@@ -63,6 +63,35 @@ export const login = createAsyncThunk(
   }
 );
 
+// social
+export const social = createAsyncThunk(
+  'auth/social',
+  async (credentials, thunkAPI) => {
+    try {
+      const response = await api.socialAuth(credentials);
+      Notify.success('Login successfully');
+      return response;
+    } catch ({ response }) {
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      if (error.status === 403) {
+        Notify.failure(
+          'The password you entered is incorrect. Please try again'
+        );
+      }
+      if (error.message === "Cannot read property '_id' of null") {
+        Notify.failure(`Please enter your registered email`);
+      }
+      console.log(error);
+
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 // LOGOUT
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {

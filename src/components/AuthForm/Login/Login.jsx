@@ -2,6 +2,7 @@ import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { login } from 'redux/auth/operations';
 import * as Yup from 'yup';
+import { NavLink } from 'react-router-dom';
 
 import {
   AuthButton,
@@ -48,31 +49,36 @@ const Login = () => {
     },
   });
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <FormInput
-        id="email"
-        name="email"
-        value={formik.values.email}
-        onChange={formik.handleChange}
-        placeholder="Email"
-      />
-      {formik.touched.email && formik.errors.email && (
-        <FirstInpError>{formik.errors.email}</FirstInpError>
-      )}
-      <FormInput
-        id="password"
-        name="password"
-        type="password"
-        autoComplete="password"
-        value={formik.values.password}
-        onChange={formik.handleChange}
-        placeholder="Password"
-      />
-      {formik.touched.password && formik.errors.password && (
-        <SecondInpError>{formik.errors.password}</SecondInpError>
-      )}
-      <AuthButton type="submit">Login</AuthButton>
-    </form>
+    <>
+      <form onSubmit={formik.handleSubmit}>
+        <FormInput
+          id="email"
+          name="email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          placeholder="Email"
+        />
+        {formik.touched.email && formik.errors.email && (
+          <FirstInpError>{formik.errors.email}</FirstInpError>
+        )}
+        <FormInput
+          id="password"
+          name="password"
+          type="password"
+          autoComplete="password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          placeholder="Password"
+        />
+        {formik.touched.password && formik.errors.password && (
+          <SecondInpError>{formik.errors.password}</SecondInpError>
+        )}
+        <AuthButton type="submit">Login</AuthButton>
+      </form>
+      <NavLink to={'http://localhost:65000/api/auth/google'}>
+        Click me to authorize with Google!
+      </NavLink>
+    </>
   );
 };
 
