@@ -43,7 +43,7 @@ export const login = async data => {
 export const socialAuth = async accessToken => {
   if (accessToken) {
     setToken(accessToken);
-    return accessToken;
+    return { accessToken };
   }
 };
 

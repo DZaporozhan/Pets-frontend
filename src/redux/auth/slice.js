@@ -51,7 +51,8 @@ const authSlice = createSlice({
     // social
     [social.pending]: handlePending,
     [social.fulfilled](state, action) {
-      state.token = action.payload;
+      state.user = action.payload.user;
+      state.token = action.payload.accessToken;
       state.isLoggedIn = true;
       state.isAuthLoading = false;
     },
