@@ -75,7 +75,9 @@ const Login = () => {
         )}
         <AuthButton type="submit">Login</AuthButton>
       </form>
-      <NavLink to={'http://localhost:65000/api/auth/google'}>
+      <NavLink
+        to={'http://https://pets-api-team1.onrender.com/api/auth/google'}
+      >
         Click me to authorize with Google!
       </NavLink>
     </>
