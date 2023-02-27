@@ -40,9 +40,10 @@ export const login = async data => {
   return result;
 };
 
-export const socialAuth = async accessToken => {
+export const socialAuth = async (accessToken, refreshToken) => {
   if (accessToken) {
     setToken(accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
     return accessToken;
   }
 };

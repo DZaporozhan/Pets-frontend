@@ -26,12 +26,13 @@ export const App = () => {
   const isRefreshisng = useSelector(selectIsRefreshing);
   const [searchParams] = useSearchParams();
   const accessToken = searchParams.get('accessToken');
+  const refreshToken = searchParams.get('refreshToken');
 
   useEffect(() => {
     if (accessToken) {
-      dispatch(social(accessToken));
+      dispatch(social(accessToken, refreshToken));
     }
-  }, [accessToken, dispatch]);
+  }, [accessToken, dispatch, refreshToken]);
 
   useEffect(() => {
     if (token) {
