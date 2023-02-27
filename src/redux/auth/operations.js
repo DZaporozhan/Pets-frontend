@@ -69,8 +69,9 @@ export const social = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await api.socialAuth(credentials);
+      const result = await api.getCurrent(response);
       Notify.success('Login successfully');
-      return response;
+      return result;
     } catch ({ response }) {
       const { status, data } = response;
       const error = {
