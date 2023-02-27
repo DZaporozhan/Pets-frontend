@@ -445,6 +445,10 @@ export const ActButton = styled.button`
   border: 2px solid #f59256;
   border-radius: 40px;
   cursor: pointer;
+  font-family: ${p => p.theme.fonts.body};
+  font-size: ${p => p.theme.fontSizes[2]}px;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  background-color: ${p => p.theme.colors.white};
   transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
    @media ${props => props.theme.device.tablet} {
@@ -452,10 +456,7 @@ export const ActButton = styled.button`
     width: 180px;
     height: 44px;
   }
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-family: ${p => p.theme.fonts.body};
-  background-color: ${p => p.theme.colors.white};
-  
+    
   :hover:not(.active),
   :focus-visible:not(.active) {
     background-color: ${p => p.theme.colors.accent};
