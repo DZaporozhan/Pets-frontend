@@ -38,10 +38,6 @@ export const SecPageContainer = styled.div`
   
 `;
 
-export const Button = styled.button`
- 
-`;
-
 export const Description = styled.p`
   text-align: center;
   margin-bottom: 20px;
@@ -364,17 +360,20 @@ export const PhotoPetText = styled.input`
 `;
 
 export const PhotoAddContainer = styled.label`
-  width: 116px;
-  height: 116px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 40px;
-  cursor: pointer;
-  // margin: 0 auto;
   margin-right: auto;
-  box-sizing: border-box;
+ // box-sizing: border-box;
   // padding: 22px;
+`;
+
+export const PhotoAddButton = styled.button`
+  width: 116px;
+  height: 116px;
+  cursor: pointer;
+  outline: none;
+  border: none;
   border-radius: 20px;
   background-color: ${p => p.theme.colors.background};
   @media ${p => p.theme.device.tablet} {
@@ -405,13 +404,13 @@ export const ImageTitle = styled.label`
   }
 `;
 
-export const AddedImage = styled.div`
+export const CurrentImage = styled.div`
   overflow: hidden;
   display: flex;
   margin-right: auto;
   width: 116px;
   height: 116px;
-  border-radius: 20px;
+  border-radius: ${p => p.theme.radii.small};
   & > img {
     object-fit: cover;
     min-width: 100%;
@@ -445,6 +444,10 @@ export const ActButton = styled.button`
   border: 2px solid #f59256;
   border-radius: 40px;
   cursor: pointer;
+  font-family: ${p => p.theme.fonts.body};
+  font-size: ${p => p.theme.fontSizes[2]}px;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  background-color: ${p => p.theme.colors.white};
   transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
    @media ${props => props.theme.device.tablet} {
@@ -452,10 +455,7 @@ export const ActButton = styled.button`
     width: 180px;
     height: 44px;
   }
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-family: ${p => p.theme.fonts.body};
-  background-color: ${p => p.theme.colors.white};
-  
+    
   :hover:not(.active),
   :focus-visible:not(.active) {
     background-color: ${p => p.theme.colors.accent};
@@ -479,99 +479,105 @@ export const ActButton = styled.button`
 
 export const TitleError = styled.p`
   position: absolute;
-  color: red;
-  min-width: 260px;
   top: 378px;
-  left: 80%;
-  transform: translateX(-50%);
+  left: 30%;
+  display: inline-block;
   font-size: 12px;
+  color: red;
+  
   @media ${p => p.theme.device.tablet} {
     top: 435px;
     left: 60%;
+    transform: translateX(-50%);
   }
 `;
 
 export const BirthdayError = styled.p`
   position: absolute;
-  color: red;
-  min-width: 260px;
-  bottom: 230px;
-  left: 80%;
-  transform: translateX(-50%);
+  bottom: 273px;
+  left: 18%;
+  display:inline-block;
   font-size: 12px;
+  color: red;
+
   @media ${p => p.theme.device.tablet} {
     bottom: 227px;
     left: 60%;
+    transform: translateX(-50%);
   }
 `;
 
 export const NameError = styled.p`
   position: absolute;
-  color: red;
-  min-width: 260px;
   top: 467px;
-  left: 80%;
-  transform: translateX(-50%);
+  left: 22%;
+  display:inline-block;
   font-size: 12px;
+  color: red;
+
   @media ${p => p.theme.device.tablet} {
     top: 554px;
     left: 60%;
+    transform: translateX(-50%);
   }
 `;
 
 export const BreedError = styled.p`
   position: absolute;
-  color: red;
-  min-width: 260px;
-  //top: 378px;
-  left: 80%;
-  transform: translateX(-50%);
+  left: 23%;
+  display: inline-block;
   font-size: 12px;
+  color: red;
+
   @media ${p => p.theme.device.tablet} {
     top: 795px;
     left: 60%;
+    transform: translateX(-50%);
   }
 `;
 
 export const LocationError = styled.p`
   position: absolute;
-  color: red;
-  min-width: 260px;
-  top: 328px;
-  left: 80%;
-  transform: translateX(-50%);
+  top: 321px;
+  left: 18%;
+  display: inline-block;
   font-size: 12px;
+  color: red;
+
   @media ${p => p.theme.device.tablet} {
     top: 415px;
     left: 60%;
+    transform: translateX(-50%);
   }
 `;
 
 export const PriceError = styled.p`
   position: absolute;
-  color: red;
-  min-width: 260px;
-  top: 417px;
-  left: 80%;
-  transform: translateX(-50%);
+  top: 411px;
+  left: 35%;
+  display: inline-block;
   font-size: 12px;
+  color: red;
+
   @media ${p => p.theme.device.tablet} {
     top: 536px;
     left: 60%;
+    transform: translateX(-50%);
   }
 `;
 
 export const CommentError = styled.p`
   position: absolute;
-  color: red;
-  min-width: 260px;
-  bottom: 141px;
-  left: 80%;
-  transform: translateX(-50%);
+  bottom: 188px;
+  left: 21%;
+  display: inline-block;
   font-size: 12px;
+  color: red;
+
   @media ${p => p.theme.device.tablet} {
     bottom: 123px;
     left: 60%;
+    transform: translateX(-50%);
   }
 `;
 
