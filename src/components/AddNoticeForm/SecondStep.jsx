@@ -4,11 +4,7 @@ import * as Yup from 'yup';
 import { ReactComponent as CrossPic } from '../../icons/Vectorcross.svg';
 import HeartLove from '../../../src/icons/heart-love.gif';
 import {
-  Image,
-  ImageBtn,
-  ImageExample,
-} from '../PetsData/Form/ModalAddsPet.styled';
-import {
+  CurrentImage,
   ImageWrapper,
   ActionButtons,
   ActButton,
@@ -36,6 +32,7 @@ import {
   TextLabel,
   CommentError,
   InputContTextArea,
+  PhotoAddButton,
 } from './AddNoticeForm.styled.';
 
 // eslint-disable-next-line no-useless-escape
@@ -160,13 +157,11 @@ const Step2 = ({ data, next, back }) => {
             )}
             <ImageWrapper>
               <ImageTitle>Load the pet's image:</ImageTitle>
-              {formProps.values.imageURL === null ? (
-                <PhotoAddContainer htmlFor="imagePet">
-                  <CrossPic width="48" height="48" fill="none"></CrossPic>
+                <PhotoAddContainer htmlFor="imageURL">
                   <PhotoPetText
                     ref={fileRef}
                     hidden
-                    id="imagePet"
+                    id="imageURL"
                     name="imageURL"
                     type="file"
                     accept=".png, .jpg, .jpeg"
@@ -179,17 +174,16 @@ const Step2 = ({ data, next, back }) => {
                       }
                     }}
                   />
-                </PhotoAddContainer>
-              ) : (
-                <ImageBtn
+                        
+                <PhotoAddButton
                   type="button"
                   onClick={() => {
                     fileRef.current.click();
                   }}
                 >
                   {formProps.values.imageURL ? (
-                    <ImageExample>
-                      <Image
+                    <CurrentImage>
+                      <img
                         alt="pet"
                         src={
                           image === null
@@ -197,12 +191,14 @@ const Step2 = ({ data, next, back }) => {
                             : image
                         }
                       />
-                    </ImageExample>
+                    </CurrentImage>
                   ) : (
                     <CrossPic width="48" height="48" fill="none" />
                   )}
-                </ImageBtn>
-              )}
+                </PhotoAddButton>
+                  </PhotoAddContainer>
+                  
+           
             </ImageWrapper>
             <InputContTextArea>
               <TextLabel htmlFor="comments">Comments</TextLabel>
